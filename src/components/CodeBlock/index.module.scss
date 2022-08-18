@@ -1,0 +1,123 @@
+.codeBlock {
+  position: relative;
+  display: flex;
+
+
+  .editorWrap,
+  .previewWrap {
+    flex: 1 1 50%;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .editorHeader,
+  .previewHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 26px;
+    padding: 0 10px;
+    background: #202124;
+    color: #888;
+    font-size: 14px;
+  }
+
+  .previewHeader {
+    background: #fff;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  .editorActions,
+  .previewActions {
+    display: flex;
+    align-items: center;
+
+    :global {
+      .icon {
+        cursor: pointer;
+
+        &:hover {
+          color: #999;
+        }
+      }
+    }
+  }
+
+  .editorWrap {
+    display: flex;
+    flex-direction: column;
+
+    .editorHeader {
+      .language {
+        font-family: 'Fira Code', monospace;
+      }
+    }
+
+    .editorBody {
+      flex: 1;
+      overflow: auto;
+      overflow: overlay;
+
+      > div {
+        min-width: 100%;
+        min-height: 100%;
+        float: left;
+
+        :global {
+          .textarea,
+          pre {
+            white-space: pre !important;
+          }
+        }
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(150, 150, 150, 0.4);
+        border: 2px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+        border-radius: 9999px;
+      }
+
+      &::-webkit-scrollbar-corner {
+        background-color: transparent;
+      }
+    }
+  }
+
+  .previewWrap {
+    display: flex;
+    flex-direction: column;
+
+    .previewHeader {
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #fd6458;
+        box-shadow: 20px 0 0 #ffbf2b, 40px 0 0 #24cc3d;
+        vertical-align: middle;
+      }
+    }
+
+    .previewBody {
+      position: relative;
+      flex: 1;
+      overflow: auto;
+      overflow: overlay;
+      padding: 8px;
+      background: #fbfbfb;
+      color: #000;
+    }
+  }
+}

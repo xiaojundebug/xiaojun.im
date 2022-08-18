@@ -1,0 +1,10 @@
+{
+  "nav.home": "Home",
+  "nav.tags": "Tags",
+  "nav.about": "About",
+
+  "post-page.last-updated": "Last Updated: ",
+
+  "tags-page.title": "Tags",
+  "tags-page.desc": "{{ count }} tags in total"
+}

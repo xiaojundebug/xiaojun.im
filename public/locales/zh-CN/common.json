@@ -1,0 +1,10 @@
+{
+  "nav.home": "主页",
+  "nav.tags": "标签",
+  "nav.about": "关于",
+
+  "post-page.last-updated": "最后更新于 ",
+
+  "tags-page.title": "标签",
+  "tags-page.desc": "共 {{ count }} 个标签"
+}
