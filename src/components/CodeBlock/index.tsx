@@ -71,7 +71,7 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
       <div
         className={classNames(style.codeBlock, {
           [`h-[${height}]`]: height,
-          'max-h-[300px] sm:max-h-[300px]': !height,
+          'max-h-[300px] sm:max-h-[500px]': !height,
         })}
       >
         <LiveProvider

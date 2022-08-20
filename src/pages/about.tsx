@@ -13,7 +13,6 @@ const About = () => {
       <p>本站是我用来分享技术、记录笔记的一个自由空间，另一个目的是为了练手前端的一些新技术</p>
       <ul>
         <li>本站技术栈 - Next.js、MDX、Tailwind CSS、TypeScript</li>
-        <li>Logo - 来自 <a href="https://www.flaticon.com">www.flaticon.com</a>，作者 Darius Dan</li>
       </ul>
 
       <h2>📜 本站历史</h2>

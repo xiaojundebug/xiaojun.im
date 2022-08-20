@@ -15,7 +15,7 @@ const LatestPosts: React.FC<PostListProps> = props => {
         <div key={idx}>
           {(idx === 0 ||
             dayjs(posts[idx - 1].frontmatter.date).year() !== dayjs(frontmatter.date).year()) && (
-            <h2 className="text-2xl sm:text-3xl before:content-['#_'] before:text-primary">
+            <h2 className="font-medium text-2xl sm:text-3xl before:content-['#_'] before:text-primary">
               {dayjs(frontmatter.date).year()}
             </h2>
           )}

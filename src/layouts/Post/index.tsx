@@ -57,7 +57,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
 
   return (
     <div className="container break-all">
-      <h1 className="mt-14 sm:mt-24 text-2xl sm:text-4xl font-medium">{title}</h1>
+      <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl font-medium">{title}</h1>
       {/* 最后更新时间 */}
       <div className="text-zinc-400 mt-6 sm:mt-12">
         <div className="flex items-center text-sm">

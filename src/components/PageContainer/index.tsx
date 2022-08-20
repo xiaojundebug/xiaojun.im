@@ -6,7 +6,7 @@ const PageContainer: React.FC<PropsWithChildren<PageContainerProps>> = props => 
   const { children } = props
 
   return (
-    <div className="w-full min-h-screen pt-[50px] sm:pt-[80px]" id="router">
+    <div className="w-full min-h-screen" id="router">
       {children}
     </div>
   )

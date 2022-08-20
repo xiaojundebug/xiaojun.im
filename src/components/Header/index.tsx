@@ -6,6 +6,7 @@ import { useBoolean, useSize } from 'ahooks'
 import { animated, useSpring, useTransition } from 'react-spring'
 import BurgerMenu from '@/components/BurgerMenu'
 import { useTranslation } from 'next-i18next'
+import classNames from 'classnames'
 
 // const menus = [
 //   { label: 'Home', href: '/' },
@@ -41,13 +42,20 @@ const Header: React.FC<HeaderProps> = () => {
   })
 
   return (
-    <header className="fixed w-full h-[50px] sm:h-[80px] bg-slate-50 sm:bg-slate-50/70 dark:bg-zinc-900 sm:dark:bg-zinc-900/50 backdrop-blur border-0 sm:border-b border-zinc-400/10 z-10">
+    <header
+      className={classNames(
+        'w-full h-[50px] sm:h-[80px] bg-slate-50 sm:bg-slate-50/70 dark:bg-zinc-900 sm:dark:bg-zinc-900/50',
+        {
+          'sticky top-0 z-10 backdrop-blur sm:border-b border-zinc-400/10': config.navSticky,
+        },
+      )}
+    >
       <div className="container h-full flex items-center justify-between">
         <BurgerMenu className="cursor-pointer sm:hidden" isOpen={expanded} onChange={toggle} />
         {/* pc */}
         <div className="hidden sm:flex relative flex items-center gap-4">
           <a href={'/'}>
-            <img className="w-[50px] align-middle" src={config.logo} alt="logo" />
+            <img className="w-[45px] align-middle dark:invert" src={config.logo} alt="logo" />
           </a>
           {menus.map(menu => (
             <Link key={menu.href} href={menu.href}>

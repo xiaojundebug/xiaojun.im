@@ -78,9 +78,7 @@
   text-decoration: underline;
 }
 
-.markdown-body del {
-  text-decoration-color: rgba(250, 188, 56, 0.85);
-}
+.markdown-body del {}
 
 .markdown-body table {
   width: 100%;
@@ -108,13 +106,10 @@
 
 .markdown-body .anchor {
   color: inherit;
-  border-left: 4px solid;
-  padding-left: 0.5em;
-  //text-shadow: 1px 2px 0 rgb(0 0 0 / 20%);
   @apply border-primary;
 }
 .markdown-body .anchor:hover::after {
-  content: '#';
+  content: ' #';
   @apply text-primary;
 }
 
@@ -131,8 +126,8 @@
   .note { background: rgba(57, 60, 79, 0.3); }
   .note::before { background: #18181b; }
   .note.tip { color: darken(#fff, 10%); }
-  .note.warning { color: darken(#fabc38, 5%); }
-  .note.danger { color: darken(#e8443c, 5%) }
+  .note.warning { color: darken(#fff, 10%); }
+  .note.danger { color: darken(#fff, 10%) }
 
   table th { background: rgba(57, 60, 79, 0.3); color: #ccc; }
   table td { border-bottom: 1px solid rgba(57, 60, 79, 0.3); }
