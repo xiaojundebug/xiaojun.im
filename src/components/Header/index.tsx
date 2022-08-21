@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import DarkModeToggle from '../DarkModeToggle'
 import config from '@/config'
@@ -7,17 +7,22 @@ import { animated, useSpring, useTransition } from 'react-spring'
 import BurgerMenu from '@/components/BurgerMenu'
 import { useTranslation } from 'next-i18next'
 import classNames from 'classnames'
-
-// const menus = [
-//   { label: 'Home', href: '/' },
-//   { label: 'Tags', href: '/tags' },
-//   { label: 'About', href: '/about' },
-// ]
+import {
+  animationFrameScheduler,
+  distinctUntilChanged,
+  filter,
+  fromEvent,
+  map,
+  pairwise,
+  throttleTime,
+  withLatestFrom,
+} from 'rxjs'
 
 export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
-  const [expanded, { toggle }] = useBoolean(false)
+  const [visible, { set: setVisible }] = useBoolean(true)
+  const [expanded, { toggle: toggleExpanded }] = useBoolean(false)
   const { t } = useTranslation('common')
   const menus = useMemo(
     () => [
@@ -41,17 +46,48 @@ const Header: React.FC<HeaderProps> = () => {
     trail: 75,
   })
 
+  useEffect(() => {
+    // 进来执行初次判断
+    setVisible(window.scrollY <= 500)
+    const scroll$ = fromEvent(window, 'scroll').pipe(
+      throttleTime(0, animationFrameScheduler),
+      map(() => window.scrollY),
+    )
+    const dirChange$ = scroll$.pipe(
+      pairwise(),
+      map(([prev, curr]) => prev > curr),
+      distinctUntilChanged(),
+      map(() => window.scrollY),
+    )
+    const sub = scroll$
+      .pipe(
+        withLatestFrom(dirChange$),
+        filter(([scrollY, anchor]) => Math.abs(scrollY - anchor) >= 80),
+        map(([scrollY, anchor]) => scrollY <= 500 || scrollY < anchor),
+        distinctUntilChanged(),
+      )
+      .subscribe(v => {
+        setVisible(v)
+      })
+
+    return () => sub.unsubscribe()
+  }, [])
+
   return (
     <header
       className={classNames(
         'w-full h-[50px] sm:h-[80px] bg-slate-50 sm:bg-slate-50/70 dark:bg-zinc-900 sm:dark:bg-zinc-900/50',
         {
-          'sticky top-0 z-10 backdrop-blur sm:border-b border-zinc-400/10': config.navSticky,
+          'sticky top-0 z-10 backdrop-blur sm:border-b border-zinc-400/10': visible,
         },
       )}
     >
       <div className="container h-full flex items-center justify-between">
-        <BurgerMenu className="cursor-pointer sm:hidden" isOpen={expanded} onChange={toggle} />
+        <BurgerMenu
+          className="cursor-pointer sm:hidden"
+          isOpen={expanded}
+          onChange={toggleExpanded}
+        />
         {/* pc */}
         <div className="hidden sm:flex relative flex items-center gap-4">
           <a href={'/'}>

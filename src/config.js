@@ -9,7 +9,6 @@ const config = {
   socials: [
     { label: 'github', icon: <AiOutlineGithub />, link: 'https://github.com/xiaojun1994' }
   ],
-  navSticky: false // 是否使用粘性导航栏
 }
 
 export default config

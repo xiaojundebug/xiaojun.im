@@ -7,7 +7,7 @@ const Splash = () => {
       <div className="container flex">
         {config.avatar && (
           <img
-            className="w-20 rounded-full border border-zinc-600/10 shadow-zinc-600/10 shadow-xl dark:shadow-none p-2"
+            className="w-20 h-20 rounded-full border border-zinc-600/10 shadow-zinc-600/10 shadow-xl dark:shadow-none p-2"
             src={config.avatar}
             alt="avatar"
           />

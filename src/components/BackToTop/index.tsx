@@ -22,12 +22,11 @@ const BackToTop = () => {
   })
 
   useEffect(() => {
-    const el = window
-    const sub = fromEvent(el, 'scroll')
+    const sub = fromEvent(window, 'scroll')
       .pipe(
         throttleTime(0, animationFrameScheduler),
         startWith(null),
-        map(() => el.scrollY > 500),
+        map(() => window.scrollY > 500),
         distinctUntilChanged(),
       )
       .subscribe(bool => {
