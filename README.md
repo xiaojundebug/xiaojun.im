@@ -1,37 +1,40 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fxiaojun1994%2Fxiaojun1994.top)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fxiaojun1994%2Feula)
 
-# xiaojun1994.top
+# Eula
 
-一个基于 Next.js 的开源博客
+A front-end friendly blog starter built with Next.js, TypeScript, MDX, TailwindCSS.
 
-https://xiaojun1994.top/
+👀 [Live Demo](https://xiaojun1994.top/)
 
-## 特点
+## Features
 
-- 🎨 简约，丝滑，快速
-- 🌚 支持黑暗模式，响应式设计适配移动端
-- 🎮 支持 code 块的实时运行（原生 html 以及单个 react 组件）
-- ⚡️ 由 Next.js + MDX + Tailwind CSS 强力驱动，方便二次开发，支持一键部署到 Vercel
-- 🧩 集成不蒜子统计，预计阅读时长，文章标签分类
-- 更多功能还在开发中...
+- 🎨 Simple, smooth and fast
+- ✨ Support dark mode, responsive design
+- 🎮 Built-in lightweight code playground (native html and single react component), front-end friendly
+- ⚡️ Powered by Next.js, TypeScript, MDX, TailwindCSS, convenient for secondary development, deployed on [Vercel](https://vercel.com)
+- 🧩 Support reading time, tags, table of contents...
+- More features are in the works...
 
 TODO:
 
-- 集成第三方评论？
-- RSS？
-- 友链？
-- 更多 SEO 优化
-- 更多社交链接类型支持
-- 文章分享
-- 列表分页？（文章多了可以考虑支持，目前没太大必要）
+- RSS
+- SEO
+- Pagination
+- Comment system
+- More social links support
+- Migration to [Contentlayer](https://github.com/contentlayerdev/contentlayer)
 
-### LOGO 由来
+## Getting Started
 
-自己乱画
+1. Fork the repo
+2. `npm i`
+3. `npm run new:post posttile [tag1] [tag2] ...`, *.mdx file will created in `src/posts` folder
+4. Deploy it to [Vercel](https://vercel.com)
+4. If you like, please star the repo 🙏
 
-## 感谢
+_config file in `src/config.js`_
 
-该项目参考但不限于以下网站
+## Thanks
 
 - https://www.joshwcomeau.com
 - https://leerob.io
