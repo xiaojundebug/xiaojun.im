@@ -2,7 +2,7 @@
 
 # Eula
 
-A front-end friendly blog starter built with Next.js, TypeScript, MDX, TailwindCSS.
+A front-end friendly blog starter built with Next.js, TypeScript, MDX, and TailwindCSS.
 
 👀 [Live Demo](https://xiaojun1994.top/)
 
