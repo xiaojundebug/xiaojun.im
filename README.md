@@ -1,4 +1,4 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fxiaojun1994%2Feula)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fxiaojun1994%2Fnext-)
 
 # next-blog-starter
 
@@ -28,9 +28,9 @@ TODO:
 
 1. Fork the repo
 2. `npm i`
-3. `npm run new:post posttile [tag1] [tag2] ...`, *.mdx file will created in `src/posts` folder
+3. `npm run new:post posttile [tag1] [tag2] ...`, the *.mdx file will be created in the `src/posts` folder
 4. Deploy it to [Vercel](https://vercel.com)
-4. If you like, please star the repo 🙏
+5. If you like, please star the repo 🙏
 
 _config file in `src/config.js`_
 
