@@ -24,7 +24,7 @@ const HeroImage: React.FC<HeroImage> = props => {
 
   return withNativeProps(
     props,
-    <div className="w-full aspect-video">
+    <div className="w-full aspect-video rounded-md sm:rounded-lg overflow-hidden">
       {status === 'loading' && loading}
       {status === 'loaded' && <img className="w-full h-full object-cover dark:brightness-75" src={dataUrl} alt="hero image" />}
       {status === 'failed' && failed}

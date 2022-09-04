@@ -1,8 +1,8 @@
 ---
-title: 功能测试
+title: MDX Test
 date: '2022-08-05 21:53:39'
 toc: true
-updatedOn: '2022-08-18 21:23'
+updatedOn: '2022-09-04 17:03'
 heroImage: 'https://source.unsplash.com/random/640x360/?programming'
 tags:
   - HTML
@@ -13,77 +13,77 @@ tags:
   - Angular
 ---
 
-## 二级标题
+## Heading2
 
-### 三级标题
+### Heading3
 
-#### 四级标题
+#### Heading4
 
-##### 五级标题
+##### Heading5
 
 MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
-
-This **word** is bold. This <em>word</em> is italic.
-
-<div className="flex items-center">试试切换主题 👉&nbsp;<DarkModeToggle /></div>
 
 > MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
 
-_提示_
+[link](https://github.com/xiaojun1994)
 
-:::tip
-MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
-:::
+This **word** is bold. This <em>word</em> is italic.
 
-_警告_
-
-:::warning
-MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
-:::
-
-_危险警告_
-
-:::danger
-MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
-:::
-
-[链接](https://mdxjs.com/)
-
-https://mdxjs.com/
+~~Early to bed and early to rise~~
 
 `hello world`
 
-~~世界是平坦的。~~ 我们现在知道世界是圆的。
+- First item
+- Second item
+- Third item
+- Fourth item
 
----
-
-- 中国
-- 美国
-- 俄罗斯
-
-1. 中国
-2. 美国
-3. 俄罗斯
+1. First item
+2. Second item
+3. Third item
+4. Fourth item
 
 | Syntax    | Description |
 | --------- | ----------- |
 | Header    | Title       |
 | Paragraph | Text        |
 
-![test image](/avatar.jpg)
+![test image](/404.svg)
 
-## 代码块展示
+---
+
+## JSX Component
+
+<div className="flex items-center">
+  switch theme 👉&nbsp;
+  <DarkModeToggle />
+</div>
+
+## NoteBlock
+
+:::tip
+MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
+:::
+
+:::warning
+MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
+:::
+
+:::danger
+MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
+:::
+
+## Syntax highlighting
 
 ```ts
 function sum(a: number, b: number) {
-  return a + b;
+  return a + b
 }
 console.log(sum(1, 1))
 ```
 
-## HTML 实时预览
 
-你可以实时编辑下方代码，右侧 demo 会同步更新
+## HTML Playground (Beta)
 
 ```html live
 <!DOCTYPE html>
@@ -110,9 +110,7 @@ console.log(sum(1, 1))
 </html>
 ```
 
-## React 组件实时预览
-
-你可以实时编辑下方代码，右侧 demo 会同步更新 **（不支持多个组件）**
+## React Playground (Beta)
 
 ```jsx live
 function Count() {
