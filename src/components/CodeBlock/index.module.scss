@@ -1,9 +1,11 @@
 .codeBlock {
   position: relative;
+  display: flex;
 
 
   .editorWrap,
   .previewWrap {
+    flex: 1 1 50%;
     overflow: hidden;
     isolation: isolate;
   }
@@ -74,13 +76,13 @@
       }
 
       &::-webkit-scrollbar {
-        width: 13px;
-        height: 13px;
+        width: 8px;
+        height: 8px;
       }
 
       &::-webkit-scrollbar-thumb {
-        background-color: rgba(180, 180, 180, 0.5);
-        border: 3px solid rgba(0, 0, 0, 0);
+        background-color: rgba(150, 150, 150, 0.4);
+        border: 2px solid rgba(0, 0, 0, 0);
         background-clip: padding-box;
         border-radius: 9999px;
       }
@@ -114,7 +116,7 @@
       overflow: auto;
       overflow: overlay;
       padding: 8px;
-      background: #fff;
+      background: #fbfbfb;
       color: #000;
     }
   }
