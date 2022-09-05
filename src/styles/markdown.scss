@@ -4,33 +4,25 @@
 }
 
 .markdown-body p,
-.markdown-body ul,
-.markdown-body ol,
 .markdown-body table {
   margin: 1.5rem 0;
 }
-
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5 {
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
-}
-
-.markdown-body h1 { font-size: 28px; }
-.markdown-body h2 { font-size: 20px; }
-.markdown-body h3 { font-size: 18px; }
-.markdown-body h4 { font-size: 16px; }
-.markdown-body h5 { font-size: 14px; }
 
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
 .markdown-body h4,
 .markdown-body h5 {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
   font-weight: bold;
 }
+
+.markdown-body h1 { font-size: 2rem; }
+.markdown-body h2 { font-size: 1.75rem; }
+.markdown-body h3 { font-size: 1.5rem; }
+.markdown-body h4 { font-size: 1.25rem; }
+.markdown-body h5 { font-size: 1rem; }
 
 .markdown-body blockquote { position: relative; border-left: 4px solid #e5e7eb; padding: 0 15px; margin: 2rem 0; }
 .markdown-body blockquote p { margin: 0; }
@@ -50,8 +42,10 @@
   background: #e5e7eb;
   border-radius: 3px;
   padding: 0.25em 0.5em;
-  margin: 0;
+  margin: 0 0.25em;
   font-size: 0.85em;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .markdown-body img {
@@ -99,10 +93,13 @@
   line-height: 1.8;
 }
 
-.markdown-body ul, .markdown-body ol { padding-left: 1em; line-height: 2.5; }
-.markdown-body ul { list-style-type: circle; }
-.markdown-body ol { list-style-type: decimal; }
-
+.markdown-body ol { counter-reset: list-item; }
+.markdown-body ol li { counter-increment: list-item; }
+.markdown-body ol li::before {
+  content: counter(list-item) ". ";
+  font-feature-settings: "tnum";
+  @apply mr-4 text-indigo-600 font-semibold;
+}
 
 .markdown-body .anchor {
   color: inherit;

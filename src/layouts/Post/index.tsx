@@ -7,18 +7,28 @@ import CodeBlock from '@/components/CodeBlock'
 import HeroImage from '@/components/HeroImage'
 import { useTranslation } from 'next-i18next'
 import { HiOutlineClock, HiArrowSmLeft, HiArrowSmRight } from 'react-icons/hi'
-import DarkModeToggle from "@/components/DarkModeToggle";
+import DarkModeToggle from '@/components/DarkModeToggle'
+import UnorderedList from '@/components/List/UnorderedList'
+import OrderedList from '@/components/List/OrderedList'
+import ListItem from '@/components/List/ListItem'
 
 const components = {
   code: CodeBlock,
-  DarkModeToggle
+  ul: UnorderedList,
+  ol: OrderedList,
+  li: ListItem,
+  DarkModeToggle,
 }
 
 function useHeadings(deps: DependencyList = []) {
   const [headings, setHeadings] = useState<TableOfContentsProps['headings']>([])
 
   useEffect(() => {
-    const elements = Array.from(document.querySelectorAll('.markdown-body > h2, .markdown-body > h3, .markdown-body > h4, .markdown-body > h5, .markdown-body > h6'))
+    const elements = Array.from(
+      document.querySelectorAll(
+        '.markdown-body > h2, .markdown-body > h3, .markdown-body > h4, .markdown-body > h5, .markdown-body > h6',
+      ),
+    )
       .filter(element => element.id)
       .map(element => ({
         id: element.id,
@@ -73,10 +83,10 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           {/* 文章顶部图片 */}
           {heroImage && <HeroImage className="mt-6" src={heroImage} />}
           {/* markdown 内容 */}
-          <div className="markdown-body w-full mt-10">
+          <article className="markdown-body w-full mt-10">
             {/* @ts-ignore */}
             <Component components={components} />
-          </div>
+          </article>
         </div>
         {/* 侧边目录导航 */}
         {toc && headings.length > 0 && (
@@ -88,7 +98,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
         <div className="flex items-center justify-center flex-wrap sm:max-w-lg m-auto mt-12 text-sm gap-6">
           {tags.map((tag: string) => (
             <Link key={tag} href={`/tags/${tag}`}>
-              <a className="border-b border-current opacity-50 transition before:content-['#'] hover:opacity-100">
+              <a className="border-b border-current text-zinc-500/80 hover:text-primary transition before:content-['#']">
                 {tag}
               </a>
             </Link>
@@ -102,7 +112,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           {prevPost ? (
             <Link href={prevPost.link}>
               <a className="group flex h-full border border-zinc-500/20 rounded-xl py-3 sm:py-10 px-3 sm:px-6 opacity-70 hover:opacity-100 transition gap-2">
-                <HiArrowSmLeft className="shrink-0 text-2xl sm:text-3xl text-[royalblue] transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
+                <HiArrowSmLeft className="shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
                 {prevPost.title}
               </a>
             </Link>
@@ -114,7 +124,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
             <Link href={nextPost.link}>
               <a className="group flex h-full border border-zinc-500/20 rounded-xl py-3 sm:py-10 px-3 sm:px-6 opacity-70 hover:opacity-100 transition gap-2">
                 {nextPost.title}
-                <HiArrowSmRight className="shrink-0 text-2xl sm:text-3xl text-[royalblue] transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
+                <HiArrowSmRight className="shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
               </a>
             </Link>
           ) : null}

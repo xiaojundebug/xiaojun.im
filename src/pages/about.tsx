@@ -7,7 +7,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const Tag: React.FC<PropsWithChildren> = props => {
   return (
-    <span className="inline-block rounded bg-primary/10 border-primary/50 border px-2 py-1 text-xs leading-none">
+    <span className="inline-block rounded border bg-amber-500/10 text-amber-900 border-amber-500/20 dark:bg-amber-500/10 dark:text-amber-500 px-2 py-1 text-xs leading-none">
       {props.children}
     </span>
   )
