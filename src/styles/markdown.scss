@@ -111,17 +111,14 @@
   width: 18px;
   height: 18px;
   border-radius: 0;
-  @apply appearance-none inline-grid place-content-center rounded-full border-2 border-indigo-600;
-}
-.markdown-body input[type='checkbox']:checked {
-  @apply bg-indigo-600;
+  @apply appearance-none inline-grid place-content-center rounded-full border-2 border-indigo-600 bg-transparent;
 }
 .markdown-body input[type='checkbox']::before {
   content: '';
-  width: 0.55em;
-  height: 0.55em;
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-  @apply bg-white scale-0;
+  width: 0.85em;
+  height: 0.85em;
+  clip-path: polygon(28% 38.5%, 42% 54%, 75% 25%, 86% 38%, 40% 78%, 15% 50%);
+  @apply bg-indigo-600 scale-0;
 }
 .markdown-body input[type="checkbox"]:checked::before {
   @apply scale-100

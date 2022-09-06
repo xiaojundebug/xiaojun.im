@@ -11,7 +11,7 @@ const ListItem: React.FC<PropsWithChildren & { className?: string }> = props => 
   const marker = {
     ul: (
       <span className="flex pt-[4px] pr-4">
-        <HiArrowSmRight className="text-xl text-indigo-600" />
+        <HiArrowSmRight className="text-xl -ml-1 mr-1 text-indigo-600" />
       </span>
     ),
     ol: null,
