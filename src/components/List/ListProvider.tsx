@@ -1,7 +1,7 @@
 import React, { createContext, PropsWithChildren } from 'react'
 
 export interface ListProviderProps {
-  type: 'ul' | 'ol'
+  type: 'ul' | 'ol' | 'tl'
 }
 
 export interface ListContext {

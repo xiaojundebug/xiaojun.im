@@ -5,14 +5,12 @@ import LazyLoad from 'react-lazyload'
 import LiveProvider from '../Playground/LiveProvider'
 import LiveEditor from '../Playground/LiveEditor'
 import LivePreview from '../Playground/LivePreview'
-import { copyToClipboard } from '@/utils/clipboard'
 import { NativeProps } from '@/utils/native-props'
 import { Language } from 'prism-react-renderer'
 import themeDracula from 'prism-react-renderer/themes/dracula'
-import themeMaterialLight from './themes/material-light'
+import themeGithub from 'prism-react-renderer/themes/github'
 import classNames from 'classnames'
 import { useSafeState } from 'ahooks'
-import { HiCheck, HiOutlineClipboard } from 'react-icons/hi'
 import { useTheme } from 'next-themes'
 
 export interface CodeBlockProps extends NativeProps {
@@ -29,7 +27,7 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
   const [code, setCode] = useState(children || '')
   const [copied, setCopied] = useSafeState(false)
   const { resolvedTheme } = useTheme()
-  const theme = live ? themeDracula : resolvedTheme === 'dark' ? themeDracula : themeMaterialLight
+  const theme = live ? themeDracula : resolvedTheme === 'dark' ? themeDracula : themeGithub
 
   useEffect(() => {
     if (copied) {

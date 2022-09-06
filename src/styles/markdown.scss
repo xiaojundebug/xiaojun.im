@@ -42,10 +42,10 @@
   background: #e5e7eb;
   border-radius: 3px;
   padding: 0.25em 0.5em;
-  margin: 0 0.25em;
+  margin: 0;
   font-size: 0.85em;
-  white-space: nowrap;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .markdown-body img {
@@ -93,21 +93,38 @@
   line-height: 1.8;
 }
 
+.markdown-body ul p, .markdown-body ol p { margin: 0; }
+.markdown-body ul li > span > input[type='checkbox']:first-child { margin-right: 2px; }
 .markdown-body ol { counter-reset: list-item; }
 .markdown-body ol li { counter-increment: list-item; }
 .markdown-body ol li::before {
   content: counter(list-item) ". ";
+  min-width: 20px;
   font-feature-settings: "tnum";
-  @apply mr-4 text-indigo-600 font-semibold;
+  @apply mr-4 text-indigo-600 font-medium;
 }
 
-.markdown-body .anchor {
-  color: inherit;
-  @apply border-primary;
+.markdown-body .anchor { color: inherit; @apply border-primary; }
+.markdown-body .anchor:hover::after { content: ' #'; @apply text-primary; }
+
+.markdown-body input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  border-radius: 0;
+  @apply appearance-none inline-grid place-content-center rounded-full border-2 border-indigo-600;
 }
-.markdown-body .anchor:hover::after {
-  content: ' #';
-  @apply text-primary;
+.markdown-body input[type='checkbox']:checked {
+  @apply bg-indigo-600;
+}
+.markdown-body input[type='checkbox']::before {
+  content: '';
+  width: 0.55em;
+  height: 0.55em;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+  @apply bg-white scale-0;
+}
+.markdown-body input[type="checkbox"]:checked::before {
+  @apply scale-100
 }
 
 /* dark mode */
