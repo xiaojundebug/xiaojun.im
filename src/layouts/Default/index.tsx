@@ -14,7 +14,6 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = props => {
       <Splash />
       <div className="container min-h-screen">
         <PostList posts={posts} />
-        <hr className="divider" />
       </div>
     </>
   )

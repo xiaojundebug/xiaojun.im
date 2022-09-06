@@ -67,9 +67,11 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
 
   return (
     <div className="container break-all">
-      <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl font-medium">{title}</h1>
+      <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl text-black dark:text-neutral-50 tracking-tight font-medium">
+        {title}
+      </h1>
       {/* 最后更新时间 */}
-      <div className="text-zinc-400 mt-6 sm:mt-12">
+      <div className="text-gray-700 dark:text-gray-300 mt-4">
         <div className="flex items-center text-sm">
           <i className="flex items-center">
             <HiOutlineClock className="mr-0.5 text-lg" />

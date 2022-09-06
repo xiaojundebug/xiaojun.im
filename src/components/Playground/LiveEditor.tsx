@@ -22,7 +22,7 @@ const LiveEditor: React.FC<LiveEditorProps> = props => {
       onValueChange={onCodeChange}
       disabled={disabled}
       tabSize={2}
-      padding={10}
+      padding={15}
       style={{
         fontFamily: '"Fira code", monospace',
         fontSize: 14,

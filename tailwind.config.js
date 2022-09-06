@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       colors: {
         primary: '#06b6d4',
+        night: '#22232a',
       },
       transitionTimingFunction: {
         'out-back': 'cubic-bezier(0.34, 1.56, 0.64, 1)',

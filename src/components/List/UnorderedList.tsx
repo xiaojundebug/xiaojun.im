@@ -7,7 +7,7 @@ const UnorderedList: React.FC<PropsWithChildren & { className?: string }> = prop
 
   return (
     <ListProvider type={isTaskList ? 'tl' : 'ul'}>
-      <ul className="my-10">{children}</ul>
+      <ul className="my-6">{children}</ul>
     </ListProvider>
   )
 }

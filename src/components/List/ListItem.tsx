@@ -10,16 +10,16 @@ const ListItem: React.FC<PropsWithChildren & { className?: string }> = props => 
 
   const marker = {
     ul: (
-      <span className="flex pt-[4px] pr-4">
+      <span className="flex pt-[4px] pr-2">
         <HiArrowSmRight className="text-xl -ml-1 mr-1 text-indigo-600" />
       </span>
     ),
     ol: null,
-    tl: <span className="flex pt-[4.5px] pr-4">{childArr?.shift()}</span>,
+    tl: <span className="flex pt-[4.5px] pr-2">{childArr?.shift()}</span>,
   }[type]
 
   return (
-    <li className="flex items-start mb-4">
+    <li className="flex items-start my-4">
       {marker}
       <div className="flex-1">{type !== 'tl' ? children : childArr?.slice(1)}</div>
     </li>

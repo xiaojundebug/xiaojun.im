@@ -8,7 +8,7 @@ import LivePreview from '../Playground/LivePreview'
 import { NativeProps } from '@/utils/native-props'
 import { Language } from 'prism-react-renderer'
 import themeDracula from 'prism-react-renderer/themes/dracula'
-import themeGithub from 'prism-react-renderer/themes/github'
+import themeOwlLight from 'prism-react-renderer/themes/nightOwlLight'
 import classNames from 'classnames'
 import { useSafeState } from 'ahooks'
 import { useTheme } from 'next-themes'
@@ -27,7 +27,7 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
   const [code, setCode] = useState(children || '')
   const [copied, setCopied] = useSafeState(false)
   const { resolvedTheme } = useTheme()
-  const theme = live ? themeDracula : resolvedTheme === 'dark' ? themeDracula : themeGithub
+  const theme = live ? themeDracula : resolvedTheme === 'dark' ? themeDracula : themeOwlLight
 
   useEffect(() => {
     if (copied) {
@@ -45,7 +45,6 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
     <div
       className={classNames('relative my-6', {
         'border border-2 border-slate-500': live,
-        'border border-slate-200 dark:border-slate-700': !live,
       })}
     >
       {/*{!live && (*/}
@@ -80,7 +79,11 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
         >
           {/* 编辑器 */}
           {editor && (
-            <div className={style.editorWrap}>
+            <div
+              className={classNames(style.editorWrap, {
+                'border border-zinc-200/80 dark:border-slate-700 rounded-md': !live,
+              })}
+            >
               <div className={style.editorBody} style={{ background: theme.plain.backgroundColor }}>
                 <LiveEditor className={style.editor} disabled={!live} theme={theme} />
               </div>
