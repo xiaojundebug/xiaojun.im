@@ -73,11 +73,11 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
       {/* 最后更新时间 */}
       <div className="text-gray-700 dark:text-gray-300 mt-4">
         <div className="flex items-center text-sm">
-          <i className="flex items-center">
+          <span className="flex items-center">
             <HiOutlineClock className="mr-0.5 text-lg" />
             {t('post-page.last-updated')}
             {dayjs(updateOn || date).format('LL')} · {readingTime.text}
-          </i>
+          </span>
         </div>
       </div>
       <div className="relative flex w-full">
@@ -100,7 +100,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
         <div className="flex items-center justify-center flex-wrap sm:max-w-lg m-auto mt-12 text-sm gap-6">
           {tags.map((tag: string) => (
             <Link key={tag} href={`/tags/${tag}`}>
-              <a className="border-b border-current text-zinc-500/80 hover:text-primary transition before:content-['#']">
+              <a className="bg-slate-500/10 px-2 py-1 rounded text-slate-500/70 font-medium hover:text-slate-500 transition before:content-['#']">
                 {tag}
               </a>
             </Link>
@@ -113,7 +113,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
         <span className="w-1/2">
           {prevPost ? (
             <Link href={prevPost.link}>
-              <a className="group flex h-full border border-zinc-500/20 rounded-xl py-3 sm:py-10 px-3 sm:px-6 opacity-70 hover:opacity-100 transition gap-2">
+              <a className="group flex h-full border border-zinc-500/20 rounded-xl py-3 sm:py-10 px-3 sm:px-6 transition gap-2">
                 <HiArrowSmLeft className="shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
                 {prevPost.title}
               </a>
@@ -124,7 +124,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
         <span className="w-1/2 text-right">
           {nextPost ? (
             <Link href={nextPost.link}>
-              <a className="group flex h-full border border-zinc-500/20 rounded-xl py-3 sm:py-10 px-3 sm:px-6 opacity-70 hover:opacity-100 transition gap-2">
+              <a className="group flex h-full border border-zinc-500/20 rounded-xl py-3 sm:py-10 px-3 sm:px-6 transition gap-2">
                 {nextPost.title}
                 <HiArrowSmRight className="shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
               </a>

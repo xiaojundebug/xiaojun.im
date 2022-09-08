@@ -26,7 +26,7 @@ const HeroImage: React.FC<HeroImage> = props => {
     props,
     <div className="w-full aspect-video rounded-md sm:rounded-lg overflow-hidden isolate">
       {status === 'loading' && loading}
-      {status === 'loaded' && <img className="w-full h-full object-cover dark:brightness-75" src={dataUrl} alt="hero image" />}
+      {status === 'loaded' && <img className="w-full h-full object-cover dark:brightness-80" src={dataUrl} alt="hero image" />}
       {status === 'failed' && failed}
     </div>
   )

@@ -1,6 +1,7 @@
 .markdown-body {
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.75;
+  overflow-wrap: break-word;
 }
 
 .markdown-body p,
@@ -8,7 +9,7 @@
 
 
 // Headings
-.markdown-body .anchor { @apply text-zinc-900; }
+.markdown-body .anchor { @apply text-zinc-900 no-underline; }
 .markdown-body .anchor:hover::after { content: ' #'; @apply text-gray-500; }
 
 .markdown-body h1,
@@ -24,11 +25,12 @@
 .markdown-body h5 { font-size: 1rem; }
 
 // Blockquote
-.markdown-body blockquote { position: relative; border-left: 4px solid #e5e7eb; padding: 0 15px; margin: 2rem 0; }
-.markdown-body blockquote p { margin: 0; }
+.markdown-body blockquote {
+  @apply border-l-4 border-slate-200 px-4 my-8;
+}
+.markdown-body blockquote p { @apply m-0; }
 
 // NoteBlock
-
 .markdown-body .note { @apply relative p-6 my-6 rounded-md border; }
 .markdown-body .note p { @apply m-0; }
 .markdown-body .note.tip { @apply bg-green-500/10 border-green-500/30; }
@@ -37,14 +39,8 @@
 
 // InlineCode
 .markdown-body code {
-  color: #64748b;
-  background: #e5e7eb;
-  border-radius: 3px;
-  padding: 0.25em 0.5em;
-  margin: 0;
-  font-size: 0.85em;
-  line-height: 1;
-  white-space: nowrap;
+  @apply text-primary font-medium;
+  &::before, &::after { content: '`'; }
 }
 
 // Image
@@ -53,18 +49,15 @@
 }
 
 // TODO: 和 globals.css 重复，可以通过这种方式全局声明 https://tailwindcss.com/docs/functions-and-directives#apply
-.markdown-body hr { @apply box-content my-12 h-px bg-[#fff] border-[#e9e9e9] transition-colors; }
+.markdown-body hr { @apply box-content my-12 h-px transition-colors; }
 
 // Link
 .markdown-body a {
   padding: 0 2px;
-  text-decoration: none;
-  word-break: break-all;
-  @apply text-primary;
+  @apply font-medium underline text-primary hover:brightness-75 transition;
 }
-.markdown-body a:hover {
-  text-decoration: underline;
-}
+.markdown-body a:hover { @apply underline; }
+.markdown-body a code { @apply text-primary; }
 
 // Table
 .markdown-body table {
@@ -83,9 +76,7 @@
 
 // List
 .markdown-body ul,
-.markdown-body ol {
-  padding-left: 1rem;
-}
+.markdown-body ol { padding-left: 1rem; }
 .markdown-body ul p, .markdown-body ol p { margin: 0; }
 .markdown-body ul li > span > input[type='checkbox']:first-child { margin-right: 2px; }
 .markdown-body ol { counter-reset: list-item; }
@@ -94,21 +85,21 @@
   content: counter(list-item) ". ";
   min-width: 20px;
   font-feature-settings: "tnum";
-  @apply mr-2 text-indigo-600 font-medium;
+  @apply mr-2 text-primary font-medium;
 }
 
 .markdown-body input[type='checkbox'] {
   width: 18px;
   height: 18px;
   border-radius: 0;
-  @apply appearance-none inline-grid place-content-center rounded-full border-2 border-indigo-600 bg-transparent;
+  @apply appearance-none inline-grid place-content-center rounded-full border-2 border-primary bg-transparent;
 }
 .markdown-body input[type='checkbox']::before {
   content: '';
   width: 0.85em;
   height: 0.85em;
   clip-path: polygon(28% 38.5%, 42% 54%, 75% 25%, 86% 38%, 40% 78%, 15% 50%);
-  @apply bg-indigo-600 scale-0;
+  @apply bg-primary scale-0;
 }
 .markdown-body input[type="checkbox"]:checked::before {
   @apply scale-100
@@ -117,8 +108,6 @@
 /* dark mode */
 [data-theme='dark'] .markdown-body {
   .anchor { @apply text-zinc-50; }
-
-  code { @apply bg-night text-zinc-200; }
 
   hr { border-color: #0b0c0d; }
 

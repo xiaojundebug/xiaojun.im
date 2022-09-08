@@ -31,7 +31,7 @@ function MyApp({
     Component.getLayout ??
     ((page: React.ReactElement) => (
       <>
-        <NextNProgress color="royalblue" options={{ showSpinner: false }} />
+        <NextNProgress color="#2563eb" options={{ showSpinner: false }} />
         <ThemeProvider disableTransitionOnChange>
           <IconContext.Provider value={{ className: 'icon' }}>
             <DefaultSeo title={config.name} description={config.desc} />
@@ -41,7 +41,7 @@ function MyApp({
                 content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
               />
               {/* eslint-disable-next-line @next/next/no-title-in-document-head */}
-              <title>xiaojun1994</title>
+              <title>{config.name}</title>
             </Head>
             <Header />
             <PageContainer>{page}</PageContainer>

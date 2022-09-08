@@ -16,7 +16,6 @@
   }
 
   a {
-    color: royalblue;
-    @apply underline;
+    @apply text-blue-500 hover:text-blue-600 underline;
   }
 }

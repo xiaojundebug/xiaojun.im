@@ -4,7 +4,7 @@
 
 @layer components {
   .divider {
-    @apply box-content my-12 h-px bg-[#fff] border-[#e9e9e9] dark:bg-zinc-800 dark:border-[#000] transition-colors;
+    @apply box-content my-12 h-px dark:bg-zinc-800 dark:border-[#000] transition-colors;
   }
 }
 
@@ -19,17 +19,14 @@ html {
 }
 
 body {
+  font-family: 'Inter', sans-serif;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  @apply text-zinc-800 bg-slate-50 dark:text-zinc-50 dark:bg-zinc-900;
+  @apply text-slate-800 bg-slate-50 dark:text-zinc-50 dark:bg-zinc-900;
 }
 
 .icon {
   display: inline-block;
-}
-
-a {
-  text-underline-offset: 2px;
 }
