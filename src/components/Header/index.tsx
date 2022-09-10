@@ -100,7 +100,7 @@ const Header: React.FC<HeaderProps> = () => {
                   onChange={toggleExpanded}
                 />
                 {/* pc */}
-                <div className="hidden sm:flex relative flex items-center gap-4">
+                <div className="hidden sm:flex relative flex items-center gap-4 -ml-4">
                   {menus.map(menu => (
                     <Link key={menu.href} href={menu.href}>
                       <a className="font-medium text-lg py-0.5 px-4 rounded-lg leading-loose transition hover:bg-slate-200/50 dark:hover:bg-zinc-800/50">

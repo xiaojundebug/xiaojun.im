@@ -7,13 +7,13 @@ export interface HeroImage extends NativeProps {
 }
 
 const loading = (
-  <div className="w-full h-full flex items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20 animate-pulse">
+  <div className="aspect-video flex items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20 animate-pulse">
     <img className="opacity-10 dark:invert" src="/placeholder.png" alt="image placeholder" width={60} />
   </div>
 )
 
 const failed = (
-  <div className="w-full h-full flex items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20">
+  <div className="aspect-video flex items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20">
     <img className="opacity-10 dark:invert" src="/broken-image.png" alt="image broken" width={60} />
   </div>
 )
@@ -24,7 +24,7 @@ const HeroImage: React.FC<HeroImage> = props => {
 
   return withNativeProps(
     props,
-    <div className="w-full aspect-video rounded-md sm:rounded-lg overflow-hidden isolate">
+    <div className="w-full rounded-md sm:rounded-lg overflow-hidden isolate">
       {status === 'loading' && loading}
       {status === 'loaded' && <img className="w-full h-full object-cover dark:brightness-80" src={dataUrl} alt="hero image" />}
       {status === 'failed' && failed}

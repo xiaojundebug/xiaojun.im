@@ -1,10 +1,10 @@
-import themeOwlLight from 'prism-react-renderer/themes/nightOwlLight'
+import themeGithub from 'prism-react-renderer/themes/github'
 import { PrismTheme } from 'prism-react-renderer'
 
 const theme: PrismTheme = {
-  ...themeOwlLight,
+  ...themeGithub,
   plain: {
-    ...themeOwlLight.plain,
+    ...themeGithub.plain,
     backgroundColor: '#f8fafc',
   },
 }

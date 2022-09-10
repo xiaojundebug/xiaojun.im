@@ -1,22 +1,16 @@
 import React from 'react'
 import config from '@/config'
 import Script from 'next/script'
-import Link from 'next/link'
-import { HiEye, HiUserGroup } from "react-icons/hi";
-
+import { HiEye, HiUserGroup } from 'react-icons/hi'
 
 const Footer = () => {
   return (
-    <div className="flex flex-col items-center py-8">
-      {config.socials.map(item => (
-        <Link key={item.link} href={item.link}>
-          <a target="_blank" className="text-3xl">
-            {item.icon}
-          </a>
-        </Link>
-      ))}
-      <div className="my-3">
-        &copy;{new Date().getFullYear()} • {config.name}
+    <div className="flex flex-col items-center py-8 text-sm">
+      <span className="font-medium">
+        Built with <a href="https://nextjs.org" className="text-blue-500">Next.js</a> • Deployed on <a href="https://vercel.com" className="text-blue-500">Vercel</a>
+      </span>
+      <div className="my-2 opacity-50">
+        &copy;{new Date().getFullYear()}&nbsp;{config.name}
       </div>
       {config.busuanzi && (
         <>

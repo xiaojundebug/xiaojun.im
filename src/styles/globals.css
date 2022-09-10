@@ -20,6 +20,8 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
+  /*font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,*/
+  /*  helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;*/
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   touch-action: manipulation;

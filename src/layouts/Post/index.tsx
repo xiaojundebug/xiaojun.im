@@ -67,19 +67,31 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
 
   return (
     <div className="container break-all">
-      <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl text-black dark:text-neutral-50 tracking-tight font-medium">
+      <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl text-black dark:text-neutral-50 !leading-snug tracking-tight font-medium">
         {title}
       </h1>
       {/* 最后更新时间 */}
-      <div className="text-gray-700 dark:text-gray-300 mt-4">
+      <div className="text-gray-500 dark:text-gray-300 mt-4">
         <div className="flex items-center text-sm">
           <span className="flex items-center">
-            <HiOutlineClock className="mr-0.5 text-lg" />
+            <HiOutlineClock className="mr-1 text-lg" />
             {t('post-page.last-updated')}
             {dayjs(updateOn || date).format('LL')} · {readingTime.text}
           </span>
         </div>
       </div>
+      {/* 标签 */}
+      {tags.length > 0 && (
+        <div className="flex items-center flex-wrap m-auto mt-12 text-sm gap-6">
+          {tags.map((tag: string) => (
+            <Link key={tag} href={`/tags/${tag}`}>
+              <a className="bg-pink-500/10 text-pink-500 hover:text-pink-700 px-2 py-1 rounded font-medium transition">
+                {tag}
+              </a>
+            </Link>
+          ))}
+        </div>
+      )}
       <div className="relative flex w-full">
         <div className="flex-1 w-0">
           {/* 文章顶部图片 */}
@@ -95,18 +107,6 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           <TableOfContents className="hidden sm:block" headings={headings} />
         )}
       </div>
-      {/* 标签 */}
-      {tags.length > 0 && (
-        <div className="flex items-center justify-center flex-wrap sm:max-w-lg m-auto mt-12 text-sm gap-6">
-          {tags.map((tag: string) => (
-            <Link key={tag} href={`/tags/${tag}`}>
-              <a className="bg-slate-500/10 px-2 py-1 rounded text-slate-500/70 font-medium hover:text-slate-500 transition before:content-['#']">
-                {tag}
-              </a>
-            </Link>
-          ))}
-        </div>
-      )}
       <hr className="divider" />
       <div className="mb-20 flex justify-between space-x-6 sm:space-x-12 sm:text-xl">
         {/* 下一篇 */}

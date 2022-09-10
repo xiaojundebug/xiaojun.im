@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#4f46e5',
+        primary: '#6366f1',
         night: '#22232a',
       },
       transitionTimingFunction: {

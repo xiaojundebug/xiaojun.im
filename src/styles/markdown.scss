@@ -39,7 +39,7 @@
 
 // InlineCode
 .markdown-body code {
-  @apply text-primary font-medium;
+  @apply text-pink-500 font-medium;
   &::before, &::after { content: '`'; }
 }
 
