@@ -5,11 +5,11 @@ import { HiEye, HiUserGroup } from 'react-icons/hi'
 
 const Footer = () => {
   return (
-    <div className="flex flex-col items-center py-8 text-sm">
+    <div className="flex flex-col items-center mt-16 mb-6 text-sm">
       <span className="font-medium">
         Built with <a href="https://nextjs.org" className="text-blue-500">Next.js</a> • Deployed on <a href="https://vercel.com" className="text-blue-500">Vercel</a>
       </span>
-      <div className="my-2 opacity-50">
+      <div className="mt-2 opacity-50">
         &copy;{new Date().getFullYear()}&nbsp;{config.name}
       </div>
       {config.busuanzi && (

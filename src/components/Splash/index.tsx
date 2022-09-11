@@ -3,11 +3,11 @@ import config from '@/config'
 
 const Splash = () => {
   return (
-    <div className="relative my-12 sm:my-16">
+    <div className="splash relative my-12 sm:my-16">
       <div className="container flex">
         {config.avatar && (
           <img
-            className="w-20 h-20 rounded-full border border-zinc-600/10 shadow-zinc-600/10 shadow-xl dark:shadow-none p-2"
+            className="w-20 h-20 rounded-full border border-zinc-600/10 shadow-zinc-600/10 shadow-xl dark:shadow-none"
             src={config.avatar}
             alt="avatar"
           />
@@ -16,7 +16,7 @@ const Splash = () => {
           <h1 className="text-3xl sm:text-4xl font-medium">
             <span>{config.name}</span>
           </h1>
-          <span className="text-slate-500 dark:text-slate-300/70">{config.desc}</span>
+          <span className="text-gray-500 dark:text-gray-300/70">{config.desc}</span>
         </div>
       </div>
     </div>

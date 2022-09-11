@@ -24,10 +24,6 @@
 .markdown-body h4 { font-size: 1.25rem; }
 .markdown-body h5 { font-size: 1rem; }
 
-// Blockquote
-.markdown-body blockquote {
-  @apply border-l-4 border-slate-200 px-4 my-8;
-}
 .markdown-body blockquote p { @apply m-0; }
 
 // NoteBlock
@@ -109,11 +105,7 @@
 [data-theme='dark'] .markdown-body {
   .anchor { @apply text-zinc-50; }
 
-  hr { border-color: #0b0c0d; }
-
-  blockquote { @apply border-night; }
-
-  hr { @apply bg-zinc-800 border-[#000]; }
+  hr { @apply bg-zinc-800 border-black; }
 
   table {
     th { @apply bg-night; }

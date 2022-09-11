@@ -90,7 +90,7 @@ const Header: React.FC<HeaderProps> = () => {
         (barStyles, item) =>
           item && (
             <animated.div
-              className="fixed w-full h-[50px] sm:h-[90px] top-0 z-10 bg-slate-50 sm:bg-slate-50/50 dark:bg-zinc-900 sm:dark:bg-zinc-900/60 sm:backdrop-blur-md sm:backdrop-saturate-150	"
+              className="fixed w-full h-[50px] sm:h-[90px] top-0 z-10 bg-slate-50 sm:bg-slate-50/50 dark:bg-zinc-900 sm:dark:bg-zinc-900/60 sm:backdrop-blur-md sm:backdrop-saturate-150"
               style={barStyles}
             >
               <div className="container h-full flex items-center justify-between">
@@ -100,7 +100,8 @@ const Header: React.FC<HeaderProps> = () => {
                   onChange={toggleExpanded}
                 />
                 {/* pc */}
-                <div className="hidden sm:flex relative flex items-center gap-4 -ml-4">
+                <div className="hidden sm:flex relative flex items-center">
+                  <img className="w-12 h-12 mr-4" src={config.logo} alt="logo" />
                   {menus.map(menu => (
                     <Link key={menu.href} href={menu.href}>
                       <a className="font-medium text-lg py-0.5 px-4 rounded-lg leading-loose transition hover:bg-slate-200/50 dark:hover:bg-zinc-800/50">

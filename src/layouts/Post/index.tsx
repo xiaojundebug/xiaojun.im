@@ -11,9 +11,11 @@ import DarkModeToggle from '@/components/DarkModeToggle'
 import UnorderedList from '@/components/List/UnorderedList'
 import OrderedList from '@/components/List/OrderedList'
 import ListItem from '@/components/List/ListItem'
+import Blockquote from "@/components/Blockquote";
 
 const components = {
   code: CodeBlock,
+  blockquote: Blockquote,
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
@@ -76,13 +78,13 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           <span className="flex items-center">
             <HiOutlineClock className="mr-1 text-lg" />
             {t('post-page.last-updated')}
-            {dayjs(updateOn || date).format('LL')} · {readingTime.text}
+            {dayjs(updateOn || date).format('LL')} • {readingTime.text}
           </span>
         </div>
       </div>
       {/* 标签 */}
       {tags.length > 0 && (
-        <div className="flex items-center flex-wrap m-auto mt-12 text-sm gap-6">
+        <div className="flex items-center flex-wrap m-auto mt-6 sm:mt-12 text-sm gap-2 sm:gap-3">
           {tags.map((tag: string) => (
             <Link key={tag} href={`/tags/${tag}`}>
               <a className="bg-pink-500/10 text-pink-500 hover:text-pink-700 px-2 py-1 rounded font-medium transition">

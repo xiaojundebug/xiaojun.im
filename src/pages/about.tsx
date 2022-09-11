@@ -57,6 +57,7 @@ const About = () => {
         <li><Link href="https://react-spring.dev">https://react-spring.dev</Link></li>
         <li><Link href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</Link></li>
         <li><Link href="https://github.com/sanjinhub/hexo-theme-geek">https://github.com/sanjinhub/hexo-theme-geek</Link></li>
+        <li><Link href="https://github.com/nanxiaobei/hugo-paper">https://github.com/nanxiaobei/hugo-paper</Link></li>
       </ul>
     </div>
   )
