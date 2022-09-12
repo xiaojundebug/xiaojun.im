@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { createElement, useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import DarkModeToggle from '../DarkModeToggle'
 import config from '@/config'
@@ -85,12 +85,12 @@ const Header: React.FC<HeaderProps> = () => {
   }, [])
 
   return (
-    <header className="relative h-[50px] sm:h-[90px]">
+    <header className="relative h-[50px] sm:h-[80px]">
       {barTransitions(
         (barStyles, item) =>
           item && (
             <animated.div
-              className="fixed w-full h-[50px] sm:h-[90px] top-0 z-10 bg-slate-50 sm:bg-slate-50/50 dark:bg-zinc-900 sm:dark:bg-zinc-900/60 sm:backdrop-blur-md sm:backdrop-saturate-150"
+              className="fixed w-full h-[50px] sm:h-[80px] top-0 z-10 bg-slate-50 sm:bg-slate-50/50 dark:bg-zinc-900 sm:dark:bg-zinc-900/60 sm:backdrop-blur-md sm:backdrop-saturate-150"
               style={barStyles}
             >
               <div className="container h-full flex items-center justify-between">
@@ -99,18 +99,15 @@ const Header: React.FC<HeaderProps> = () => {
                   isOpen={expanded}
                   onChange={toggleExpanded}
                 />
-                {/* pc */}
-                <div className="hidden sm:flex relative flex items-center">
-                  <img className="w-12 h-12 mr-4" src={config.logo} alt="logo" />
-                  {menus.map(menu => (
-                    <Link key={menu.href} href={menu.href}>
-                      <a className="font-medium text-lg py-0.5 px-4 rounded-lg leading-loose transition hover:bg-slate-200/50 dark:hover:bg-zinc-800/50">
-                        <span>{menu.label}</span>
-                      </a>
-                    </Link>
-                  ))}
-                </div>
-                {/* mobile */}
+                {/* logo (desktop) */}
+                <Link href="/">
+                  <img
+                    className="hidden sm:inline-block h-5 mr-4 dark:invert"
+                    src={config.logo}
+                    alt="logo"
+                  />
+                </Link>
+                {/* nav (mobile) */}
                 <animated.div
                   className="sm:hidden absolute left-0 right-0 top-[50px] bg-slate-50/100 dark:bg-zinc-900/100 z-10 border-b border-zinc-400/10 overflow-hidden"
                   style={styles}
@@ -127,7 +124,29 @@ const Header: React.FC<HeaderProps> = () => {
                     ))}
                   </div>
                 </animated.div>
-                <DarkModeToggle />
+                {/* nav (desktop) */}
+                <div className="flex items-center">
+                  <div className="hidden sm:block mr-8">
+                    {menus.map(menu => (
+                      <Link key={menu.href} href={menu.href}>
+                        <a className="font-medium text-lg mx-2 py-2 px-4 rounded-lg leading-loose transition hover:bg-slate-200/50 dark:hover:bg-zinc-800/50">
+                          {menu.label}
+                        </a>
+                      </Link>
+                    ))}
+                  </div>
+                  {/* social links (desktop) */}
+                  <div className="hidden sm:flex items-center gap-4 mr-6">
+                    {config.socials.map(social => (
+                      <Link key={social.link} href={social.link}>
+                        <a className="inline text-2xl leading-none">
+                          {createElement(social.icon as any)}
+                        </a>
+                      </Link>
+                    ))}
+                  </div>
+                  <DarkModeToggle />
+                </div>
               </div>
             </animated.div>
           ),
