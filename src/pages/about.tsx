@@ -44,7 +44,7 @@ const About = () => {
       <h2>📮 找到我</h2>
       <ul>
         <li>Email - <Link href="mailto:362896731@qq.com">362896731@qq.com</Link></li>
-        <li>Github - <Link href="https://github.com/xiaojun1994">https://github.com/xiaojun1994</Link></li>
+        <li>Github - <Link href="https://github.com/imzxj">https://github.com/imzxj</Link></li>
       </ul>
 
       <h2>🧭 参考</h2>

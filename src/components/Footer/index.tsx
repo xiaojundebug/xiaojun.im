@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className="flex flex-col items-center mt-16 mb-6 text-sm">
       <span className="font-medium">
-        Built with <a href="https://nextjs.org" className="text-blue-500">Next.js</a> • Deployed on <a href="https://vercel.com" className="text-blue-500">Vercel</a>
+        Built with <a href="https://nextjs.org" className="text-primary">Next.js</a> • Deployed on <a href="https://vercel.com" className="text-primary">Vercel</a>
       </span>
       <div className="mt-2 opacity-50">
         &copy;{new Date().getFullYear()}&nbsp;{config.name}

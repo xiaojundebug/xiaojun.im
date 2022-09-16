@@ -11,7 +11,7 @@ import DarkModeToggle from '@/components/DarkModeToggle'
 import UnorderedList from '@/components/List/UnorderedList'
 import OrderedList from '@/components/List/OrderedList'
 import ListItem from '@/components/List/ListItem'
-import Blockquote from "@/components/Blockquote";
+import Blockquote from '@/components/Blockquote'
 
 const components = {
   code: CodeBlock,
@@ -110,13 +110,13 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
         )}
       </div>
       <hr className="divider" />
-      <div className="mb-20 flex justify-between space-x-6 sm:space-x-12 sm:text-xl">
+      <div className="mb-20 flex justify-between space-x-6 sm:space-x-12 sm:text-lg font-medium">
         {/* 下一篇 */}
         <span className="w-1/2">
           {prevPost ? (
             <Link href={prevPost.link}>
-              <a className="group flex h-full border border-zinc-500/20 rounded-xl py-3 sm:py-10 px-3 sm:px-6 transition gap-2">
-                <HiArrowSmLeft className="shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
+              <a className="group flex h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
+                <HiArrowSmLeft className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
                 {prevPost.title}
               </a>
             </Link>
@@ -126,9 +126,9 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
         <span className="w-1/2 text-right">
           {nextPost ? (
             <Link href={nextPost.link}>
-              <a className="group flex h-full border border-zinc-500/20 rounded-xl py-3 sm:py-10 px-3 sm:px-6 transition gap-2">
+              <a className="group flex justify-end h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
                 {nextPost.title}
-                <HiArrowSmRight className="shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
+                <HiArrowSmRight className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
               </a>
             </Link>
           ) : null}

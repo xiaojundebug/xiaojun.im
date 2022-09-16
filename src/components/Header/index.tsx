@@ -102,7 +102,7 @@ const Header: React.FC<HeaderProps> = () => {
                 {/* logo (desktop) */}
                 <Link href="/">
                   <img
-                    className="hidden sm:inline-block h-5 mr-4 dark:invert"
+                    className="hidden sm:inline-block h-7 mr-4 cursor-pointer dark:invert"
                     src={config.logo}
                     alt="logo"
                   />

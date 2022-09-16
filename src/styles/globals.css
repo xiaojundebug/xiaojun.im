@@ -29,7 +29,7 @@ body {
 
 .splash h1 {
   color: #2196f3;
-  background-image: -webkit-linear-gradient(0deg, #2196f3 0%, #e91e63 100%);
+  background-image: -webkit-linear-gradient(0deg, #cc4ef8 0%, #24caef 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

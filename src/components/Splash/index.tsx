@@ -14,7 +14,7 @@ const Splash = () => {
         )}
         <div className="flex flex-col justify-between ml-6">
           <h1 className="text-3xl sm:text-4xl font-medium">
-            <span>{config.name}</span>
+            <span>{config.title}</span>
           </h1>
           <span className="text-gray-500 dark:text-gray-300/70">{config.desc}</span>
         </div>
