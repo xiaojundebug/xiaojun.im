@@ -1,6 +1,6 @@
 import React, { createElement, useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
-import DarkModeToggle from '../DarkModeToggle'
+import DarkModeToggle from '../DarkModeToggle2'
 import config from '@/config'
 import { useBoolean, useSize } from 'ahooks'
 import { animated, useSpring, useTransition } from 'react-spring'
@@ -131,16 +131,6 @@ const Header: React.FC<HeaderProps> = () => {
                       <Link key={menu.href} href={menu.href}>
                         <a className="font-medium text-lg mx-2 py-2 px-4 rounded-lg leading-loose transition hover:bg-slate-200/50 dark:hover:bg-zinc-800/50">
                           {menu.label}
-                        </a>
-                      </Link>
-                    ))}
-                  </div>
-                  {/* social links (desktop) */}
-                  <div className="hidden sm:flex items-center gap-4 mr-6">
-                    {config.socials.map(social => (
-                      <Link key={social.link} href={social.link}>
-                        <a className="inline text-2xl leading-none">
-                          {createElement(social.icon as any)}
                         </a>
                       </Link>
                     ))}

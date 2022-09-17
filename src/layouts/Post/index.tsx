@@ -7,7 +7,7 @@ import CodeBlock from '@/components/CodeBlock'
 import HeroImage from '@/components/HeroImage'
 import { useTranslation } from 'next-i18next'
 import { HiOutlineClock, HiArrowSmLeft, HiArrowSmRight } from 'react-icons/hi'
-import DarkModeToggle from '@/components/DarkModeToggle'
+import DarkModeToggle from '@/components/DarkModeToggle2'
 import UnorderedList from '@/components/List/UnorderedList'
 import OrderedList from '@/components/List/OrderedList'
 import ListItem from '@/components/List/ListItem'
@@ -69,7 +69,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
 
   return (
     <div className="container break-all">
-      <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl text-black dark:text-neutral-50 !leading-snug tracking-tight font-medium">
+      <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl text-black dark:text-white !leading-snug tracking-tight font-medium">
         {title}
       </h1>
       {/* 最后更新时间 */}

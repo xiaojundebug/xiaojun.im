@@ -1,4 +1,4 @@
-import { AiOutlineGithub } from 'react-icons/ai'
+import { FiGithub } from 'react-icons/fi'
 
 const config = {
   name: 'xiaojun',
@@ -7,7 +7,9 @@ const config = {
   avatar: '/avatar.png',
   logo: '/logo.svg', // header 左侧 logo
   busuanzi: false, // 不蒜子统计
-  socials: [{ label: 'github', icon: AiOutlineGithub, link: 'https://github.com/imzxj' }],
+  socials: [
+    { label: 'github', icon: <FiGithub className="text-lg" />, link: 'https://github.com/imzxj' },
+  ],
 }
 
 export default config

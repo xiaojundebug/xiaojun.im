@@ -44,7 +44,7 @@ const BackToTop = () => {
       item && (
         <animated.div
           ref={ref}
-          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 flex items-center justify-center w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-800/80 text-zinc-50 shadow cursor-pointer z-50"
+          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 flex items-center justify-center w-8 h-8 rounded-full bg-zinc-800 hover:bg-zinc-800/80 text-zinc-50 shadow cursor-pointer z-50"
           onClick={backToTop}
           style={styles}
         >

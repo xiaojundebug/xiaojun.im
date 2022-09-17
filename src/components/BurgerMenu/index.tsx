@@ -33,7 +33,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = props => {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      className="fill-slate-800 dark:fill-slate-50"
+      className="fill-zinc-800 dark:fill-zinc-50"
       onClick={() => onChange(!isOpen)}
     >
       <animated.rect width="20" height="2" rx="1" style={first} />

@@ -40,14 +40,14 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
 
   return withNativeProps(
     props,
-    <aside className="absolute left-full h-full ml-20">
+    <aside className="absolute left-full h-full ml-16">
       <ul className="sticky top-[150px] list-none max-w-[250px] max-h-[500px] overscroll-y-auto before:absolute before:left-0 before:top-0 before:bottom-0 before:w-0.5 before:bg-zinc-400/30">
         {headings.map(heading => (
           <li
             key={heading.id}
             style={{ paddingLeft: `${heading.level - 2}em` }}
             className={classNames(
-              'text-[13px] text-neutral-500 border-l-2 border-transparent hover:text-zinc-800',
+              'text-[13px] border-l-2 border-transparent hover:text-zinc-800',
               {
                 '!text-primary border-primary': activeId === heading.id,
               },
