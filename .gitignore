@@ -41,3 +41,5 @@ yarn-error.log*
 src/posts/*
 !src/posts/2022-08-05-mdx-test.mdx
 src/misc/post-helpers
+public/images/*
+!public/images/mdx-test.webp

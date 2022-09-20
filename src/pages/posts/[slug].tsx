@@ -1,6 +1,6 @@
 import PostLayout from '../../layouts/Post'
-import { GetStaticPaths, GetStaticProps } from 'next'
-import { bundleMDX } from 'mdx-bundler'
+import {GetStaticPaths, GetStaticProps} from 'next'
+import {bundleMDX} from 'mdx-bundler'
 import remarkGfm from 'remark-gfm'
 import remarkDirective from 'remark-directive'
 import rehypeSlug from 'rehype-slug'
@@ -10,8 +10,8 @@ import remarkNoteBlock from '@/misc/remark-note-block.js'
 import remarkReadingTime from 'remark-reading-time'
 import remarkReadingMdxTime from 'remark-reading-time/mdx'
 import path from 'path'
-import { getAdjacentPosts, getAllPostPaths, getSlugByPostPath } from '@/utils/post'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import {getAdjacentPosts, getAllPostPaths, getSlugByPostPath} from '@/utils/post'
+import {serverSideTranslations} from 'next-i18next/serverSideTranslations'
 
 export default PostLayout
 

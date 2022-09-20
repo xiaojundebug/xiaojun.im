@@ -23,13 +23,15 @@ const Tags: NextPage<TagsProps> = props => {
     enter: { scale: 1, opacity: 1 },
     leave: { scale: 0.5, opacity: 0 },
     trail: 20,
-    reset: true
+    reset: true,
   })
 
   return (
     <div className="container flex flex-col items-center justify-center">
       <h2 className="font-medium text-3xl sm:text-5xl mt-20 sm:mt-40">{t('tags-page.title')}</h2>
-      <p className="font-medium text-sm m-10 sm:m-14">{t('tags-page.desc', { count: tags.length })}</p>
+      <p className="font-medium text-sm m-10 sm:m-14">
+        {t('tags-page.desc', { count: tags.length })}
+      </p>
       <div className="flex items-center justify-center flex-wrap gap-7">
         {transitions((navStyles, { tagName, postsNum }) => (
           <animated.div key={tagName} style={navStyles}>

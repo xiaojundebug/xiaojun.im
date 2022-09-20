@@ -9,6 +9,8 @@ interface PostFrontmatter {
   tags?: string[]
   toc?: boolean // 侧边导航是否可见，默认为 true
   heroImage?: string // 顶部图片地址
+  heroImageAspectRatio?: string // 图片长宽比，默认 16 / 9
+  draft?: boolean // 为 true 则不会展示该文章
 }
 
 interface ReadingTime {

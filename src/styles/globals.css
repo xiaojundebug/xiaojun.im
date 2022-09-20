@@ -24,7 +24,7 @@ body {
   -webkit-font-smoothing: antialiased;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  @apply text-zinc-800 bg-slate-50 dark:text-zinc-50 dark:bg-zinc-900;
+  @apply text-zinc-800 bg-white dark:text-zinc-50 dark:bg-zinc-900;
 }
 
 .splash h1 {

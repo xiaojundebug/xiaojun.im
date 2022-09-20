@@ -1,0 +1,191 @@
+// 为什么不通过 prism-react-renderer 的常规方式 theme={themeJsonConfig} 来设置主题，而是通过 css 来进行设置？
+// 因为要想黑暗模式与亮色模式使用不同的主题，所以就需要判断浏览器当前的主题模式，但是由于在服务端渲染时候还无法拿到客户端的主题模式，
+// 所以会水合错误，可以参考这篇文章 https://www.joshwcomeau.com/react/the-perils-of-rehydration/，
+// 而通过 css 设置不需要我们访问浏览器 api，就不会产生这个问题
+
+html[data-theme='light'] {
+  pre {
+    .token-line {
+      color: #5e6687;
+      font-weight: 500;
+
+      .token.comment,
+      .token.prolog,
+      .token.doctype,
+      .token.cdata {
+        color: #898ea4;
+      }
+
+      .token.punctuation {
+        color: #5e6687;
+      }
+
+      .token.namespace {
+        opacity: 0.7;
+      }
+
+      .token.operator,
+      .token.boolean,
+      .token.number {
+        color: #c76b29;
+      }
+
+      .token.property {
+        color: #c08b30;
+      }
+
+      .token.tag {
+        color: #3d8fd1;
+      }
+
+      .token.string {
+        color: #22a2c9;
+      }
+
+      .token.selector {
+        color: #6679cc;
+      }
+
+      .token.attr-name {
+        color: #c76b29;
+      }
+
+      .token.entity,
+      .token.url,
+      .language-css .token.string,
+      .style .token.string {
+        color: #22a2c9;
+      }
+
+      .function,
+      .token.attr-value,
+      .token.keyword,
+      .token.control,
+      .token.directive,
+      .token.unit {
+        color: #6366f1;
+      }
+
+      .token.statement,
+      .token.regex,
+      .token.atrule {
+        color: #22a2c9;
+      }
+
+      .token.placeholder,
+      .token.variable {
+        color: #3d8fd1;
+      }
+
+      .token.deleted {
+        text-decoration: line-through;
+      }
+
+      .token.inserted {
+        border-bottom: 1px dotted #202746;
+        text-decoration: none;
+      }
+
+      .token.italic {
+        font-style: italic;
+      }
+
+      .token.important,
+      .token.bold {
+        font-weight: bold;
+      }
+
+      .token.important {
+        color: #c94922;
+      }
+
+      .token.entity {
+        cursor: help;
+      }
+    }
+  }
+}
+
+html[data-theme='dark'],
+// CodePlayground 始终使用黑暗模式主题
+html[data-theme='light'] .code-playground {
+  pre {
+    .token-line {
+      color: #fff;
+      font-weight: 500;
+
+      .token.comment,
+      .token.prolog,
+      .token.cdata {
+        color: #91889b;
+      }
+
+      .token.punctuation {
+        color: #7b6995;
+      }
+
+      .token.builtin,
+      .token.constant,
+      .token.boolean {
+        color: #ffe261;
+      }
+
+      .token.number {
+        color: #b381c5;
+      }
+
+      .token.important,
+      .token.atrule,
+      .token.property,
+      .token.keyword {
+        color: #40b4c4;
+      }
+
+      .token.doctype,
+      .token.operator,
+      .token.inserted,
+      .token.tag,
+      .token.class-name,
+      .token.symbol {
+        color: #74dfc4;
+      }
+
+      .token.attr-name,
+      .token.function,
+      .token.deleted,
+      .token.selector {
+        color: #eb64b9;
+      }
+
+      .token.attr-value,
+      .token.regex,
+      .token.char,
+      .token.string {
+        color: #b4dce7;
+      }
+
+      .token.entity,
+      .token.url,
+      .token.variable {
+        color: #ffffff;
+      }
+
+      /* The following rules are pretty similar across themes, but feel free to adjust them */
+      .token.bold {
+        font-weight: bold;
+      }
+
+      .token.italic {
+        font-style: italic;
+      }
+
+      .token.entity {
+        cursor: help;
+      }
+
+      .token.namespace {
+        opacity: 0.7;
+      }
+    }
+  }
+}

@@ -46,12 +46,9 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
           <li
             key={heading.id}
             style={{ paddingLeft: `${heading.level - 2}em` }}
-            className={classNames(
-              'text-[13px] border-l-2 border-transparent hover:text-zinc-800',
-              {
-                '!text-primary border-primary': activeId === heading.id,
-              },
-            )}
+            className={classNames('text-[13px] border-l-2 border-transparent hover:text-zinc-800', {
+              '!text-primary border-primary': activeId === heading.id,
+            })}
           >
             <a
               href={`#${heading.id}`}

@@ -1,21 +1,23 @@
-import React, { DependencyList, useEffect, useMemo, useState } from 'react'
-import TableOfContents, { TableOfContentsProps } from '@/components/TableOfContents'
-import { getMDXComponent, getMDXExport } from 'mdx-bundler/client'
+import React, {DependencyList, useEffect, useMemo, useState} from 'react'
+import TableOfContents, {TableOfContentsProps} from '@/components/TableOfContents'
+import {getMDXComponent, getMDXExport} from 'mdx-bundler/client'
 import Link from 'next/link'
 import dayjs from 'dayjs'
-import CodeBlock from '@/components/CodeBlock'
 import HeroImage from '@/components/HeroImage'
-import { useTranslation } from 'next-i18next'
-import { HiOutlineClock, HiArrowSmLeft, HiArrowSmRight } from 'react-icons/hi'
-import DarkModeToggle from '@/components/DarkModeToggle2'
+import {useTranslation} from 'next-i18next'
+import {HiArrowSmLeft, HiArrowSmRight, HiOutlineClock} from 'react-icons/hi'
+import CodeBlock from '@/components/CodeBlock'
+import Blockquote from '@/components/Blockquote'
+import Image from '@/components/Image'
+import DarkModeToggle from '@/components/DarkModeToggle'
 import UnorderedList from '@/components/List/UnorderedList'
 import OrderedList from '@/components/List/OrderedList'
 import ListItem from '@/components/List/ListItem'
-import Blockquote from '@/components/Blockquote'
 
 const components = {
   code: CodeBlock,
   blockquote: Blockquote,
+  img: Image,
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
@@ -56,7 +58,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
   const { t } = useTranslation('common')
   const {
     code,
-    frontmatter: { title, date, updateOn, tags = [], toc = true, heroImage },
+    frontmatter: { title, date, updateOn, tags, toc = true, heroImage, heroImageAspectRatio },
     prevPost,
     nextPost,
   } = props
@@ -83,7 +85,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
         </div>
       </div>
       {/* 标签 */}
-      {tags.length > 0 && (
+      {tags && tags.length > 0 && (
         <div className="flex items-center flex-wrap m-auto mt-6 sm:mt-12 text-sm gap-2 sm:gap-3">
           {tags.map((tag: string) => (
             <Link key={tag} href={`/tags/${tag}`}>
@@ -97,7 +99,9 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
       <div className="relative flex w-full">
         <div className="flex-1 w-0">
           {/* 文章顶部图片 */}
-          {heroImage && <HeroImage className="mt-6" src={heroImage} />}
+          {heroImage && (
+            <HeroImage className="mt-6" src={heroImage} aspectRatio={heroImageAspectRatio} />
+          )}
           {/* markdown 内容 */}
           <article className="markdown-body w-full mt-10">
             {/* @ts-ignore */}

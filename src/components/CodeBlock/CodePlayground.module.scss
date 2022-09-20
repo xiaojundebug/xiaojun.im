@@ -2,7 +2,6 @@
   position: relative;
   display: flex;
 
-
   .editorWrap,
   .previewWrap {
     flex: 1 1 50%;
@@ -55,41 +54,7 @@
 
     .editorBody {
       flex: 1;
-      overflow: auto;
-      overflow: overlay;
-
-      > div {
-        min-width: 100%;
-        min-height: 100%;
-        float: left;
-
-        :global {
-          .textarea,
-          pre {
-            white-space: pre !important;
-          }
-        }
-      }
-
-      &::-webkit-scrollbar-track {
-        background-color: transparent;
-      }
-
-      &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: rgba(150, 150, 150, 0.4);
-        border: 2px solid rgba(0, 0, 0, 0);
-        background-clip: padding-box;
-        border-radius: 9999px;
-      }
-
-      &::-webkit-scrollbar-corner {
-        background-color: transparent;
-      }
+      overflow: hidden;
     }
   }
 

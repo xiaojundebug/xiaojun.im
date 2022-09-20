@@ -1,6 +1,6 @@
-import React, { createElement, useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
-import DarkModeToggle from '../DarkModeToggle2'
+import DarkModeToggle from '../DarkModeToggle'
 import config from '@/config'
 import { useBoolean, useSize } from 'ahooks'
 import { animated, useSpring, useTransition } from 'react-spring'
@@ -13,9 +13,9 @@ import {
   fromEvent,
   map,
   pairwise,
+  share,
   throttleTime,
   withLatestFrom,
-  share,
 } from 'rxjs'
 
 export interface HeaderProps {}
@@ -90,7 +90,7 @@ const Header: React.FC<HeaderProps> = () => {
         (barStyles, item) =>
           item && (
             <animated.div
-              className="fixed w-full h-[50px] sm:h-[80px] top-0 z-10 bg-slate-50 sm:bg-slate-50/50 dark:bg-zinc-900 sm:dark:bg-zinc-900/60 sm:backdrop-blur-md sm:backdrop-saturate-150"
+              className="fixed w-full h-[50px] sm:h-[80px] top-0 z-10 bg-white sm:bg-white/50 dark:bg-zinc-900 sm:dark:bg-zinc-900/60 sm:backdrop-blur-md sm:backdrop-saturate-150"
               style={barStyles}
             >
               <div className="container h-full flex items-center justify-between">
@@ -109,7 +109,7 @@ const Header: React.FC<HeaderProps> = () => {
                 </Link>
                 {/* nav (mobile) */}
                 <animated.div
-                  className="sm:hidden absolute left-0 right-0 top-[50px] bg-slate-50/100 dark:bg-zinc-900/100 z-10 border-b border-zinc-400/10 overflow-hidden"
+                  className="sm:hidden absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-900/100 z-10 border-b border-zinc-400/10 overflow-hidden"
                   style={styles}
                 >
                   <div ref={mobileNavContentRef} className="flex flex-col pb-4">

@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import style from './index.module.scss'
+import React from 'react'
 import { scope as builtInScope } from './react-live-scope'
-import LazyLoad from 'react-lazyload'
-import LiveProvider from '../Playground/LiveProvider'
-import LiveEditor from '../Playground/LiveEditor'
-import LivePreview from '../Playground/LivePreview'
 import { NativeProps } from '@/utils/native-props'
 import { Language } from 'prism-react-renderer'
-import themeDracula from 'prism-react-renderer/themes/dracula'
-import themeOwlLight from './themes/github'
-import classNames from 'classnames'
-import { useSafeState } from 'ahooks'
-import { useTheme } from 'next-themes'
+import FencedCodeBlock from '@/components/CodeBlock/FencedCodeBlock'
+import CodePlayground from '@/components/CodeBlock/CodePlayground'
 
 export interface CodeBlockProps extends NativeProps {
   children?: string
@@ -22,89 +14,20 @@ export interface CodeBlockProps extends NativeProps {
 }
 
 const CodeBlock: React.FC<CodeBlockProps> = props => {
-  const { children, className, live, editor = true, height, scope = {} } = props
+  const { children, className, live, editor = true, scope = {} } = props
   const language = className?.replace(/language-/, '') as Language
-  const [code, setCode] = useState(children || '')
-  const [copied, setCopied] = useSafeState(false)
-  const { resolvedTheme } = useTheme()
-  const theme = live ? themeDracula : resolvedTheme === 'dark' ? themeDracula : themeOwlLight
-
-  useEffect(() => {
-    if (copied) {
-      setTimeout(() => {
-        setCopied(false)
-      }, 2000)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [copied])
 
   if (!children) return null
   if (!language) return <code>{children}</code>
+  if (!live) return <FencedCodeBlock language={language} code={children.trim()} />
 
   return (
-    <div
-      className={classNames('relative my-6', {
-        'border border-2 border-slate-500': live,
-      })}
-    >
-      {/*{!live && (*/}
-      {/*  <div className="absolute z-1 -top-6 right-0 flex items-center justify-between rounded-tl rounded-tr text-sm px-2 h-6 bg-slate-300 text-zinc-50 dark:bg-slate-300 dark:text-zinc-800">*/}
-      {/*    <span className="font-mono">{language}</span>*/}
-      {/*    {copied ? (*/}
-      {/*      <HiCheck type="icon-check" style={{ color: '#2FCC4E' }} />*/}
-      {/*    ) : (*/}
-      {/*      <HiOutlineClipboard*/}
-      {/*        type="icon-clipboard"*/}
-      {/*        onClick={async () => {*/}
-      {/*          try {*/}
-      {/*            await copyToClipboard(code)*/}
-      {/*            setCopied(true)*/}
-      {/*          } catch (e) {}*/}
-      {/*        }}*/}
-      {/*      />*/}
-      {/*    )}*/}
-      {/*  </div>*/}
-      {/*)}*/}
-      <div
-        className={classNames(style.codeBlock, {
-          [`h-[${height}]`]: height,
-          'max-h-[300px] sm:max-h-[500px]': !height,
-        })}
-      >
-        <LiveProvider
-          language={language}
-          defaultCode={children?.trim()}
-          scope={{ ...builtInScope, ...scope }}
-          onCodeChange={setCode}
-        >
-          {/* 编辑器 */}
-          {editor && (
-            <div
-              className={classNames(style.editorWrap, {
-                'border border-zinc-200/80 dark:border-slate-700 rounded-md': !live,
-              })}
-            >
-              <div className={style.editorBody} style={{ background: theme.plain.backgroundColor }}>
-                <LiveEditor className={style.editor} disabled={!live} theme={theme} />
-              </div>
-            </div>
-          )}
-          {/* 预览 */}
-          {live && (
-            //  懒加载，窗口滚动到这里后才真正渲染 children
-            <LazyLoad className={style.previewWrap}>
-              {/*<div className={style.previewHeader}>*/}
-              {/*  <div className={style.previewActions} />*/}
-              {/*</div>*/}
-              {/* 避免 tailwindcss preflight 影响到 preview 组件 */}
-              <div className={classNames(style.previewBody, 'unreset')}>
-                <LivePreview />
-              </div>
-            </LazyLoad>
-          )}
-        </LiveProvider>
-      </div>
-    </div>
+    <CodePlayground
+      code={children.trim()}
+      language={language}
+      scope={{ ...builtInScope, ...scope }}
+      editor={editor}
+    />
   )
 }
 

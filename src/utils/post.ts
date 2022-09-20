@@ -21,21 +21,22 @@ export async function getLatestPosts({
   orderBy?: 'asc' | 'desc'
 } = {}) {
   const postsPath = await getAllPostPaths()
+  const allPosts = await Promise.all(
+    postsPath.map(async path => {
+      const slug = path.replace(/^src\/posts\/|\.mdx$/g, '')
+      const frontmatter = await getPostFrontmatterBySlug(slug)
+
+      return {
+        path,
+        slug,
+        frontmatter,
+      }
+    }),
+  )
 
   return take(
     orderBy(
-      await Promise.all(
-        postsPath.map(async path => {
-          const slug = path.replace(/^src\/posts\/|\.mdx$/g, '')
-          const frontmatter = await getPostFrontmatterBySlug(slug)
-
-          return {
-            path,
-            slug,
-            frontmatter,
-          }
-        }),
-      ),
+      allPosts.filter(({ frontmatter }) => !frontmatter.draft),
       ({ frontmatter }) => dayjs(frontmatter.date).valueOf(),
       [order],
     ),
