@@ -17,13 +17,15 @@ import {
   throttleTime,
   withLatestFrom,
 } from 'rxjs'
+import useHasMounted from '@/hooks/useHasMounted'
 
 export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
-  const [visible, { set: setVisible }] = useBoolean(false)
+  const [visible, { set: setVisible }] = useBoolean(true)
   const [expanded, { toggle: toggleExpanded, set: setExpanded }] = useBoolean(false)
   const { t } = useTranslation('common')
+  const hasMounted = useHasMounted()
   const menus = useMemo(
     () => [
       { label: t('nav.home'), href: '/' },
@@ -46,7 +48,7 @@ const Header: React.FC<HeaderProps> = () => {
     trail: 75,
   })
   const barTransitions = useTransition(visible, {
-    from: { y: '-100%' },
+    from: hasMounted ? { y: '-100%' } : null,
     enter: { y: '0%' },
     leave: { y: '-100%' },
     config: { tension: 256, friction: 28, clamp: true },
@@ -58,7 +60,7 @@ const Header: React.FC<HeaderProps> = () => {
 
   useEffect(() => {
     // 进来执行初次判断
-    setVisible(window.scrollY <= 500)
+    // setVisible(window.scrollY <= 500)
     const scroll$ = fromEvent(window, 'scroll').pipe(
       throttleTime(0, animationFrameScheduler),
       map(() => window.scrollY),

@@ -1,5 +1,5 @@
 import React from 'react'
-import { animated, useSpring, useTransition } from 'react-spring'
+import { animated, useSpring, useTransition, config as builtinConfig } from 'react-spring'
 import { useTheme } from 'next-themes'
 import { withNoSSR } from '@/utils'
 
@@ -24,7 +24,8 @@ const DarkModeToggle = () => {
   const cloudStyles = useSpring({
     opacity: isDarkMode ? 0 : 1,
     x: isDarkMode ? -5 : 0,
-    config,
+    delay: isDarkMode ? 0 : 150,
+    config: isDarkMode ? builtinConfig.stiff : builtinConfig.default,
   })
 
   const nodeStyles = useSpring({
