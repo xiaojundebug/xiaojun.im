@@ -2,9 +2,12 @@ import React from 'react'
 import { GetStaticProps, NextPage } from 'next'
 import { getLatestPosts } from '@/utils/post'
 import Link from 'next/link'
-import { animated, useTransition } from 'react-spring'
+import { animated, useSpring, useTransition } from 'react-spring'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+import { AiOutlineTags } from 'react-icons/ai'
+
+const AnimatedAiOutlineTags = animated(AiOutlineTags)
 
 interface TagsInfo {
   tagName: string
@@ -26,9 +29,21 @@ const Tags: NextPage<TagsProps> = props => {
     reset: true,
   })
 
+  const iconStyles = useSpring({
+    from: { rotate: -90 },
+    to: { rotate: 0 },
+    config: { mass: 3, tension: 300, friction: 15 },
+  })
+
   return (
     <div className="container flex flex-col items-center justify-center">
-      <h2 className="font-medium text-3xl sm:text-5xl mt-20 sm:mt-40">{t('tags-page.title')}</h2>
+      <h2 className="relative font-medium font-serif text-5xl mt-20 sm:mt-40">
+        {t('tags-page.title')}{' '}
+        <AnimatedAiOutlineTags
+          className="inline-block origin-[30px_13.5px]"
+          style={{ ...iconStyles, transformBox: 'fill-box' }}
+        />
+      </h2>
       <p className="font-medium text-sm m-10 sm:m-14">
         {t('tags-page.desc', { count: tags.length })}
       </p>

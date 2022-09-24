@@ -16,7 +16,7 @@ const FencedCodeBlock: React.FC<{
           {language}
         </div>
         <div className="rounded-lg isolate overflow-hidden bg-slate-100 dark:bg-[#282a36]">
-          <Editor disabled padding="2em" />
+          <Editor className="max-h-[800px]" disabled padding="2em" />
         </div>
       </div>
     </LiveProvider>

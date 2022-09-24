@@ -92,7 +92,7 @@ const Header: React.FC<HeaderProps> = () => {
         (barStyles, item) =>
           item && (
             <animated.div
-              className="fixed w-full h-[50px] sm:h-[80px] top-0 z-10 bg-white sm:bg-white/50 dark:bg-zinc-900 sm:dark:bg-zinc-900/60 sm:backdrop-blur-md sm:backdrop-saturate-150"
+              className="fixed w-full h-[50px] sm:h-[80px] top-0 z-10 bg-white sm:bg-white/50 dark:bg-zinc-900 sm:dark:bg-zinc-900/60 sm:backdrop-blur-md sm:backdrop-saturate-150 sm:border-b border-white/50 dark:border-zinc-900/50"
               style={barStyles}
             >
               <div className="container h-full flex items-center justify-between">

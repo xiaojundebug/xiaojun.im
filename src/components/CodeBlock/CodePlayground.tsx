@@ -22,7 +22,7 @@ const CodePlayground: React.FC<{
           {/* 编辑器 */}
           {editor && (
             <div className={classNames(style.editorWrap)}>
-              <div className={style.editorBody} style={{ background: '#282a36' }}>
+              <div className={style.editorBody} style={{ background: '#282a36', color: '#fff' }}>
                 <Editor className={style.editor} />
               </div>
             </div>
