@@ -2,6 +2,7 @@ import React from 'react'
 import { animated, useSpring, useTransition, config as builtinConfig } from 'react-spring'
 import { useTheme } from 'next-themes'
 import { withNoSSR } from '@/utils'
+import useSound from '@/hooks/useSound'
 
 const config = { mass: 3, tension: 200, friction: 30 }
 const starPaths = [
@@ -12,6 +13,8 @@ const starPaths = [
 
 const DarkModeToggle = () => {
   const { resolvedTheme = 'light', setTheme } = useTheme()
+  const [playOn] = useSound('/sounds/switch-on.mp3')
+  const [playOff] = useSound('/sounds/switch-off.mp3')
   const isDarkMode = resolvedTheme === 'dark'
 
   const starPathTransitions = useTransition(isDarkMode ? starPaths : [], {
@@ -67,7 +70,10 @@ const DarkModeToggle = () => {
     <animated.div
       style={containerStyles}
       className="relative w-[56px] h-[28px] rounded-full p-[5px] cursor-pointer"
-      onClick={() => setTheme(isDarkMode ? 'light' : 'dark')}
+      onClick={() => {
+        setTheme(isDarkMode ? 'light' : 'dark')
+        isDarkMode ? playOff() : playOn()
+      }}
     >
       {starts}
       {clouds}

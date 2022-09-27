@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
-import DarkModeToggle from '../DarkModeToggle'
+import DarkModeToggle from './DarkModeToggle'
 import config from '@/config'
 import { useBoolean, useSize } from 'ahooks'
 import { animated, useSpring, useTransition } from 'react-spring'
@@ -102,7 +102,7 @@ const Header: React.FC<HeaderProps> = () => {
                   onChange={toggleExpanded}
                 />
                 {/* logo (desktop) */}
-                <Link href="/">
+                <Link href="/src/pages">
                   <img
                     className="hidden sm:inline-block h-7 mr-4 cursor-pointer dark:invert"
                     src={config.logo}
@@ -118,7 +118,7 @@ const Header: React.FC<HeaderProps> = () => {
                     {mobileNavTransitions((navStyles, menu) => (
                       <animated.div key={menu.href} style={navStyles}>
                         <Link href={menu.href}>
-                          <a className="inline-block w-full font-medium sm:text-lg px-6 py-1 leading-loose active:bg-slate-400/10">
+                          <a className="inline-block w-full font-medium text-xl px-6 py-1 leading-loose active:bg-slate-400/10">
                             <span>{menu.label}</span>
                           </a>
                         </Link>

@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import ListProvider from '@/components/List/ListProvider'
+import ListProvider from '@/components/lists/ListProvider'
 
 const OrderedList: React.FC<PropsWithChildren> = props => {
   return (

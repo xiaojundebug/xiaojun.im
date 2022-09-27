@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useContext, useMemo } from 'react'
 import { HiArrowSmRight } from 'react-icons/hi'
-import { ListContext } from '@/components/List/ListProvider'
+import { ListContext } from '@/components/lists/ListProvider'
 
 const ListItem: React.FC<PropsWithChildren & { className?: string }> = props => {
   const { children } = props

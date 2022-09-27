@@ -34,6 +34,10 @@ TODO:
 
 _config file in `src/config.js`_
 
+## Sounds
+
+Sound from https://Zapsplat.com
+
 ## Thanks
 
 - https://www.joshwcomeau.com

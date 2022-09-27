@@ -1,6 +1,6 @@
 import React from 'react'
-import Splash from '../../components/Splash'
-import PostList, { PostListProps } from '../../components/PostList'
+import Splash from '../components/Splash'
+import PostList, { PostListProps } from '../components/PostList'
 
 export interface DefaultLayoutProps {
   posts: PostListProps['posts']

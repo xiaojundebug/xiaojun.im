@@ -1,18 +1,18 @@
-import React, {DependencyList, useEffect, useMemo, useState} from 'react'
-import TableOfContents, {TableOfContentsProps} from '@/components/TableOfContents'
-import {getMDXComponent, getMDXExport} from 'mdx-bundler/client'
+import React, { DependencyList, useEffect, useMemo, useState } from 'react'
+import TableOfContents, { TableOfContentsProps } from '@/components/TableOfContents'
+import { getMDXComponent, getMDXExport } from 'mdx-bundler/client'
 import Link from 'next/link'
 import dayjs from 'dayjs'
 import HeroImage from '@/components/HeroImage'
-import {useTranslation} from 'next-i18next'
-import {HiArrowSmLeft, HiArrowSmRight, HiOutlineClock} from 'react-icons/hi'
+import { useTranslation } from 'next-i18next'
+import { HiArrowSmLeft, HiArrowSmRight, HiOutlineClock } from 'react-icons/hi'
 import CodeBlock from '@/components/CodeBlock'
 import Blockquote from '@/components/Blockquote'
 import Image from '@/components/Image'
 import DarkModeToggle from '@/components/DarkModeToggle'
-import UnorderedList from '@/components/List/UnorderedList'
-import OrderedList from '@/components/List/OrderedList'
-import ListItem from '@/components/List/ListItem'
+import UnorderedList from '@/components/lists/UnorderedList'
+import OrderedList from '@/components/lists/OrderedList'
+import ListItem from '@/components/lists/ListItem'
 
 const components = {
   code: CodeBlock,
@@ -58,7 +58,15 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
   const { t } = useTranslation('common')
   const {
     code,
-    frontmatter: { title, date, updateOn, tags, toc = true, heroImage, heroImageAspectRatio },
+    frontmatter: {
+      title,
+      date,
+      updateOn,
+      tags,
+      toc = true,
+      heroImage,
+      heroImageAspectRatio = '16 / 9',
+    },
     prevPost,
     nextPost,
   } = props

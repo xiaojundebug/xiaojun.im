@@ -1,5 +1,5 @@
 import React from 'react'
-import LiveProvider, { LiveProviderProps } from '@/components/Playground/LiveProvider'
+import LiveProvider, { LiveProviderProps } from '@/components/playground/LiveProvider'
 import Editor from './Editor'
 
 // 静态围栏代码块高亮

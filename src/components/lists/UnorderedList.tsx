@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import ListProvider from '@/components/List/ListProvider'
+import ListProvider from '@/components/lists/ListProvider'
 
 const UnorderedList: React.FC<PropsWithChildren & { className?: string }> = props => {
   const { children, className = '' } = props

@@ -40,6 +40,6 @@ yarn-error.log*
 # 个人隐私文件
 src/posts/*
 !src/posts/2022-08-05-mdx-test.mdx
-src/misc/post-helpers
+src/post-helpers
 public/images/*
 !public/images/mdx-test.webp

@@ -13,19 +13,16 @@ const HeroImage: React.FC<HeroImage> = props => {
   const { dataUrl, status } = useImage(src)
 
   const loading = (
-    <div className="flex h-full min-h-[150px] items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20 text-slate-500/50">
+    <div className="flex h-full items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20 text-slate-500/50">
       <AiOutlineLoading className="text-4xl animate-spin" />
     </div>
   )
 
   const failed = (
-    <div
-      className="flex h-full min-h-[150px] items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20"
-      style={{ aspectRatio }}
-    >
+    <div className="flex h-full items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20">
       <img
         className="opacity-10 dark:invert"
-        src="/broken-image.png"
+        src="/public/broken-image.png"
         alt="image broken"
         width={60}
       />
@@ -38,7 +35,7 @@ const HeroImage: React.FC<HeroImage> = props => {
       {status === 'loading' && loading}
       {status === 'loaded' && (
         <img
-          className="w-full h-full object-cover dark:brightness-80"
+          className="w-full h-full object-cover"
           src={dataUrl}
           alt="hero image"
         />

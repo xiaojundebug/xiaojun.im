@@ -30,7 +30,8 @@
     "react-simple-code-editor": "^0.11.2",
     "react-spring": "^9.4.5",
     "rxjs": "^7.5.5",
-    "sucrase": "^3.21.0"
+    "sucrase": "^3.21.0",
+    "use-sound": "^4.0.1"
   },
   "devDependencies": {
     "@iconify/react": "^3.2.2",
