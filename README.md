@@ -2,6 +2,8 @@
 
 # next-blog-starter
 
+[English](./README.md) • [中文](./README.zh-CN.md)
+
 A front-end friendly blog starter built with Next.js, TypeScript, MDX, and TailwindCSS.
 
 👀 [Live Demo](https://xiaojun.im/)
@@ -36,7 +38,7 @@ _config file in `src/config.js`_
 
 ## Sounds
 
-Sound from https://Zapsplat.com
+Sound from https://zapsplat.com
 
 ## Thanks
 
