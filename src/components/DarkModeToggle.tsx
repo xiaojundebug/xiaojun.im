@@ -13,8 +13,8 @@ const starPaths = [
 
 const DarkModeToggle = () => {
   const { resolvedTheme = 'light', setTheme } = useTheme()
-  const [playOn] = useSound('/sounds/switch-on.mp3')
-  const [playOff] = useSound('/sounds/switch-off.mp3')
+  const [playOn] = useSound('/sounds/switch.mp3')
+  const [playOff] = useSound('/sounds/switch.mp3', { playbackRate: 0.6 })
   const isDarkMode = resolvedTheme === 'dark'
 
   const starPathTransitions = useTransition(isDarkMode ? starPaths : [], {
