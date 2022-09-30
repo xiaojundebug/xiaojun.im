@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import { GetStaticProps, NextPage } from 'next'
 import { getLatestPosts } from '@/utils/post'
 import Link from 'next/link'
@@ -35,6 +35,8 @@ const Tags: NextPage<TagsProps> = props => {
     config: { mass: 3, tension: 300, friction: 15 },
   })
 
+  const totalNum = useMemo(() => tags.reduce((acc, cur) => acc + cur.postsNum, 0), [tags])
+
   return (
     <div className="container flex flex-col items-center justify-center">
       <h2 className="relative font-medium font-serif text-5xl mt-20 sm:mt-40">
@@ -42,6 +44,7 @@ const Tags: NextPage<TagsProps> = props => {
         <AnimatedAiOutlineTags
           className="inline-block origin-[30px_13.5px]"
           style={{ ...iconStyles, transformBox: 'fill-box' }}
+          aria-hidden
         />
       </h2>
       <p className="font-medium text-sm m-10 sm:m-14">
@@ -54,8 +57,10 @@ const Tags: NextPage<TagsProps> = props => {
               <a
                 className="border-b border-solid border-current transition hover:!opacity-100 hover:text-primary"
                 style={{
-                  fontSize: Math.min(14 + (postsNum - 1) * 6, 48),
-                  opacity: Math.min(0.3 + (postsNum - 1) * 0.175, 1),
+                  // 该 tag 文章数占总数 20% 时字体达到最大
+                  fontSize: Math.min(12 + (postsNum / totalNum) * 180, 48),
+                  // 该 tag 文章数占总数 15% 时字体颜色达到最深
+                  opacity: Math.min(0.1 + (postsNum / totalNum) * 6, 1),
                 }}
               >
                 {tagName}

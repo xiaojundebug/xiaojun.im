@@ -8,7 +8,7 @@ const config = {
   logo: '/logo.svg', // header 左侧 logo
   busuanzi: false, // 不蒜子统计
   socials: [
-    { label: 'github', icon: <FiGithub className="text-lg" />, link: 'https://github.com/imzxj' },
+    { label: 'github', icon: <FiGithub className="text-lg" aria-hidden />, link: 'https://github.com/imzxj' },
   ],
 }
 

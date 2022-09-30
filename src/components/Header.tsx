@@ -102,7 +102,7 @@ const Header: React.FC<HeaderProps> = () => {
                   onChange={toggleExpanded}
                 />
                 {/* logo (desktop) */}
-                <Link href="/src/pages">
+                <Link href="/">
                   <img
                     className="hidden sm:inline-block h-7 mr-4 cursor-pointer dark:invert"
                     src={config.logo}

@@ -20,7 +20,7 @@ const LatestPosts: React.FC<PostListProps> = props => {
             </h2>
           )}
           <article key={idx} className="my-8">
-            <h3 className="font-medium text-lg sm:text-xl">
+            <h3 className="text-lg sm:text-xl">
               <Link href={`/posts/${slug}`}>
                 <a className="hover:text-primary">{frontmatter.title}</a>
               </Link>

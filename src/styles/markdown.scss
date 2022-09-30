@@ -27,11 +27,23 @@
 .markdown-body blockquote p { @apply m-0; }
 
 // NoteBlock
-.markdown-body .note { @apply relative p-6 my-6 rounded-md border; }
+.markdown-body .note { @apply relative px-8 py-6 my-12 sm:rounded-[3px] border-l-[3px]; }
 .markdown-body .note p { @apply m-0; }
-.markdown-body .note.tip { @apply bg-green-500/10 border-green-500/30; }
-.markdown-body .note.warning { @apply bg-yellow-500/10 border-yellow-500/30; }
-.markdown-body .note.danger { @apply bg-red-500/10 border-red-500/30; }
+.markdown-body .note ul,
+.markdown-body .note ol { @apply pl-0; }
+.markdown-body .note::before {
+  @apply absolute bg-white rounded-full;
+  left: -26.5px;
+  top: -26.5px;
+  width: 50px;
+  height: 50px;
+}
+.markdown-body .note.tip { @apply bg-blue-300/30 border-blue-600; }
+.markdown-body .note.tip::before { content: url('/tip.svg'); }
+.markdown-body .note.warning { @apply bg-yellow-300/30 border-yellow-400; }
+.markdown-body .note.warning::before { content: url('/warning.svg'); }
+.markdown-body .note.danger { @apply bg-rose-300/30 border-rose-500; }
+.markdown-body .note.danger::before { content: url('/danger.svg'); }
 
 // InlineCode
 .markdown-body code {
@@ -41,7 +53,7 @@
 
 // Image
 .markdown-body img {
-  @apply relative max-w-full h-auto rounded-md sm:rounded-lg align-middle;
+  @apply relative max-w-full h-auto align-middle;
 }
 
 // TODO: 和 globals.css 重复，可以通过这种方式全局声明 https://tailwindcss.com/docs/functions-and-directives#apply
@@ -72,9 +84,8 @@
 
 // List
 .markdown-body ul,
-.markdown-body ol { padding-left: 1rem; }
 .markdown-body ul p, .markdown-body ol p { margin: 0; }
-.markdown-body ul li > span > input[type='checkbox']:first-child { margin-right: 2px; }
+.markdown-body ul, .markdown-body ol { padding-left: 1rem; }
 .markdown-body ol { counter-reset: list-item; }
 .markdown-body ol li { counter-increment: list-item; }
 .markdown-body ol li::before {
@@ -82,23 +93,6 @@
   min-width: 20px;
   font-feature-settings: "tnum";
   @apply mr-2 text-primary font-medium;
-}
-
-.markdown-body input[type='checkbox'] {
-  width: 18px;
-  height: 18px;
-  border-radius: 0;
-  @apply appearance-none inline-grid place-content-center rounded-full border-2 border-primary bg-transparent;
-}
-.markdown-body input[type='checkbox']::before {
-  content: '';
-  width: 0.85em;
-  height: 0.85em;
-  clip-path: polygon(28% 38.5%, 42% 54%, 75% 25%, 86% 38%, 40% 78%, 15% 50%);
-  @apply bg-primary scale-0;
-}
-.markdown-body input[type="checkbox"]:checked::before {
-  @apply scale-100
 }
 
 /* dark mode */
@@ -111,4 +105,7 @@
     th { @apply bg-night; }
     td { @apply border-night; }
   }
+
+  .note { @apply bg-night; }
+  .note::before { @apply bg-zinc-900; }
 }

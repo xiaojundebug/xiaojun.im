@@ -1,10 +1,9 @@
 import { useContext } from 'react'
 import useSoundBase from 'use-sound'
+import { HookOptions } from 'use-sound/dist/types'
 import { ConfigContext } from '@/components/ConfigProvider'
 
-type UseSoundParameters = Parameters<typeof useSoundBase>
-
-function useSound(url: UseSoundParameters[0], delegated: UseSoundParameters[1] = {}) {
+function useSound<T = any>(url: string | string[], delegated?: HookOptions<T>) {
   const { soundEnabled } = useContext(ConfigContext)
 
   return useSoundBase(url, { soundEnabled, ...delegated })

@@ -77,7 +77,7 @@ const DarkModeToggle = () => {
     >
       {starts}
       {clouds}
-      <animated.div style={nodeStyles} className="relative w-[18px] h-[18px] rounded-full z-10">
+      <animated.div style={nodeStyles} className="relative w-[18px] h-[18px] rounded-full">
         <animated.div style={craterStyles} className="relative w-full h-full">
           <div className="absolute top-[6px] left-[4px] w-[4px] h-[4px] rounded-full bg-slate-400/50 shadow-inner" />
           <div className="absolute top-[8px] left-[11px] w-[1px] h-[1px] rounded-full bg-slate-400/50 shadow-inner" />
