@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import style from './LiveEditor.module.scss'
+import styles from './LiveEditor.module.scss'
 import { NativeProps, withNativeProps } from '@/utils/native-props'
 import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer'
 import Editor from 'react-simple-code-editor'
@@ -17,7 +17,7 @@ const LiveEditor: React.FC<LiveEditorProps> = props => {
 
   return withNativeProps(
     props,
-    <div className={style.liveEditor}>
+    <div className={styles.liveEditor}>
       <Editor
         value={code}
         onValueChange={onCodeChange}

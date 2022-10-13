@@ -1,8 +1,8 @@
 ---
 title: MDX Test
 date: '2022-08-05 21:53:39'
-toc: true
-updatedOn: '2022-10-01 01:14'
+toc: false
+updatedOn: '2022-10-13 18:57'
 heroImage: /images/mdx-test.webp
 heroImageAspectRatio: 3 / 1
 tags:
@@ -17,6 +17,10 @@ draft: false
 
 > `MDX` allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
 
+---
+
+# Heading1
+
 ## Heading2
 
 ### Heading3
@@ -25,33 +29,9 @@ draft: false
 
 ##### Heading5
 
-MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
+###### Heading6
 
-[Github](https://github.com/imzxj)
-
-This **word** is bold. This <em>word</em> is italic.
-
-~~Early to bed and early to rise.~~
-
-[MDX](https://mdxjs.com/) allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
-
-- First item
-- Second item
-- Third item
-- Fourth item
-
-**MDX** allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
-
-1. First item
-2. Second item
-3. Third item
-4. Fourth item
-
-~~_**MDX**_~~ allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
-
-- [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
+[MDX](https://mdxjs.com/) allows you to use **JSX** in your markdown content. You can import components, such as *interactive charts* or *alerts*, and embed them within your content. This makes writing long-form content with components a ~~blast~~. 🚀
 
 | Syntax    | Description |
 | --------- | ----------- |
@@ -60,15 +40,44 @@ This **word** is bold. This <em>word</em> is italic.
 
 ![test image](/images/mdx-test.webp)
 
----
+## List Types
 
-## React Component
+### Unordered List
 
-<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '3rem 0px', gap: 15 }}>
-  <DarkModeToggle /><span>👈 Click here</span>
+- First item
+- Second item
+- Third item
+
+### Ordered List
+
+1. First item
+2. Second item
+3. Third item
+
+### Task List
+
+- [x] First item
+- [ ] Second item
+- [ ] Third item
+
+## Syntax Highlighting
+
+```html
+<style>
+  body {
+    margin: 0;
+    background-color: #fff;
+  }
+</style>
+<div class="container">
+  <p>hello world</p>
 </div>
+<script>
+  console.log(123)
+</script>
+```
 
-## NoteBlock
+## Note Blocks
 
 :::tip
 MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
@@ -82,14 +91,47 @@ MDX allows you to use JSX in your markdown content. You can import components, s
 MDX allows you to use JSX in your markdown content. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast. 🚀
 :::
 
-## Syntax highlighting
+## Third Party Embeds
 
-```ts
-function sum(a: number, b: number) {
-  return a + b
-}
-console.log(sum(1, 1))
+Easy to embed third-party content in your posts.
+
+### YouTube
+
+```tsx
+<YouTube videoId="tQi_k5_Q-90" />
 ```
+
+<YouTube videoId="tQi_k5_Q-90" />
+
+### StackBlitz
+
+```tsx
+<StackBlitz id="web-platform-dwmuj4" />
+```
+
+<StackBlitz id="web-platform-dwmuj4" />
+
+### CodeSandbox
+
+```tsx
+<CodeSandbox id="practical-chihiro-vbzvxe" />
+```
+
+<CodeSandbox id="practical-chihiro-vbzvxe" />
+
+### CodePen
+
+```tsx
+<CodePen id='jOxXxXa' />
+```
+
+<CodePen id='jOxXxXa' />
+
+## React Component
+
+<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '3rem 0px', gap: 15 }}>
+  <DarkModeToggle /><span>👈 Click here</span>
+</div>
 
 
 ## HTML Playground (Beta)

@@ -1,5 +1,5 @@
 import React from 'react'
-import Splash from '../components/Splash'
+import Index from '../components/Splash'
 import PostList, { PostListProps } from '../components/PostList'
 
 export interface DefaultLayoutProps {
@@ -11,7 +11,7 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = props => {
 
   return (
     <>
-      <Splash />
+      <Index />
       <div className="container min-h-screen">
         <PostList posts={posts} />
       </div>

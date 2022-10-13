@@ -13,6 +13,10 @@ import DarkModeToggle from '@/components/DarkModeToggle'
 import UnorderedList from '@/components/lists/UnorderedList'
 import OrderedList from '@/components/lists/OrderedList'
 import ListItem from '@/components/lists/ListItem'
+import { YouTube } from '@/components/embeds/YouTube'
+import { StackBlitz } from '@/components/embeds/StackBlitz'
+import { CodeSandbox } from '@/components/embeds/CodeSandbox'
+import { CodePen } from '@/components/embeds/CodePen'
 
 const components = {
   code: CodeBlock,
@@ -22,6 +26,10 @@ const components = {
   ol: OrderedList,
   li: ListItem,
   DarkModeToggle,
+  YouTube,
+  StackBlitz,
+  CodeSandbox,
+  CodePen,
 }
 
 function useHeadings(deps: DependencyList = []) {

@@ -4,12 +4,10 @@ import classNames from 'classnames'
 
 function useScrollSpy(ids: string[], options: IntersectionObserverInit) {
   const [activeId, setActiveId] = useState<string>()
-  const observer = useRef<IntersectionObserver>()
 
   useEffect(() => {
     const elements = ids.map(id => document.getElementById(id))
-    observer.current?.disconnect()
-    observer.current = new IntersectionObserver(entries => {
+    const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (entry?.isIntersecting) {
           setActiveId(entry.target.id)
@@ -18,10 +16,10 @@ function useScrollSpy(ids: string[], options: IntersectionObserverInit) {
     }, options)
     for (const el of elements) {
       if (el) {
-        observer.current?.observe(el)
+        observer.observe(el)
       }
     }
-    return () => observer.current?.disconnect()
+    return () => observer.disconnect()
   }, [ids, options])
 
   return activeId

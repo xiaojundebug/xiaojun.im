@@ -25,7 +25,7 @@ function MyApp({
   Component,
   pageProps,
 }: AppProps & {
-  Component: NextPageWithLayout
+  Component: NextPageWithCustomProps
 }) {
   // Use the layout defined at the page level, if available
   const getLayout =
@@ -33,7 +33,7 @@ function MyApp({
     ((page: React.ReactElement) => (
       <>
         <NextNProgress color="#2563eb" options={{ showSpinner: false }} />
-        <ThemeProvider disableTransitionOnChange>
+        <ThemeProvider disableTransitionOnChange forcedTheme={Component.theme}>
           <IconContext.Provider value={{ className: 'icon' }}>
             <DefaultSeo title={config.title} description={config.desc} />
             <Head>

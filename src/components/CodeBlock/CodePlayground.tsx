@@ -1,7 +1,7 @@
 import React from 'react'
 import LiveProvider, { LiveProviderProps } from '@/components/playground/LiveProvider'
 import classNames from 'classnames'
-import style from './CodePlayground.module.scss'
+import styles from './CodePlayground.module.scss'
 import { scope as builtInScope } from './react-live-scope'
 import LazyLoad from 'react-lazyload'
 import LivePreview from '@/components/playground/LivePreview'
@@ -17,20 +17,20 @@ const CodePlayground: React.FC<{
 
   return (
     <div className="code-playground relative mt-12 mb-8 border border-2 border-slate-500">
-      <div className={classNames(style.codeBlock, 'max-h-[300px] sm:max-h-[500px]')}>
+      <div className={classNames(styles.codeBlock, 'max-h-[300px] sm:max-h-[500px]')}>
         <LiveProvider language={language} defaultCode={code} scope={{ ...builtInScope, ...scope }}>
           {/* 编辑器 */}
           {editor && (
-            <div className={classNames(style.editorWrap)}>
-              <div className={style.editorBody} style={{ background: '#282a36', color: '#fff' }}>
-                <Editor className={style.editor} />
+            <div className={classNames(styles.editorWrap)}>
+              <div className={styles.editorBody} style={{ background: '#282a36', color: '#fff' }}>
+                <Editor className={styles.editor} />
               </div>
             </div>
           )}
           {/* 预览 */}
-          <LazyLoad className={style.previewWrap}>
+          <LazyLoad className={styles.previewWrap}>
             {/* 避免 tailwindcss preflight 影响到 preview 组件 */}
-            <div className={classNames(style.previewBody, 'unreset')}>
+            <div className={classNames(styles.previewBody, 'unreset')}>
               <LivePreview />
             </div>
           </LazyLoad>

@@ -1,4 +1,4 @@
-import React, {PropsWithChildren} from 'react'
+import React, { PropsWithChildren } from 'react'
 import style from './about.module.scss'
 import classNames from 'classnames'
 import Link from 'next/link'
@@ -12,7 +12,7 @@ const Tag: React.FC<PropsWithChildren> = props => {
     </span>
   )
 }
-const About = () => {
+const About: NextPageWithCustomProps = () => {
   return (
     <div className={classNames('container py-12', style.about)}>
       <h2>🎨 关于本站</h2>
@@ -59,9 +59,18 @@ const About = () => {
         <li><Link href="https://github.com/sanjinhub/hexo-theme-geek">https://github.com/sanjinhub/hexo-theme-geek</Link></li>
         <li><Link href="https://github.com/nanxiaobei/hugo-paper">https://github.com/nanxiaobei/hugo-paper</Link></li>
       </ul>
+
+      {/* 萤火虫 */}
+      <div>
+        {Array.from({ length: 15 }).map((_, idx) => (
+          <div key={idx} className={style.firefly}></div>
+        ))}
+      </div>
     </div>
   )
 }
+
+About.theme = 'dark';
 
 export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ locale }) => {
   return {

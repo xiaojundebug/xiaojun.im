@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer components {
   .divider {
-    @apply box-content my-12 h-px dark:bg-zinc-800 dark:border-[#000] transition-colors;
+    @apply box-content my-12 h-px dark:bg-zinc-800 dark:border-black transition-colors;
   }
 }
 
@@ -24,11 +24,4 @@ body {
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   @apply text-zinc-800 bg-white dark:text-zinc-50 dark:bg-zinc-900;
-}
-
-.splash h1 {
-  color: #2196f3;
-  background-image: -webkit-linear-gradient(0deg, #cc4ef8 0%, #24caef 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }

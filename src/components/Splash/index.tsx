@@ -1,10 +1,12 @@
 import React from 'react'
+import styles from './styles.module.scss'
 import config from '@/config'
 import Link from 'next/link'
+import classNames from 'classnames'
 
-const Splash = () => {
+const Index = () => {
   return (
-    <div className="splash relative my-12 sm:my-16">
+    <div className={classNames(styles.splash, 'splash relative my-12 sm:my-16')}>
       <div className="container flex items-center">
         {config.avatar && (
           <div className="relative">
@@ -24,7 +26,10 @@ const Splash = () => {
           <div className="flex items-center gap-4">
             {config.socials.map(social => (
               <Link key={social.link} href={social.link}>
-                <a className="inline text-2xl leading-none transition-opacity opacity-50 hover:opacity-100" aria-label={social.label}>
+                <a
+                  className="inline text-2xl leading-none transition-opacity opacity-50 hover:opacity-100"
+                  aria-label={social.label}
+                >
                   {social.icon}
                 </a>
               </Link>
@@ -36,4 +41,4 @@ const Splash = () => {
   )
 }
 
-export default Splash
+export default Index

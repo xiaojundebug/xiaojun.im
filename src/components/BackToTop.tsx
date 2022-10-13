@@ -43,12 +43,12 @@ const BackToTop = () => {
       item && (
         <animated.div
           ref={ref}
-          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 flex items-center justify-center w-10 h-10 rounded-full bg-primary hover:bg-primary/80 text-zinc-50 shadow cursor-pointer z-50"
+          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 p-3 rounded-full bg-primary/80 hover:bg-primary text-zinc-50 shadow cursor-pointer z-50"
           onClick={backToTop}
           style={styles}
         >
-          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7.09591 0.674869C7.48378 0.298818 8.1002 0.298819 8.48807 0.67487L14.52 6.52301C15.165 7.14836 14.7223 8.24097 13.8239 8.24097H11.2834C10.7311 8.24097 10.2834 8.68868 10.2834 9.24097V13.8184C10.2834 14.3707 9.83572 14.8184 9.28343 14.8184H6.30055C5.74827 14.8184 5.30055 14.3707 5.30055 13.8184V11.5297V9.24097C5.30055 8.68868 4.85284 8.24097 4.30055 8.24097H1.76004C0.861652 8.24097 0.418948 7.14836 1.06395 6.52301L7.09591 0.674869Z" fill="white" />
+          <svg width="14" height="14" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.77334 0.673254C7.15934 0.299019 7.77279 0.29902 8.15878 0.673255L14.1616 6.49315C14.8035 7.11548 14.3629 8.20282 13.4689 8.20282H10.9406C10.391 8.20282 9.94548 8.64837 9.94548 9.19799V13.7533C9.94548 14.3029 9.49992 14.7485 8.9503 14.7485H5.98183C5.43221 14.7485 4.98665 14.3029 4.98665 13.7533V9.19799C4.98665 8.64837 4.5411 8.20282 3.99148 8.20282H1.46324C0.569191 8.20282 0.128624 7.11548 0.770515 6.49315L6.77334 0.673254Z" fill="white" />
           </svg>
         </animated.div>
       ),

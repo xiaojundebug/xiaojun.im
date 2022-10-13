@@ -1,6 +1,7 @@
-type NextPageWithLayout<P = {}, IP = P> = import('next').NextPage<P, IP> & {
-  getLayout?: (page: import('react').ReactElement) => import('react').ReactNode;
-};
+type NextPageWithCustomProps<P = {}, IP = P> = import('next').NextPage<P, IP> & {
+  getLayout?: (page: import('react').ReactElement) => import('react').ReactNode
+  theme?: string
+}
 
 interface PostFrontmatter {
   title: string
@@ -14,8 +15,8 @@ interface PostFrontmatter {
 }
 
 interface ReadingTime {
-  minutes: number;
-  text: string;
-  time: number;
-  words: number;
+  minutes: number
+  text: string
+  time: number
+  words: number
 }

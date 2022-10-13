@@ -3,6 +3,7 @@ import { animated, useSpring, useTransition, config as builtinConfig } from 'rea
 import { useTheme } from 'next-themes'
 import { withNoSSR } from '@/utils'
 import useSound from '@/hooks/useSound'
+import classNames from 'classnames'
 
 const config = { mass: 3, tension: 200, friction: 30 }
 const starPaths = [
@@ -12,10 +13,12 @@ const starPaths = [
 ]
 
 const DarkModeToggle = () => {
-  const { resolvedTheme = 'light', setTheme } = useTheme()
+  const { resolvedTheme = 'light', setTheme, forcedTheme } = useTheme()
   const [playOn] = useSound('/sounds/switch.mp3')
   const [playOff] = useSound('/sounds/switch.mp3', { playbackRate: 0.6 })
-  const isDarkMode = resolvedTheme === 'dark'
+  const isDarkMode = resolvedTheme === 'dark' || forcedTheme === 'dark'
+  // Theme is forced, we shouldn't allow user to change the theme
+  const disabled = !!forcedTheme
 
   const starPathTransitions = useTransition(isDarkMode ? starPaths : [], {
     from: { scale: 0, rotate: -30, opacity: 0 },
@@ -53,7 +56,7 @@ const DarkModeToggle = () => {
     <svg className="absolute left-[8px] top-[7px]" width="16" height="14" viewBox="0 0 89 77" fill="none" xmlns="http://www.w3.org/2000/svg">
       {
         starPathTransitions((styles, path) => (
-          <animated.path key={path} style={{ ...styles, transformBox: 'fill-box', transformOrigin: 'center' }} d={path} fill="#C6D0D1"/>
+          <animated.path key={path} style={{ ...styles, transformBox: 'fill-box', transformOrigin: 'center' }} d={path} fill="#C6D0D1" />
         ))
       }
     </svg>
@@ -62,15 +65,18 @@ const DarkModeToggle = () => {
   // prettier-ignore
   const clouds = (
     <animated.svg style={cloudStyles} className="absolute right-[10px] top-[10px]" width="15" height="8" viewBox="0 0 104 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18.0258 11.2704C18.0258 5.34458 22.8296 0.540771 28.7554 0.540771H93.1331C99.0589 0.540771 103.863 5.34458 103.863 11.2704C103.863 17.1962 99.0589 22 93.1331 22H66.2146C63.3038 22 60.9442 24.3596 60.9442 27.2704V27.2704C60.9442 30.1811 63.3038 32.5408 66.2146 32.5408H75.1073C81.0331 32.5408 85.8369 37.3446 85.8369 43.2704C85.8369 49.1962 81.0331 54 75.1073 54H10.7296C4.80381 54 0 49.1962 0 43.2704C0 37.3446 4.80381 32.5408 10.7296 32.5408H44.7296C47.6404 32.5408 50 30.1811 50 27.2704V27.2704C50 24.3596 47.6404 22 44.7296 22H28.7554C22.8296 22 18.0258 17.1962 18.0258 11.2704Z" fill="white"/>
+      <path d="M18.0258 11.2704C18.0258 5.34458 22.8296 0.540771 28.7554 0.540771H93.1331C99.0589 0.540771 103.863 5.34458 103.863 11.2704C103.863 17.1962 99.0589 22 93.1331 22H66.2146C63.3038 22 60.9442 24.3596 60.9442 27.2704V27.2704C60.9442 30.1811 63.3038 32.5408 66.2146 32.5408H75.1073C81.0331 32.5408 85.8369 37.3446 85.8369 43.2704C85.8369 49.1962 81.0331 54 75.1073 54H10.7296C4.80381 54 0 49.1962 0 43.2704C0 37.3446 4.80381 32.5408 10.7296 32.5408H44.7296C47.6404 32.5408 50 30.1811 50 27.2704V27.2704C50 24.3596 47.6404 22 44.7296 22H28.7554C22.8296 22 18.0258 17.1962 18.0258 11.2704Z" fill="white" />
     </animated.svg>
   )
 
   return (
     <animated.div
       style={containerStyles}
-      className="relative w-[56px] h-[28px] rounded-full p-[5px] cursor-pointer"
+      className={classNames('relative w-[56px] h-[28px] rounded-full p-[5px] cursor-pointer', {
+        'cursor-not-allowed': disabled,
+      })}
       onClick={() => {
+        if (disabled) return
         setTheme(isDarkMode ? 'light' : 'dark')
         isDarkMode ? playOff() : playOn()
       }}
@@ -88,4 +94,4 @@ const DarkModeToggle = () => {
   )
 }
 
-export default withNoSSR(DarkModeToggle)
+export default withNoSSR(DarkModeToggle, { loading: () => <div className="w-[56px] h-[28px]" /> })

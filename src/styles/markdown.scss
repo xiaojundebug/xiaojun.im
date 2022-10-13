@@ -16,13 +16,15 @@
 .markdown-body h2,
 .markdown-body h3,
 .markdown-body h4,
-.markdown-body h5 { @apply mt-12 mb-6 font-bold; }
+.markdown-body h5,
+.markdown-body h6 { @apply my-6 font-bold; }
 
-.markdown-body h1 { font-size: 1.75rem; }
-.markdown-body h2 { font-size: 1.5rem; }
-.markdown-body h3 { font-size: 1.35rem; }
-.markdown-body h4 { font-size: 1.25rem; }
+.markdown-body h1 { font-size: 2.25rem; }
+.markdown-body h2 { font-size: 1.65rem; }
+.markdown-body h3 { font-size: 1.25rem; }
+.markdown-body h4 { font-size: 1.15rem; }
 .markdown-body h5 { font-size: 1rem; }
+.markdown-body h6 { font-size: 0.875rem; }
 
 .markdown-body blockquote p { @apply m-0; }
 
@@ -44,6 +46,11 @@
 .markdown-body .note.warning::before { content: url('/warning.svg'); }
 .markdown-body .note.danger { @apply bg-rose-300/30 border-rose-500; }
 .markdown-body .note.danger::before { content: url('/danger.svg'); }
+
+// Emphasis
+.markdown-body em {
+  opacity: 0.7;
+}
 
 // InlineCode
 .markdown-body code {
@@ -69,17 +76,17 @@
 
 // Table
 .markdown-body table {
-  width: 100%;
-  font-size: 13px;
-  line-height: 1.5;
-  border-collapse: collapse;
+  @apply w-full text-left border-collapse;
 }
-
+.markdown-body table thead,
+.markdown-body table tbody tr:not(:last-child) {
+  @apply border-b border-slate-200/50;
+}
 .markdown-body table th {
-  @apply p-2.5 bg-slate-200/50 whitespace-nowrap text-left;
+  @apply p-2.5 whitespace-nowrap;
 }
 .markdown-body table td {
-  @apply p-2.5 border-b border-slate-200/50;
+  @apply p-2.5;
 }
 
 // List
@@ -102,8 +109,10 @@
   hr { @apply bg-zinc-800 border-black; }
 
   table {
-    th { @apply bg-night; }
-    td { @apply border-night; }
+    thead,
+    tbody tr:not(:last-child) {
+      @apply border-b border-night;
+    }
   }
 
   .note { @apply bg-night; }
