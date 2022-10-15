@@ -4,7 +4,7 @@ import config from '@/config'
 import Link from 'next/link'
 import classNames from 'classnames'
 
-const Index = () => {
+const Splash = () => {
   return (
     <div className={classNames(styles.splash, 'splash relative my-12 sm:my-16')}>
       <div className="container flex items-center">
@@ -41,4 +41,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Splash

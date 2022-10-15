@@ -1,120 +1,110 @@
 .markdown-body {
-  font-size: 16px;
+  @apply text-base break-words;
   line-height: 1.75;
-  overflow-wrap: break-word;
+
+  // Heading
+  .anchor {
+    @apply text-zinc-900 no-underline;
+    &:hover::after { @apply text-gray-500/50 font-normal; content: ' #'; }
+  }
+  h1, h2, h3, h4, h5, h6 { @apply font-bold; }
+  h1 { @apply text-4xl mt-14 mb-10; }
+  h2 { @apply text-3xl mt-12 mb-8; }
+  h3 { @apply text-2xl mt-8 mb-6; }
+  h4 { @apply text-xl mt-7 mb-5; }
+  h5 { @apply text-base mt-6 mb-4; }
+  h6 { @apply text-sm mt-5 mb-3; }
+  h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * { @apply mt-0; }
+
+  // Paragraph
+  p { @apply my-6; }
+
+  // Blockquote
+  blockquote p { @apply m-0; }
+
+  // Emphasis
+  em { @apply opacity-80; }
+
+  // InlineCode
+  code {
+    @apply text-pink-500 font-medium;
+    &::before, &::after { content: '`'; }
+  }
+
+  // NoteBlock
+  .note {
+    @apply relative px-8 py-px my-12 sm:rounded-[3px] border-l-[3px];
+    //p { @apply m-0; }
+    ul, ol { @apply pl-0; }
+    &::before {
+      @apply absolute bg-white rounded-full -left-[26.5px] -top-[25px] w-[50px] h-[50px];
+    }
+    &.tip {
+      @apply bg-blue-300/30 border-blue-600;
+      &::before { content: url('/tip.svg'); }
+    }
+    &.warning {
+      @apply bg-yellow-300/30 border-yellow-400;
+      &::before { content: url('/warning.svg'); }
+    }
+    &.danger {
+      @apply bg-rose-300/30 border-rose-500;
+      &::before { content: url('/danger.svg'); }
+    }
+  }
+
+  // Image
+  img { @apply relative max-w-full h-auto align-middle; }
+
+  // HorizontalRule
+  hr { @apply box-content my-12 h-px transition-colors; }
+
+  // Link
+  a:not([class~=anchor]) {
+    @apply underline text-primary hover:brightness-75 transition;
+    &:hover { @apply underline; }
+    code { @apply text-current; }
+  }
+
+  // Table
+  table {
+    @apply w-full my-8 text-left border-collapse;
+    thead, tbody tr:not(:last-child) { @apply border-b border-slate-200/50; }
+    th { @apply p-2.5 whitespace-nowrap; }
+    td { @apply p-2.5; }
+  }
+
+  // List
+  ul, ol {
+    @apply pl-4;
+    p { @apply m-0 }
+  }
+  ol {
+    counter-reset: list-item;
+    > li {
+      counter-increment: list-item;
+      &::before {
+        @apply mr-2 text-primary font-medium;
+        content: counter(list-item) ". ";
+        min-width: 20px;
+        font-feature-settings: "tnum";
+      }
+    }
+  }
 }
 
-.markdown-body p,
-.markdown-body table { @apply my-6; }
-
-
-// Headings
-.markdown-body .anchor { @apply text-zinc-900 no-underline; }
-.markdown-body .anchor:hover::after { content: ' #'; @apply text-gray-500; }
-
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 { @apply my-6 font-bold; }
-
-.markdown-body h1 { font-size: 2.25rem; }
-.markdown-body h2 { font-size: 1.65rem; }
-.markdown-body h3 { font-size: 1.25rem; }
-.markdown-body h4 { font-size: 1.15rem; }
-.markdown-body h5 { font-size: 1rem; }
-.markdown-body h6 { font-size: 0.875rem; }
-
-.markdown-body blockquote p { @apply m-0; }
-
-// NoteBlock
-.markdown-body .note { @apply relative px-8 py-6 my-12 sm:rounded-[3px] border-l-[3px]; }
-.markdown-body .note p { @apply m-0; }
-.markdown-body .note ul,
-.markdown-body .note ol { @apply pl-0; }
-.markdown-body .note::before {
-  @apply absolute bg-white rounded-full;
-  left: -26.5px;
-  top: -26.5px;
-  width: 50px;
-  height: 50px;
-}
-.markdown-body .note.tip { @apply bg-blue-300/30 border-blue-600; }
-.markdown-body .note.tip::before { content: url('/tip.svg'); }
-.markdown-body .note.warning { @apply bg-yellow-300/30 border-yellow-400; }
-.markdown-body .note.warning::before { content: url('/warning.svg'); }
-.markdown-body .note.danger { @apply bg-rose-300/30 border-rose-500; }
-.markdown-body .note.danger::before { content: url('/danger.svg'); }
-
-// Emphasis
-.markdown-body em {
-  opacity: 0.7;
-}
-
-// InlineCode
-.markdown-body code {
-  @apply text-pink-500 font-medium;
-  &::before, &::after { content: '`'; }
-}
-
-// Image
-.markdown-body img {
-  @apply relative max-w-full h-auto align-middle;
-}
-
-// TODO: 和 globals.css 重复，可以通过这种方式全局声明 https://tailwindcss.com/docs/functions-and-directives#apply
-.markdown-body hr { @apply box-content my-12 h-px transition-colors; }
-
-// Link
-.markdown-body a {
-  padding: 0 2px;
-  @apply font-medium underline text-primary hover:brightness-75 transition;
-}
-.markdown-body a:hover { @apply underline; }
-.markdown-body a code { @apply text-primary; }
-
-// Table
-.markdown-body table {
-  @apply w-full text-left border-collapse;
-}
-.markdown-body table thead,
-.markdown-body table tbody tr:not(:last-child) {
-  @apply border-b border-slate-200/50;
-}
-.markdown-body table th {
-  @apply p-2.5 whitespace-nowrap;
-}
-.markdown-body table td {
-  @apply p-2.5;
-}
-
-// List
-.markdown-body ul,
-.markdown-body ul p, .markdown-body ol p { margin: 0; }
-.markdown-body ul, .markdown-body ol { padding-left: 1rem; }
-.markdown-body ol { counter-reset: list-item; }
-.markdown-body ol li { counter-increment: list-item; }
-.markdown-body ol li::before {
-  content: counter(list-item) ". ";
-  min-width: 20px;
-  font-feature-settings: "tnum";
-  @apply mr-2 text-primary font-medium;
-}
-
-/* dark mode */
+// DarkMode
 [data-theme='dark'] .markdown-body {
   .anchor { @apply text-zinc-50; }
 
   hr { @apply bg-zinc-800 border-black; }
 
   table {
-    thead,
-    tbody tr:not(:last-child) {
-      @apply border-b border-night;
-    }
+    thead, tbody tr:not(:last-child) { @apply border-b border-night; }
   }
 
-  .note { @apply bg-night; }
-  .note::before { @apply bg-zinc-900; }
+  .note {
+    @apply bg-night;
+    &::before { @apply bg-zinc-900; }
+  }
 }

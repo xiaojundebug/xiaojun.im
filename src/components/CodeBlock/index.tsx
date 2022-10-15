@@ -18,7 +18,8 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
   const language = className?.replace(/language-/, '') as Language
 
   if (!children) return null
-  if (!language) return <code>{children}</code>
+  // 没有语言并且内容结尾不是换行，则表明它是 `code` 写法，而不是代码块
+  if (!language && !children.endsWith('\n')) return <code>{children}</code>
   if (!live) return <FencedCodeBlock language={language} code={children.trim()} />
 
   return (

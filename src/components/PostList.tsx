@@ -3,10 +3,10 @@ import Link from 'next/link'
 import dayjs from 'dayjs'
 
 export interface PostListProps {
-  posts: { path: string; slug: string; frontmatter: PostFrontmatter }[]
+  posts: Post[]
 }
 
-const LatestPosts: React.FC<PostListProps> = props => {
+const PostList: React.FC<PostListProps> = props => {
   const { posts } = props
 
   return (
@@ -35,4 +35,4 @@ const LatestPosts: React.FC<PostListProps> = props => {
   )
 }
 
-export default LatestPosts
+export default PostList

@@ -16,7 +16,7 @@ const CodePlayground: React.FC<{
   const { code, language, scope, editor = true } = props
 
   return (
-    <div className="code-playground relative mt-12 mb-8 border border-2 border-slate-500">
+    <div className="code-playground relative border border-2 border-slate-500">
       <div className={classNames(styles.codeBlock, 'max-h-[300px] sm:max-h-[500px]')}>
         <LiveProvider language={language} defaultCode={code} scope={{ ...builtInScope, ...scope }}>
           {/* 编辑器 */}
