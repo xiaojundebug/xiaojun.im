@@ -1,0 +1,21 @@
+.about {
+  p,
+  ul {
+    @apply my-4 leading-loose;
+  }
+
+  h2 {
+    @apply text-2xl font-medium mt-10 mb-4;
+  }
+
+  p {
+  }
+
+  ul {
+    list-style: inside;
+  }
+
+  a {
+    @apply text-primary underline hover:brightness-75;
+  }
+}

@@ -28,6 +28,7 @@ const Splash = () => {
               <Link key={social.link} href={social.link}>
                 <a
                   className="inline text-2xl leading-none transition-opacity opacity-50 hover:opacity-100"
+                  title={social.label}
                   aria-label={social.label}
                 >
                   {social.icon}

@@ -29,7 +29,7 @@ const Tags: NextPageWithCustomProps<TagsProps> = props => {
     from: { scale: 0.5, opacity: 0 },
     enter: { scale: 1, opacity: 1 },
     leave: { scale: 0.5, opacity: 0 },
-    trail: 20,
+    trail: 400 / tags.length,
     reset: true,
   })
 
@@ -49,11 +49,11 @@ const Tags: NextPageWithCustomProps<TagsProps> = props => {
         {t('tags-page.desc', { count: tags.length })}
       </p>
       <div className="flex items-center justify-center flex-wrap gap-7">
-        {transitions((navStyles, { tagName, postsNum }) => (
-          <animated.div key={tagName} style={navStyles}>
+        {transitions((tagStyles, { tagName, postsNum }) => (
+          <animated.div key={tagName} style={tagStyles}>
             <Link href={`/tags/${tagName}`}>
               <a
-                className="border-b border-solid border-current transition hover:!opacity-100 hover:text-primary"
+                className="border-b border-current transition hover:!opacity-100 hover:text-[#ff7464]"
                 style={{
                   // 该 tag 文章数占总数 20% 时字体达到最大
                   fontSize: Math.min(

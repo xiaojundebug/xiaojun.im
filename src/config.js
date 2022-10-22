@@ -1,4 +1,4 @@
-import { FiGithub } from 'react-icons/fi'
+import { FiGithub, FiLink } from 'react-icons/fi'
 
 const config = {
   name: 'xiaojun',
@@ -6,10 +6,15 @@ const config = {
   desc: '为什么不问问神奇海螺 🐚 呢？',
   avatar: '/avatar.png',
   logo: '/logo.svg', // header 左侧 logo
-  busuanzi: false, // 不蒜子统计
   socials: [
-    { label: 'github', icon: <FiGithub className="text-lg" aria-hidden />, link: 'https://github.com/imzxj' },
+    { label: 'Github', icon: <FiGithub className="text-lg" aria-hidden />, link: 'https://github.com/imzxj' },
+    { label: '友链', icon: <FiLink className="text-lg" aria-hidden />, link: '/blogroll' },
   ],
+  blogroll: [
+    { name: '赖同学', link: 'https://www.laibh.com' },
+    { name: '鯊手', link: 'https://www.cnblogs.com/Scooby' },
+    { name: 'mghio', link: 'https://www.mghio.cn' },
+  ]
 }
 
 export default config

@@ -61,8 +61,7 @@
 
   // Link
   a:not([class~=anchor]) {
-    @apply underline text-primary hover:brightness-75 transition;
-    &:hover { @apply underline; }
+    @apply text-primary underline font-medium hover:brightness-75 transition;
     code { @apply text-current; }
   }
 
@@ -100,11 +99,11 @@
   hr { @apply bg-zinc-800 border-black; }
 
   table {
-    thead, tbody tr:not(:last-child) { @apply border-b border-night; }
+    thead, tbody tr:not(:last-child) { @apply border-b border-slate-600/20; }
   }
 
   .note {
-    @apply bg-night;
+    @apply bg-slate-600/20;
     &::before { @apply bg-zinc-900; }
   }
 }

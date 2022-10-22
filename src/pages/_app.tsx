@@ -45,8 +45,8 @@ function MyApp({
             </Head>
             <Header />
             <PageContainer>{page}</PageContainer>
-            <BackToTop />
             <Footer />
+            <BackToTop />
           </IconContext.Provider>
         </ThemeProvider>
       </>
