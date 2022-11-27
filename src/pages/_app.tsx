@@ -1,8 +1,8 @@
-import '../styles/globals.css'
-import '../styles/reset.css'
-import '../styles/unreset.scss'
-import '../styles/markdown.scss'
-import '../styles/highlighting.scss'
+import '@/styles/globals.css'
+import '@/styles/reset.css'
+import '@/styles/unreset.scss'
+import '@/styles/markdown.scss'
+import '@/styles/highlighting.scss'
 import type { AppProps } from 'next/app'
 import PageContainer from '../components/PageContainer'
 import BackToTop from '../components/BackToTop'
@@ -21,7 +21,7 @@ import { IconContext } from 'react-icons'
 
 dayjs.extend(localizedFormat)
 
-function MyApp({
+function App({
   Component,
   pageProps,
 }: AppProps & {
@@ -52,7 +52,7 @@ function MyApp({
       </>
     ))
 
-  return getLayout(<Component {...pageProps} />)
+  return getLayout(<Component {...pageProps} />) as JSX.Element
 }
 
-export default appWithTranslation(MyApp as any)
+export default appWithTranslation(App)
