@@ -1,10 +1,10 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fimzxj%2Fnext-)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fimzxj%2Fxiaojun.im)
 
-# next-blog-starter
+# xiaojun.im
 
 [English](./README.md) • [中文](./README.zh-CN.md)
 
-A front-end friendly blog starter built with Next.js, TypeScript, MDX, and TailwindCSS.
+My personal blog, built with Next.js, TypeScript, MDX, and TailwindCSS.
 
 👀 [Live Demo](https://xiaojun.im/)
 
@@ -38,7 +38,7 @@ _config file in `src/config.js`_
 
 ## Sounds
 
-Sound from https://zapsplat.com
+Sounds from https://zapsplat.com
 
 ## Thanks
 

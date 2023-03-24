@@ -1,10 +1,10 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fimzxj%2Fnext-)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fimzxj%2Fxiaojun.im)
 
-# 我的个人博客
+# xiaojun.im
 
 [English](./README.md) • [中文](./README.zh-CN.md)
 
-个人博客，它使用 Next.js、TypeScript、MDX 和 TailwindCSS 构建。
+我的个人博客，它使用 Next.js、TypeScript、MDX 和 TailwindCSS 构建。
 
 👀 [在线预览](https://xiaojun.im/)
 
