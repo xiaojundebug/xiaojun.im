@@ -4,16 +4,18 @@ import { NativeProps, withNativeProps } from '@/utils/native-props'
 import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer'
 import Editor from 'react-simple-code-editor'
 import { LiveContext } from './LiveProvider'
+import classNames from "classnames";
 
 export interface LiveEditorProps extends NativeProps {
   disabled?: boolean
   theme?: PrismTheme
   padding?: string | number
+  highlights?: number[]
 }
 
 const LiveEditor: React.FC<LiveEditorProps> = props => {
   const { code, language, onCodeChange } = useContext(LiveContext)
-  const { disabled, theme, padding = 15 } = props
+  const { disabled, theme, padding = 15, highlights = [] } = props
 
   return withNativeProps(
     props,
@@ -37,21 +39,13 @@ const LiveEditor: React.FC<LiveEditorProps> = props => {
               <>
                 {tokens.map((line, i) => (
                   // eslint-disable-next-line react/jsx-key
-                  <div {...getLineProps({ line, key: i })}>
-                    {/* 行号 */}
-                    {/* https://github.com/satya164/react-simple-code-editor/blob/809d5f042637918dc41524ab40ec1d1d581e335d/example/App.js */}
-                    {/*<div*/}
-                    {/*  style={{*/}
-                    {/*    position: 'absolute',*/}
-                    {/*    left: 0,*/}
-                    {/*    width: 40,*/}
-                    {/*    textAlign: 'right',*/}
-                    {/*    userSelect: 'none',*/}
-                    {/*    opacity: 0.5,*/}
-                    {/*  }}*/}
-                    {/*>*/}
-                    {/*  {i + 1}*/}
-                    {/*</div>*/}
+                  <div
+                    {...getLineProps({
+                      line,
+                      key: i,
+                      className: classNames({ highlight: highlights.includes(i + 1) }),
+                    })}
+                  >
                     <>
                       {line.map((token, key) => (
                         // eslint-disable-next-line react/jsx-key

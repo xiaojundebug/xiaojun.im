@@ -16,19 +16,23 @@ const CodePlayground: React.FC<{
   const { code, language, scope, editor = true } = props
 
   return (
-    <div className="code-playground relative border border-2 border-slate-500">
+    <div className="code-playground relative">
       <div className={classNames(styles.codeBlock, 'max-h-[300px] sm:max-h-[500px]')}>
         <LiveProvider language={language} defaultCode={code} scope={{ ...builtInScope, ...scope }}>
           {/* 编辑器 */}
           {editor && (
-            <div className={classNames(styles.editorWrap)}>
+            <div
+              className={classNames(styles.editorWrap)}
+            >
               <div className={styles.editorBody} style={{ background: '#282a36', color: '#fff' }}>
                 <Editor className={styles.editor} />
               </div>
             </div>
           )}
           {/* 预览 */}
-          <LazyLoad className={styles.previewWrap}>
+          <LazyLoad
+            className={styles.previewWrap}
+          >
             {/* 避免 tailwindcss preflight 影响到 preview 组件 */}
             <div className={classNames(styles.previewBody, 'unreset')}>
               <LivePreview />

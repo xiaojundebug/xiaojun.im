@@ -50,6 +50,6 @@ const ReactPreview = () => {
     }
   }
 
-  return resolveElement(node)
+  return <div style={{ margin: 8 }}>{resolveElement(node)}</div>
 }
 export default ReactPreview

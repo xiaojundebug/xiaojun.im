@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import LiveProvider, { LiveProviderProps } from '@/components/playground/LiveProvider'
 import Editor from './Editor'
 
@@ -6,8 +6,27 @@ import Editor from './Editor'
 const FencedCodeBlock: React.FC<{
   language: LiveProviderProps['language']
   code: string
+  highlights?: string
 }> = props => {
-  const { language, code } = props
+  const { language, code, highlights = '' } = props
+
+  const highlightRows = useMemo(() => {
+    if (!highlights) return []
+    return highlights.split(',').reduce<number[]>((acc, cur) => {
+      const limits = cur.split('-')
+      const rows = []
+      if (limits.length === 1) {
+        rows.push(parseInt(limits[0]))
+      } else if (limits.length === 2) {
+        const start = parseInt(limits[0])
+        const end = parseInt(limits[1])
+        for (let i = start; i <= end; i++) {
+          rows.push(i)
+        }
+      }
+      return acc.concat(rows)
+    }, [])
+  }, [highlights])
 
   return (
     <LiveProvider language={language} defaultCode={code}>
@@ -16,7 +35,12 @@ const FencedCodeBlock: React.FC<{
           {language}
         </div>
         <div className="rounded-lg isolate overflow-hidden bg-slate-100 dark:bg-[#282a36]">
-          <Editor className="max-h-[800px]" disabled padding="2em" />
+          <Editor
+            className="max-h-[800px]"
+            disabled
+            padding="2em"
+            highlights={highlightRows}
+          />
         </div>
       </div>
     </LiveProvider>

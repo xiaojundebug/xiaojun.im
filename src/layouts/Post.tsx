@@ -125,7 +125,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           </article>
         </div>
         {/* 侧边目录导航 */}
-        {toc && headings.length > 0 && (
+        {toc && headings.length > 1 && (
           <TableOfContents className="hidden sm:block" headings={headings} />
         )}
       </div>

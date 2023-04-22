@@ -2,7 +2,7 @@
 title: MDX Test
 date: '2022-08-05 21:53:39'
 toc: true
-updatedOn: '2022-10-16 00:31'
+updatedOn: '2023-04-22 21:49'
 heroImage: /images/mdx-test.webp
 heroImageAspectRatio: 3 / 1
 tags:
@@ -42,11 +42,16 @@ https://github.com/imzxj
 | `git status` | List all _new or modified_ files                   |
 | `git diff`   | Show file differences that **haven't been** staged |
 
-```json
-{
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
+```jsx highlights="2,6-7"
+function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>+1</button>
+    </>
+  )
 }
 ```
 
@@ -124,9 +129,6 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Title</title>
     <style>
-      body {
-        margin: 0;
-      }
       .circle {
         width: 100px;
         height: 100px;

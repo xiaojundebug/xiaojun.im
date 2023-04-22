@@ -8,6 +8,12 @@ html[data-theme='light'] {
     .token-line {
       color: #5e6687;
 
+      &.highlight {
+        margin: 0 -2em;
+        padding: 0 2em;
+        background: rgba(0, 0, 0, 0.05);
+      }
+
       .token.comment,
       .token.prolog,
       .token.doctype,
@@ -111,6 +117,12 @@ html[data-theme='light'] .code-playground {
   pre {
     .token-line {
       color: #fff;
+
+      &.highlight {
+        margin: 0 -2em;
+        padding: 0 2em;
+        background: rgba(255, 255, 255, 0.05);
+      }
 
       .token.comment,
       .token.prolog,

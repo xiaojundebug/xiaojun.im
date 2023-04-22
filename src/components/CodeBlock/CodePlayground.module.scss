@@ -1,6 +1,9 @@
 .codeBlock {
   position: relative;
   display: flex;
+  margin: 1.5rem -120px;
+  box-shadow: 0 5px 20px -3px rgb(0 0 0 / 0.1);
+  z-index: 10;
 
   .editorWrap,
   .previewWrap {
@@ -9,48 +12,11 @@
     isolation: isolate;
   }
 
-  .editorHeader,
-  .previewHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 26px;
-    padding: 0 10px;
-    background: #202124;
-    color: #888;
-    font-size: 14px;
-  }
-
-  .previewHeader {
-    background: #fff;
-    border-bottom: 1px solid #f1f1f1;
-  }
-
-  .editorActions,
-  .previewActions {
-    display: flex;
-    align-items: center;
-
-    :global {
-      .icon {
-        cursor: pointer;
-
-        &:hover {
-          color: #999;
-        }
-      }
-    }
-  }
-
   .editorWrap {
     display: flex;
     flex-direction: column;
-
-    .editorHeader {
-      .language {
-        font-family: 'Fira Code', monospace;
-      }
-    }
+    border: 1px solid rgba(150, 150, 150, 0.5);
+    border-right: none;
 
     .editorBody {
       flex: 1;
@@ -61,27 +27,15 @@
   .previewWrap {
     display: flex;
     flex-direction: column;
-
-    .previewHeader {
-      &::before {
-        content: '';
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background-color: #fd6458;
-        box-shadow: 20px 0 0 #ffbf2b, 40px 0 0 #24cc3d;
-        vertical-align: middle;
-      }
-    }
+    border: 1px solid #e5e5e5;
+    border-left: none;
 
     .previewBody {
       position: relative;
       flex: 1;
       overflow: auto;
       overflow: overlay;
-      padding: 8px;
-      background: #fbfbfb;
+      background: #fff;
       color: #000;
     }
   }
