@@ -32,7 +32,7 @@ const FencedCodeBlock: React.FC<{
     <LiveProvider language={language} defaultCode={code}>
       <div className="relative mt-12 mb-8">
         <div className="absolute right-8 top-px px-3 -translate-y-full rounded-tl-md rounded-tr-md bg-slate-100 text-slate-600 dark:bg-[#282a36] dark:text-slate-400 font-mono font-medium">
-          {language}
+          {language.toUpperCase()}
         </div>
         <div className="rounded-lg isolate overflow-hidden bg-slate-100 dark:bg-[#282a36]">
           <Editor

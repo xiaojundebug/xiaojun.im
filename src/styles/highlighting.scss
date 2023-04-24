@@ -11,7 +11,8 @@ html[data-theme='light'] {
       &.highlight {
         margin: 0 -2em;
         padding: 0 2em;
-        background: rgba(0, 0, 0, 0.05);
+        background: linear-gradient(#0ea5e9 0%, #0ea5e9) no-repeat, rgba(0, 0, 0, 0.05);
+        background-size: 3px;
       }
 
       .token.comment,
@@ -121,7 +122,8 @@ html[data-theme='light'] .code-playground {
       &.highlight {
         margin: 0 -2em;
         padding: 0 2em;
-        background: rgba(255, 255, 255, 0.05);
+        background: linear-gradient(#0369a1 0%, #0369a1) no-repeat, rgba(255, 255, 255, 0.05);
+        background-size: 3px;
       }
 
       .token.comment,
