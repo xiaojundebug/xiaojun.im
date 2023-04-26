@@ -5,6 +5,33 @@
   .divider {
     @apply box-content my-12 h-px dark:bg-zinc-800 dark:border-black transition-colors;
   }
+
+  .overflow-overlay {
+    overflow: auto;
+    overflow: overlay;
+  }
+
+  .better-scrollbar {
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(150, 150, 150, 0.6);
+      border: 3px solid rgba(0, 0, 0, 0);
+      background-clip: padding-box;
+      border-radius: 9999px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: transparent;
+    }
+  }
 }
 
 html,

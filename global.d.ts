@@ -18,10 +18,9 @@ interface PostFrontmatter {
   heroImage?: string // 顶部图片地址
   heroImageAspectRatio?: string // 图片长宽比，默认 16 / 9
   draft?: boolean // 为 true 则不会展示该文章
-  pinned?: boolean // 是否置顶显示
 }
 
-interface ReadingTime {
+interface PostReadingTime {
   minutes: number
   text: string
   time: number

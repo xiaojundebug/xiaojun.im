@@ -33,7 +33,7 @@
 
   // NoteBlock
   .note {
-    @apply relative px-8 py-px my-12 sm:rounded-[3px] border-l-[3px];
+    @apply relative px-8 py-px -mx-0 sm:-mx-6 my-12 sm:rounded-[3px] border-l-[3px];
     //p { @apply m-0; }
     ul, ol { @apply pl-0; }
     &::before {

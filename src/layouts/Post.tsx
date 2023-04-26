@@ -81,12 +81,12 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
   const headings = useHeadings([code])
   const Component = useMemo(() => getMDXComponent(code), [code])
   const { readingTime } = useMemo(
-    () => getMDXExport<{ readingTime: ReadingTime }, unknown>(code),
+    () => getMDXExport<{ readingTime: PostReadingTime }, unknown>(code),
     [code],
   )
 
   return (
-    <div className="container break-all">
+    <div className="container px-4 sm:px-6 break-all">
       <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl text-black dark:text-white !leading-snug tracking-tight font-medium">
         {title}
       </h1>

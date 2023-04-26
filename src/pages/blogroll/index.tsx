@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import classNames from 'classnames'
 import styles from './styles.module.scss'
 import config from '@/config'
-import { animated, useTransition } from 'react-spring'
+import { animated, useTransition } from '@react-spring/web'
 
 const links = config.blogroll || []
 

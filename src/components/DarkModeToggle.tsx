@@ -1,5 +1,5 @@
 import React from 'react'
-import { animated, useSpring, useTransition, config as builtinConfig } from 'react-spring'
+import { animated, useSpring, useTransition, config as builtinConfig } from '@react-spring/web'
 import { useTheme } from 'next-themes'
 import { withNoSSR } from '@/utils'
 import useSound from '@/hooks/useSound'

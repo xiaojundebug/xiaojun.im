@@ -2,7 +2,7 @@
 title: MDX Test
 date: '2022-08-05 21:53:39'
 toc: true
-updatedOn: '2023-04-22 21:49'
+updatedOn: '2023-04-26 17:50'
 heroImage: /images/mdx-test.webp
 heroImageAspectRatio: 3 / 1
 tags:
@@ -26,16 +26,13 @@ draft: false
 
 ###### Heading6
 
-[MDX](https://mdxjs.com) allows you to use `JSX` in your markdown content. You can **import components**, such as *interactive charts* or *alerts*, and embed them within your content. This makes writing long-form content with components a blast. 🚀
+[MDX](https://mdxjs.com) allows you to use `JSX` in your markdown content. You can **import components**, such as _interactive charts_ or _alerts_, and embed them within your content. This makes writing long-form content with components a blast. 🚀
 
-[MDX](https://mdxjs.com)
-`MDX`
-**MDX**
-_MDX_
-~~MDX~~
-~~_**[`MDX`](https://mdxjs.com)**_~~
+[MDX](https://mdxjs.com) `MDX` **MDX** _MDX_ ~~MDX~~ ~~_**[`MDX`](https://mdxjs.com)**_~~
 
 https://github.com/imzxj
+
+![test image](/images/mdx-test.webp)
 
 | Command      | Description                                        |
 | ------------ | -------------------------------------------------- |
@@ -70,7 +67,6 @@ function Counter() {
 Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
 [^1]: This is the first footnote.
-
 [^bignote]: Here's one with multiple paragraphs and code.
 
     Indent paragraphs to include them in the footnote.
@@ -91,12 +87,19 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 做人如果没有梦想，跟咸鱼有什么分别？
 :::
 
-![test image](/images/mdx-test.webp)
-
 ## React Component
 
-<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '5rem 0px', gap: 15 }}>
-  <DarkModeToggle /><span>👈 Click here</span>
+<div
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '5rem 0px',
+    gap: 15,
+  }}
+>
+  <DarkModeToggle />
+  <span>👈 Click here</span>
 </div>
 
 ## Third Party Embeds 🧩
@@ -128,17 +131,10 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Title</title>
-    <style>
-      .circle {
-        width: 100px;
-        height: 100px;
-        background: royalblue;
-        border-radius: 50px;
-      }
-    </style>
   </head>
   <body>
-    <div class="circle"></div>
+    <h1>I'm a playground!</h1>
+    <p>Edit me, and see the changes below.</p>
   </body>
 </html>
 ```
@@ -146,13 +142,16 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 ### React
 
 ```jsx live
-function Count() {
+function Counter() {
   const [count, setCount] = useState(0)
 
   return (
     <>
       <p>count: {count}</p>
-      <button onClick={() => setCount(count + 1)}>+1</button>
+      <div style={{ display: 'flex', gap: 10 }}>
+        <button onClick={() => setCount(count + 1)}>increase</button>
+        <button onClick={() => setCount(count - 1)}>decrease</button>
+      </div>
     </>
   )
 }

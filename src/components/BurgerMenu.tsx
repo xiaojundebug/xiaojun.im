@@ -1,5 +1,5 @@
 import React from 'react'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring } from '@react-spring/web'
 import { NativeProps, withNativeProps } from '@/utils/native-props'
 
 export interface BurgerMenuProps extends NativeProps {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring } from '@react-spring/web'
 import { useTheme } from 'next-themes'
 import useHasMounted from '@/hooks/useHasMounted'
 

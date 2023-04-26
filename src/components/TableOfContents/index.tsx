@@ -3,7 +3,7 @@ import styles from './styles.module.scss'
 import { NativeProps, withNativeProps } from '@/utils/native-props'
 import classNames from 'classnames'
 import { animationFrameScheduler, fromEvent, startWith, throttleTime } from 'rxjs'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring } from '@react-spring/web'
 
 function findCurrentHeading(list: HTMLElement[]) {
   let start = 0
@@ -73,10 +73,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
 
   return withNativeProps(
     props,
-    <aside className={classNames(styles.tableOfContents, 'absolute left-full h-full ml-16')}>
+    <aside className={classNames(styles.tableOfContents, 'absolute left-full h-full ml-24')}>
       <animated.ul
         ref={listRef}
-        className="sticky top-[10vh] list-none max-w-[250px] max-h-[50vh] overflow-auto"
+        className="sticky top-[10vh] list-none max-w-[250px] max-h-[50vh] overflow-overlay text-zinc-500"
         scrollTop={scrollTop}
       >
         {headings.map(heading => (
@@ -86,7 +86,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
             className={classNames(
               'text-[13px] border-l-2 border-transparent hover:text-primary transition-colors',
               {
-                '!text-primary border-primary': activeId === heading.id,
+                'text-primary border-primary': activeId === heading.id,
               },
             )}
             style={{ paddingLeft: `${heading.level - 2}em` }}

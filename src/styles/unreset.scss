@@ -1,4 +1,6 @@
 .unreset {
+  all: initial;
+
   * {
     all: revert;
   }

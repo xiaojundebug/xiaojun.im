@@ -1,5 +1,5 @@
 import React from 'react'
-import { GeneralObserver } from './GeneralObserver'
+import LazyLoad from '@/components/LazyLoad'
 
 export interface CodePenProps {
   id?: string
@@ -10,19 +10,13 @@ export const CodePen: React.FC<CodePenProps> = props => {
   const { id, height = 500 } = props
 
   return (
-    <GeneralObserver style={{ height }}>
+    <LazyLoad className="relative w-full" style={{ height }}>
       <iframe
+        className="absolute left-0 top-0 w-full h-full"
         src={`https://codepen.io/team/embed/${id}?default-tab=result&editable=true&theme-id=dark`}
         title={id}
         frameBorder="0"
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-        }}
       ></iframe>
-    </GeneralObserver>
+    </LazyLoad>
   )
 }

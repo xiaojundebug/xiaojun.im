@@ -6,7 +6,7 @@ import { LiveContext } from './LiveProvider'
 
 export interface LiveEditorProps extends NativeProps {}
 
-//  注意，该组件只支持 html 与 jsx，tsx 不受支持
+//  注意，该组件只支持 html 与 jsx
 const LivePreview: React.FC<LiveEditorProps> = props => {
   const { language } = useContext(LiveContext)
 

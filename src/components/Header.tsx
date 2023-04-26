@@ -3,7 +3,7 @@ import Link from 'next/link'
 import DarkModeToggle from './DarkModeToggle'
 import config from '@/config'
 import { useBoolean, useSize } from 'ahooks'
-import { animated, useSpring, useTransition } from 'react-spring'
+import { animated, useSpring, useTransition } from '@react-spring/web'
 import BurgerMenu from '@/components/BurgerMenu'
 import { useTranslation } from 'next-i18next'
 import {

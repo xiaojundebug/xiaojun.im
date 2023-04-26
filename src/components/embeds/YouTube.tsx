@@ -1,5 +1,5 @@
 import React from 'react'
-import { GeneralObserver } from './GeneralObserver'
+import LazyLoad from "@/components/LazyLoad";
 
 export interface YouTubeProps {
   /** YouTube id */
@@ -44,21 +44,15 @@ export const YouTube: React.FC<YouTubeProps> = ({
   }`
 
   return (
-    <GeneralObserver style={{ aspectRatio }}>
+    <LazyLoad className="relative w-full" style={{ aspectRatio }}>
       <iframe
+        className="absolute left-0 top-0 w-full h-full"
         title={`YouTube-${videoId || playlistId}`}
         src={src}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-        }}
       ></iframe>
-    </GeneralObserver>
+    </LazyLoad>
   )
 }

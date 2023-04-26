@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { animated, useTransition } from 'react-spring'
+import { animated, useTransition } from '@react-spring/web'
 import {
   animationFrameScheduler,
   distinctUntilChanged,

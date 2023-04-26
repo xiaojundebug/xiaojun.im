@@ -1,5 +1,5 @@
-import '@/styles/globals.css'
-import '@/styles/reset.css'
+import '@/styles/globals.scss'
+import '@/styles/reset.scss'
 import '@/styles/unreset.scss'
 import '@/styles/markdown.scss'
 import '@/styles/highlighting.scss'

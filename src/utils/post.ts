@@ -6,7 +6,7 @@ import { orderBy, take } from 'lodash'
 import dayjs from 'dayjs'
 
 export async function getAllPostPaths() {
-  return await glob('src/posts/**/*.mdx')
+  return await glob('posts/**/*.mdx')
 }
 
 // TODO: 缓存以优化性能，目前并未发现该方法很占性能
@@ -23,7 +23,7 @@ export async function getLatestPosts({
   const postsPath = await getAllPostPaths()
   const allPosts = await Promise.all(
     postsPath.map(async path => {
-      const slug = path.replace(/^src\/posts\/|\.mdx$/g, '')
+      const slug = getSlugByPostPath(path)
       const frontmatter = await getPostFrontmatterBySlug(slug)
 
       return {
@@ -45,11 +45,11 @@ export async function getLatestPosts({
 }
 
 export function getSlugByPostPath(postPath: string) {
-  return postPath.replace(/^src\/posts\/|\.mdx$/g, '')
+  return postPath.replace(/^posts\/|\.mdx$/g, '')
 }
 
 export async function getPostFrontmatterBySlug(slug: string) {
-  const rawMdx = await fs.readFile(path.resolve(process.cwd(), `src/posts/${slug}.mdx`), 'utf8')
+  const rawMdx = await fs.readFile(path.resolve(process.cwd(), `posts/${slug}.mdx`), 'utf8')
   return matter(rawMdx).data as Promise<PostFrontmatter>
 }
 

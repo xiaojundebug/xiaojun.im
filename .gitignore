@@ -38,8 +38,8 @@ yarn-error.log*
 *.tsbuildinfo
 
 # 个人隐私文件
-src/posts/*
-!src/posts/2022-08-05-mdx-test.mdx
-src/post-helpers
+posts/*
+!posts/2022-08-05-mdx-test.mdx
+post-helpers
 public/images/*
 !public/images/mdx-test.webp

@@ -4,9 +4,10 @@ import { NativeProps, withNativeProps } from '@/utils/native-props'
 import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer'
 import Editor from 'react-simple-code-editor'
 import { LiveContext } from './LiveProvider'
-import classNames from "classnames";
+import classNames from 'classnames'
 
 export interface LiveEditorProps extends NativeProps {
+  fontSize?: number
   disabled?: boolean
   theme?: PrismTheme
   padding?: string | number
@@ -15,7 +16,7 @@ export interface LiveEditorProps extends NativeProps {
 
 const LiveEditor: React.FC<LiveEditorProps> = props => {
   const { code, language, onCodeChange } = useContext(LiveContext)
-  const { disabled, theme, padding = 15, highlights = [] } = props
+  const { fontSize = 16, disabled, theme, padding = 15, highlights = [] } = props
 
   return withNativeProps(
     props,
@@ -28,7 +29,7 @@ const LiveEditor: React.FC<LiveEditorProps> = props => {
         padding={padding}
         style={{
           fontFamily: '"Fira Code", monospace',
-          fontSize: 16,
+          fontSize,
           outline: 'none',
           // plain 中包含一些预设样式
           ...(theme?.plain || {}),

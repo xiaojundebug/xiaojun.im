@@ -36,8 +36,8 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async ({ locales
 export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ params, locale }) => {
   const { slug } = params!
   const { code, frontmatter } = await bundleMDX({
-    file: path.resolve(process.cwd(), `./src/posts/${slug}.mdx`),
-    cwd: path.resolve(process.cwd(), './src/posts'),
+    file: path.resolve(process.cwd(), `./posts/${slug}.mdx`),
+    cwd: path.resolve(process.cwd(), './posts'),
     mdxOptions(options, frontmatter) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove
