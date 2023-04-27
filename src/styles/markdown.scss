@@ -79,7 +79,7 @@
     p { @apply m-0 }
   }
   ol {
-    counter-reset: list-item;
+    counter-reset: list-item 1;
     > li {
       counter-increment: list-item;
       &::before {

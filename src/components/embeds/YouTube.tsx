@@ -44,7 +44,7 @@ export const YouTube: React.FC<YouTubeProps> = ({
   }`
 
   return (
-    <LazyLoad className="relative w-full bg-zinc-300/20" style={{ aspectRatio }}>
+    <LazyLoad className="relative w-full bg-zinc-500/10" style={{ aspectRatio }}>
       <iframe
         className="absolute left-0 top-0 w-full h-full"
         title={`YouTube-${videoId || playlistId}`}

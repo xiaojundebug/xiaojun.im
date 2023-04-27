@@ -7,7 +7,7 @@ const OrderedList: React.FC<JSX.IntrinsicElements['ol']> = props => {
 
   return (
     <ListProvider type="ol">
-      <ol {...rest} className={classNames(className, 'my-6')} />
+      <ol {...rest} className={classNames(className, 'my-6')} start={1} />
     </ListProvider>
   )
 }

@@ -10,7 +10,7 @@ export const StackBlitz: React.FC<StackBlitzProps> = props => {
   const { id, height = 500 } = props
 
   return (
-    <LazyLoad className="relative w-full bg-zinc-300/20" style={{ height }}>
+    <LazyLoad className="relative w-full bg-zinc-500/10" style={{ height }}>
       <iframe
         className="absolute left-0 top-0 w-full h-full"
         src={`https://stackblitz.com/edit/${id}?embed=1}`}
