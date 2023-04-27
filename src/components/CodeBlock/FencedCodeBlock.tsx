@@ -8,8 +8,9 @@ const FencedCodeBlock: React.FC<{
   code: string
   highlights?: string
   raw?: boolean
+  lineNumbers?: boolean
 }> = props => {
-  const { language, code, highlights = '', raw } = props
+  const { language, code, highlights = '', raw, lineNumbers } = props
 
   const highlightLines = useMemo(() => {
     if (!highlights) return []
@@ -85,9 +86,8 @@ const FencedCodeBlock: React.FC<{
         </div>
         <div className="max-h-[500px] sm:max-h-[700px] rounded-lg overflow-overlay better-scrollbar bg-slate-100 dark:bg-[#282a36]">
           <Editor
-            className=""
+            lineNumbers={lineNumbers}
             disabled
-            padding="2em"
             highlightLines={highlightLines}
             addedLines={addedLines}
             removedLines={removedLines}

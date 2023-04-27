@@ -13,8 +13,9 @@ const CodePlayground: React.FC<{
   language: LiveProviderProps['language']
   scope: LiveProviderProps['scope']
   editor: boolean
+  lineNumbers?: boolean
 }> = props => {
-  const { code: initialCode, language, scope, editor = true } = props
+  const { code: initialCode, language, scope, editor = true, lineNumbers } = props
   const [code, setCode] = useState(initialCode)
   const [forceUpdate, previewRefreshTrigger] = useForceUpdate()
 
@@ -46,7 +47,7 @@ const CodePlayground: React.FC<{
         {/* 编辑器 */}
         {editor && (
           <div className="min-h-[200px] max-h-[400px] sm:max-h-[500px] text-white overflow-overlay better-scrollbar">
-            <Editor fontSize={14} />
+            <Editor fontSize={14} lineNumbers={lineNumbers} />
           </div>
         )}
         <div className="flex items-stretch justify-between h-10 px-3 border-t border-b border-gray-600/50 text-sm text-white">

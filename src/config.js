@@ -17,6 +17,9 @@ const config = {
   ],
   toc: true, // table of content
   adjacentPosts: true, // prev next links
+  markdown: {
+    lineNumbers: false
+  }
 }
 
 export default config

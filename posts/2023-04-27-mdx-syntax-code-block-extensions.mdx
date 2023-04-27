@@ -1,16 +1,53 @@
 ---
 title: MDX Syntax - CodeBlock Extensions
 date: '2023-04-27 00:00:02'
-tags: null
-updatedOn: '2023-04-27 15:54'
+tags:
+  - MDX
+updatedOn: '2023-04-28 01:15'
 ---
+
+## Line Numbers
+
+default config: `src/config.js` -> `config.markdown.lineNumbers`
+
+**Input**
+
+````mdx
+```js lineNumbers={false}
+// lineNumbers is disabled
+const line2 = 'This is line 2'
+const line3 = 'This is line 3'
+```
+````
+
+````mdx
+```js lineNumbers
+// lineNumbers is enabled
+const line2 = 'This is line 2'
+const line3 = 'This is line 3'
+```
+````
+
+**Output**
+
+```js lineNumbers={false}
+// lineNumbers is disabled
+const line2 = 'This is line 2'
+const line3 = 'This is line 3'
+```
+
+```js lineNumbers
+// lineNumbers is enabled
+const line2 = 'This is line 2'
+const line3 = 'This is line 3'
+```
 
 ## Line Highlighting in Code Blocks
 
 **Input**
 
 ````mdx
-```text highlights='1,3-4'
+```text lineNumbers highlights='1,3-4'
 line 1
 line 2
 line 3
@@ -21,7 +58,7 @@ line 5
 
 **Output**
 
-```text highlights='1,3-4'
+```text lineNumbers highlights='1,3-4'
 line 1
 line 2
 line 3
