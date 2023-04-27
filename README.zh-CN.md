@@ -30,7 +30,7 @@
 
 1. fork 该仓库
 2. 运行 `npm i`
-3. 使用 `npm run new:post posttile [tag1] [tag2] ...` 命令在 `posts` 中创建一篇文章，更多语法可参考[示例文章](https://www.xiaojun.im/posts/2022-08-05-mdx-test)
+3. 使用 `npm run new:post posttile [tag1] [tag2] ...` 命令在 `posts` 中创建一篇文章，更多语法可参考[示例文章](https://www.xiaojun.im/posts/2023-04-27-mdx-syntax-guide)
 4. 将它部署在 [Vercel](https://vercel.com)，具体很简单，可以跟着 vercel 官方一步步来
 5. 如果你喜欢的话，麻烦给这个项目一个 start ✨，这对我是很大鼓励 🙏
 
@@ -48,6 +48,7 @@ _配置文件在 `src/config.js` 文件中，你可以在这里修改你的个�
 - https://leerob.io
 - https://blog.maximeheckel.com
 - https://vuepress.vuejs.org
+- https://vitepress.dev
 - https://react-spring.dev
 - https://github.com/iissnan/hexo-theme-next
 - https://github.com/sanjinhub/hexo-theme-geek~~

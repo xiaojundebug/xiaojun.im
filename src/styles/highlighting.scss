@@ -3,14 +3,76 @@
 // 所以会水合错误，可以参考这篇文章 https://www.joshwcomeau.com/react/the-perils-of-rehydration/，
 // 而通过 css 设置不需要我们访问浏览器 api，就不会产生这个问题
 
+.code-block {
+  .token-line {
+    &.highlight,
+    &.added,
+    &.removed,
+    &.focused,
+    &.error,
+    &.warning {
+      margin: 0 -2em;
+      padding: 0 2em;
+    }
+
+    &.added,
+    &.removed {
+      &::before {
+        position: absolute;
+        left: 0.5em;
+      }
+    }
+
+    &.added {
+      background: rgba(34, 197, 94, 0.2);
+
+      &::before {
+        content: '+';
+        color: #22c55e;
+      }
+    }
+
+    &.removed {
+      background: rgba(239, 68, 68, 0.2);
+      opacity: 0.8;
+
+      &::before {
+        content: '+';
+        color: #ef4444;
+      }
+    }
+
+    &.error {
+      background: rgba(239, 68, 68, 0.2);
+    }
+
+    &.warning {
+      background: rgba(234, 179, 8, 0.2);
+    }
+  }
+
+  &.has-focused-lines {
+    textarea:hover + pre {
+      .token-line {
+        opacity: 1;
+        filter: none;
+      }
+    }
+
+    .token-line:not(.focused) {
+      opacity: 0.7;
+      filter: blur(1.5px);
+      transition: filter 0.35s, opacity 0.35s;
+    }
+  }
+}
+
 html[data-theme='light'] {
-  pre {
+  .code-block {
     .token-line {
       color: #5e6687;
 
       &.highlight {
-        margin: 0 -2em;
-        padding: 0 2em;
         background: linear-gradient(#0ea5e9 0%, #0ea5e9) no-repeat, rgba(0, 0, 0, 0.05);
         background-size: 3px;
       }
@@ -113,9 +175,9 @@ html[data-theme='light'] {
 }
 
 html[data-theme='dark'],
-// CodePlayground 始终使用黑暗模式主题
+  // CodePlayground 始终使用黑暗模式主题
 html[data-theme='light'] .code-playground {
-  pre {
+  .code-block {
     .token-line {
       color: #fff;
 

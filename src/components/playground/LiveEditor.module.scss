@@ -1,8 +1,9 @@
 .liveEditor {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  overflow: overlay;
+  &::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 
   > div {
     min-width: 100%;

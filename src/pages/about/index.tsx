@@ -54,6 +54,7 @@ const Index: NextPageWithCustomProps = () => {
         <li><Link href="https://leerob.io">https://leerob.io</Link></li>
         <li><Link href="https://blog.maximeheckel.com">https://blog.maximeheckel.com</Link></li>
         <li><Link href="https://vuepress.vuejs.org">https://vuepress.vuejs.org</Link></li>
+        <li><Link href="https://vitepress.dev">https://vitepress.dev</Link></li>
         <li><Link href="https://react-spring.dev">https://react-spring.dev</Link></li>
         <li><Link href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</Link></li>
         <li><Link href="https://github.com/sanjinhub/hexo-theme-geek">https://github.com/sanjinhub/hexo-theme-geek</Link></li>

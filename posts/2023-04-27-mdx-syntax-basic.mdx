@@ -1,13 +1,8 @@
 ---
-title: MDX Test
-date: '2022-08-05 21:53:39'
-toc: true
-updatedOn: '2023-04-26 17:50'
-heroImage: /images/mdx-test.webp
-heroImageAspectRatio: 3 / 1
-tags:
-  - MDX
-draft: false
+title: MDX Syntax Basic
+date: '2023-04-27 00:00:01'
+tags: null
+updatedOn: '2023-04-27 15:54'
 ---
 
 > 明月几时有？把酒问青天。不知天上宫阙，今夕是何年。我欲乘风归去，又恐琼楼玉宇，高处不胜寒。起舞弄清影，何似在人间。
@@ -39,7 +34,7 @@ https://github.com/imzxj
 | `git status` | List all _new or modified_ files                   |
 | `git diff`   | Show file differences that **haven't been** staged |
 
-```jsx highlights="2,6-7"
+```jsx
 function Counter() {
   const [count, setCount] = useState(0)
 
@@ -74,85 +69,3 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
     `{ my code }`
 
     Add as many paragraphs as you like.
-
-:::tip
-做人如果没有梦想，跟咸鱼有什么分别？
-:::
-
-:::warning
-做人如果没有梦想，跟咸鱼有什么分别？
-:::
-
-:::danger
-做人如果没有梦想，跟咸鱼有什么分别？
-:::
-
-## React Component
-
-<div
-  style={{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '5rem 0px',
-    gap: 15,
-  }}
->
-  <DarkModeToggle />
-  <span>👈 Click here</span>
-</div>
-
-## Third Party Embeds 🧩
-
-### YouTube
-
-<YouTube videoId="tQi_k5_Q-90" />
-
-### StackBlitz
-
-<StackBlitz id="web-platform-dwmuj4" />
-
-### CodeSandbox
-
-<CodeSandbox id="practical-chihiro-vbzvxe" />
-
-### CodePen
-
-<CodePen id='jOxXxXa' />
-
-## CodePlayground
-
-### HTML
-
-```html live
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Title</title>
-  </head>
-  <body>
-    <h1>I'm a playground!</h1>
-    <p>Edit me, and see the changes below.</p>
-  </body>
-</html>
-```
-
-### React
-
-```jsx live
-function Counter() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <p>count: {count}</p>
-      <div style={{ display: 'flex', gap: 10 }}>
-        <button onClick={() => setCount(count + 1)}>increase</button>
-        <button onClick={() => setCount(count - 1)}>decrease</button>
-      </div>
-    </>
-  )
-}
-```

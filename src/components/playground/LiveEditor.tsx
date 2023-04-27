@@ -11,17 +11,34 @@ export interface LiveEditorProps extends NativeProps {
   disabled?: boolean
   theme?: PrismTheme
   padding?: string | number
-  highlights?: number[]
+  highlightLines?: number[]
+  addedLines?: number[]
+  removedLines?: number[]
+  focusedLines?: number[]
+  errorLines?: number[]
+  warningLines?: number[]
 }
 
 const LiveEditor: React.FC<LiveEditorProps> = props => {
   const { code, language, onCodeChange } = useContext(LiveContext)
-  const { fontSize = 16, disabled, theme, padding = 15, highlights = [] } = props
+  const {
+    fontSize = 16,
+    disabled,
+    theme,
+    padding = 15,
+    highlightLines = [],
+    addedLines = [],
+    removedLines = [],
+    focusedLines = [],
+    errorLines = [],
+    warningLines = [],
+  } = props
 
   return withNativeProps(
     props,
     <div className={styles.liveEditor}>
       <Editor
+        className={classNames('code-block', { 'has-focused-lines': focusedLines.length > 0 })}
         value={code}
         onValueChange={onCodeChange}
         disabled={disabled}
@@ -44,7 +61,14 @@ const LiveEditor: React.FC<LiveEditorProps> = props => {
                     {...getLineProps({
                       line,
                       key: i,
-                      className: classNames({ highlight: highlights.includes(i + 1) }),
+                      className: classNames({
+                        highlight: highlightLines.includes(i + 1),
+                        added: addedLines.includes(i + 1),
+                        removed: removedLines.includes(i + 1),
+                        focused: focusedLines.includes(i + 1),
+                        error: errorLines.includes(i + 1),
+                        warning: warningLines.includes(i + 1),
+                      }),
                     })}
                   >
                     <>

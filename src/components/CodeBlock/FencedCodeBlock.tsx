@@ -7,10 +7,11 @@ const FencedCodeBlock: React.FC<{
   language: LiveProviderProps['language']
   code: string
   highlights?: string
+  raw?: boolean
 }> = props => {
-  const { language, code, highlights = '' } = props
+  const { language, code, highlights = '', raw } = props
 
-  const highlightRows = useMemo(() => {
+  const highlightLines = useMemo(() => {
     if (!highlights) return []
     return highlights.split(',').reduce<number[]>((acc, cur) => {
       const limits = cur.split('-')
@@ -28,14 +29,72 @@ const FencedCodeBlock: React.FC<{
     }, [])
   }, [highlights])
 
+  const { parsedCode, addedLines, removedLines, focusedLines, errorLines, warningLines } =
+    useMemo(() => {
+      const lines = code.split('\n')
+      let parsedCode = ''
+      const addedLines: number[] = []
+      const removedLines: number[] = []
+      const focusedLines: number[] = []
+      const errorLines: number[] = []
+      const warningLines: number[] = []
+
+      if (!raw) {
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i]
+          const match = line.match(/^([\s\S]*?)\/\/ \[\!code (.*?)]/)
+
+          if (match) {
+            const codeLine = match[1]
+            const mark = match[2]
+
+            const fn = {
+              '++': () => addedLines.push(i + 1),
+              '--': () => removedLines.push(i + 1),
+              focus: () => focusedLines.push(i + 1),
+              error: () => errorLines.push(i + 1),
+              warning: () => warningLines.push(i + 1),
+            }[mark]
+
+            if (fn) {
+              fn()
+            }
+
+            parsedCode += codeLine + '\n'
+          } else {
+            parsedCode += line + '\n'
+          }
+        }
+      }
+
+      return {
+        parsedCode: raw ? code : parsedCode.trim(),
+        addedLines,
+        removedLines,
+        focusedLines,
+        errorLines,
+        warningLines,
+      }
+    }, [code, raw])
+
   return (
-    <LiveProvider language={language} defaultCode={code}>
+    <LiveProvider language={language} defaultCode={parsedCode}>
       <div className="relative mt-12 mb-8 -mx-0 sm:-mx-6">
         <div className="absolute right-8 top-px px-3 -translate-y-full rounded-tl-md rounded-tr-md bg-slate-100 text-slate-600 dark:bg-[#282a36] dark:text-slate-400 font-mono font-medium">
           {language.toUpperCase()}
         </div>
         <div className="max-h-[500px] sm:max-h-[700px] rounded-lg overflow-overlay better-scrollbar bg-slate-100 dark:bg-[#282a36]">
-          <Editor className="" disabled padding="2em" highlights={highlightRows} />
+          <Editor
+            className=""
+            disabled
+            padding="2em"
+            highlightLines={highlightLines}
+            addedLines={addedLines}
+            removedLines={removedLines}
+            focusedLines={focusedLines}
+            errorLines={errorLines}
+            warningLines={warningLines}
+          />
         </div>
       </div>
     </LiveProvider>

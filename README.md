@@ -46,6 +46,7 @@ Sounds from https://zapsplat.com
 - https://leerob.io
 - https://blog.maximeheckel.com
 - https://vuepress.vuejs.org
+- https://vitepress.dev
 - https://react-spring.dev
 - https://github.com/iissnan/hexo-theme-next
 - https://github.com/sanjinhub/hexo-theme-geek

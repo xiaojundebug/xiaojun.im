@@ -17,6 +17,7 @@ import { YouTube } from '@/components/embeds/YouTube'
 import { StackBlitz } from '@/components/embeds/StackBlitz'
 import { CodeSandbox } from '@/components/embeds/CodeSandbox'
 import { CodePen } from '@/components/embeds/CodePen'
+import config from '@/config'
 
 const components = {
   code: CodeBlock,
@@ -125,35 +126,37 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           </article>
         </div>
         {/* 侧边目录导航 */}
-        {toc && headings.length > 1 && (
+        {config.toc && toc && headings.length > 1 && (
           <TableOfContents className="hidden sm:block" headings={headings} />
         )}
       </div>
       <hr className="divider" />
-      <div className="mb-20 flex justify-between space-x-6 sm:space-x-12 sm:text-lg font-medium">
-        {/* 下一篇 */}
-        <span className="w-1/2">
-          {prevPost ? (
-            <Link href={prevPost.link}>
-              <a className="group flex h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
-                <HiArrowSmLeft className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
-                {prevPost.title}
-              </a>
-            </Link>
-          ) : null}
-        </span>
-        {/* 上一篇 */}
-        <span className="w-1/2 text-right">
-          {nextPost ? (
-            <Link href={nextPost.link}>
-              <a className="group flex justify-end h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
-                {nextPost.title}
-                <HiArrowSmRight className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
-              </a>
-            </Link>
-          ) : null}
-        </span>
-      </div>
+      {config.adjacentPosts && (
+        <div className="mb-20 flex justify-between space-x-6 sm:space-x-12 sm:text-lg font-medium">
+          {/* 下一篇 */}
+          <span className="w-1/2">
+            {prevPost ? (
+              <Link href={prevPost.link}>
+                <a className="group flex h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
+                  <HiArrowSmLeft className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
+                  {prevPost.title}
+                </a>
+              </Link>
+            ) : null}
+          </span>
+          {/* 上一篇 */}
+          <span className="w-1/2 text-right">
+            {nextPost ? (
+              <Link href={nextPost.link}>
+                <a className="group flex justify-end h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
+                  {nextPost.title}
+                  <HiArrowSmRight className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
+                </a>
+              </Link>
+            ) : null}
+          </span>
+        </div>
+      )}
     </div>
   )
 }

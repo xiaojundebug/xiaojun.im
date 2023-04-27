@@ -1,0 +1,94 @@
+---
+title: MDX Syntax - CodeBlock Extensions
+date: '2023-04-27 00:00:02'
+tags: null
+updatedOn: '2023-04-27 15:54'
+---
+
+## Line Highlighting in Code Blocks
+
+**Input**
+
+````mdx
+```text highlights='1,3-4'
+line 1
+line 2
+line 3
+line 4
+line 5
+```
+````
+
+**Output**
+
+```text highlights='1,3-4'
+line 1
+line 2
+line 3
+line 4
+line 5
+```
+
+## Colored Diffs in Code Blocks
+
+**Input**
+
+````mdx raw
+```js
+const data = {
+  message: 'Removed', // [!code --]
+  message: 'Added', // [!code ++]
+}
+```
+````
+
+**Output**
+
+```js
+const data = {
+  message: 'Removed', // [!code --]
+  message: 'Added', // [!code ++]
+}
+```
+
+## Errors and Warnings in Code Blocks
+
+**Input**
+
+````mdx raw
+```js
+const data = {
+  message: 'Error', // [!code error]
+  message: 'Warning', // [!code warning]
+}
+```
+````
+
+**Output**
+
+```js
+const data = {
+  message: 'Error', // [!code error]
+  message: 'Warning', // [!code warning]
+}
+```
+
+## Focus in Code Blocks
+
+**Input**
+
+````mdx raw
+```js
+const data = {
+  message: 'Focused', // [!code focus]
+}
+```
+````
+
+**Output**
+
+```js
+const data = {
+  message: 'Focused', // [!code focus]
+}
+```
