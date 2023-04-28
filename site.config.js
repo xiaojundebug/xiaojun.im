@@ -15,6 +15,7 @@ const config = {
     { name: '鯊手', link: 'https://www.cnblogs.com/Scooby' },
     { name: 'mghio', link: 'https://www.mghio.cn' },
   ],
+  language: 'zh-CN', // en | zh-CN
   toc: true, // table of content
   adjacentPosts: true, // prev next links
   markdown: {

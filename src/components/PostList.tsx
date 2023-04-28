@@ -15,12 +15,12 @@ const PostList: React.FC<PostListProps> = props => {
         <div key={idx}>
           {(idx === 0 ||
             dayjs(posts[idx - 1].frontmatter.date).year() !== dayjs(frontmatter.date).year()) && (
-            <h2 className="font-medium text-2xl sm:text-3xl before:content-['#_'] before:text-primary">
+            <h2 className="font-medium text-2xl before:content-['#_'] before:text-primary">
               {dayjs(frontmatter.date).year()}
             </h2>
           )}
           <article key={idx} className="my-8">
-            <h3 className="text-lg sm:text-xl">
+            <h3 className="text-lg">
               <Link href={`/posts/${slug}`}>
                 <a className="hover:text-primary">{frontmatter.title}</a>
               </Link>

@@ -4,7 +4,6 @@ import { getMDXComponent, getMDXExport } from 'mdx-bundler/client'
 import Link from 'next/link'
 import dayjs from 'dayjs'
 import HeroImage from '@/components/HeroImage'
-import { useTranslation } from 'next-i18next'
 import { HiArrowSmLeft, HiArrowSmRight, HiOutlineClock } from 'react-icons/hi'
 import CodeBlock from '@/components/CodeBlock'
 import Blockquote from '@/components/Blockquote'
@@ -17,7 +16,8 @@ import { YouTube } from '@/components/embeds/YouTube'
 import { StackBlitz } from '@/components/embeds/StackBlitz'
 import { CodeSandbox } from '@/components/embeds/CodeSandbox'
 import { CodePen } from '@/components/embeds/CodePen'
-import config from '@/config'
+import config from 'config'
+import useTranslation from '@/hooks/useTranslation'
 
 const components = {
   code: CodeBlock,
@@ -64,7 +64,7 @@ export interface PostLayoutProps {
 }
 
 const PostLayout: React.FC<PostLayoutProps> = props => {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
   const {
     code,
     frontmatter: {

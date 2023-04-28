@@ -1,11 +1,10 @@
 import React, { useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import DarkModeToggle from './DarkModeToggle'
-import config from '@/config'
+import config from 'config'
 import { useBoolean, useSize } from 'ahooks'
 import { animated, useSpring, useTransition } from '@react-spring/web'
 import BurgerMenu from '@/components/BurgerMenu'
-import { useTranslation } from 'next-i18next'
 import {
   animationFrameScheduler,
   distinctUntilChanged,
@@ -18,13 +17,14 @@ import {
   withLatestFrom,
 } from 'rxjs'
 import useHasMounted from '@/hooks/useHasMounted'
+import useTranslation from '@/hooks/useTranslation'
 
 export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
   const [visible, { set: setVisible }] = useBoolean(true)
   const [expanded, { toggle: toggleExpanded, set: setExpanded }] = useBoolean(false)
-  const { t } = useTranslation('common')
+  const { t } = useTranslation()
   const hasMounted = useHasMounted()
   const menus = useMemo(
     () => [
@@ -118,7 +118,7 @@ const Header: React.FC<HeaderProps> = () => {
                     {mobileNavTransitions((navStyles, menu) => (
                       <animated.div key={menu.href} style={navStyles}>
                         <Link href={menu.href}>
-                          <a className="inline-block w-full font-medium text-xl px-6 py-1 leading-loose active:bg-slate-400/10">
+                          <a className="inline-block w-full font-medium text-lg px-6 py-1 leading-loose active:bg-slate-400/10">
                             <span>{menu.label}</span>
                           </a>
                         </Link>
@@ -131,7 +131,7 @@ const Header: React.FC<HeaderProps> = () => {
                   <div className="hidden sm:block mr-8">
                     {menus.map(menu => (
                       <Link key={menu.href} href={menu.href}>
-                        <a className="font-medium text-lg mx-2 py-2 px-4 rounded-lg leading-loose transition hover:bg-slate-200/50 dark:hover:bg-zinc-800/50">
+                        <a className="font-medium text-base mx-2 py-2 px-4 rounded-lg leading-loose transition hover:bg-slate-200/50 dark:hover:bg-zinc-800/50">
                           {menu.label}
                         </a>
                       </Link>

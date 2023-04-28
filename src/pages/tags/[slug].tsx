@@ -1,7 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import DefaultLayout from '@/layouts/Default'
 import { getLatestPosts } from '@/utils/post'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default DefaultLayout
 
@@ -30,7 +29,6 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ pa
   return {
     props: {
       posts: posts.filter(post => post.frontmatter.tags?.includes(slug)),
-      ...(await serverSideTranslations(locale!, ['common'])),
     },
   }
 }

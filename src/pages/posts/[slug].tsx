@@ -11,29 +11,21 @@ import remarkReadingTime from 'remark-reading-time'
 import remarkReadingMdxTime from 'remark-reading-time/mdx'
 import path from 'path'
 import { getAdjacentPosts, getAllPostPaths, getSlugByPostPath } from '@/utils/post'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export default PostLayout
 
-export const getStaticPaths: GetStaticPaths<{ slug: string }> = async ({ locales }) => {
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   const paths = await getAllPostPaths()
 
   return {
-    paths: locales!.reduce<{ params: { slug: string }; locale: string }[]>(
-      (acc, next) => [
-        ...acc,
-        ...paths.map(p => ({
-          params: { slug: getSlugByPostPath(p) },
-          locale: next,
-        })),
-      ],
-      [],
-    ),
+    paths: paths.map(p => ({
+      params: { slug: getSlugByPostPath(p) },
+    })),
     fallback: false,
   }
 }
 
-export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ params, locale }) => {
+export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ params }) => {
   const { slug } = params!
   const { code, frontmatter } = await bundleMDX({
     file: path.resolve(process.cwd(), `./posts/${slug}.mdx`),
@@ -74,7 +66,6 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ pa
       frontmatter,
       prevPost: prev ? { link: `/posts/${prev.slug}`, title: prev.frontmatter.title } : null,
       nextPost: next ? { link: `/posts/${next.slug}`, title: next.frontmatter.title } : null,
-      ...(await serverSideTranslations(locale!, ['common'])),
     },
   }
 }

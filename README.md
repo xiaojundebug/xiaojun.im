@@ -34,7 +34,7 @@ TODO:
 4. Deploy it to [Vercel](https://vercel.com)
 5. If you like, please star the repo 🙏
 
-_config file in `src/config.js`_
+_config file in `site.config.js`_
 
 ## Sounds
 

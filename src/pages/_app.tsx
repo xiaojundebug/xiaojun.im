@@ -15,8 +15,7 @@ import { ThemeProvider } from 'next-themes'
 import NextNProgress from 'nextjs-progressbar'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
-import config from '@/config'
-import { appWithTranslation } from 'next-i18next'
+import config from 'config'
 import { IconContext } from 'react-icons'
 
 dayjs.extend(localizedFormat)
@@ -55,4 +54,4 @@ function App({
   return getLayout(<Component {...pageProps} />) as JSX.Element
 }
 
-export default appWithTranslation(App)
+export default App

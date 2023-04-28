@@ -1,9 +1,8 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import classNames from 'classnames'
 import styles from './styles.module.scss'
-import config from '@/config'
+import config from 'config'
 import { animated, useTransition } from '@react-spring/web'
 
 const links = config.blogroll || []
@@ -47,14 +46,6 @@ const Blogroll = () => {
       </div>
     </div>
   )
-}
-
-export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ locale }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale!, ['common'])),
-    },
-  }
 }
 
 export default Blogroll

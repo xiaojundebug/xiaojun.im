@@ -4,7 +4,7 @@ import { NativeProps } from '@/utils/native-props'
 import { Language } from 'prism-react-renderer'
 import FencedCodeBlock from '@/components/CodeBlock/FencedCodeBlock'
 import CodePlayground from '@/components/CodeBlock/CodePlayground'
-import config from '@/config'
+import config from 'config'
 
 export interface CodeBlockProps extends NativeProps {
   children?: string

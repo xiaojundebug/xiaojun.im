@@ -1,6 +1,4 @@
 import React from 'react'
-import { GetStaticProps } from 'next'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useRouter } from 'next/router'
 
 const title = 'Whooops!'
@@ -25,14 +23,6 @@ const NotFound: NextPageWithCustomProps = () => {
       />
     </div>
   )
-}
-
-export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ locale }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale!, ['common'])),
-    },
-  }
 }
 
 export default NotFound

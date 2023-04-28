@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.module.scss'
-import config from '@/config'
+import config from 'config'
 import Link from 'next/link'
 import classNames from 'classnames'
 
