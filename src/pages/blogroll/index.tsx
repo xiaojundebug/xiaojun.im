@@ -1,5 +1,4 @@
 import React from 'react'
-import { GetStaticProps } from 'next'
 import classNames from 'classnames'
 import styles from './styles.module.scss'
 import config from 'config'
@@ -18,7 +17,7 @@ const Blogroll = () => {
 
   return (
     <div
-      className={classNames(styles.blogroll, 'container flex flex-col items-center justify-center')}
+      className={classNames(styles.blogroll, 'prose-container flex flex-col items-center justify-center')}
     >
       <h2
         className={classNames(
@@ -35,7 +34,7 @@ const Blogroll = () => {
             {/* eslint-disable-next-line */}
             <a
               key={link}
-              className="border-b border-current transition hover:!opacity-100 hover:text-[#52c8d5]"
+              className="border-b border-current transition hover:text-[#52c8d5]"
               href={link}
               target="_blank"
             >

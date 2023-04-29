@@ -35,7 +35,7 @@ const Tags: NextPageWithCustomProps<TagsProps> = props => {
   const totalNum = useMemo(() => tags.reduce((acc, cur) => acc + cur.postsNum, 0), [tags])
 
   return (
-    <div className={classNames(styles.tags, 'container flex flex-col items-center justify-center')}>
+    <div className={classNames(styles.tags, 'prose-container flex flex-col items-center justify-center')}>
       <h2
         className={classNames(
           styles.title,

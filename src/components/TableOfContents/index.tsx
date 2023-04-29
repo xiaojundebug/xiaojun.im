@@ -83,12 +83,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
           <li
             key={heading.id}
             ref={activeId === heading.id ? activeItemRef : null}
-            className={classNames(
-              'text-[13px] border-l-2 border-transparent hover:text-primary transition-colors',
-              {
-                'text-primary border-primary': activeId === heading.id,
-              },
-            )}
+            className={classNames('text-[13px] border-l-2 hover:text-primary transition-colors', {
+              'text-primary border-primary': activeId === heading.id,
+              'border-transparent': activeId !== heading.id,
+            })}
             style={{ paddingLeft: `${heading.level - 2}em` }}
           >
             <a

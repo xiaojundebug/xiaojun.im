@@ -37,7 +37,7 @@ const CodePlayground: React.FC<{
       onCodeChange={setCode}
       scope={{ ...builtInScope, ...scope }}
     >
-      <div className="code-playground relative -mx-4 sm:-mx-6 border-2 border-gray-600/50 bg-zinc-900 rounded-none sm:rounded-xl overflow-hidden">
+      <div className="code-playground relative -mx-[1.5ch] border-2 border-gray-600/50 bg-zinc-900 rounded-none sm:rounded-xl overflow-hidden">
         <div className="flex items-center justify-between h-8 px-4 bg-gray-600/50">
           <span className="text-sm text-white">Code Playground</span>
           <div className="flex items-center gap-4">

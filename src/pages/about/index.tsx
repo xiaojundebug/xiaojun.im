@@ -12,7 +12,7 @@ const Tag: React.FC<PropsWithChildren> = props => {
 }
 const Index: NextPageWithCustomProps = () => {
   return (
-    <div className={classNames('container py-12', style.about)}>
+    <div className={classNames('prose-container py-12', style.about)}>
       <h2>🎨 关于本站</h2>
       <p>搭建它的初衷主要是为了练习新技术，其次是记录笔记 + 分享一些平时遇到的问题解决经验，本站技术栈为 Next.js、MDX、Tailwind CSS、TypeScript</p>
 

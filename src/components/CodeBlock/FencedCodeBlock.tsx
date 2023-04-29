@@ -80,7 +80,7 @@ const FencedCodeBlock: React.FC<{
 
   return (
     <LiveProvider language={language} defaultCode={parsedCode}>
-      <div className="relative mt-12 mb-8 -mx-0 sm:-mx-6">
+      <div className="relative mt-12 mb-8 -mx-0 sm:-mx-[1.5ch]">
         <div className="absolute right-8 top-px px-3 -translate-y-full rounded-tl-md rounded-tr-md bg-slate-100 text-slate-600 dark:bg-[#282a36] dark:text-slate-400 font-mono font-medium">
           {language.toUpperCase()}
         </div>

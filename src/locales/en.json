@@ -3,7 +3,8 @@
   "nav.tags": "Tags",
   "nav.about": "About",
 
-  "post-page.last-updated": "Last Updated: ",
+  "post-page.last-updated": "Last Updated: {{ date }}",
+  "post-page.reading-time": "{{ minutes }} min read",
 
   "tags-page.title": "Tags",
   "tags-page.desc": "{{ count }} tags in total"

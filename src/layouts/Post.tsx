@@ -4,7 +4,7 @@ import { getMDXComponent, getMDXExport } from 'mdx-bundler/client'
 import Link from 'next/link'
 import dayjs from 'dayjs'
 import HeroImage from '@/components/HeroImage'
-import { HiArrowSmLeft, HiArrowSmRight, HiOutlineClock } from 'react-icons/hi'
+import { HiArrowSmLeft, HiArrowSmRight, HiOutlineClock, HiOutlineCalendar } from 'react-icons/hi'
 import CodeBlock from '@/components/CodeBlock'
 import Blockquote from '@/components/Blockquote'
 import Image from '@/components/Image'
@@ -87,17 +87,20 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
   )
 
   return (
-    <div className="container px-4 sm:px-6 break-all">
+    <div className="prose-container break-all">
       <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl text-black dark:text-white !leading-snug tracking-tight font-medium">
         {title}
       </h1>
-      {/* 最后更新时间 */}
       <div className="text-gray-500 dark:text-gray-300 mt-4">
         <div className="flex items-center text-sm">
           <span className="flex items-center">
-            <HiOutlineClock className="mr-1 text-lg" />
-            {t('post-page.last-updated')}
-            {dayjs(updateOn || date).format('LL')} • {readingTime.text}
+            {/* 最后更新时间 */}
+            <HiOutlineCalendar className="mr-1 text-base" />
+            {t('post-page.last-updated', { date: dayjs(updateOn || date).format('LL') })}
+            <span className="mx-2">•</span>
+            {/* 阅读时长估算 */}
+            <HiOutlineClock className="mr-1 text-base" />
+            {t('post-page.reading-time', { minutes: Math.ceil(readingTime.minutes) })}
           </span>
         </div>
       </div>
