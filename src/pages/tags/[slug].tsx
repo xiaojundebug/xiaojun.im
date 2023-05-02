@@ -5,7 +5,7 @@ import { getLatestPosts } from '@/utils/post'
 export default DefaultLayout
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-  const posts = await getLatestPosts({ orderBy: 'asc' })
+  const posts = await getLatestPosts()
   const tags = new Set<string>()
 
   for (const post of posts) {
@@ -24,7 +24,7 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 
 export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ params, locale }) => {
   const { slug } = params!
-  const posts = await getLatestPosts({ orderBy: 'asc' })
+  const posts = await getLatestPosts()
 
   return {
     props: {
