@@ -12,10 +12,11 @@ import DarkModeToggle from '@/components/DarkModeToggle'
 import UnorderedList from '@/components/lists/UnorderedList'
 import OrderedList from '@/components/lists/OrderedList'
 import ListItem from '@/components/lists/ListItem'
-import { YouTube } from '@/components/embeds/YouTube'
-import { StackBlitz } from '@/components/embeds/StackBlitz'
-import { CodeSandbox } from '@/components/embeds/CodeSandbox'
-import { CodePen } from '@/components/embeds/CodePen'
+import YouTube from '@/components/embeds/YouTube'
+import StackBlitz from '@/components/embeds/StackBlitz'
+import CodeSandbox from '@/components/embeds/CodeSandbox'
+import CodePen from '@/components/embeds/CodePen'
+import Bilibili from '@/components/embeds/Bilibili'
 import config from 'config'
 import useTranslation from '@/hooks/useTranslation'
 
@@ -31,6 +32,7 @@ const components = {
   StackBlitz,
   CodeSandbox,
   CodePen,
+  Bilibili,
 }
 
 function useHeadings(deps: DependencyList = []) {

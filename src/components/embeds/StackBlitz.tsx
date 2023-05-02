@@ -6,7 +6,7 @@ export interface StackBlitzProps {
   height?: string | number
 }
 
-export const StackBlitz: React.FC<StackBlitzProps> = props => {
+const StackBlitz: React.FC<StackBlitzProps> = props => {
   const { id, height = 500 } = props
 
   return (
@@ -19,3 +19,5 @@ export const StackBlitz: React.FC<StackBlitzProps> = props => {
     </LazyLoad>
   )
 }
+
+export default StackBlitz

@@ -1,12 +1,12 @@
 import React from 'react'
-import LazyLoad from "@/components/LazyLoad";
+import LazyLoad from '@/components/LazyLoad'
 
 export interface CodeSandboxProps {
   id?: string
   height?: string | number
 }
 
-export const CodeSandbox: React.FC<CodeSandboxProps> = props => {
+const CodeSandbox: React.FC<CodeSandboxProps> = props => {
   const { id, height = 500 } = props
 
   return (
@@ -22,3 +22,5 @@ export const CodeSandbox: React.FC<CodeSandboxProps> = props => {
     </LazyLoad>
   )
 }
+
+export default CodeSandbox

@@ -6,7 +6,7 @@ export interface CodePenProps {
   height?: string | number
 }
 
-export const CodePen: React.FC<CodePenProps> = props => {
+const CodePen: React.FC<CodePenProps> = props => {
   const { id, height = 500 } = props
 
   return (
@@ -20,3 +20,5 @@ export const CodePen: React.FC<CodePenProps> = props => {
     </LazyLoad>
   )
 }
+
+export default CodePen

@@ -1,5 +1,5 @@
 import React from 'react'
-import LazyLoad from "@/components/LazyLoad";
+import LazyLoad from '@/components/LazyLoad'
 
 export interface YouTubeProps {
   /** YouTube id */
@@ -20,7 +20,7 @@ export interface YouTubeProps {
   noCookie?: boolean
 }
 
-export const YouTube: React.FC<YouTubeProps> = ({
+const YouTube: React.FC<YouTubeProps> = ({
   videoId,
   playlistId,
   aspectRatio = '16 / 9',
@@ -56,3 +56,5 @@ export const YouTube: React.FC<YouTubeProps> = ({
     </LazyLoad>
   )
 }
+
+export default YouTube
