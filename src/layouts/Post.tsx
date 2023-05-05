@@ -6,8 +6,6 @@ import dayjs from 'dayjs'
 import HeroImage from '@/components/HeroImage'
 import { HiArrowSmLeft, HiArrowSmRight, HiOutlineClock, HiOutlineCalendar } from 'react-icons/hi'
 import CodeBlock from '@/components/CodeBlock'
-import Blockquote from '@/components/Blockquote'
-import Image from '@/components/Image'
 import DarkModeToggle from '@/components/DarkModeToggle'
 import UnorderedList from '@/components/lists/UnorderedList'
 import OrderedList from '@/components/lists/OrderedList'
@@ -19,11 +17,30 @@ import CodePen from '@/components/embeds/CodePen'
 import Bilibili from '@/components/embeds/Bilibili'
 import config from 'config'
 import useTranslation from '@/hooks/useTranslation'
+import tagRenderer from '@/utils/tag-renderer'
 
 const components = {
+  h1: tagRenderer('h1'),
+  h2: tagRenderer('h2'),
+  h3: tagRenderer('h3'),
+  h4: tagRenderer('h4'),
+  h5: tagRenderer('h5'),
+  h6: tagRenderer('h6'),
+  p: tagRenderer('p'),
+  a: tagRenderer('a'),
+  blockquote: tagRenderer('blockquote'),
+  table: tagRenderer('table'),
+  thead: tagRenderer('thead'),
+  tbody: tagRenderer('tbody'),
+  tr: tagRenderer('tr'),
+  th: tagRenderer('th'),
+  td: tagRenderer('td'),
+  img: tagRenderer('img'),
+  em: tagRenderer('em'),
+  strong: tagRenderer('strong'),
+  hr: tagRenderer('hr'),
+  del: tagRenderer('del'),
   code: CodeBlock,
-  blockquote: Blockquote,
-  img: Image,
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,

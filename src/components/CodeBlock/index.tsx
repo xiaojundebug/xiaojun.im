@@ -32,7 +32,7 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
 
   if (!children) return null
   // 没有语言并且内容结尾不是换行，则表明它是 `code` 写法，而不是代码块
-  if (!language && !children.endsWith('\n')) return <code>{children}</code>
+  if (!language && !children.endsWith('\n')) return <code className="mdx-code">{children}</code>
   if (!live)
     return (
       <FencedCodeBlock

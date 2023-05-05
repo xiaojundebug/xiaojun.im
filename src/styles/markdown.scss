@@ -7,35 +7,38 @@
     @apply text-zinc-900 no-underline;
     &:hover::after { @apply text-gray-500/50 font-normal; content: ' #'; }
   }
-  h1, h2, h3, h4, h5, h6 { @apply font-bold; }
-  h1 { @apply text-4xl mt-14 mb-10; }
-  h2 { @apply text-3xl mt-12 mb-8; }
-  h3 { @apply text-2xl mt-8 mb-6; }
-  h4 { @apply text-xl mt-7 mb-5; }
-  h5 { @apply text-base mt-6 mb-4; }
-  h6 { @apply text-sm mt-5 mb-3; }
-  h1 + *, h2 + *, h3 + *, h4 + *, h5 + *, h6 + * { @apply mt-0; }
+  .mdx-h1, .mdx-h2, .mdx-h3, .mdx-h4, .mdx-h5, .mdx-h6 { @apply font-bold; }
+  .mdx-h1 { @apply text-4xl mt-14 mb-10; }
+  .mdx-h2 { @apply text-3xl mt-12 mb-8; }
+  .mdx-h3 { @apply text-2xl mt-8 mb-6; }
+  .mdx-h4 { @apply text-xl mt-7 mb-5; }
+  .mdx-h5 { @apply text-base mt-6 mb-4; }
+  .mdx-h6 { @apply text-sm mt-5 mb-3; }
+  .mdx-h1 + *, .mdx-h2 + *, .mdx-h3 + *, .mdx-h4 + *, .mdx-h5 + *, .mdx-h6 + * { @apply mt-0; }
 
   // Paragraph
-  p { @apply my-6; }
+  .mdx-p { @apply my-6; }
 
   // Blockquote
-  blockquote p { @apply m-0; }
+  .mdx-blockquote {
+    @apply relative rounded-md my-12 px-8 text-slate-500 dark:text-slate-400 italic;
+    &::before { @apply absolute -top-6 left-0 w-10 h-10 bg-contain bg-bottom bg-no-repeat; content: ''; background-image: url("/quote-l.svg");  }
+    &::after { @apply absolute -top-6 right-0 w-10 h-10 bg-contain bg-bottom bg-no-repeat; content: ''; background-image: url("/quote-r.svg"); }
+  }
 
   // Emphasis
-  em { @apply opacity-80; }
+  .mdx-em { @apply opacity-80; }
 
   // InlineCode
-  code {
+  .mdx-code {
     @apply text-pink-500 font-medium;
     &::before, &::after { content: '`'; }
   }
 
-  // NoteBlock
-  .note {
+  // Admonition
+  .admonition {
     @apply relative px-8 py-px -mx-0 sm:-mx-[1.5ch] my-12 sm:rounded-[3px] border-l-[3px];
-    //p { @apply m-0; }
-    ul, ol { @apply pl-0; }
+    .mdx-ul, .mdx-ol { @apply pl-0; }
     &::before {
       @apply absolute hidden sm:block bg-white rounded-full -left-[26.5px] -top-[25px] w-[50px] h-[50px];
     }
@@ -54,33 +57,33 @@
   }
 
   // Image
-  img { @apply relative max-w-full h-auto align-middle; }
+  .mdx-img { @apply relative max-w-full h-auto align-middle; }
 
   // HorizontalRule
-  hr { @apply box-content my-12 h-px transition-colors; }
+  .mdx-hr { @apply box-content my-12 h-px transition-colors; }
 
   // Link
-  a:not([class~=anchor]) {
+  .mdx-a:not([class~=anchor]) {
     @apply text-primary underline font-medium hover:brightness-75 transition;
-    code { @apply text-current; }
+    .mdx-code { @apply text-current; }
   }
 
   // Table
-  table {
+  .mdx-table {
     @apply w-full my-8 text-left border-collapse;
-    thead, tbody tr:not(:last-child) { @apply border-b border-slate-200/50; }
-    th { @apply p-2.5 whitespace-nowrap; }
-    td { @apply p-2.5; }
+    .mdx-thead, .mdx-tbody .mdx-tr:not(:last-child) { @apply border-b border-slate-200/50; }
+    .mdx-th { @apply p-2.5 whitespace-nowrap; }
+    .mdx-td { @apply p-2.5; }
   }
 
   // List
-  ul, ol {
-    @apply pl-4;
-    p { @apply m-0 }
+  .mdx-ul, .mdx-ol {
+    @apply my-6 pl-4;
+    .mdx-p { @apply m-0 }
   }
-  ol {
-    counter-reset: list-item 1;
-    > li {
+  .mdx-ol {
+    // counter-reset: list-item 1;
+    > .mdx-li {
       counter-increment: list-item;
       &::before {
         @apply mr-2 text-primary font-medium;
@@ -96,10 +99,10 @@
 [data-theme='dark'] .markdown-body {
   .anchor { @apply text-zinc-50; }
 
-  hr { @apply bg-zinc-800 border-black; }
+  .mdx-hr { @apply bg-zinc-800 border-black; }
 
-  table {
-    thead, tbody tr:not(:last-child) { @apply border-b border-slate-600/20; }
+  .mdx-table {
+    .mdx-thead, .mdx-tbody .mdx-tr:not(:last-child) { @apply border-b border-slate-600/20; }
   }
 
   .note {

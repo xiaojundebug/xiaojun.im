@@ -41,8 +41,8 @@ yarn-error.log*
 posts/*
 !posts/2023-04-27-mdx-syntax-guide.mdx
 !posts/2023-04-27-mdx-syntax-basic.mdx
-!posts/2023-04-27-mdx-syntax-code-block-extensions.mdx
-!posts/2023-04-27-mdx-syntax-note-block-extensions.mdx
+!posts/2023-04-27-mdx-syntax-code-block.mdx
+!posts/2023-04-27-mdx-syntax-admonitions.mdx
 !posts/2023-04-27-mdx-syntax-third-party-embeds.mdx
 !posts/2023-04-27-mdx-syntax-code-playground.mdx
 post-helpers

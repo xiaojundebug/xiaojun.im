@@ -3,7 +3,7 @@ import { FiGithub, FiLink } from 'react-icons/fi'
 const config = {
   name: 'xiaojun',
   title: "xiaojun's blog",
-  desc: '为什么不问问神奇海螺 🐚 呢？',
+  description: '为什么不问问神奇海螺 🐚 呢？',
   avatar: '/avatar.png',
   logo: '/logo.svg',
   socials: [

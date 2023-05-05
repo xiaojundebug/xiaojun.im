@@ -76,7 +76,7 @@ const Tags: NextPageWithCustomProps<TagsProps> = props => {
   )
 }
 
-export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ locale }) => {
+export const getStaticProps: GetStaticProps<any, { slug: string }> = async () => {
   const posts = await getLatestPosts({ orderBy: 'asc' })
   const tags: Record<string, TagsInfo> = {}
 

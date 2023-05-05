@@ -20,7 +20,7 @@ export interface LiveEditorProps extends NativeProps {
 }
 
 const LiveEditor: React.FC<LiveEditorProps> = props => {
-  const { code, language, onCodeChange } = useContext(LiveContext)
+  const { code, setCode, language } = useContext(LiveContext)
   const {
     fontSize = 16,
     disabled,
@@ -43,7 +43,7 @@ const LiveEditor: React.FC<LiveEditorProps> = props => {
           'has-line-numbers': lineNumbers,
         })}
         value={code}
-        onValueChange={onCodeChange}
+        onValueChange={setCode}
         disabled={disabled}
         tabSize={2}
         padding={{ top: '2em', right: '2em', bottom: '2em', left: lineNumbers ? '5em' : '2em' }}

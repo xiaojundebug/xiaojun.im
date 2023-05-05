@@ -22,7 +22,7 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ params, locale }) => {
+export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ params }) => {
   const { slug } = params!
   const posts = await getLatestPosts()
 

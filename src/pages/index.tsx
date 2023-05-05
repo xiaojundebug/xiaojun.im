@@ -5,7 +5,7 @@ import DefaultLayout from '../layouts/Default'
 
 export default DefaultLayout
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async () => {
   const posts = await getLatestPosts()
 
   return {

@@ -16,7 +16,7 @@ import { h } from 'hastscript'
 // :::
 
 /** @type {import('unified').Plugin<[], import('mdast').Root>} */
-export default function remarkNoteBlock() {
+export default function remarkAdmonitions() {
   return tree => {
     visit(tree, node => {
       if (node.type === 'containerDirective') {
@@ -26,7 +26,7 @@ export default function remarkNoteBlock() {
         const tagName = 'div'
 
         data.hName = tagName
-        data.hProperties = h(tagName, { class: `note ${node.name}` }).properties
+        data.hProperties = h(tagName, { class: `admonition ${node.name}` }).properties
       }
     })
   }

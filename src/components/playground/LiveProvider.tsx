@@ -1,8 +1,10 @@
 import { useControllableValue } from 'ahooks'
-import React, { createContext, PropsWithChildren } from 'react'
+import React, { createContext, PropsWithChildren, useState } from 'react'
 import Highlight from 'prism-react-renderer'
 
-type Language = React.ComponentProps<typeof Highlight>['language']
+export type Language = React.ComponentProps<typeof Highlight>['language']
+export type LogType = 'log' | 'warn' | 'error'
+export type Log = { message: any[]; type: LogType }
 
 export interface LiveProviderProps {
   code?: string
@@ -15,9 +17,11 @@ export interface LiveProviderProps {
 
 export interface Context {
   code: string
+  setCode: (code: React.SetStateAction<string>, ...args: any[]) => void
   language: Language
-  onCodeChange: (code: string) => void
-  scope?: Record<string, any>
+  logs: Log[]
+  setLogs: React.Dispatch<React.SetStateAction<Log[]>>
+  scope: Record<string, any>
 }
 
 export const LiveContext = createContext<Context>({} as Context)
@@ -30,6 +34,12 @@ const LiveProvider: React.FC<PropsWithChildren<LiveProviderProps>> = props => {
     valuePropName: 'code',
     trigger: 'onCodeChange',
   })
+  const [logs, setLogs] = useState<Log[]>([
+    { message: [1, 'string', null, undefined, { a: 123, b: 456 }, new Date(), true], type: 'log' },
+    { message: ['this is a warn message'], type: 'warn' },
+    { message: ['this is an error message'], type: 'error' },
+    { message: ['this is an error message'], type: 'error' },
+  ])
 
   function onCodeChange(newCode: string) {
     setCode(newCode)
@@ -39,8 +49,10 @@ const LiveProvider: React.FC<PropsWithChildren<LiveProviderProps>> = props => {
     <LiveContext.Provider
       value={{
         code,
+        setCode,
         language,
-        onCodeChange,
+        logs,
+        setLogs,
         scope,
       }}
     >

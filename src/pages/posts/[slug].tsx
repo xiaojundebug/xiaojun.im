@@ -6,7 +6,7 @@ import remarkDirective from 'remark-directive'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkMdxMetaToProps from '@/lib/remark-mdx-meta-to-props.js'
-import remarkNoteBlock from '@/lib/remark-note-block.js'
+import remarkAdmonitions from '@/lib/remark-admonitions.js'
 import remarkReadingTime from 'remark-reading-time'
 import remarkReadingMdxTime from 'remark-reading-time/mdx'
 import path from 'path'
@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ pa
         remarkGfm,
         remarkMdxMetaToProps,
         remarkDirective,
-        remarkNoteBlock,
+        remarkAdmonitions,
         remarkReadingTime,
         remarkReadingMdxTime,
       ]

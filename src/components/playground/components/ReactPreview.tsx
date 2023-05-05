@@ -1,5 +1,5 @@
 import { useDebounceEffect } from 'ahooks'
-import React, { useContext, useState } from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { LiveContext } from '../LiveProvider'
 import { generateElement } from '../utils/transpile'
 
@@ -20,6 +20,10 @@ const ReactPreview = () => {
     [code, scope],
     { wait: 200 },
   )
+
+  useEffect(() => {
+
+  }, [])
 
   function transpileAsync(newCode: string) {
     // - transformCode may be synchronous or asynchronous.

@@ -1,10 +1,11 @@
 import React, { useContext, useMemo } from 'react'
 import { HiArrowSmRight } from 'react-icons/hi'
 import { ListContext } from '@/components/lists/ListProvider'
-import classNames from "classnames";
+import classNames from 'classnames'
+import { withNativeProps } from '@/utils/native-props'
 
 const ListItem: React.FC<JSX.IntrinsicElements['li']> = props => {
-  const { children, className = '', ...rest } = props
+  const { children } = props
   const { type } = useContext(ListContext)
 
   const childArr = useMemo(() => React.Children.map(children, child => child), [children])
@@ -33,8 +34,9 @@ const ListItem: React.FC<JSX.IntrinsicElements['li']> = props => {
     ),
   }[type]
 
-  return (
-    <li {...rest} className={classNames(className, 'flex items-start my-4')}>
+  return withNativeProps(
+    props,
+    <li className={classNames('mdx-li flex items-start my-4')}>
       {getMarker()}
       <div className="flex-1">{type !== 'tl' ? children : childArr?.slice(2)}</div>
     </li>

@@ -34,7 +34,7 @@ function App({
         <NextNProgress color="#2563eb" options={{ showSpinner: false }} />
         <ThemeProvider disableTransitionOnChange forcedTheme={Component.theme}>
           <IconContext.Provider value={{ className: 'icon' }}>
-            <DefaultSeo title={config.title} description={config.desc} />
+            <DefaultSeo title={config.title} description={config.description} />
             <Head>
               <meta
                 name="viewport"
