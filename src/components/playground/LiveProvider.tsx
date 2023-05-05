@@ -34,12 +34,7 @@ const LiveProvider: React.FC<PropsWithChildren<LiveProviderProps>> = props => {
     valuePropName: 'code',
     trigger: 'onCodeChange',
   })
-  const [logs, setLogs] = useState<Log[]>([
-    { message: [1, 'string', null, undefined, { a: 123, b: 456 }, new Date(), true], type: 'log' },
-    { message: ['this is a warn message'], type: 'warn' },
-    { message: ['this is an error message'], type: 'error' },
-    { message: ['this is an error message'], type: 'error' },
-  ])
+  const [logs, setLogs] = useState<Log[]>([])
 
   function onCodeChange(newCode: string) {
     setCode(newCode)
