@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
-import LiveProvider, { LiveProviderProps } from '@/components/playground/LiveProvider'
+import Provider, { ProviderProps } from '@/components/playground/Provider'
 import Editor from './Editor'
 
 // 静态围栏代码块高亮
 const FencedCodeBlock: React.FC<{
-  language: LiveProviderProps['language']
+  language: ProviderProps['language']
   code: string
   highlights?: string
   raw?: boolean
@@ -79,15 +79,16 @@ const FencedCodeBlock: React.FC<{
     }, [code, raw])
 
   return (
-    <LiveProvider language={language} defaultCode={parsedCode}>
-      <div className="relative mt-12 mb-8 -mx-0 sm:-mx-[1.5ch]">
+    <Provider language={language} defaultCode={parsedCode}>
+      <div className="fenced-code-block relative mt-12 mb-8 -mx-0 sm:-mx-[1.5ch]">
         <div className="absolute right-8 top-px px-3 -translate-y-full rounded-tl-md rounded-tr-md bg-slate-100 text-slate-600 dark:bg-[#282a36] dark:text-slate-400 font-mono font-medium">
           {language.toUpperCase()}
         </div>
         <div className="max-h-[500px] sm:max-h-[700px] rounded-lg overflow-overlay better-scrollbar bg-slate-100 dark:bg-[#282a36]">
           <Editor
-            lineNumbers={lineNumbers}
+            className="playground-editor"
             disabled
+            lineNumbers={lineNumbers}
             highlightLines={highlightLines}
             addedLines={addedLines}
             removedLines={removedLines}
@@ -97,7 +98,7 @@ const FencedCodeBlock: React.FC<{
           />
         </div>
       </div>
-    </LiveProvider>
+    </Provider>
   )
 }
 

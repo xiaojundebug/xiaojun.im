@@ -1,33 +1,35 @@
-import React, { useContext, useMemo, useState } from 'react'
-import LiveProvider, { LiveContext, LiveProviderProps } from '@/components/playground/LiveProvider'
+import React, { useMemo, useState } from 'react'
+import Provider, { ProviderProps } from '@/components/playground/Provider'
 import { scope as builtInScope } from './react-live-scope'
-import LivePreview from '@/components/playground/LivePreview'
+import Preview from '@/components/playground/Preview'
 import Editor from './Editor'
 import useForceUpdate from '@/hooks/useForceUpdate'
 import ResetButton from '@/components/CodeBlock/ResetButton'
 import RefreshButton from '@/components/CodeBlock/RefreshButton'
 import LazyLoad from '@/components/LazyLoad'
 import classNames from 'classnames'
-import LiveConsole from '@/components/playground/LiveConsole'
+import Console from '@/components/playground/Console'
 import ClearButton from '@/components/CodeBlock/ClearButton'
+import usePlaygroundContext from '@/components/playground/usePlaygroundContext'
 
 type TabType = 1 | 2
 
 const tabs: { label: string; type: TabType }[] = [
   { label: 'Result', type: 1 },
-  { label: 'Console', type: 2 },
+  // 有 bug，先暂时隐藏
+  // { label: 'Console', type: 2 },
 ]
 
-// CodePlayground 还未被 Provider 包裹，所以不能直接在里边使用 LiveContext
+// CodePlayground 还未被 Provider 包裹，所以不能直接在里边使用 PlaygroundContext
 const LogCleaner: React.FC = () => {
-  const { setLogs } = useContext(LiveContext)
+  const { setLogs } = usePlaygroundContext()
   return <ClearButton onClick={() => setLogs([])} />
 }
 
 const CodePlayground: React.FC<{
   code: string
-  language: LiveProviderProps['language']
-  scope?: LiveProviderProps['scope']
+  language: ProviderProps['language']
+  scope?: ProviderProps['scope']
   editor?: boolean
   lineNumbers?: boolean
 }> = props => {
@@ -37,7 +39,7 @@ const CodePlayground: React.FC<{
   const [tabType, setTabType] = useState<TabType>(1)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const preview = useMemo(() => <LivePreview />, [previewRefreshTrigger])
+  const preview = useMemo(() => <Preview />, [previewRefreshTrigger])
 
   function resetCode() {
     setCode(initialCode)
@@ -48,7 +50,7 @@ const CodePlayground: React.FC<{
   }
 
   return (
-    <LiveProvider
+    <Provider
       language={language}
       code={code}
       onCodeChange={setCode}
@@ -64,7 +66,7 @@ const CodePlayground: React.FC<{
         {/* 编辑器 */}
         {editor && (
           <div className="min-h-[200px] max-h-[400px] sm:max-h-[500px] text-white overflow-overlay better-scrollbar">
-            <Editor fontSize={14} lineNumbers={lineNumbers} />
+            <Editor className="playground-editor" fontSize={14} lineNumbers={lineNumbers} />
           </div>
         )}
         <div className="flex justify-between h-10 px-3 border-t border-b border-gray-600/50 text-sm text-white">
@@ -106,13 +108,13 @@ const CodePlayground: React.FC<{
           2: () => (
             <>
               <LazyLoad className="h-[360px] overflow-overlay better-scrollbar">
-                <LiveConsole />
+                <Console />
               </LazyLoad>
             </>
           ),
         }[tabType]()}
       </div>
-    </LiveProvider>
+    </Provider>
   )
 }
 

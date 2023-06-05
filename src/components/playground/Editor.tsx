@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
-import styles from './LiveEditor.module.scss'
+import React from 'react'
+import styles from './Editor.module.scss'
 import { NativeProps, withNativeProps } from '@/utils/native-props'
 import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer'
-import Editor from 'react-simple-code-editor'
-import { LiveContext } from './LiveProvider'
+import CodeEditor from 'react-simple-code-editor'
 import classNames from 'classnames'
+import usePlaygroundContext from '@/components/playground/usePlaygroundContext'
 
-export interface LiveEditorProps extends NativeProps {
+export interface EditorProps extends NativeProps {
   fontSize?: number
   disabled?: boolean
   theme?: PrismTheme
@@ -19,8 +19,8 @@ export interface LiveEditorProps extends NativeProps {
   lineNumbers?: boolean
 }
 
-const LiveEditor: React.FC<LiveEditorProps> = props => {
-  const { code, setCode, language } = useContext(LiveContext)
+const Editor: React.FC<EditorProps> = props => {
+  const { code, setCode, language } = usePlaygroundContext()
   const {
     fontSize = 16,
     disabled,
@@ -36,9 +36,9 @@ const LiveEditor: React.FC<LiveEditorProps> = props => {
 
   return withNativeProps(
     props,
-    <div className={styles.liveEditor}>
-      <Editor
-        className={classNames('code-block', {
+    <div className={styles.editor}>
+      <CodeEditor
+        className={classNames({
           'has-focused-lines': focusedLines.length > 0,
           'has-line-numbers': lineNumbers,
         })}
@@ -103,4 +103,4 @@ const LiveEditor: React.FC<LiveEditorProps> = props => {
   )
 }
 
-export default LiveEditor
+export default Editor

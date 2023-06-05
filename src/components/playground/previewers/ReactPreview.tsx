@@ -1,7 +1,8 @@
 import { useDebounceEffect } from 'ahooks'
-import React, {useContext, useEffect, useState} from 'react'
-import { LiveContext } from '../LiveProvider'
+import React, { useEffect, useState } from 'react'
 import { generateElement } from '../utils/transpile'
+import { NativeProps, withNativeProps } from '@/utils/native-props'
+import usePlaygroundContext from '@/components/playground/usePlaygroundContext'
 
 function resolveElement(node: React.ReactNode) {
   const Element =
@@ -9,8 +10,13 @@ function resolveElement(node: React.ReactNode) {
   return <Element />
 }
 
-const ReactPreview = () => {
-  const { code, scope } = useContext(LiveContext)
+export interface ReactPreviewProps extends NativeProps {
+  onConsoleReady?: (console: Console) => void
+}
+
+const ReactPreview: React.FC<ReactPreviewProps> = props => {
+  const { onConsoleReady } = props
+  const { code, scope } = usePlaygroundContext()
   const [node, setNode] = useState<React.ReactNode>()
 
   useDebounceEffect(
@@ -22,7 +28,8 @@ const ReactPreview = () => {
   )
 
   useEffect(() => {
-
+    onConsoleReady?.(console)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function transpileAsync(newCode: string) {
@@ -54,6 +61,7 @@ const ReactPreview = () => {
     }
   }
 
-  return <div style={{ margin: 8 }}>{resolveElement(node)}</div>
+  return withNativeProps(props, <div style={{ margin: 8 }}>{resolveElement(node)}</div>)
 }
+
 export default ReactPreview

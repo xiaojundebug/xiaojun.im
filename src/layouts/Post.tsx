@@ -18,6 +18,7 @@ import Bilibili from '@/components/embeds/Bilibili'
 import config from 'config'
 import useTranslation from '@/hooks/useTranslation'
 import tagRenderer from '@/utils/tag-renderer'
+import HorizontalRule from '@/components/HorizontalRule'
 
 const components = {
   h1: tagRenderer('h1'),
@@ -38,12 +39,12 @@ const components = {
   img: tagRenderer('img'),
   em: tagRenderer('em'),
   strong: tagRenderer('strong'),
-  hr: tagRenderer('hr'),
   del: tagRenderer('del'),
   code: CodeBlock,
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
+  hr: HorizontalRule,
   DarkModeToggle,
   YouTube,
   StackBlitz,
@@ -89,7 +90,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
     frontmatter: {
       title,
       date,
-      updateOn,
+      updatedOn,
       tags,
       toc = true,
       heroImage,
@@ -113,13 +114,17 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
       <div className="text-gray-500 dark:text-gray-300 mt-4">
         <div className="flex items-center text-sm">
           <span className="flex items-center">
-            {/* 最后更新时间 */}
-            <HiOutlineCalendar className="mr-1 text-base" />
-            {t('post-page.last-updated', { date: dayjs(updateOn || date).format('LL') })}
+            {/* 创建时间 */}
+            <>
+              <HiOutlineCalendar className="mr-1 text-base" />
+              {dayjs(date).format('LL')}
+            </>
             <span className="mx-2">•</span>
             {/* 阅读时长估算 */}
-            <HiOutlineClock className="mr-1 text-base" />
-            {t('post-page.reading-time', { minutes: Math.ceil(readingTime.minutes) })}
+            <>
+              <HiOutlineClock className="mr-1 text-base" />
+              {readingTime.text}
+            </>
           </span>
         </div>
       </div>
@@ -152,7 +157,10 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           <TableOfContents className="hidden sm:block" headings={headings} />
         )}
       </div>
-      <hr className="divider" />
+      <p className="mt-24 mb-0 text-right text-gray-500 dark:text-gray-300 text-sm italic">
+        {t('post-page.last-updated', { date: dayjs(updatedOn || date).format('LL') })}
+      </p>
+      <HorizontalRule />
       {config.adjacentPosts && (
         <div className="mb-20 flex justify-between space-x-6 sm:space-x-12 sm:text-lg font-medium">
           {/* 下一篇 */}

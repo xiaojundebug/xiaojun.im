@@ -3,178 +3,183 @@
 // 所以会水合错误，可以参考这篇文章 https://www.joshwcomeau.com/react/the-perils-of-rehydration/，
 // 而通过 css 设置不需要我们访问浏览器 api，就不会产生这个问题
 
-.code-block {
-  .token-line {
-    margin: 0 -2em;
-    padding: 0 2em;
-
-    &.added,
-    &.removed {
-      &::before {
-        position: absolute;
-        left: 0.5em;
-      }
-    }
-
-    &.added {
-      background: rgba(34, 197, 94, 0.2);
-
-      &::before {
-        content: '+';
-        color: #22c55e;
-      }
-    }
-
-    &.removed {
-      background: rgba(239, 68, 68, 0.2);
-      opacity: 0.8;
-
-      &::before {
-        content: '-';
-        color: #ef4444;
-      }
-    }
-
-    &.error {
-      background: linear-gradient(#f87171 0%, #f87171) no-repeat, rgba(239, 68, 68, 0.2);
-      background-size: 3px;
-    }
-
-    &.warning {
-      background: linear-gradient(#facc15 0%, #facc15) no-repeat, rgba(234, 179, 8, 0.2);
-      background-size: 3px;
-    }
-
-    .line-number {
-      color: rgba(150, 150, 150, 0.7);
-    }
-  }
-
-  &.has-focused-lines {
-    &:hover {
-      .token-line {
-        opacity: 1 !important;
-        filter: none !important;
-      }
-    }
-
-    .token-line:not(.focused) {
-      opacity: 0.7;
-      filter: blur(1.5px);
-      transition: filter 0.35s, opacity 0.35s;
-    }
-  }
-
-  &.has-line-numbers {
+.fenced-code-block {
+  .playground-editor {
     .token-line {
-      margin: 0 -2em 0 -5em;
-      padding: 0 2em 0 5em;
+      margin: 0 -2em;
+      padding: 0 2em;
+
+      &.added,
+      &.removed {
+        &::before {
+          position: absolute;
+          left: 0.5em;
+        }
+      }
+
+      &.added {
+        background: rgba(34, 197, 94, 0.2);
+
+        &::before {
+          content: '+';
+          color: #22c55e;
+        }
+      }
+
+      &.removed {
+        background: rgba(239, 68, 68, 0.2);
+        opacity: 0.8;
+
+        &::before {
+          content: '-';
+          color: #ef4444;
+        }
+      }
+
+      &.error {
+        background: linear-gradient(#f87171 0%, #f87171) no-repeat, rgba(239, 68, 68, 0.2);
+        background-size: 3px;
+      }
+
+      &.warning {
+        background: linear-gradient(#facc15 0%, #facc15) no-repeat, rgba(234, 179, 8, 0.2);
+        background-size: 3px;
+      }
+
+      .line-number {
+        color: rgba(150, 150, 150, 0.7);
+      }
+    }
+
+    &.has-focused-lines {
+      &:hover {
+        .token-line {
+          opacity: 1 !important;
+          filter: none !important;
+        }
+      }
+
+      .token-line:not(.focused) {
+        opacity: 0.7;
+        filter: blur(1.5px);
+        transition: filter 0.35s, opacity 0.35s;
+      }
+    }
+
+    &.has-line-numbers {
+      .token-line {
+        margin: 0 -2em 0 -5em;
+        padding: 0 2em 0 5em;
+      }
     }
   }
 }
 
 html[data-theme='light'] {
-  .code-block {
-    .token-line {
-      color: #5e6687;
-
-      &.highlight {
-        background: linear-gradient(#0ea5e9 0%, #0ea5e9) no-repeat, rgba(0, 0, 0, 0.05);
-        background-size: 3px;
-      }
-
-      .token.comment,
-      .token.prolog,
-      .token.doctype,
-      .token.cdata {
-        color: #898ea4;
-      }
-
-      .token.punctuation {
+  .fenced-code-block,
+  .code-playground {
+    .playground-editor {
+      .token-line {
         color: #5e6687;
-      }
 
-      .token.namespace {
-        opacity: 0.7;
-      }
+        &.highlight {
+          background: linear-gradient(#0ea5e9 0%, #0ea5e9) no-repeat, rgba(0, 0, 0, 0.05);
+          background-size: 3px;
+        }
 
-      .token.operator,
-      .token.boolean,
-      .token.number {
-        color: #c76b29;
-      }
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+          color: #898ea4;
+        }
 
-      .token.property {
-        color: #c08b30;
-      }
+        .token.punctuation {
+          color: #5e6687;
+        }
 
-      .token.tag {
-        color: #3d8fd1;
-      }
+        .token.namespace {
+          opacity: 0.7;
+        }
 
-      .token.string {
-        color: #22a2c9;
-      }
+        .token.operator,
+        .token.boolean,
+        .token.number {
+          color: #c76b29;
+        }
 
-      .token.selector {
-        color: #6679cc;
-      }
+        .token.property {
+          color: #c08b30;
+        }
 
-      .token.attr-name {
-        color: #c76b29;
-      }
+        .token.tag {
+          color: #3d8fd1;
+        }
 
-      .token.entity,
-      .token.url,
-      .language-css .token.string,
-      .style .token.string {
-        color: #22a2c9;
-      }
+        .token.string {
+          color: #22a2c9;
+        }
 
-      .function,
-      .token.attr-value,
-      .token.keyword,
-      .token.control,
-      .token.directive,
-      .token.unit {
-        color: #6366f1;
-      }
+        .token.selector {
+          color: #6679cc;
+        }
 
-      .token.statement,
-      .token.regex,
-      .token.atrule {
-        color: #22a2c9;
-      }
+        .token.attr-name {
+          color: #c76b29;
+        }
 
-      .token.placeholder,
-      .token.variable {
-        color: #3d8fd1;
-      }
+        .token.entity,
+        .token.url,
+        .language-css .token.string,
+        .style .token.string {
+          color: #22a2c9;
+        }
 
-      .token.deleted {
-        text-decoration: line-through;
-      }
+        .function,
+        .token.attr-value,
+        .token.keyword,
+        .token.control,
+        .token.directive,
+        .token.unit {
+          color: #6366f1;
+        }
 
-      .token.inserted {
-        border-bottom: 1px dotted #202746;
-        text-decoration: none;
-      }
+        .token.statement,
+        .token.regex,
+        .token.atrule {
+          color: #22a2c9;
+        }
 
-      .token.italic {
-        font-style: italic;
-      }
+        .token.placeholder,
+        .token.variable {
+          color: #3d8fd1;
+        }
 
-      .token.important,
-      .token.bold {
-        font-weight: bold;
-      }
+        .token.deleted {
+          text-decoration: line-through;
+        }
 
-      .token.important {
-        color: #c94922;
-      }
+        .token.inserted {
+          border-bottom: 1px dotted #202746;
+          text-decoration: none;
+        }
 
-      .token.entity {
-        cursor: help;
+        .token.italic {
+          font-style: italic;
+        }
+
+        .token.important,
+        .token.bold {
+          font-weight: bold;
+        }
+
+        .token.important {
+          color: #c94922;
+        }
+
+        .token.entity {
+          cursor: help;
+        }
       }
     }
   }
@@ -183,7 +188,7 @@ html[data-theme='light'] {
 html[data-theme='dark'],
   // CodePlayground 始终使用黑暗模式主题
 html[data-theme='light'] .code-playground {
-  .code-block {
+  .playground-editor {
     .token-line {
       color: #fff;
 

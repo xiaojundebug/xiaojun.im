@@ -7,10 +7,6 @@
     @apply max-w-[73ch] mx-auto px-[1.5ch];
   }
 
-  .divider {
-    @apply box-content my-12 h-px dark:bg-zinc-800 dark:border-black transition-colors;
-  }
-
   .overflow-overlay {
     overflow: auto;
     overflow: overlay;

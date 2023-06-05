@@ -1,9 +1,9 @@
 import { FiGithub, FiLink } from 'react-icons/fi'
 
 const config = {
-  name: 'xiaojun',
-  title: "xiaojun's blog",
-  description: '为什么不问问神奇海螺 🐚 呢？',
+  name: 'IMZXJ',
+  title: "IMZXJ",
+  description: '你好 👋',
   avatar: '/avatar.png',
   logo: '/logo.svg',
   socials: [
