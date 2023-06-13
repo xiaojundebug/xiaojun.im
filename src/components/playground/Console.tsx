@@ -14,7 +14,7 @@ const Console: React.FC<ConsoleProps> = props => {
 
   useEffect(() => {
     if (!console) return
-    const nativeFns = []
+    const nativeFns: any[] = []
     const methods: LogType[] = ['debug', 'log', 'info', 'warn', 'error']
     for (const method of methods) {
       const nativeFn = console[method]
@@ -28,9 +28,11 @@ const Console: React.FC<ConsoleProps> = props => {
     }
     return () => {
       for (let nativeFn of nativeFns) {
+        // @ts-ignore
         console[nativeFn.name] = nativeFn
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [console])
 
   return (
