@@ -108,7 +108,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
 
   return (
     <div className="prose-container break-all">
-      <h1 className="mt-14 sm:mt-16 text-2xl sm:text-4xl text-black dark:text-white !leading-snug tracking-tight font-medium">
+      <h1 className="mt-14 sm:mt-16 text-2xl sm:text-3xl text-black dark:text-white !leading-snug tracking-tight font-medium">
         {title}
       </h1>
       <div className="text-gray-500 dark:text-gray-300 mt-4">

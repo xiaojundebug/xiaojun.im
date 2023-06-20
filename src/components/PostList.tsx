@@ -26,7 +26,7 @@ const PostList: React.FC<PostListProps> = props => {
               </Link>
             </h3>
             <span className="font-medium inline-block text-sm mt-2 opacity-50">
-              {dayjs(frontmatter.date).format('LL')}
+              {dayjs(frontmatter.date).format('MMMM D')}
             </span>
           </article>
         </div>
