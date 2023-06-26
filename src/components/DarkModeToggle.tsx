@@ -3,7 +3,7 @@ import { animated, useSpring, useTransition, config as builtinConfig } from '@re
 import { useTheme } from 'next-themes'
 import { withNoSSR } from '@/utils'
 import useSound from '@/hooks/useSound'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 const config = { mass: 3, tension: 200, friction: 30 }
 const starPaths = [
@@ -72,7 +72,7 @@ const DarkModeToggle = () => {
   return (
     <animated.div
       style={containerStyles}
-      className={classNames('relative w-[56px] h-[28px] rounded-full p-[5px] cursor-pointer', {
+      className={clsx('relative w-[56px] h-[28px] rounded-full p-[5px] cursor-pointer', {
         'cursor-not-allowed': disabled,
       })}
       onClick={() => {

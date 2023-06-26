@@ -7,5 +7,7 @@
   "post-page.reading-time": "{{ minutes }} min read",
 
   "tags-page.title": "Tags",
-  "tags-page.desc": "{{ count }} tags in total"
+  "tags-page.desc": "{{ count }} tags in total",
+
+  "blogroll-page.title": "Blogroll"
 }

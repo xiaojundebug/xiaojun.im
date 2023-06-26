@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { Inspector } from 'react-inspector'
 import theme from '@/components/playground/console-theme'
 import { NativeProps } from '@/utils/native-props'
@@ -40,7 +40,7 @@ const Console: React.FC<ConsoleProps> = props => {
       {logs.map((log, idx) => (
         <div
           key={idx}
-          className={classNames(
+          className={clsx(
             'relative flex items-start flex-wrap gap-x-2.5 px-4 py-0.5 border-y -mt-px border-zinc-700',
             {
               'bg-red-500/10 z-10': log.type === 'error',

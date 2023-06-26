@@ -3,7 +3,11 @@ import Link from 'next/link'
 import dayjs from 'dayjs'
 
 export interface PostListProps {
-  posts: Post[]
+  posts: {
+    path: string
+    slug: string
+    frontmatter: PostFrontmatter
+  }[]
 }
 
 const PostList: React.FC<PostListProps> = props => {

@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { HiArrowSmRight } from 'react-icons/hi'
 import { ListContext } from '@/components/lists/ListProvider'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { withNativeProps } from '@/utils/native-props'
 
 const ListItem: React.FC<JSX.IntrinsicElements['li']> = props => {
@@ -36,7 +36,7 @@ const ListItem: React.FC<JSX.IntrinsicElements['li']> = props => {
 
   return withNativeProps(
     props,
-    <li className={classNames('mdx-li flex items-start my-4')}>
+    <li className={clsx('mdx-li flex items-start my-4')}>
       {getMarker()}
       <div className="flex-1">{type !== 'tl' ? children : childArr?.slice(2)}</div>
     </li>

@@ -10,17 +10,29 @@ import remarkAdmonitions from '@/lib/remark-admonitions.js'
 import remarkReadingTime from 'remark-reading-time'
 import remarkReadingMdxTime from 'remark-reading-time/mdx'
 import path from 'path'
-import { getAdjacentPosts, getAllPostPaths, getSlugByPostPath } from '@/utils/post'
+import {
+  getAdjacentPosts,
+  getAllPosts,
+  getPostFrontmatter,
+  readRawMdxBySlug,
+} from '@/utils/post'
 
 export default PostLayout
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-  const paths = await getAllPostPaths()
+  const posts = await getAllPosts()
+  const paths = await Promise.all(
+    posts.map(async post => {
+      const { title } = await getPostFrontmatter(post)
+
+      return {
+        params: { slug: title },
+      }
+    }),
+  )
 
   return {
-    paths: paths.map(p => ({
-      params: { slug: getSlugByPostPath(p) },
-    })),
+    paths,
     fallback: false,
   }
 }
@@ -28,7 +40,7 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ params }) => {
   const { slug } = params!
   const { code, frontmatter } = await bundleMDX({
-    file: path.resolve(process.cwd(), `./posts/${slug}.mdx`),
+    source: await readRawMdxBySlug(slug),
     cwd: path.resolve(process.cwd(), './posts'),
     mdxOptions(options, frontmatter) {
       // this is the recommended way to add custom remark/rehype plugins:

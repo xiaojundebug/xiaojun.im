@@ -1,12 +1,18 @@
 import React from 'react'
 import styles from './styles.module.scss'
+import { FiGithub, FiUsers } from 'react-icons/fi'
 import config from 'config'
 import Link from 'next/link'
-import classNames from 'classnames'
+import clsx from 'clsx'
+
+const SOCIAL_ICONS: Record<string, React.ReactNode> = {
+  'GitHub': <FiGithub className="text-lg" aria-hidden />,
+  '友链': <FiUsers className="text-lg" aria-hidden />
+}
 
 const Splash = () => {
   return (
-    <div className={classNames(styles.splash, 'relative my-12 sm:my-16')}>
+    <div className={clsx(styles.splash, 'relative my-12 sm:my-16')}>
       <div className="flex items-center">
         {config.avatar && (
           <div className="relative">
@@ -29,7 +35,7 @@ const Splash = () => {
                   title={social.label}
                   aria-label={social.label}
                 >
-                  {social.icon}
+                  {SOCIAL_ICONS[social.label]}
                 </a>
               </Link>
             ))}

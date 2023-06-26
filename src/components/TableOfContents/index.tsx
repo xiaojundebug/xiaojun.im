@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './styles.module.scss'
 import { NativeProps, withNativeProps } from '@/utils/native-props'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import { animationFrameScheduler, fromEvent, startWith, throttleTime } from 'rxjs'
 import { animated, useSpring } from '@react-spring/web'
 
@@ -73,7 +73,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
 
   return withNativeProps(
     props,
-    <aside className={classNames(styles.tableOfContents, 'absolute left-full h-full ml-24')}>
+    <aside className={clsx(styles.tableOfContents, 'absolute left-full h-full ml-24')}>
       <animated.ul
         ref={listRef}
         className="sticky top-[10vh] list-none max-w-[250px] max-h-[50vh] overflow-overlay text-zinc-500"
@@ -83,7 +83,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
           <li
             key={heading.id}
             ref={activeId === heading.id ? activeItemRef : null}
-            className={classNames('text-[13px] border-l-2 hover:text-primary transition-colors', {
+            className={clsx('text-[13px] border-l-2 hover:text-primary transition-colors', {
               'text-primary border-primary': activeId === heading.id,
               'border-transparent': activeId !== heading.id,
             })}

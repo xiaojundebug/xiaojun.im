@@ -7,7 +7,7 @@ import useForceUpdate from '@/hooks/useForceUpdate'
 import ResetButton from '@/components/CodeBlock/ResetButton'
 import RefreshButton from '@/components/CodeBlock/RefreshButton'
 import LazyLoad from '@/components/LazyLoad'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import Console from '@/components/playground/Console'
 import ClearButton from '@/components/CodeBlock/ClearButton'
 import usePlaygroundContext from '@/components/playground/usePlaygroundContext'
@@ -74,7 +74,7 @@ const CodePlayground: React.FC<{
             {tabs.map(tab => (
               <button
                 key={tab.type}
-                className={classNames('inline-flex items-center px-2 border-b cursor-pointer', {
+                className={clsx('inline-flex items-center px-2 border-b cursor-pointer', {
                   'border-yellow-400 text-white': tabType === tab.type,
                   'border-transparent text-white/50': tabType !== tab.type,
                 })}

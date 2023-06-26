@@ -4,7 +4,7 @@ import { GetStaticProps } from 'next'
 import { getLatestPosts } from '@/utils/post'
 import Link from 'next/link'
 import { animated, useTransition } from '@react-spring/web'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import useTranslation from '@/hooks/useTranslation'
 
 const FONT_MIN = 12
@@ -35,9 +35,9 @@ const Tags: NextPageWithCustomProps<TagsProps> = props => {
   const totalNum = useMemo(() => tags.reduce((acc, cur) => acc + cur.postsNum, 0), [tags])
 
   return (
-    <div className={classNames(styles.tags, 'prose-container flex flex-col items-center justify-center')}>
+    <div className={clsx(styles.tags, 'prose-container flex flex-col items-center justify-center')}>
       <h2
-        className={classNames(
+        className={clsx(
           styles.title,
           'relative font-medium font-serif text-5xl mt-20 sm:mt-40',
         )}

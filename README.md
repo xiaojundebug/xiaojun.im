@@ -30,7 +30,7 @@ TODO:
 
 1. Fork the repo
 2. `npm i`
-3. `npm run new:post posttile [tag1] [tag2] ...`, the *.mdx file will be created in the `posts` folder
+3. `npm run new:post filename title [tag1] [tag2] ...`, the *.mdx file will be created in the `posts` folder
 4. Deploy it to [Vercel](https://vercel.com)
 5. If you like, please star the repo 🙏
 

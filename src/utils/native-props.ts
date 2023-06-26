@@ -1,6 +1,6 @@
 import type { CSSProperties, ReactElement } from 'react'
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 export interface NativeProps<S extends string = never> {
   className?: string
@@ -13,7 +13,7 @@ export function withNativeProps<P extends NativeProps>(props: P, element: ReactE
     ...element.props,
   }
   if (props.className) {
-    p.className = classNames(element.props.className, props.className)
+    p.className = clsx(element.props.className, props.className)
   }
   if (props.style) {
     p.style = {

@@ -1,12 +1,14 @@
 import React from 'react'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import styles from './styles.module.scss'
 import config from 'config'
 import { animated, useTransition } from '@react-spring/web'
+import useTranslation from '@/hooks/useTranslation'
 
 const links = config.blogroll || []
 
 const Blogroll = () => {
+  const { t } = useTranslation()
   const transitions = useTransition(links, {
     from: { scale: 0.5, opacity: 0 },
     enter: { scale: 1, opacity: 1 },
@@ -17,15 +19,18 @@ const Blogroll = () => {
 
   return (
     <div
-      className={classNames(styles.blogroll, 'prose-container flex flex-col items-center justify-center')}
+      className={clsx(
+        styles.blogroll,
+        'prose-container flex flex-col items-center justify-center',
+      )}
     >
       <h2
-        className={classNames(
+        className={clsx(
           styles.title,
           'relative font-medium font-serif text-5xl mt-20 sm:mt-40',
         )}
       >
-        友链
+        {t('blogroll-page.title')}
       </h2>
       <p className="font-medium text-sm m-10 sm:m-14">共 {links.length} 个友链</p>
       <div className="flex items-center justify-center flex-wrap gap-7 text-2xl">

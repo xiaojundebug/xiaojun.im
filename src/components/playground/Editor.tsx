@@ -3,7 +3,7 @@ import styles from './Editor.module.scss'
 import { NativeProps, withNativeProps } from '@/utils/native-props'
 import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer'
 import CodeEditor from 'react-simple-code-editor'
-import classNames from 'classnames'
+import clsx from 'clsx'
 import usePlaygroundContext from '@/components/playground/usePlaygroundContext'
 
 export interface EditorProps extends NativeProps {
@@ -38,7 +38,7 @@ const Editor: React.FC<EditorProps> = props => {
     props,
     <div className={styles.editor}>
       <CodeEditor
-        className={classNames({
+        className={clsx({
           'has-focused-lines': focusedLines.length > 0,
           'has-line-numbers': lineNumbers,
         })}
@@ -64,7 +64,7 @@ const Editor: React.FC<EditorProps> = props => {
                     {...getLineProps({
                       line,
                       key: i,
-                      className: classNames({
+                      className: clsx({
                         highlight: highlightLines.includes(i + 1),
                         added: addedLines.includes(i + 1),
                         removed: removedLines.includes(i + 1),

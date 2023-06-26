@@ -1,4 +1,3 @@
-import React from 'react'
 import { GetStaticProps } from 'next'
 import { getLatestPosts } from '@/utils/post'
 import DefaultLayout from '../layouts/Default'

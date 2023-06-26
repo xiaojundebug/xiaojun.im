@@ -7,5 +7,7 @@
   "post-page.reading-time": "阅读时长 {{ minutes }} 分钟",
 
   "tags-page.title": "标签",
-  "tags-page.desc": "共 {{ count }} 个标签"
+  "tags-page.desc": "共 {{ count }} 个标签",
+
+  "blogroll-page.title": "Blogroll"
 }

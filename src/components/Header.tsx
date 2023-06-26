@@ -56,11 +56,12 @@ const Header: React.FC<HeaderProps> = () => {
 
   useEffect(() => {
     if (!visible) setExpanded(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible])
 
   useEffect(() => {
     // 进来执行初次判断
-    // setVisible(window.scrollY <= 500)
+    setVisible(window.scrollY <= 500)
     const scroll$ = fromEvent(window, 'scroll').pipe(
       throttleTime(0, animationFrameScheduler),
       map(() => window.scrollY),
@@ -84,6 +85,7 @@ const Header: React.FC<HeaderProps> = () => {
       })
 
     return () => sub.unsubscribe()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
