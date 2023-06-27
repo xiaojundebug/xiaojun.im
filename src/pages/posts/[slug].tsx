@@ -10,26 +10,19 @@ import remarkAdmonitions from '@/lib/remark-admonitions.js'
 import remarkReadingTime from 'remark-reading-time'
 import remarkReadingMdxTime from 'remark-reading-time/mdx'
 import path from 'path'
-import {
-  getAdjacentPosts,
-  getAllPosts,
-  getPostFrontmatter,
-  readRawMdxBySlug,
-} from '@/utils/post'
+import { getAdjacentPosts, getAllPosts, getPostSlug } from '@/utils/post'
 
 export default PostLayout
 
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   const posts = await getAllPosts()
-  const paths = await Promise.all(
-    posts.map(async post => {
-      const { title } = await getPostFrontmatter(post)
+  const paths = posts.map(post => {
+    const slug = getPostSlug(post)
 
-      return {
-        params: { slug: title },
-      }
-    }),
-  )
+    return {
+      params: { slug },
+    }
+  })
 
   return {
     paths,
@@ -40,7 +33,7 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ params }) => {
   const { slug } = params!
   const { code, frontmatter } = await bundleMDX({
-    source: await readRawMdxBySlug(slug),
+    file: path.resolve(process.cwd(), `./posts/${slug}.mdx`),
     cwd: path.resolve(process.cwd(), './posts'),
     mdxOptions(options, frontmatter) {
       // this is the recommended way to add custom remark/rehype plugins:

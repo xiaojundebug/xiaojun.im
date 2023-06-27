@@ -14,31 +14,12 @@ export async function getAllPosts() {
   return posts
 }
 
-export function getAllPostsSync() {
-  const posts: string[] = cache.get('posts') || glob.sync('posts/**/*.mdx')
-  cache.set('posts', posts)
-  return posts
+export function getPostSlug(post: string) {
+  return post.replace(/^posts\/|\.mdx$/g, '')
 }
 
 export async function readRawMdx(post: string) {
   return fs.readFile(path.resolve(process.cwd(), post), 'utf8')
-}
-
-export async function readRawMdxBySlug(slug: string) {
-  const posts = await getAllPosts()
-  let post = ''
-
-  for (let i = 0; i < posts.length; i++) {
-    const p = posts[i]
-    const frontmatter = await getPostFrontmatter(p)
-
-    if ( frontmatter.title === slug) {
-      post = p
-      break
-    }
-  }
-
-  return readRawMdx(post)
 }
 
 export async function getLatestPosts({
@@ -51,11 +32,11 @@ export async function getLatestPosts({
   const posts = await getAllPosts()
   const allPosts = await Promise.all(
     posts.map(async post => {
+      const slug = getPostSlug(post)
       const frontmatter = await getPostFrontmatter(post)
 
       return {
-        path: post,
-        slug: frontmatter.title,
+        slug,
         frontmatter,
       }
     }),

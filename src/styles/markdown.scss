@@ -61,7 +61,7 @@
 
   // Link
   .mdx-a:not([class~=anchor]) {
-    @apply text-primary underline font-medium hover:brightness-75 transition;
+    @apply text-primary font-medium underline underline-offset-2 decoration-primary/20 hover:decoration-primary transition;
     .mdx-code { @apply text-current; }
   }
 
