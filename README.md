@@ -14,7 +14,7 @@ My personal blog, built with Next.js, TypeScript, MDX, and TailwindCSS.
 - ✨ Support dark mode, responsive design
 - 🎮 Built-in lightweight code playground (native html and single react component), front-end friendly
 - ⚡️ Powered by Next.js, TypeScript, MDX, TailwindCSS, convenient for secondary development, deployed on [Vercel](https://vercel.com)
-- 🧩 Support reading time, tags, table of contents, i18n...
+- 🧩 Support reading time, tags, table of contents, i18n, KaTeX...
 - More features are in the works...
 
 TODO:
@@ -47,6 +47,8 @@ Sounds from https://zapsplat.com
 - https://blog.maximeheckel.com
 - https://vuepress.vuejs.org
 - https://vitepress.dev
+- https://docusaurus.io
 - https://react-spring.dev
 - https://github.com/iissnan/hexo-theme-next
 - https://github.com/sanjinhub/hexo-theme-geek
+- https://github.com/nanxiaobei/hugo-paper

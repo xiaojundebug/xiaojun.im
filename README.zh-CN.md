@@ -14,7 +14,7 @@
 - ✨ 支持黑暗模式，支持响应式设计
 - 🎮 内置轻量级的在线代码运行组件（目前仅支持 html 与 单个 jsx 组件），可直接在文章中运行代码块，还可以在文章中随意嵌入 react 组件，对前端开发者友好，请尽情释放自己的想象力
 - ⚡️ 由 Next.js、TypeScript、MDX、TailwindCSS 驱动，方便二次开发，可一键部署在 [Vercel](https://vercel.com)，不需要自己的服务器
-- 🧩 支持阅读时间估算、标签分类，目录导航，多语言...
+- 🧩 支持阅读时间估算、标签分类，目录导航，多语言，数学公式...
 - 更多功能还在开发中...
 
 待办:
@@ -49,6 +49,8 @@ _配置文件在 `site.config.js` 文件中，你可以在这里修改你的个�
 - https://blog.maximeheckel.com
 - https://vuepress.vuejs.org
 - https://vitepress.dev
+- https://docusaurus.io
 - https://react-spring.dev
 - https://github.com/iissnan/hexo-theme-next
-- https://github.com/sanjinhub/hexo-theme-geek~~
+- https://github.com/sanjinhub/hexo-theme-geek
+- https://github.com/nanxiaobei/hugo-paper

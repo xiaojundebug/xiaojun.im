@@ -9,6 +9,8 @@ import remarkMdxMetaToProps from '@/lib/remark-mdx-meta-to-props.js'
 import remarkAdmonitions from '@/lib/remark-admonitions.js'
 import remarkReadingTime from 'remark-reading-time'
 import remarkReadingMdxTime from 'remark-reading-time/mdx'
+import remarkMath from 'remark-math'
+import rehypeKatex from 'rehype-katex'
 import path from 'path'
 import { getAdjacentPosts, getAllPosts, getPostSlug } from '@/utils/post'
 
@@ -47,11 +49,13 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ pa
         remarkAdmonitions,
         remarkReadingTime,
         remarkReadingMdxTime,
+        remarkMath,
       ]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: 'wrap', properties: { class: 'anchor' } }],
+        rehypeKatex,
       ]
 
       return options
