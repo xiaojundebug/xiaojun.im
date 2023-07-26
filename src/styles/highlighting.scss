@@ -193,8 +193,6 @@ html[data-theme='light'] .code-playground {
       color: #fff;
 
       &.highlight {
-        margin: 0 -2em;
-        padding: 0 2em;
         background: linear-gradient(#0369a1 0%, #0369a1) no-repeat, rgba(255, 255, 255, 0.05);
         background-size: 3px;
       }
