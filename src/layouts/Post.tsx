@@ -19,6 +19,7 @@ import config from 'config'
 import useTranslation from '@/hooks/useTranslation'
 import tagRenderer from '@/utils/tag-renderer'
 import HorizontalRule from '@/components/HorizontalRule'
+import useTitle from '@/hooks/useTitle'
 
 const components = {
   h1: tagRenderer('h1'),
@@ -106,12 +107,14 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
     [code],
   )
 
+  useTitle(title)
+
   return (
     <div className="prose-container break-all">
       <h1 className="mt-14 sm:mt-16 text-2xl sm:text-3xl text-black dark:text-white !leading-snug tracking-tight font-medium">
         {title}
       </h1>
-      <div className="text-gray-500 dark:text-gray-300 mt-4">
+      <div className="text-zinc-500 dark:text-zinc-300 mt-4">
         <div className="flex items-center text-sm">
           <span className="flex items-center">
             {/* 创建时间 */}
@@ -130,12 +133,10 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
       </div>
       {/* 标签 */}
       {tags && tags.length > 0 && (
-        <div className="flex items-center flex-wrap m-auto mt-6 sm:mt-12 text-sm gap-2 sm:gap-3">
+        <div className="flex items-center flex-wrap m-auto mt-6 text-sm gap-2 sm:gap-3">
           {tags.map((tag: string) => (
             <Link key={tag} href={`/tags/${tag}`}>
-              <a className="bg-pink-500/10 text-pink-500 hover:text-pink-700 px-2 py-1 rounded font-medium transition">
-                {tag}
-              </a>
+              <a className="bg-pink-500/10 text-pink-500 px-2.5 rounded-full">#{tag}</a>
             </Link>
           ))}
         </div>
@@ -157,7 +158,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           <TableOfContents className="hidden sm:block" headings={headings} />
         )}
       </div>
-      <p className="mt-24 mb-0 text-right text-gray-500 dark:text-gray-300 text-sm italic">
+      <p className="mt-24 mb-0 text-right text-zinc-500 text-sm italic">
         {t('post-page.last-updated', { date: dayjs(updatedOn || date).format('LL') })}
       </p>
       <HorizontalRule />

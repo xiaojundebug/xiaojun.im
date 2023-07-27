@@ -13,13 +13,13 @@ const HeroImage: React.FC<HeroImage> = props => {
   const { dataUrl, status } = useImage(src)
 
   const loading = (
-    <div className="flex h-full items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20 text-slate-500/50">
+    <div className="flex h-full items-center justify-center bg-zinc-200/70 dark:bg-zinc-600/20 text-slate-500/50">
       <AiOutlineLoading className="text-4xl animate-spin" />
     </div>
   )
 
   const failed = (
-    <div className="flex h-full items-center justify-center bg-slate-200/70 dark:bg-zinc-600/20">
+    <div className="flex h-full items-center justify-center bg-zinc-200/70 dark:bg-zinc-600/20">
       <img
         className="opacity-10 dark:invert"
         src="/public/broken-image.png"

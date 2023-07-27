@@ -9,6 +9,11 @@
       margin: 0 -2em;
       padding: 0 2em;
 
+      &.highlight {
+        background: linear-gradient(#0ea5e9 0%, #0ea5e9) no-repeat, rgba(150, 150, 150, 0.1);
+        background-size: 3px;
+      }
+
       &.added,
       &.removed {
         &::before {
@@ -81,11 +86,6 @@ html[data-theme='light'] {
     .playground-editor {
       .token-line {
         color: #5e6687;
-
-        &.highlight {
-          background: linear-gradient(#0ea5e9 0%, #0ea5e9) no-repeat, rgba(0, 0, 0, 0.05);
-          background-size: 3px;
-        }
 
         .token.comment,
         .token.prolog,
@@ -186,16 +186,11 @@ html[data-theme='light'] {
 }
 
 html[data-theme='dark'],
-  // CodePlayground 始终使用黑暗模式主题
+// CodePlayground 始终使用黑暗模式主题
 html[data-theme='light'] .code-playground {
   .playground-editor {
     .token-line {
       color: #fff;
-
-      &.highlight {
-        background: linear-gradient(#0369a1 0%, #0369a1) no-repeat, rgba(255, 255, 255, 0.05);
-        background-size: 3px;
-      }
 
       .token.comment,
       .token.prolog,

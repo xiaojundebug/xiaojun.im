@@ -56,8 +56,8 @@ const CodePlayground: React.FC<{
       onCodeChange={setCode}
       scope={{ ...builtInScope, ...scope }}
     >
-      <div className="code-playground relative -mx-[1.5ch] border-2 border-gray-600/50 bg-zinc-900 rounded-none sm:rounded-xl overflow-hidden">
-        <div className="flex items-center justify-between h-8 px-4 bg-gray-600/50">
+      <div className="code-playground relative -mx-[1.5ch] border-2 border-zinc-600/50 bg-zinc-900 rounded-none sm:rounded-xl overflow-hidden">
+        <div className="flex items-center justify-between h-8 px-4 bg-zinc-600/50">
           <span className="text-sm text-white">Code Playground</span>
           <div className="flex items-center gap-4">
             <ResetButton onClick={resetCode} />
@@ -69,7 +69,7 @@ const CodePlayground: React.FC<{
             <Editor className="playground-editor" fontSize={14} lineNumbers={lineNumbers} />
           </div>
         )}
-        <div className="flex justify-between h-10 px-3 border-t border-b border-gray-600/50 text-sm text-white">
+        <div className="flex justify-between h-10 px-3 border-t border-b border-zinc-600/50 text-sm text-white">
           <div className="flex items-stretch h-full">
             {tabs.map(tab => (
               <button
@@ -84,7 +84,7 @@ const CodePlayground: React.FC<{
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-4 text-gray-400">
+          <div className="flex items-center gap-4 text-zinc-400">
             {{
               1: () => <RefreshButton onClick={refreshPreview} />,
               2: () => <LogCleaner />,

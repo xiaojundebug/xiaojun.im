@@ -9,7 +9,7 @@ const ResetButton: React.FC<{ onClick: () => void }> = props => {
 
   return (
     <animated.button
-      className="cursor-pointer text-gray-300 text-lg"
+      className="cursor-pointer text-zinc-300 text-lg"
       style={style as any}
       onMouseEnter={trigger}
       onClick={onClick}
