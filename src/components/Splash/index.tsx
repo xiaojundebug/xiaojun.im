@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from './styles.module.scss'
-import { FiGithub, FiUsers } from 'react-icons/fi'
+import { FiGithub, FiLink } from 'react-icons/fi'
 import config from 'config'
 import Link from 'next/link'
 import clsx from 'clsx'
 
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
   'GitHub': <FiGithub className="text-lg" aria-hidden />,
-  '友链': <FiUsers className="text-lg" aria-hidden />
+  '友链': <FiLink className="text-lg" aria-hidden />
 }
 
 const Splash = () => {
