@@ -1,12 +1,13 @@
 module.exports = {
-  name: 'IMZXJ',
-  title: "IMZXJ",
-  description: '你好 👋',
+  name: 'Xiaojun Zhou',
+  title: 'Xiaojun Zhou',
+  description: '不正常人類研究中心',
   avatar: '/avatar.png',
   logo: '/logo.svg',
+  siteUrl: 'https://www.xiaojun.im',
   // icon 请在 src/components/Splash/index.tsx 中修改
   socials: [
-    { label: 'GitHub', link: 'https://github.com/imzxj' },
+    { label: 'GitHub', link: 'https://github.com/xiaojundebug' },
     { label: '友链', link: '/blogroll' },
   ],
   blogroll: [
@@ -17,6 +18,6 @@ module.exports = {
   toc: true, // table of content
   adjacentPosts: true, // prev next links
   markdown: {
-    lineNumbers: false
-  }
+    lineNumbers: false,
+  },
 }

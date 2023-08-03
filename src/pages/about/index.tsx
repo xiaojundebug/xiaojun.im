@@ -42,7 +42,7 @@ const Index: NextPageWithCustomProps = () => {
       <h2>📮 找到我</h2>
       <ul>
         <li>Email - <Link href="mailto:362896731@qq.com">362896731@qq.com</Link></li>
-        <li>Github - <Link href="https://github.com/imzxj">https://github.com/imzxj</Link></li>
+        <li>Github - <Link href="https://github.com/xiaojundebug">https://github.com/xiaojundebug</Link></li>
       </ul>
 
       <h2>🧭 参考</h2>

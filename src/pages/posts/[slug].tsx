@@ -5,8 +5,9 @@ import remarkGfm from 'remark-gfm'
 import remarkDirective from 'remark-directive'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import remarkMdxMetaToProps from '@/lib/remark-mdx-meta-to-props.js'
+import remarkMdxCodeProps from '@/lib/remark-mdx-code-props.js'
 import remarkAdmonitions from '@/lib/remark-admonitions.js'
+import remarkLinkCard from '@/lib/remark-link-card'
 import remarkReadingTime from 'remark-reading-time'
 import remarkReadingMdxTime from 'remark-reading-time/mdx'
 import remarkMath from 'remark-math'
@@ -28,7 +29,7 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
@@ -44,9 +45,10 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ pa
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
         remarkGfm,
-        remarkMdxMetaToProps,
+        remarkMdxCodeProps,
         remarkDirective,
         remarkAdmonitions,
+        remarkLinkCard,
         remarkReadingTime,
         remarkReadingMdxTime,
         remarkMath,
@@ -76,5 +78,6 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ pa
       prevPost: prev ? { link: `/posts/${prev.slug}`, title: prev.frontmatter.title } : null,
       nextPost: next ? { link: `/posts/${next.slug}`, title: next.frontmatter.title } : null,
     },
+    revalidate: 60 * 60 * 24
   }
 }

@@ -15,7 +15,7 @@ const Splash = () => {
     <div className={clsx(styles.splash, 'relative my-12 sm:my-16')}>
       <div className="flex items-center">
         {config.avatar && (
-          <div className="relative">
+          <div className="relative flex-shrink-0">
             <img
               className="w-20 h-20 object-cover rounded-full shadow-zinc-600/10 shadow-xl dark:shadow-none"
               src={config.avatar}

@@ -5,7 +5,7 @@ import { visit } from 'unist-util-visit'
 const parser = Parser.extend(jsx())
 
 /** @type {import('unified').Plugin<[], import('mdast').Root>} */
-export default function remarkMdxMetaToProps() {
+export default function remarkMdxCodeProps() {
   return tree => {
     visit(tree, 'code', (node, index, parent) => {
       const code = JSON.stringify(`${node.value}`)
