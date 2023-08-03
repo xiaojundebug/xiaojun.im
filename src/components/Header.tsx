@@ -18,12 +18,101 @@ import {
 } from 'rxjs'
 import useHasMounted from '@/hooks/useHasMounted'
 import useTranslation from '@/hooks/useTranslation'
+import OnlyMobile from '@/components/OnlyMobile'
+import OnlyDesktop from '@/components/OnlyDesktop'
+import { useRouter } from 'next/router'
+import clsx from 'clsx'
 
 export interface HeaderProps {}
 
+const MobileHeader: React.FC<{ menus: { label: string; href: string }[] }> = props => {
+  const { menus } = props
+  const [expanded, { toggle: toggleExpanded, set: setExpanded }] = useBoolean(false)
+  const navRef = useRef<HTMLUListElement>(null)
+  const size = useSize(navRef.current) || { width: 0, height: 0 }
+  const styles = useSpring({
+    height: expanded ? size.height : 0,
+    config: { tension: 256, friction: 28, precision: 0.005 },
+  })
+  const navTransitions = useTransition(expanded ? menus : [], {
+    from: { x: 50, opacity: 0 },
+    enter: { x: 0, opacity: 1 },
+    leave: { x: 0, opacity: 1 },
+    trail: 75,
+  })
+
+  return (
+    <div className="prose-container flex items-center justify-between h-[50px] bg-white dark:bg-zinc-900">
+      <BurgerMenu className="cursor-pointer" isOpen={expanded} onChange={toggleExpanded} />
+      <DarkModeToggle />
+      <animated.nav
+        className="absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-900/100 z-10 border-b border-zinc-400/10 overflow-hidden"
+        style={styles}
+      >
+        <ul ref={navRef} className="flex flex-col pb-4">
+          {navTransitions((navStyles, menu) => (
+            <animated.li key={menu.href} style={navStyles}>
+              <Link href={menu.href}>
+                <a className="inline-block w-full font-medium text-lg px-6 py-1 leading-loose active:bg-slate-400/10">
+                  <span>{menu.label}</span>
+                </a>
+              </Link>
+            </animated.li>
+          ))}
+        </ul>
+      </animated.nav>
+    </div>
+  )
+}
+
+const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = props => {
+  const { menus } = props
+  const router = useRouter()
+
+  return (
+    <div className="prose-container flex items-center justify-between h-[80px]">
+      <Link href="/">
+        <img
+          className="inline-block h-7 mr-4 cursor-pointer dark:invert"
+          src={config.logo}
+          alt="logo"
+        />
+      </Link>
+      <nav>
+        <ul className="flex items-center px-3 ring-1 ring-zinc-400/10 rounded-full backdrop-blur-md backdrop-saturate-150 shadow-lg shadow-zinc-800/5">
+          {menus.map(menu => (
+            <li key={menu.href}>
+              <Link href={menu.href}>
+                <a
+                  className={clsx(
+                    'relative block py-2 px-3 font-medium text-sm hover:text-primary transition-colors',
+                    {
+                      'text-primary': router.route === menu.href,
+                    },
+                  )}
+                >
+                  {menu.label}
+
+                  <span
+                    className={clsx(
+                      'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-primary/0 via-primary/50 dark:via-primary to-primary/0 transition-opacity',
+                      { 'opacity-0': router.route !== menu.href },
+                      { 'opacity-100': router.route === menu.href },
+                    )}
+                  ></span>
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <DarkModeToggle />
+    </div>
+  )
+}
+
 const Header: React.FC<HeaderProps> = () => {
   const [visible, { set: setVisible }] = useBoolean(true)
-  const [expanded, { toggle: toggleExpanded, set: setExpanded }] = useBoolean(false)
   const { t } = useTranslation()
   const hasMounted = useHasMounted()
   const menus = useMemo(
@@ -35,29 +124,12 @@ const Header: React.FC<HeaderProps> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )
-  const mobileNavContentRef = useRef<HTMLDivElement>(null)
-  const size = useSize(mobileNavContentRef.current) || { width: 0, height: 0 }
-  const styles = useSpring({
-    height: expanded ? size.height : 0,
-    config: { tension: 256, friction: 28, precision: 0.005 },
-  })
-  const mobileNavTransitions = useTransition(expanded ? menus : [], {
-    from: { x: 50, opacity: 0 },
-    enter: { x: 0, opacity: 1 },
-    leave: { x: 0, opacity: 1 },
-    trail: 75,
-  })
   const barTransitions = useTransition(visible, {
     from: hasMounted ? { y: '-100%' } : null,
     enter: { y: '0%' },
     leave: { y: '-100%' },
     config: { tension: 256, friction: 28, clamp: true },
   })
-
-  useEffect(() => {
-    if (!visible) setExpanded(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible])
 
   useEffect(() => {
     // 进来执行初次判断
@@ -94,54 +166,15 @@ const Header: React.FC<HeaderProps> = () => {
         (barStyles, item) =>
           item && (
             <animated.div
-              className="fixed w-full h-[50px] sm:h-[80px] top-0 z-10 bg-white sm:bg-white/50 dark:bg-zinc-900 sm:dark:bg-zinc-900/60 sm:backdrop-blur-md sm:backdrop-saturate-150 sm:border-b border-white/50 dark:border-zinc-900/50"
+              className="fixed w-full h-[50px] sm:h-[80px] top-0 z-10"
               style={barStyles}
             >
-              <div className="prose-container h-full flex items-center justify-between">
-                <BurgerMenu
-                  className="cursor-pointer sm:hidden"
-                  isOpen={expanded}
-                  onChange={toggleExpanded}
-                />
-                {/* logo (desktop) */}
-                <Link href="/">
-                  <img
-                    className="hidden sm:inline-block h-7 mr-4 cursor-pointer dark:invert"
-                    src={config.logo}
-                    alt="logo"
-                  />
-                </Link>
-                {/* nav (mobile) */}
-                <animated.div
-                  className="sm:hidden absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-900/100 z-10 border-b border-zinc-400/10 overflow-hidden"
-                  style={styles}
-                >
-                  <div ref={mobileNavContentRef} className="flex flex-col pb-4">
-                    {mobileNavTransitions((navStyles, menu) => (
-                      <animated.div key={menu.href} style={navStyles}>
-                        <Link href={menu.href}>
-                          <a className="inline-block w-full font-medium text-lg px-6 py-1 leading-loose active:bg-slate-400/10">
-                            <span>{menu.label}</span>
-                          </a>
-                        </Link>
-                      </animated.div>
-                    ))}
-                  </div>
-                </animated.div>
-                {/* nav (desktop) */}
-                <div className="flex items-center">
-                  <div className="hidden sm:block mr-8">
-                    {menus.map(menu => (
-                      <Link key={menu.href} href={menu.href}>
-                        <a className="font-medium text-base mx-2 py-2 px-4 rounded-lg leading-loose transition hover:bg-slate-200/50 dark:hover:bg-zinc-800/50">
-                          {menu.label}
-                        </a>
-                      </Link>
-                    ))}
-                  </div>
-                  <DarkModeToggle />
-                </div>
-              </div>
+              <OnlyMobile>
+                <MobileHeader menus={menus} />
+              </OnlyMobile>
+              <OnlyDesktop>
+                <DesktopHeader menus={menus} />
+              </OnlyDesktop>
             </animated.div>
           ),
       )}

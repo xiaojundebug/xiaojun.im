@@ -17,7 +17,7 @@ const Splash = () => {
         {config.avatar && (
           <div className="relative flex-shrink-0">
             <img
-              className="w-20 h-20 object-cover rounded-full shadow-zinc-600/10 shadow-xl dark:shadow-none"
+              className="w-16 h-16 object-cover rounded-full shadow-zinc-600/10 shadow-xl dark:shadow-none"
               src={config.avatar}
               alt="avatar"
             />
@@ -25,7 +25,7 @@ const Splash = () => {
           </div>
         )}
         <div className="flex flex-col justify-between ml-6 space-y-3 leading-none">
-          <h1 className="w-fit text-3xl sm:text-4xl font-medium">{config.title}</h1>
+          <h1 className="w-fit text-3xl font-medium">{config.title}</h1>
           <span className="text-zinc-400">{config.description}</span>
           <div className="flex items-center gap-4">
             {config.socials.map(social => (
