@@ -154,7 +154,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           <div className="flex items-center flex-wrap m-auto mt-6 text-sm gap-2 sm:gap-3">
             {tags.map((tag: string) => (
               <Link key={tag} href={`/tags/${tag}`}>
-                <a className="bg-pink-500/10 text-pink-500 px-2.5 rounded-full">#{tag}</a>
+                <a className="bg-teal-500/10 text-teal-500 px-2.5 rounded-full">#{tag}</a>
               </Link>
             ))}
           </div>

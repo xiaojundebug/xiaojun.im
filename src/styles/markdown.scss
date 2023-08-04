@@ -27,12 +27,11 @@
   }
 
   // Emphasis
-  .mdx-em { @apply opacity-80; }
+  .mdx-em {}
 
   // InlineCode
   .mdx-code {
-    @apply text-pink-500 font-medium;
-    &::before, &::after { content: '`'; }
+    @apply inline-block rounded px-2 bg-zinc-500/10 dark:bg-zinc-500/20 text-sm font-semibold leading-7;
   }
 
   // Admonition

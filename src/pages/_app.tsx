@@ -31,7 +31,7 @@ function App({
     Component.getLayout ??
     ((page: React.ReactElement) => (
       <>
-        <NextNProgress color="#2563eb" options={{ showSpinner: false }} />
+        <NextNProgress color="#14b8a6" options={{ showSpinner: false }} />
         <ThemeProvider disableTransitionOnChange forcedTheme={Component.theme}>
           <IconContext.Provider value={{ className: 'icon' }}>
             <DefaultSeo title={config.title} description={config.description} />

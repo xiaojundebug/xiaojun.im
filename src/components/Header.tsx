@@ -38,11 +38,11 @@ const MobileHeader: React.FC<{ menus: { label: string; href: string }[] }> = pro
     from: { x: 50, opacity: 0 },
     enter: { x: 0, opacity: 1 },
     leave: { x: 0, opacity: 1 },
-    trail: 75,
+    trail: 100,
   })
 
   return (
-    <div className="prose-container flex items-center justify-between h-[50px] bg-white dark:bg-zinc-900">
+    <div className="px-6 flex items-center justify-between h-[50px] bg-white dark:bg-zinc-900">
       <BurgerMenu className="cursor-pointer" isOpen={expanded} onChange={toggleExpanded} />
       <DarkModeToggle />
       <animated.nav
@@ -53,7 +53,7 @@ const MobileHeader: React.FC<{ menus: { label: string; href: string }[] }> = pro
           {navTransitions((navStyles, menu) => (
             <animated.li key={menu.href} style={navStyles}>
               <Link href={menu.href}>
-                <a className="inline-block w-full font-medium text-lg px-6 py-1 leading-loose active:bg-slate-400/10">
+                <a className="inline-block w-full font-medium text-lg px-6 py-1 leading-loose active:bg-zinc-400/10">
                   <span>{menu.label}</span>
                 </a>
               </Link>
@@ -79,7 +79,7 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
         />
       </Link>
       <nav>
-        <ul className="flex items-center px-3 ring-1 ring-zinc-400/10 rounded-full backdrop-blur-md backdrop-saturate-150 shadow-lg shadow-zinc-800/5">
+        <ul className="flex items-center px-3 ring-1 ring-zinc-900/5 dark:ring-zinc-100/10 rounded-full backdrop-blur-md backdrop-saturate-150 shadow-lg shadow-zinc-800/5">
           {menus.map(menu => (
             <li key={menu.href}>
               <Link href={menu.href}>

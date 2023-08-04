@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#6366f1',
+        primary: '#14b8a6',
       },
       transitionTimingFunction: {
         'out-back': 'cubic-bezier(0.34, 1.56, 0.64, 1)',

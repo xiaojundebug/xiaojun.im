@@ -10,21 +10,9 @@ export interface BurgerMenuProps extends NativeProps {
 const BurgerMenu: React.FC<BurgerMenuProps> = props => {
   const { isOpen, onChange } = props
 
-  const first = useSpring({
-    transform: isOpen
-      ? 'translate(4.5px, 18.5px) rotate(-45deg)'
-      : 'translate(2px, 4px) rotate(0deg)',
-  })
-  const second = useSpring({
-    transform: isOpen
-      ? 'translate(5.5px, 4.5px) rotate(45deg)'
-      : 'translate(2px, 11px) rotate(0deg)',
-  })
-  const third = useSpring({
-    transform: isOpen
-      ? 'translate(4.5px, 18.5px) rotate(-45deg)'
-      : 'translate(2px, 18px) rotate(0deg)',
-  })
+  const line1 = useSpring({ x: 2, y: isOpen ? 11 : 4, rotate: isOpen ? -45 : 0 })
+  const line2 = useSpring({ x: 2, y: 11, rotate: isOpen ? 45 : 0 })
+  const line3 = useSpring({ x: 2, y: isOpen ? 11 : 18, rotate: isOpen ? -45 : 0 })
 
   return withNativeProps(
     props,
@@ -36,9 +24,9 @@ const BurgerMenu: React.FC<BurgerMenuProps> = props => {
       className="fill-zinc-800 dark:fill-zinc-50"
       onClick={() => onChange(!isOpen)}
     >
-      <animated.rect width="20" height="2" rx="1" style={first} />
-      <animated.rect width="20" height="2" rx="1" style={second} />
-      <animated.rect width="20" height="2" rx="1" style={third} />
+      <animated.rect width="20" height="2" rx="1" style={{ ...line1, transformBox: 'fill-box', transformOrigin: 'center' }}  />
+      <animated.rect width="20" height="2" rx="1" style={{ ...line2, transformBox: 'fill-box', transformOrigin: 'center' }} />
+      <animated.rect width="20" height="2" rx="1" style={{ ...line3, transformBox: 'fill-box', transformOrigin: 'center' }} />
     </svg>,
   )
 }
