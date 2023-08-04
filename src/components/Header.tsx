@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { MouseEvent, useCallback, useEffect, useMemo, useRef } from 'react'
 import Link from 'next/link'
 import DarkModeToggle from './DarkModeToggle'
 import config from 'config'
 import { useBoolean, useSize } from 'ahooks'
-import { animated, useSpring, useTransition } from '@react-spring/web'
+import { animated, to, useSpring, useSpringValue, useTransition } from '@react-spring/web'
 import BurgerMenu from '@/components/BurgerMenu'
 import {
   animationFrameScheduler,
@@ -68,6 +68,16 @@ const MobileHeader: React.FC<{ menus: { label: string; href: string }[] }> = pro
 const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = props => {
   const { menus } = props
   const router = useRouter()
+  const spotlightX = useSpringValue(0)
+  const spotlightY = useSpringValue(0)
+  const spotlightR = useSpringValue(0)
+
+  const onMouseMove = ({ currentTarget, clientX, clientY }: MouseEvent) => {
+    const bounds = currentTarget.getBoundingClientRect()
+    spotlightX.set(clientX - bounds.left)
+    spotlightY.set(clientY - bounds.top)
+    spotlightR.set(Math.sqrt(bounds.width ** 2 + bounds.height ** 2) / 2.5)
+  }
 
   return (
     <div className="prose-container flex items-center justify-between h-[80px]">
@@ -79,7 +89,22 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
         />
       </Link>
       <nav>
-        <ul className="flex items-center px-3 ring-1 ring-zinc-900/5 dark:ring-zinc-100/10 rounded-full backdrop-blur-md backdrop-saturate-150 shadow-lg shadow-zinc-800/5">
+        <ul
+          className="group flex items-center px-3 ring-1 ring-zinc-900/5 dark:ring-zinc-100/10 rounded-full backdrop-blur-md backdrop-saturate-150 shadow-lg shadow-zinc-800/5"
+          onMouseMove={onMouseMove}
+        >
+          {/* Spotlight overlay */}
+          <animated.div
+            className="pointer-events-none absolute -inset-px rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-primary/[0.12]"
+            style={{
+              background: to(
+                [spotlightX, spotlightY, spotlightR],
+                (x, y, r) =>
+                  `radial-gradient(${r}px circle at ${x}px ${y}px, currentColor 0%, transparent 65%)`,
+              ),
+            }}
+            aria-hidden
+          />
           {menus.map(menu => (
             <li key={menu.href}>
               <Link href={menu.href}>
