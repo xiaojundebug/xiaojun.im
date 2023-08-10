@@ -21,17 +21,17 @@ const Splash = () => {
               src={config.avatar}
               alt="avatar"
             />
-            <div className="absolute inset-0 ring-1 ring-inset rounded-full ring-black/10 dark:ring-white/10" />
+            <div className="absolute inset-0 ring-1 ring-inset rounded-full ring-black/10 dark:ring-white/10"></div>
           </div>
         )}
-        <div className="flex flex-col justify-between ml-6 space-y-3 leading-none">
+        <div className="flex flex-col justify-between ml-6 space-y-3">
           <h1 className="w-fit text-3xl font-medium">{config.title}</h1>
           <span className="text-zinc-400">{config.description}</span>
           <div className="flex items-center gap-4">
             {config.socials.map(social => (
               <Link key={social.link} href={social.link}>
                 <a
-                  className="inline text-2xl leading-none transition-opacity opacity-50 hover:opacity-100"
+                  className="inline text-2xl transition-opacity opacity-50 hover:opacity-100"
                   title={social.label}
                   aria-label={social.label}
                 >

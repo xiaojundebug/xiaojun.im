@@ -1,10 +1,17 @@
-import React, { MouseEvent, useCallback, useEffect, useMemo, useRef } from 'react'
+import React, { MouseEvent, useEffect, useMemo, useRef } from 'react'
+import config from 'config'
+import { useRouter } from 'next/router'
+import { useSize } from 'ahooks'
+import useBoolean from '@/hooks/useBoolean'
+import useHasMounted from '@/hooks/useHasMounted'
+import useTranslation from '@/hooks/useTranslation'
+import { animated, to, useSpring, useSpringValue, useTransition } from '@react-spring/web'
 import Link from 'next/link'
 import DarkModeToggle from './DarkModeToggle'
-import config from 'config'
-import { useBoolean, useSize } from 'ahooks'
-import { animated, to, useSpring, useSpringValue, useTransition } from '@react-spring/web'
 import BurgerMenu from '@/components/BurgerMenu'
+import MobileOnly from '@/components/MobileOnly'
+import DesktopOnly from '@/components/DesktopOnly'
+import clsx from 'clsx'
 import {
   animationFrameScheduler,
   distinctUntilChanged,
@@ -16,18 +23,15 @@ import {
   throttleTime,
   withLatestFrom,
 } from 'rxjs'
-import useHasMounted from '@/hooks/useHasMounted'
-import useTranslation from '@/hooks/useTranslation'
-import OnlyMobile from '@/components/OnlyMobile'
-import OnlyDesktop from '@/components/OnlyDesktop'
-import { useRouter } from 'next/router'
-import clsx from 'clsx'
 
 export interface HeaderProps {}
 
-const MobileHeader: React.FC<{ menus: { label: string; href: string }[] }> = props => {
-  const { menus } = props
-  const [expanded, { toggle: toggleExpanded, set: setExpanded }] = useBoolean(false)
+const MobileHeader: React.FC<{
+  menus: { label: string; href: string }[]
+  expanded: boolean
+  onBurgerMenuClick: () => void
+}> = props => {
+  const { menus, expanded, onBurgerMenuClick } = props
   const navRef = useRef<HTMLUListElement>(null)
   const size = useSize(navRef.current) || { width: 0, height: 0 }
   const styles = useSpring({
@@ -43,7 +47,7 @@ const MobileHeader: React.FC<{ menus: { label: string; href: string }[] }> = pro
 
   return (
     <div className="px-6 flex items-center justify-between h-[50px] bg-white dark:bg-zinc-900">
-      <BurgerMenu className="cursor-pointer" isOpen={expanded} onChange={toggleExpanded} />
+      <BurgerMenu className="cursor-pointer" isOpen={expanded} onChange={onBurgerMenuClick} />
       <DarkModeToggle />
       <animated.nav
         className="absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-900/100 z-10 border-b border-zinc-400/10 overflow-hidden"
@@ -83,14 +87,14 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
     <div className="prose-container flex items-center justify-between h-[80px]">
       <Link href="/">
         <img
-          className="inline-block h-7 mr-4 cursor-pointer dark:invert"
+          className="inline-block w-8 mr-4 cursor-pointer dark:invert"
           src={config.logo}
           alt="logo"
         />
       </Link>
       <nav>
         <ul
-          className="group flex items-center px-3 ring-1 ring-zinc-900/5 dark:ring-zinc-100/10 rounded-full backdrop-blur-md backdrop-saturate-150 shadow-lg shadow-zinc-800/5"
+          className="group flex items-center px-3 ring-1 ring-zinc-900/5 dark:ring-zinc-100/10 rounded-full bg-gradient-to-b from-zinc-50/70 to-white/70 dark:from-zinc-900/50 dark:to-zinc-700/50 backdrop-blur-md backdrop-saturate-200 shadow-lg shadow-zinc-800/5"
           onMouseMove={onMouseMove}
         >
           {/* Spotlight overlay */}
@@ -104,7 +108,7 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
               ),
             }}
             aria-hidden
-          />
+          ></animated.div>
           {menus.map(menu => (
             <li key={menu.href}>
               <Link href={menu.href}>
@@ -138,7 +142,9 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
 
 const Header: React.FC<HeaderProps> = () => {
   const [visible, { set: setVisible }] = useBoolean(true)
+  const [isExpanded, { toggle: toggleIsExpanded, set: setIsExpanded }] = useBoolean(false)
   const { t } = useTranslation()
+  const router = useRouter()
   const hasMounted = useHasMounted()
   const menus = useMemo(
     () => [
@@ -159,6 +165,9 @@ const Header: React.FC<HeaderProps> = () => {
   useEffect(() => {
     // 进来执行初次判断
     setVisible(window.scrollY <= 500)
+  }, [router])
+
+  useEffect(() => {
     const scroll$ = fromEvent(window, 'scroll').pipe(
       throttleTime(0, animationFrameScheduler),
       map(() => window.scrollY),
@@ -185,6 +194,18 @@ const Header: React.FC<HeaderProps> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    setIsExpanded(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router])
+
+  useEffect(() => {
+    if (!visible) {
+      setIsExpanded(false)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible])
+
   return (
     <header className="relative h-[50px] sm:h-[80px]">
       {barTransitions(
@@ -194,12 +215,16 @@ const Header: React.FC<HeaderProps> = () => {
               className="fixed w-full h-[50px] sm:h-[80px] top-0 z-10"
               style={barStyles}
             >
-              <OnlyMobile>
-                <MobileHeader menus={menus} />
-              </OnlyMobile>
-              <OnlyDesktop>
+              <MobileOnly>
+                <MobileHeader
+                  menus={menus}
+                  expanded={isExpanded}
+                  onBurgerMenuClick={toggleIsExpanded}
+                />
+              </MobileOnly>
+              <DesktopOnly>
                 <DesktopHeader menus={menus} />
-              </OnlyDesktop>
+              </DesktopOnly>
             </animated.div>
           ),
       )}

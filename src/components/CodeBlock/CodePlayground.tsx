@@ -32,8 +32,9 @@ const CodePlayground: React.FC<{
   scope?: ProviderProps['scope']
   editor?: boolean
   lineNumbers?: boolean
+  filename?: string
 }> = props => {
-  const { code: initialCode, language, scope = {}, editor = true, lineNumbers } = props
+  const { code: initialCode, language, scope = {}, editor = true, lineNumbers, filename } = props
   const [code, setCode] = useState(initialCode)
   const [forceUpdate, previewRefreshTrigger] = useForceUpdate()
   const [tabType, setTabType] = useState<TabType>(1)
@@ -58,14 +59,14 @@ const CodePlayground: React.FC<{
     >
       <div className="code-playground relative -mx-[1.5ch] border-2 border-zinc-600/50 bg-zinc-900 rounded-none sm:rounded-xl overflow-hidden">
         <div className="flex items-center justify-between h-8 px-4 bg-zinc-600/50">
-          <span className="text-sm text-white">Code Playground</span>
+          <span className="text-sm text-white">{filename || 'Code Playground'}</span>
           <div className="flex items-center gap-4">
             <ResetButton onClick={resetCode} />
           </div>
         </div>
         {/* 编辑器 */}
         {editor && (
-          <div className="min-h-[200px] max-h-[400px] sm:max-h-[500px] text-white overflow-overlay better-scrollbar">
+          <div className="min-h-[200px] max-h-[400px] sm:max-h-[500px] text-white overflow-auto better-scrollbar">
             <Editor className="playground-editor" fontSize={14} lineNumbers={lineNumbers} />
           </div>
         )}
@@ -98,7 +99,7 @@ const CodePlayground: React.FC<{
               <div className="p-3">
                 {/* 避免 tailwindcss preflight 影响到 preview 组件 */}
                 <div className="unreset">
-                  <LazyLoad className="!h-[360px] !rounded !bg-white !overflow-overlay !better-scrollbar">
+                  <LazyLoad className="!h-[360px] !rounded !bg-white !overflow-auto !better-scrollbar">
                     {preview}
                   </LazyLoad>
                 </div>
@@ -107,7 +108,7 @@ const CodePlayground: React.FC<{
           ),
           2: () => (
             <>
-              <LazyLoad className="h-[360px] overflow-overlay better-scrollbar">
+              <LazyLoad className="h-[360px] overflow-auto better-scrollbar">
                 <Console />
               </LazyLoad>
             </>

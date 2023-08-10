@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styles from './styles.module.scss'
-import { NativeProps, withNativeProps } from '@/utils/native-props'
 import clsx from 'clsx'
 import { animationFrameScheduler, fromEvent, startWith, throttleTime } from 'rxjs'
 import { animated, useSpring } from '@react-spring/web'
@@ -44,7 +42,7 @@ function useScrollSpy(ids: string[]) {
   return activeId
 }
 
-export interface TableOfContentsProps extends NativeProps {
+export interface TableOfContentsProps {
   headings: { id: string; text: string; level: number }[]
 }
 
@@ -71,34 +69,38 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId])
 
-  return withNativeProps(
-    props,
-    <aside className={clsx(styles.tableOfContents, 'absolute left-full h-full ml-24')}>
+  return (
+    <aside className="absolute left-full h-full ml-24">
       <animated.ul
         ref={listRef}
-        className="sticky top-[10vh] list-none max-w-[250px] max-h-[50vh] overflow-overlay text-zinc-500"
+        className="sticky top-[10vh] list-none max-w-[250px] max-h-[50vh] overflow-auto better-scrollbar text-zinc-500"
         scrollTop={scrollTop}
       >
-        {headings.map(heading => (
-          <li
+        {headings.map((heading) => (
+          <animated.li
             key={heading.id}
-            ref={activeId === heading.id ? activeItemRef : null}
-            className={clsx('text-[13px] border-l-2 hover:text-primary transition-colors', {
-              'text-primary border-primary': activeId === heading.id,
-              'border-transparent': activeId !== heading.id,
-            })}
             style={{ paddingLeft: `${heading.level - 2}em` }}
+            ref={activeId === heading.id ? activeItemRef : null}
+            className={clsx('text-[13px] hover:text-primary transition-colors', {
+              'text-primary': activeId === heading.id,
+            })}
           >
             <a
               href={`#${heading.id}`}
-              className="inline-block max-w-full my-1 px-6 tracking-wide truncate align-middle"
+              className="relative inline-block max-w-full my-1 px-6 tracking-wide truncate align-middle"
             >
+              <div
+                className={clsx(
+                  'absolute left-3 top-[calc(50%-2px)] w-[4px] h-[4px] opacity-0 rounded-full bg-zinc-400/50 transition-opacity',
+                  { 'opacity-100': activeId === heading.id },
+                )}
+              ></div>
               {heading.text}
             </a>
-          </li>
+          </animated.li>
         ))}
       </animated.ul>
-    </aside>,
+    </aside>
   )
 }
 

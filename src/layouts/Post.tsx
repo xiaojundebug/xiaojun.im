@@ -23,6 +23,7 @@ import useTitle from '@/hooks/useTitle'
 import * as process from 'process'
 import { NextSeo } from 'next-seo'
 import LinkCard from '@/components/LinkCard'
+import DesktopOnly from '@/components/DesktopOnly'
 
 const components = {
   h1: tagRenderer('h1'),
@@ -173,7 +174,9 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           </div>
           {/* 侧边目录导航 */}
           {config.toc && toc && headings.length > 1 && (
-            <TableOfContents className="hidden sm:block" headings={headings} />
+            <DesktopOnly>
+              <TableOfContents headings={headings} />
+            </DesktopOnly>
           )}
         </div>
         <p className="mt-24 mb-0 text-right text-zinc-500 text-sm italic">

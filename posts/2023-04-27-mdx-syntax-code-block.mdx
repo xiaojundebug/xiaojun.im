@@ -3,7 +3,7 @@ title: MDX Syntax - CodeBlock
 date: '2023-04-27 00:00:02'
 tags:
   - MDX
-updatedOn: '2023-05-06 01:02'
+updatedOn: '2023-08-10 11:48'
 ---
 
 ## Line Numbers
@@ -40,6 +40,29 @@ const line3 = 'This is line 3'
 // lineNumbers is enabled
 const line2 = 'This is line 2'
 const line3 = 'This is line 3'
+```
+
+## Filenames
+
+**Input**
+
+````mdx
+```ts filename="src/utils/clipboard.ts"
+export function copyToClipboard(text: string) {
+  if (navigator && navigator.clipboard && navigator.clipboard.writeText)
+    return navigator.clipboard.writeText(text)
+  return Promise.reject('The Clipboard API is not available.')
+}
+```
+````
+**Output**
+
+```ts filename="src/utils/clipboard.ts"
+export function copyToClipboard(text: string) {
+  if (navigator && navigator.clipboard && navigator.clipboard.writeText)
+    return navigator.clipboard.writeText(text)
+  return Promise.reject('The Clipboard API is not available.')
+}
 ```
 
 ## Line Highlighting in Code Blocks

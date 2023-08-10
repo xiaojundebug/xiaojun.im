@@ -1,7 +1,7 @@
 module.exports = {
   name: 'Xiaojun Zhou',
   title: 'Xiaojun Zhou',
-  description: '不正常人類研究中心',
+  description: '这儿没啥干货，搭建此站只是觉得好玩～ 🐶',
   avatar: '/avatar.png',
   logo: '/logo.svg',
   siteUrl: 'https://www.xiaojun.im',

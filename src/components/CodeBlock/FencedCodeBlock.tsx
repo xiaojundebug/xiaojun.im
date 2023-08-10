@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import Provider, { ProviderProps } from '@/components/playground/Provider'
 import Editor from './Editor'
+import clsx from 'clsx'
 
 // 静态围栏代码块高亮
 const FencedCodeBlock: React.FC<{
@@ -9,8 +10,9 @@ const FencedCodeBlock: React.FC<{
   highlights?: string
   raw?: boolean
   lineNumbers?: boolean
+  filename?: string
 }> = props => {
-  const { language, code, highlights = '', raw, lineNumbers } = props
+  const { language, code, highlights = '', raw, lineNumbers, filename } = props
 
   const highlightLines = useMemo(() => {
     if (!highlights) return []
@@ -81,10 +83,26 @@ const FencedCodeBlock: React.FC<{
   return (
     <Provider language={language} defaultCode={parsedCode}>
       <div className="fenced-code-block relative mt-12 mb-8 -mx-0 sm:-mx-[1.5ch]">
-        <div className="absolute right-8 px-3 -translate-y-full rounded-tl-md rounded-tr-md bg-slate-100 text-slate-600 dark:bg-[#282a36] dark:text-slate-400 font-mono font-medium">
-          {language.toUpperCase()}
-        </div>
-        <div className="max-h-[500px] sm:max-h-[700px] rounded-lg overflow-overlay better-scrollbar bg-slate-100 dark:bg-[#282a36]">
+        {/* language */}
+        {!filename && (
+          <div className="absolute right-8 px-3 -translate-y-full rounded-tl-md rounded-tr-md bg-slate-100 text-zinc-600 dark:bg-[#282a36] dark:text-zinc-400 font-mono font-medium">
+            {language.toUpperCase()}
+          </div>
+        )}
+        {/* filename */}
+        {filename && (
+          <div className="px-6 py-1.5 border-b border-slate-400/10 rounded-tl-lg rounded-tr-lg bg-slate-200 text-slate-500 dark:bg-zinc-700 dark:text-zinc-400 font-mono font-medium">
+            {filename}
+          </div>
+        )}
+        <div
+          className={clsx(
+            'max-h-[500px] sm:max-h-[700px] rounded-bl-lg rounded-br-lg overflow-auto better-scrollbar bg-slate-100 dark:bg-[#282a36]',
+            {
+              'rounded-tl-lg rounded-tr-lg': !filename,
+            },
+          )}
+        >
           <Editor
             className="playground-editor"
             disabled

@@ -7,11 +7,6 @@
     @apply max-w-[73ch] mx-auto px-[1.5ch];
   }
 
-  .overflow-overlay {
-    overflow: auto;
-    overflow: overlay;
-  }
-
   .better-scrollbar {
     &::-webkit-scrollbar-track {
       background-color: transparent;
