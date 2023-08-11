@@ -50,7 +50,7 @@ const MobileHeader: React.FC<{
       <BurgerMenu className="cursor-pointer" isOpen={expanded} onChange={onBurgerMenuClick} />
       <DarkModeToggle />
       <animated.nav
-        className="absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-900/100 z-10 border-b border-zinc-400/10 overflow-hidden"
+        className="absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-900/100 z-30 border-b border-zinc-400/10 overflow-hidden"
         style={styles}
       >
         <ul ref={navRef} className="flex flex-col pb-4">
@@ -212,7 +212,7 @@ const Header: React.FC<HeaderProps> = () => {
         (barStyles, item) =>
           item && (
             <animated.div
-              className="fixed w-full h-[50px] sm:h-[80px] top-0 z-10"
+              className="fixed w-full h-[50px] sm:h-[80px] top-0 z-30"
               style={barStyles}
             >
               <MobileOnly>
