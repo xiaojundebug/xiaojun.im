@@ -15,7 +15,7 @@ export interface CodeBlockProps extends NativeProps {
   highlights?: string
   raw?: boolean
   lineNumbers?: boolean
-  filename?: string
+  title?: string
 }
 
 const CodeBlock: React.FC<CodeBlockProps> = props => {
@@ -28,7 +28,7 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
     highlights,
     raw,
     lineNumbers = config.markdown.lineNumbers,
-    filename,
+    title,
   } = props
   const language = className?.replace(/language-/, '') as Language
 
@@ -47,7 +47,7 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
         highlights={highlights}
         raw={raw}
         lineNumbers={lineNumbers}
-        filename={filename}
+        title={title}
       />
     )
 
@@ -58,7 +58,7 @@ const CodeBlock: React.FC<CodeBlockProps> = props => {
       scope={{ ...builtInScope, ...scope }}
       editor={editor}
       lineNumbers={lineNumbers}
-      filename={filename}
+      title={title}
     />
   )
 }

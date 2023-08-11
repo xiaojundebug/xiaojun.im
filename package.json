@@ -35,7 +35,6 @@
     "prism-react-renderer": "^1.3.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.9.0",
     "react-inspector": "^6.0.1",
     "react-simple-code-editor": "^0.13.1",
     "rehype-autolink-headings": "^6.1.1",

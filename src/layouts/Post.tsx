@@ -4,7 +4,6 @@ import { getMDXComponent, getMDXExport } from 'mdx-bundler/client'
 import Link from 'next/link'
 import dayjs from 'dayjs'
 import HeroImage from '@/components/HeroImage'
-import { HiArrowSmLeft, HiArrowSmRight, HiOutlineClock, HiOutlineCalendar } from 'react-icons/hi'
 import CodeBlock from '@/components/CodeBlock'
 import DarkModeToggle from '@/components/DarkModeToggle'
 import UnorderedList from '@/components/lists/UnorderedList'
@@ -24,6 +23,7 @@ import * as process from 'process'
 import { NextSeo } from 'next-seo'
 import LinkCard from '@/components/LinkCard'
 import DesktopOnly from '@/components/DesktopOnly'
+import { ArrowLeft, ArrowRight, Calender, Clock } from '@/components/icons'
 
 const components = {
   h1: tagRenderer('h1'),
@@ -138,13 +138,13 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
             <span className="flex items-center">
               {/* 创建时间 */}
               <>
-                <HiOutlineCalendar className="mr-1 text-base" />
+                <Calender className="mr-1 text-base" />
                 {dayjs(date).format('LL')}
               </>
               <span className="mx-2">•</span>
               {/* 阅读时长估算 */}
               <>
-                <HiOutlineClock className="mr-1 text-base" />
+                <Clock className="mr-1 text-base" />
                 {readingTime.text}
               </>
             </span>
@@ -190,7 +190,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
               {prevPost ? (
                 <Link href={prevPost.link}>
                   <a className="group flex h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
-                    <HiArrowSmLeft className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
+                    <ArrowLeft className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
                     {prevPost.title}
                   </a>
                 </Link>
@@ -202,7 +202,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
                 <Link href={nextPost.link}>
                   <a className="group flex justify-end h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
                     {nextPost.title}
-                    <HiArrowSmRight className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
+                    <ArrowRight className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
                   </a>
                 </Link>
               ) : null}

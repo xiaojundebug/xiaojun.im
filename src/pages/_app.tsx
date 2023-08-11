@@ -16,7 +16,6 @@ import NextNProgress from 'nextjs-progressbar'
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
 import config from 'config'
-import { IconContext } from 'react-icons'
 
 dayjs.extend(localizedFormat)
 
@@ -33,20 +32,18 @@ function App({
       <>
         <NextNProgress color="#14b8a6" options={{ showSpinner: false }} />
         <ThemeProvider disableTransitionOnChange forcedTheme={Component.theme}>
-          <IconContext.Provider value={{ className: 'icon' }}>
-            <DefaultSeo title={config.title} description={config.description} />
-            <Head>
-              <meta
-                name="viewport"
-                content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
-              />
-              <title>{config.title}</title>
-            </Head>
-            <Header />
-            <PageContainer>{page}</PageContainer>
-            <Footer />
-            <BackToTop />
-          </IconContext.Provider>
+          <DefaultSeo title={config.title} description={config.description} />
+          <Head>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+            />
+            <title>{config.title}</title>
+          </Head>
+          <Header />
+          <PageContainer>{page}</PageContainer>
+          <Footer />
+          <BackToTop />
         </ThemeProvider>
       </>
     ))

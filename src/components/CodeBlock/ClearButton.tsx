@@ -1,7 +1,7 @@
 import React from 'react'
 import { animated } from '@react-spring/web'
-import { TbBan } from 'react-icons/tb'
 import useBoop from '@/hooks/useBoop'
+import { Ban } from '@/components/icons'
 
 const ResetButton: React.FC<{ onClick: () => void }> = props => {
   const { onClick } = props
@@ -14,7 +14,7 @@ const ResetButton: React.FC<{ onClick: () => void }> = props => {
       onMouseEnter={trigger}
       onClick={onClick}
     >
-      <TbBan />
+      <Ban />
     </animated.button>
   )
 }

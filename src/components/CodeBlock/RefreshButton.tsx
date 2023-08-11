@@ -1,7 +1,7 @@
 import React from 'react'
 import { animated } from '@react-spring/web'
-import { TbRefresh } from 'react-icons/tb'
 import useBoop from '@/hooks/useBoop'
+import { Refresh } from '@/components/icons'
 
 const RefreshButton: React.FC<{ onClick: () => void }> = props => {
   const { onClick } = props
@@ -14,7 +14,7 @@ const RefreshButton: React.FC<{ onClick: () => void }> = props => {
       onMouseEnter={trigger}
       onClick={onClick}
     >
-      <TbRefresh onClick={onClick} />
+      <Refresh onClick={onClick} />
     </animated.button>
   )
 }
