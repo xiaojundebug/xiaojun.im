@@ -47,7 +47,7 @@ const MobileHeader: React.FC<{
 
   return (
     <div className="px-6 flex items-center justify-between h-[50px] bg-white dark:bg-zinc-900">
-      <BurgerMenu className="cursor-pointer" isOpen={expanded} onChange={onBurgerMenuClick} />
+      <BurgerMenu isOpen={expanded} onChange={onBurgerMenuClick} />
       <DarkModeToggle />
       <animated.nav
         className="absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-900/100 z-30 border-b border-zinc-400/10 overflow-hidden"
@@ -94,7 +94,7 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
       </Link>
       <nav>
         <ul
-          className="group flex items-center px-3 ring-1 ring-zinc-900/5 dark:ring-zinc-100/10 rounded-full bg-gradient-to-b from-zinc-50/70 to-white/70 dark:from-zinc-900/50 dark:to-zinc-700/50 backdrop-blur-md backdrop-saturate-200 shadow-lg shadow-zinc-800/5"
+          className="group flex items-center px-3 ring-1 ring-zinc-900/5 dark:ring-zinc-100/10 rounded-full bg-gradient-to-b from-zinc-50/70 to-white/70 dark:from-zinc-800/50 dark:to-zinc-700/50 backdrop-blur-md backdrop-saturate-200 shadow-lg shadow-zinc-800/5"
           onMouseMove={onMouseMove}
         >
           {/* Spotlight overlay */}
@@ -124,7 +124,7 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
 
                   <span
                     className={clsx(
-                      'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-primary/0 via-primary/50 dark:via-primary to-primary/0 transition-opacity',
+                      'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-primary/0 via-primary/40 dark:via-primary/60 to-primary/0 transition-opacity',
                       { 'opacity-0': router.route !== menu.href },
                       { 'opacity-100': router.route === menu.href },
                     )}

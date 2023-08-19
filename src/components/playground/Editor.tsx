@@ -10,7 +10,7 @@ export interface EditorProps extends NativeProps {
   fontSize?: number
   disabled?: boolean
   theme?: PrismTheme
-  highlightLines?: number[]
+  highlightedLines?: number[]
   addedLines?: number[]
   removedLines?: number[]
   focusedLines?: number[]
@@ -25,7 +25,7 @@ const Editor: React.FC<EditorProps> = props => {
     fontSize = 16,
     disabled,
     theme,
-    highlightLines = [],
+    highlightedLines = [],
     addedLines = [],
     removedLines = [],
     focusedLines = [],
@@ -65,7 +65,7 @@ const Editor: React.FC<EditorProps> = props => {
                       line,
                       key: i,
                       className: clsx({
-                        highlight: highlightLines.includes(i + 1),
+                        highlighted: highlightedLines.includes(i + 1),
                         added: addedLines.includes(i + 1),
                         removed: removedLines.includes(i + 1),
                         focused: focusedLines.includes(i + 1),

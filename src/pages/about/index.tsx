@@ -44,21 +44,6 @@ const Index: NextPageWithCustomProps = () => {
         <li>Email - <Link href="mailto:362896731@qq.com">362896731@qq.com</Link></li>
         <li>Github - <Link href="https://github.com/xiaojundebug">https://github.com/xiaojundebug</Link></li>
       </ul>
-
-      <h2>🧭 参考</h2>
-      本站灵感与部分代码参考或直接来自以下网站
-      <ul>
-        <li><Link href="https://www.joshwcomeau.com">https://www.joshwcomeau.com</Link></li>
-        <li><Link href="https://leerob.io">https://leerob.io</Link></li>
-        <li><Link href="https://blog.maximeheckel.com">https://blog.maximeheckel.com</Link></li>
-        <li><Link href="https://vuepress.vuejs.org">https://vuepress.vuejs.org</Link></li>
-        <li><Link href="https://vitepress.dev">https://vitepress.dev</Link></li>
-        <li><Link href="https://docusaurus.io">https://docusaurus.io</Link></li>
-        <li><Link href="https://react-spring.dev">https://react-spring.dev</Link></li>
-        <li><Link href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</Link></li>
-        <li><Link href="https://github.com/sanjinhub/hexo-theme-geek">https://github.com/sanjinhub/hexo-theme-geek</Link></li>
-        <li><Link href="https://github.com/nanxiaobei/hugo-paper">https://github.com/nanxiaobei/hugo-paper</Link></li>
-      </ul>
     </div>
   )
 }

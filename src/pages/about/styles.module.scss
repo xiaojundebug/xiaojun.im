@@ -16,6 +16,6 @@
   }
 
   a {
-    @apply text-primary underline hover:brightness-75;
+    @apply text-primary font-medium underline underline-offset-4 decoration-primary/20 hover:decoration-primary transition;
   }
 }

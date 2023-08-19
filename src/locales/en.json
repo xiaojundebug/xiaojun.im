@@ -9,5 +9,8 @@
   "tags-page.title": "Tags",
   "tags-page.desc": "{{ count }} tags in total",
 
-  "blogroll-page.title": "Blogroll"
+  "blogroll-page.title": "Blogroll",
+
+  "code.copy": "Copy",
+  "code.copied": "Copied!"
 }

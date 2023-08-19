@@ -38,7 +38,6 @@ function App({
               name="viewport"
               content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
             />
-            <title>{config.title}</title>
           </Head>
           <Header />
           <PageContainer>{page}</PageContainer>

@@ -1,11 +1,5 @@
 import React from 'react'
 
-// max-width: 100px;
-// width: 100%;
-// margin: 64px auto;
-// height: 10px;
-// display: block;
-// overflow: visible;
 const HorizontalRule = () => {
   return (
     <svg className="block overflow-visible w-full max-w-[100px] h-[10px] mx-auto my-16" fill="none" xmlns="http://www.w3.org/2000/svg">

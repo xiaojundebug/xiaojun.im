@@ -17,10 +17,10 @@ const LinkCard: React.FC<LinkCardProps> = props => {
       href={url}
     >
       <div className="w-0 flex-1 px-3">
-        <span className="block text-slate-500 dark:text-slate-400 text-lg leading-tight	truncate">
+        <span className="block text-slate-500 dark:text-zinc-400 text-lg leading-tight	truncate">
           {title}
         </span>
-        <span className="block mt-1 text-slate-400 dark:text-slate-500 text-sm leading-tight	truncate">
+        <span className="block mt-1 text-slate-400 dark:text-zinc-500 text-sm leading-tight	truncate">
           {description}
         </span>
       </div>

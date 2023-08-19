@@ -6,8 +6,8 @@ import clsx from 'clsx'
 import { GitHub, Link as Friends } from '@/components/icons'
 
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
-  GitHub: <GitHub className="text-lg" />,
-  友链: <Friends className="text-lg" />,
+  GitHub: <GitHub className="text-lg" aria-hidden />,
+  友链: <Friends className="text-lg" aria-hidden />,
 }
 
 const Splash = () => {

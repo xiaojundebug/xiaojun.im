@@ -24,7 +24,7 @@ const ListItem: React.FC<JSX.IntrinsicElements['li']> = props => {
         {childArr[0].props.checked ? (
           <Checked className="text-lg text-primary" />
         ) : (
-          <Unchecked className="text-lg text-primary" />
+          <Unchecked className="text-lg text-primary" aria-hidden />
         )}
       </span>
     ),
@@ -32,7 +32,7 @@ const ListItem: React.FC<JSX.IntrinsicElements['li']> = props => {
 
   return withNativeProps(
     props,
-    <li className={clsx('mdx-li flex items-start my-4')}>
+    <li className="mdx-li flex items-start my-4">
       {getMarker()}
       <div className="flex-1">{type !== 'tl' ? children : childArr?.slice(2)}</div>
     </li>,

@@ -1,7 +1,7 @@
 import React from 'react'
 import { IconProps } from './types'
 
-const Clock: React.FC<IconProps> = props => {
+const Calender: React.FC<IconProps> = props => {
   return (
     <svg
       width="1em"
@@ -9,7 +9,6 @@ const Clock: React.FC<IconProps> = props => {
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      aria-hidden
       {...props}
     >
       <path
@@ -23,4 +22,4 @@ const Clock: React.FC<IconProps> = props => {
   )
 }
 
-export default Clock
+export default Calender

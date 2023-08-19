@@ -14,7 +14,7 @@ const HeroImage: React.FC<HeroImage> = props => {
 
   const loading = (
     <div className="flex h-full items-center justify-center bg-zinc-200/70 dark:bg-zinc-600/20 text-slate-500/50">
-      <Loading className="text-4xl animate-spin" />
+      <Loading className="text-4xl animate-spin" aria-hidden />
     </div>
   )
 

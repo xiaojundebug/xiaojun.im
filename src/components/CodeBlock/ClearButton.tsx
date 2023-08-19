@@ -1,22 +1,18 @@
 import React from 'react'
-import { animated } from '@react-spring/web'
-import useBoop from '@/hooks/useBoop'
 import { Ban } from '@/components/icons'
 
-const ResetButton: React.FC<{ onClick: () => void }> = props => {
+const ClearButton: React.FC<{ onClick: () => void }> = props => {
   const { onClick } = props
-  const [style, trigger] = useBoop({ scale: 1.1 })
 
   return (
-    <animated.button
-      className="cursor-pointer text-zinc-300 text-lg"
-      style={style as any}
-      onMouseEnter={trigger}
+    <button
+      className="cursor-pointer text-zinc-400 text-lg hover:text-zinc-300 transition-colors"
       onClick={onClick}
+      aria-label="refresh"
     >
-      <Ban />
-    </animated.button>
+      <Ban onClick={onClick} aria-hidden />
+    </button>
   )
 }
 
-export default ResetButton
+export default ClearButton

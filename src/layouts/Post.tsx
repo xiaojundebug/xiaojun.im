@@ -18,12 +18,12 @@ import config from 'config'
 import useTranslation from '@/hooks/useTranslation'
 import tagRenderer from '@/utils/tag-renderer'
 import HorizontalRule from '@/components/HorizontalRule'
-import useTitle from '@/hooks/useTitle'
 import * as process from 'process'
 import { NextSeo } from 'next-seo'
 import LinkCard from '@/components/LinkCard'
 import DesktopOnly from '@/components/DesktopOnly'
 import { ArrowLeft, ArrowRight, Calender, Clock } from '@/components/icons'
+import LinkRenderer from '@/components/LinkRenderer'
 
 const components = {
   h1: tagRenderer('h1'),
@@ -33,7 +33,7 @@ const components = {
   h5: tagRenderer('h5'),
   h6: tagRenderer('h6'),
   p: tagRenderer('p'),
-  a: tagRenderer('a'),
+  a: LinkRenderer,
   blockquote: tagRenderer('blockquote'),
   table: tagRenderer('table'),
   thead: tagRenderer('thead'),
@@ -112,11 +112,10 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
     [code],
   )
 
-  useTitle(title)
-
   return (
     <>
       <NextSeo
+        title={title}
         openGraph={{
           type: 'article',
           title,
@@ -138,13 +137,13 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
             <span className="flex items-center">
               {/* 创建时间 */}
               <>
-                <Calender className="mr-1 text-base" />
+                <Calender className="mr-1 text-base" aria-hidden />
                 {dayjs(date).format('LL')}
               </>
               <span className="mx-2">•</span>
               {/* 阅读时长估算 */}
               <>
-                <Clock className="mr-1 text-base" />
+                <Clock className="mr-1 text-base" aria-hidden />
                 {readingTime.text}
               </>
             </span>
@@ -155,7 +154,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           <div className="flex items-center flex-wrap m-auto mt-6 text-sm gap-2 sm:gap-3">
             {tags.map((tag: string) => (
               <Link key={tag} href={`/tags/${tag}`}>
-                <a className="bg-teal-500/10 text-teal-500 px-2.5 rounded-full">#{tag}</a>
+                <a className="bg-primary/10 text-primary px-2.5 rounded-full">#{tag}</a>
               </Link>
             ))}
           </div>
@@ -190,7 +189,10 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
               {prevPost ? (
                 <Link href={prevPost.link}>
                   <a className="group flex h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
-                    <ArrowLeft className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2" />
+                    <ArrowLeft
+                      className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2"
+                      aria-hidden
+                    />
                     {prevPost.title}
                   </a>
                 </Link>
@@ -202,7 +204,10 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
                 <Link href={nextPost.link}>
                   <a className="group flex justify-end h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
                     {nextPost.title}
-                    <ArrowRight className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2" />
+                    <ArrowRight
+                      className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2"
+                      aria-hidden
+                    />
                   </a>
                 </Link>
               ) : null}
