@@ -7,7 +7,7 @@ const Footer = () => {
       <span className="font-medium">
         Built with <a href="https://nextjs.org" className="text-primary no-underline">Next.js</a> • Deployed on <a href="https://vercel.com" className="text-primary">Vercel</a>
       </span>
-      <div className="mt-2 opacity-50">
+      <div className="mt-2 text-zinc-500">
         &copy;{new Date().getFullYear()}&nbsp;{config.name}
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 // https://www.joshwcomeau.com/react/the-perils-of-rehydration/
-const useHasMounted = () => {
+function useHasMounted() {
   const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {

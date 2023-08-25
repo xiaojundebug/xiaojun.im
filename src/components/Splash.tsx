@@ -1,8 +1,6 @@
 import React from 'react'
-import styles from './styles.module.scss'
 import config from 'config'
 import Link from 'next/link'
-import clsx from 'clsx'
 import { GitHub, Link as Friends } from '@/components/icons'
 
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
@@ -12,7 +10,7 @@ const SOCIAL_ICONS: Record<string, React.ReactNode> = {
 
 const Splash = () => {
   return (
-    <div className={clsx(styles.splash, 'relative my-12 sm:my-16')}>
+    <div className="'relative my-12 sm:my-16'">
       <div className="flex items-center">
         {config.avatar && (
           <div className="relative flex-shrink-0">
@@ -25,8 +23,10 @@ const Splash = () => {
           </div>
         )}
         <div className="flex flex-col justify-between ml-6 space-y-3">
-          <h1 className="w-fit text-3xl font-medium">{config.title}</h1>
-          <span className="text-zinc-400">{config.description}</span>
+          <h1 className="w-fit text-3xl font-medium text-primary bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+            {config.title}
+          </h1>
+          <span className="text-zinc-500">{config.description}</span>
           <div className="flex items-center gap-4">
             {config.socials.map(social => (
               <Link key={social.link} href={social.link}>

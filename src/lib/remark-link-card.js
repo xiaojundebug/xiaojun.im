@@ -8,6 +8,7 @@ export default function remarkLinkCard() {
     // 一个单独的 link 的 mdast 有什么特征？
     // 1. parent 是一个 paragraph
     // 2. parent 的 children 长度为 1，且该 child 的 type 为 text
+    // 3. 不能在 list item 中
     const promises = []
     visit(tree, 'paragraph', (node, index, parent) => {
       const children = node.children || []

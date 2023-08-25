@@ -3,54 +3,37 @@ import LazyLoad from '@/components/LazyLoad'
 
 export interface YouTubeProps {
   /** YouTube id */
-  videoId?: string
+  vid?: string
   /** YouTube Playlist id */
-  playlistId?: string
-  /** Aspect ratio of YouTube video */
-  aspectRatio?: string
+  lid?: string
   /** Skip to a time in the video */
-  skipTo?: {
-    h?: number
-    m: number
-    s: number
-  }
+  start?: number
   /** Autoplay the video */
-  autoPlay?: boolean
+  autoplay?: boolean
   /** No Cookie option */
   noCookie?: boolean
 }
 
 const YouTube: React.FC<YouTubeProps> = ({
-  videoId,
-  playlistId,
-  aspectRatio = '16 / 9',
-  autoPlay = false,
-  skipTo = { h: 0, m: 0, s: 0 },
+  vid,
+  lid,
+  autoplay = false,
+  start = 0,
   noCookie = false,
 }) => {
-  const { h, m, s } = skipTo
-
-  const tH = h! * 60
-  const tM = m * 60
-
-  const startTime = tH + tM + s
-
   const provider = noCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com'
   const baseUrl = `${provider}/embed/`
   const src = `${baseUrl}${
-    videoId
-      ? `${videoId}?&autoplay=${autoPlay}&start=${startTime}`
-      : `&videoseries?list=${playlistId}`
+    vid ? `${vid}?&autoplay=${autoplay ? 1 : 0}&start=${start}` : `videoseries?list=${lid}`
   }`
 
   return (
-    <LazyLoad className="relative w-full bg-zinc-500/10" style={{ aspectRatio }}>
+    <LazyLoad className="relative w-full bg-zinc-400/10 aspect-video">
       <iframe
         className="absolute left-0 top-0 w-full h-full"
-        title={`YouTube-${videoId || playlistId}`}
+        title={`YouTube-${vid || lid}`}
         src={src}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowFullScreen
       ></iframe>
     </LazyLoad>

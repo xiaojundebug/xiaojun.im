@@ -1,16 +1,13 @@
 import { ImageResponse } from '@vercel/og'
 import type { NextApiRequest } from 'next'
+import siteConfig from 'config'
 
 export const config = {
   runtime: 'experimental-edge',
 }
 
-export default async function (req: NextApiRequest) {
+async function og(req: NextApiRequest) {
   const { searchParams } = new URL(req.url!)
-  const title = searchParams.get('title')
-  const fontData = await fetch(
-    'https://rawcdn.githack.com/xiaojundebug/fonts/a503a5eb4b366306d946a4bb9af0206d70fa5fe0/SmileySans-Oblique.otf',
-  ).then(res => res.arrayBuffer())
 
   return new ImageResponse(
     (
@@ -20,31 +17,38 @@ export default async function (req: NextApiRequest) {
           alignItems: 'center',
           width: '100%',
           height: '100%',
-          background: `linear-gradient(30deg, #fc7474, #ffb26a)`,
+          background: '#fff',
         }}
       >
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
             width: '100%',
             padding: '0 150px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 32,
           }}
         >
-          <h1 style={{ fontFamily: 'smiley-sans', fontSize: 64, color: '#fff' }}>{title}</h1>
+          <svg
+            width="150"
+            height="120"
+            viewBox="0 0 150 120"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="#000"
+          >
+            <path d="M46.1538 0H69.2307L57.6923 19.9852L46.1538 39.9704L57.6923 59.9556L69.2307 79.9408L46.1538 79.9408L34.6154 59.9556L23.0769 79.9408H0L11.5385 59.9556L23.0769 39.9704L11.5385 19.9852L0 0H23.0769L34.6154 19.9852L46.1538 0Z" />
+            <path d="M126.923 19.9852H150L138.462 39.9704L126.923 59.9556L115.385 79.9408L103.846 99.926L92.3077 119.911H69.2307L57.6923 99.926H80.7692L92.3077 79.9408L103.846 59.9556L115.385 39.9704H92.3077L103.846 19.9852H126.923Z" />
+          </svg>
+          <h1 style={{ fontSize: 84, color: '#000' }}>{siteConfig.name}</h1>
         </div>
       </div>
     ),
     {
       width: 1200,
       height: 630,
-      fonts: [
-        {
-          name: 'smiley-sans',
-          data: fontData,
-          style: 'normal',
-        },
-      ],
     },
   )
 }
+
+export default og

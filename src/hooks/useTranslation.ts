@@ -5,11 +5,11 @@ import zhCN from '../locales/zh-CN.json'
 
 const { language } = config
 const json = {
-  'en': en,
+  en: en,
   'zh-CN': zhCN,
 }[language]
 
-const useTranslation = () => {
+function useTranslation() {
   const t = useCallback((key: keyof typeof en, values: Record<string, any> = {}) => {
     if (!json || (json && !json[key])) return key
     return json[key].replace(/{{\s*(\w+)\s*}}/g, (match, key: string) => values[key])

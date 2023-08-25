@@ -1,5 +1,6 @@
 import React from 'react'
 import { useRouter } from 'next/router'
+import DarkModeOnly from '@/components/DarkModeOnly'
 
 const title = 'Whooops!'
 const message = "Sorry, the page you are looking for doesn't exist"
@@ -16,11 +17,17 @@ const NotFound: NextPageWithCustomProps = () => {
           Go Back
         </button>
       </div>
-      <img
-        className="w-60 lg:w-[500px] mt-12 lg:mt-0 ml-0 lg:ml-24 animate-floating"
-        src="/404.svg"
-        alt="404 not found"
-      />
+      <div className="relative mt-12 lg:mt-0 ml-0 lg:ml-24 animate-floating">
+        <DarkModeOnly>
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: `radial-gradient(closest-side, rgba(42, 38, 75, 0.8), transparent)`,
+            }}
+          ></div>
+        </DarkModeOnly>
+        <img className="relative w-60 lg:w-[500px]" src="/404.svg" alt="404 not found" />
+      </div>
     </div>
   )
 }

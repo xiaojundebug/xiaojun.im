@@ -4,18 +4,18 @@ import LazyLoad from '@/components/LazyLoad'
 export interface BilibiliProps {
   aid: string
   bvid: string
-  cid: string
+  cid?: string
+  page?: number
 }
 
 export const Bilibili: React.FC<BilibiliProps> = props => {
-  const { aid, bvid, cid } = props
+  const { aid, bvid, cid = '', page = 1 } = props
 
   return (
-    <LazyLoad className="relative w-full aspect-video bg-zinc-500/10">
+    <LazyLoad className="relative w-full bg-zinc-400/10 aspect-video">
       <iframe
         className="absolute left-0 top-0 w-full h-full"
-        src={`//player.bilibili.com/player.html?aid=${aid}&bvid=${bvid}&cid=${cid}&page=1&autoplay=0`}
-        frameBorder="0"
+        src={`//player.bilibili.com/player.html?aid=${aid}&bvid=${bvid}&cid=${cid}&page=${page}&autoplay=0`}
         allowFullScreen
       ></iframe>
     </LazyLoad>

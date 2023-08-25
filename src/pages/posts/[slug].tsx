@@ -29,7 +29,7 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 
@@ -78,6 +78,5 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ pa
       prevPost: prev ? { link: `/posts/${prev.slug}`, title: prev.frontmatter.title } : null,
       nextPost: next ? { link: `/posts/${next.slug}`, title: next.frontmatter.title } : null,
     },
-    revalidate: 60 * 60 * 24
   }
 }

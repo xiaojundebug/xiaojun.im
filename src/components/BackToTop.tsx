@@ -44,11 +44,13 @@ const BackToTop = () => {
       item && (
         <animated.div
           ref={ref}
-          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 p-3 rounded-full bg-primary cursor-pointer z-50"
+          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 z-50 p-3 rounded-full cursor-pointer
+            border border-zinc-400/20
+            dark:bg-zinc-900 dark:border-none"
           onClick={backToTop}
           style={styles}
         >
-          <ArrowUp className="text-xl text-white" aria-hidden />
+          <ArrowUp className="text-xl text-black dark:text-white" aria-hidden />
         </animated.div>
       ),
   )

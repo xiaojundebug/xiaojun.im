@@ -34,7 +34,10 @@ const CopyButton: React.FC<CopyButtonProps> = props => {
       {transitions((style, item) =>
         !item ? (
           <animated.div
-            className="absolute inset-0 -left-[1px] flex items-center justify-center gap-0.5 text-slate-400 dark:text-zinc-400 group-hover/clipboard:text-slate-500 dark:group-hover/clipboard:text-zinc-300"
+            className="absolute inset-0 -left-[1px] flex items-center justify-center gap-0.5 text-slate-400
+              group-hover/clipboard:text-slate-500
+              dark:text-zinc-400
+              dark:group-hover/clipboard:text-zinc-300"
             style={style}
           >
             <Copy

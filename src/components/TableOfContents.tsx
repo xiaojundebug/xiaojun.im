@@ -69,36 +69,72 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId])
 
+  function isActivated(heading: { id: string; text: string; level: number }) {
+    if (heading.id === activeId) return true
+
+    let idx = headings.findIndex(h => h.id === activeId)
+    const currentHeading = headings[idx]
+
+    if (!currentHeading || currentHeading.level === 1) return false
+
+    while (--idx >= 0) {
+      const h = headings[idx]
+
+      if (h.level > headings[idx + 1].level) return false
+      if (h.level < headings[idx + 1].level && h.id === heading.id) return true
+    }
+
+    return false
+  }
+
   return (
     <aside className="absolute left-full h-full ml-24">
       <animated.ul
         ref={listRef}
-        className="sticky top-[10vh] list-none max-w-[250px] max-h-[50vh] overflow-auto better-scrollbar text-zinc-500"
+        className="group/toc sticky top-[10vh] list-none max-w-[250px] max-h-[50vh] overflow-auto better-scrollbar"
         scrollTop={scrollTop}
       >
-        {headings.map((heading) => (
-          <animated.li
-            key={heading.id}
-            style={{ paddingLeft: `${heading.level - 2}em` }}
-            ref={activeId === heading.id ? activeItemRef : null}
-            className={clsx('text-[13px] hover:text-primary transition-colors', {
-              'text-primary': activeId === heading.id,
-            })}
-          >
-            <a
-              href={`#${heading.id}`}
-              className="relative inline-block max-w-full my-1 px-6 tracking-wide truncate align-middle"
-            >
-              <div
+        {headings.map(heading => {
+          const activated = isActivated(heading)
+
+          return (
+            <animated.li key={heading.id} ref={activeId === heading.id ? activeItemRef : null}>
+              <a
+                href={`#${heading.id}`}
                 className={clsx(
-                  'absolute left-3 top-[calc(50%-2px)] w-[4px] h-[4px] opacity-0 rounded-full bg-zinc-400/50 transition-opacity',
-                  { 'opacity-100': activeId === heading.id },
+                  'group relative flex items-center gap-2 max-w-full my-1 text-xs text-zinc-500/80 leading-loose hover:text-zinc-800 dark:hover:text-zinc-50',
+                  {
+                    '!text-zinc-800 dark:!text-zinc-50': activated,
+                  },
                 )}
-              ></div>
-              {heading.text}
-            </a>
-          </animated.li>
-        ))}
+              >
+                <div className="w-[20px]">
+                  <div
+                    className={clsx(
+                      'h-[4px] rounded-full bg-black/10 dark:bg-white/10 group-hover:bg-black/50 dark:group-hover:bg-white/50 transition-all duration-500',
+                      {
+                        '!bg-black/50 dark:!bg-white/50': activated,
+                      },
+                    )}
+                    style={{ width: heading.level > 2 ? 10 : 16 }}
+                  ></div>
+                </div>
+                <span
+                  className={clsx(
+                    'opacity-0 group-hover/toc:opacity-100 transition-all duration-500 truncate',
+                    {
+                      'ml-2': heading.level !== 2,
+                      'font-medium': heading.level === 2,
+                      'opacity-100': activated,
+                    },
+                  )}
+                >
+                  {heading.text}
+                </span>
+              </a>
+            </animated.li>
+          )
+        })}
       </animated.ul>
     </aside>
   )

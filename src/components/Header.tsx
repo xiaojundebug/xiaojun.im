@@ -1,11 +1,11 @@
-import React, { MouseEvent, useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import config from 'config'
 import { useRouter } from 'next/router'
 import { useSize } from 'ahooks'
 import useBoolean from '@/hooks/useBoolean'
 import useHasMounted from '@/hooks/useHasMounted'
 import useTranslation from '@/hooks/useTranslation'
-import { animated, to, useSpring, useSpringValue, useTransition } from '@react-spring/web'
+import { animated, to, useSpring, useTransition } from '@react-spring/web'
 import Link from 'next/link'
 import DarkModeToggle from './DarkModeToggle'
 import BurgerMenu from '@/components/BurgerMenu'
@@ -23,6 +23,7 @@ import {
   throttleTime,
   withLatestFrom,
 } from 'rxjs'
+import useSpotlight from '@/hooks/useSpotlight'
 
 export interface HeaderProps {}
 
@@ -46,11 +47,11 @@ const MobileHeader: React.FC<{
   })
 
   return (
-    <div className="px-6 flex items-center justify-between h-[50px] bg-white dark:bg-zinc-900">
+    <div className="px-6 flex items-center justify-between h-[50px] bg-white dark:bg-zinc-950">
       <BurgerMenu isOpen={expanded} onChange={onBurgerMenuClick} />
       <DarkModeToggle />
       <animated.nav
-        className="absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-900/100 z-30 border-b border-zinc-400/10 overflow-hidden"
+        className="absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-950 z-30 border-b border-zinc-400/10 overflow-hidden"
         style={styles}
       >
         <ul ref={navRef} className="flex flex-col pb-4">
@@ -72,19 +73,12 @@ const MobileHeader: React.FC<{
 const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = props => {
   const { menus } = props
   const router = useRouter()
-  const spotlightX = useSpringValue(0)
-  const spotlightY = useSpringValue(0)
-  const spotlightR = useSpringValue(0)
-
-  const onMouseMove = ({ currentTarget, clientX, clientY }: MouseEvent) => {
-    const bounds = currentTarget.getBoundingClientRect()
-    spotlightX.set(clientX - bounds.left)
-    spotlightY.set(clientY - bounds.top)
-    spotlightR.set(Math.sqrt(bounds.width ** 2 + bounds.height ** 2) / 2.5)
-  }
+  const [{ x: spotX, y: spotY, r: spotR }, onMouseMove] = useSpotlight()
 
   return (
-    <div className="prose-container flex items-center justify-between h-[80px]">
+    <div
+      className="prose-container flex items-center justify-between h-[80px]"
+    >
       <Link href="/">
         <img
           className="inline-block w-8 mr-4 cursor-pointer dark:invert"
@@ -94,15 +88,15 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
       </Link>
       <nav>
         <ul
-          className="group flex items-center px-3 ring-1 ring-zinc-900/5 dark:ring-zinc-100/10 rounded-full bg-gradient-to-b from-zinc-50/70 to-white/70 dark:from-zinc-800/50 dark:to-zinc-700/50 backdrop-blur-md backdrop-saturate-200 shadow-lg shadow-zinc-800/5"
+          className="group flex items-center px-3 ring-1 ring-zinc-900/5 dark:ring-zinc-100/10 rounded-full bg-gradient-to-b from-zinc-50/70 to-white/70 dark:from-zinc-900/70 dark:to-zinc-800/70 backdrop-blur backdrop-saturate-200 shadow-lg shadow-zinc-800/5"
           onMouseMove={onMouseMove}
         >
           {/* Spotlight overlay */}
           <animated.div
-            className="pointer-events-none absolute -inset-px rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100 text-primary/[0.12]"
+            className="pointer-events-none absolute -inset-px rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-primary/[0.12]"
             style={{
               background: to(
-                [spotlightX, spotlightY, spotlightR],
+                [spotX, spotY, spotR],
                 (x, y, r) =>
                   `radial-gradient(${r}px circle at ${x}px ${y}px, currentColor 0%, transparent 65%)`,
               ),
@@ -121,7 +115,6 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
                   )}
                 >
                   {menu.label}
-
                   <span
                     className={clsx(
                       'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-primary/0 via-primary/40 dark:via-primary/60 to-primary/0 transition-opacity',

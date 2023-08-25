@@ -18,7 +18,7 @@ const BurgerMenu: React.FC<BurgerMenuProps> = props => {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      className="fill-zinc-800 dark:fill-zinc-50 cursor-pointer"
+      className="fill-current cursor-pointer"
       onClick={() => onChange(!isOpen)}
     >
       <animated.rect width="20" height="2" rx="1" style={{ ...line1, transformBox: 'fill-box', transformOrigin: 'center' }}  />

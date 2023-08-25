@@ -25,7 +25,10 @@ const AllPosts: React.FC<AllPostsProps> = props => {
         <Splash />
         {formattedPosts.map(([year, postsByYear], index) => (
           <Fragment key={index}>
-            <h2 className="font-medium text-2xl before:content-['#_'] before:text-primary">
+            <h2
+              className="font-medium text-2xl
+                before:content-['#_'] before:text-primary"
+            >
               {year}
             </h2>
             <PostList posts={postsByYear} />

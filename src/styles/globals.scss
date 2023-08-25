@@ -43,10 +43,13 @@ body {
 body {
   font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,
     helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
-  font-size: 16px;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  @apply text-zinc-800 bg-white dark:text-zinc-50 dark:bg-zinc-900;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  @apply text-base text-zinc-800 bg-white dark:text-zinc-50 dark:bg-zinc-950;
 
   ::selection {
     @apply bg-primary/20;
