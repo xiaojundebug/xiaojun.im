@@ -1,11 +1,13 @@
+'use client'
+
 import React from 'react'
-import { useRouter } from 'next/router'
 import DarkModeOnly from '@/components/DarkModeOnly'
+import { useRouter } from 'next/navigation'
 
 const title = 'Whooops!'
 const message = "Sorry, the page you are looking for doesn't exist"
 
-const NotFound: NextPageWithCustomProps = () => {
+export default function NotFound() {
   const router = useRouter()
 
   return (
@@ -31,5 +33,3 @@ const NotFound: NextPageWithCustomProps = () => {
     </div>
   )
 }
-
-export default NotFound

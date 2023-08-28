@@ -1,6 +1,5 @@
-import React, { useContext, useMemo } from 'react'
+import React, { JSX, useContext, useMemo } from 'react'
 import { ListContext } from '@/components/lists/ListProvider'
-import clsx from 'clsx'
 import { withNativeProps } from '@/utils/native-props'
 import { ArrowRight, Checked, Unchecked } from '@/components/icons'
 

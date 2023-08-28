@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { JSX } from 'react'
 import ListProvider from '@/components/lists/ListProvider'
 import { withNativeProps } from '@/utils/native-props'
 

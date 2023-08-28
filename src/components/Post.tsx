@@ -1,9 +1,10 @@
+'use client'
+
 import React, { DependencyList, useEffect, useMemo, useState } from 'react'
 import TableOfContents, { TableOfContentsProps } from '@/components/TableOfContents'
 import { getMDXComponent, getMDXExport } from 'mdx-bundler/client'
 import NextLink from 'next/link'
 import dayjs from 'dayjs'
-import HeroImage from '@/components/HeroImage'
 import CodeBlock from '@/components/CodeBlock'
 import DarkModeToggle from '@/components/DarkModeToggle'
 import UnorderedList from '@/components/lists/UnorderedList'
@@ -12,14 +13,14 @@ import ListItem from '@/components/lists/ListItem'
 import config from 'config'
 import useTranslation from '@/hooks/useTranslation'
 import tagRenderer from '@/utils/tag-renderer'
+import Image from '@/components/Image'
 import HorizontalRule from '@/components/HorizontalRule'
-import * as process from 'process'
-import { NextSeo } from 'next-seo'
 import LinkCard from '@/components/LinkCard'
 import DesktopOnly from '@/components/DesktopOnly'
 import { ArrowLeft, ArrowRight, Calender, Clock } from '@/components/icons'
 import Link from '@/components/Link'
 import * as embeds from '@/components/embeds'
+import NextImage from 'next/image'
 
 const components = {
   h1: tagRenderer('h1'),
@@ -36,10 +37,10 @@ const components = {
   tr: tagRenderer('tr'),
   th: tagRenderer('th'),
   td: tagRenderer('td'),
-  img: tagRenderer('img'),
   em: tagRenderer('em'),
   strong: tagRenderer('strong'),
   del: tagRenderer('del'),
+  img: Image,
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
@@ -73,29 +74,22 @@ function useHeadings(deps: DependencyList = []) {
   return headings
 }
 
-export interface PostLayoutProps {
-  slug: string
+export interface PostProps {
   code: string
   frontmatter: PostFrontmatter
   prevPost?: { link: string; title: string }
   nextPost?: { link: string; title: string }
+  heroImageInfo?: { src: string; width: number; height: number; lqip: string }
 }
 
-const PostLayout: React.FC<PostLayoutProps> = props => {
+const Post: React.FC<PostProps> = props => {
   const { t } = useTranslation()
   const {
     code,
-    frontmatter: {
-      title,
-      date,
-      updatedOn,
-      tags,
-      toc = true,
-      heroImage,
-      heroImageAspectRatio = '16 / 9',
-    },
+    frontmatter: { title, date, updatedOn, tags, toc = true, heroImage },
     prevPost,
     nextPost,
+    heroImageInfo,
   } = props
   const headings = useHeadings([code])
   const Component = useMemo(() => getMDXComponent(code), [code])
@@ -106,20 +100,6 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
 
   return (
     <>
-      <NextSeo
-        title={title}
-        openGraph={{
-          type: 'article',
-          title,
-          images: [
-            {
-              url: `${
-                process.env.NODE_ENV === 'development' ? 'http://localhost:3002' : config.siteUrl
-              }/api/og`,
-            },
-          ],
-        }}
-      />
       <div className="prose-container break-all">
         <h1 className="mt-14 sm:mt-16 text-2xl sm:text-3xl text-black dark:text-white !leading-snug tracking-tight font-medium">
           {title}
@@ -130,7 +110,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
               {/* 创建时间 */}
               <>
                 <Calender className="mr-1 text-base" aria-hidden />
-                {dayjs(date).format('LL')}
+                {dayjs(date).format('MMMM D, YYYY')}
               </>
               <span className="mx-2">•</span>
               {/* 阅读时长估算 */}
@@ -145,17 +125,29 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
         {tags && tags.length > 0 && (
           <div className="flex items-center flex-wrap m-auto mt-6 text-sm gap-2 sm:gap-3">
             {tags.map((tag: string) => (
-              <NextLink key={tag} href={`/tags/${tag}`}>
-                <a className="bg-primary/10 text-primary px-2.5 rounded-full">#{tag}</a>
+              <NextLink
+                key={tag}
+                className="bg-primary/10 text-primary px-2.5 rounded-full"
+                href={`/tags/${tag}`}
+              >
+                #{tag}
               </NextLink>
             ))}
           </div>
         )}
         <div className="relative flex w-full">
           <div className="flex-1 w-0">
-            {/* 文章顶部图片 */}
-            {heroImage && (
-              <HeroImage className="mt-6" src={heroImage} aspectRatio={heroImageAspectRatio} />
+            {/* hero image */}
+            {heroImage && heroImageInfo && (
+              <NextImage
+                className="mt-6"
+                src={heroImageInfo.src}
+                alt="Hero Image"
+                width={heroImageInfo.width}
+                height={heroImageInfo.height}
+                placeholder="blur"
+                blurDataURL={heroImageInfo.lqip}
+              />
             )}
             {/* markdown 内容 */}
             <article className="markdown-body w-full mt-10">
@@ -171,7 +163,7 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
           )}
         </div>
         <p className="mt-24 mb-0 text-right text-zinc-500 text-sm italic">
-          {t('post-page.last-updated', { date: dayjs(updatedOn || date).format('LL') })}
+          {t('post-page.last-updated', { date: dayjs(updatedOn || date).format('MMMM D, YYYY') })}
         </p>
         <HorizontalRule />
         {config.adjacentPosts && (
@@ -179,28 +171,30 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
             {/* 上一篇 */}
             <span className="w-1/2">
               {prevPost ? (
-                <NextLink href={prevPost.link}>
-                  <a className="group flex h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
-                    <ArrowLeft
-                      className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2"
-                      aria-hidden
-                    />
-                    {prevPost.title}
-                  </a>
+                <NextLink
+                  className="group flex h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2"
+                  href={prevPost.link}
+                >
+                  <ArrowLeft
+                    className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2"
+                    aria-hidden
+                  />
+                  {prevPost.title}
                 </NextLink>
               ) : null}
             </span>
             {/* 下一篇 */}
             <span className="w-1/2 text-right">
               {nextPost ? (
-                <NextLink href={nextPost.link}>
-                  <a className="group flex justify-end h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2">
-                    {nextPost.title}
-                    <ArrowRight
-                      className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2"
-                      aria-hidden
-                    />
-                  </a>
+                <NextLink
+                  className="group flex justify-end h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2"
+                  href={nextPost.link}
+                >
+                  {nextPost.title}
+                  <ArrowRight
+                    className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2"
+                    aria-hidden
+                  />
                 </NextLink>
               ) : null}
             </span>
@@ -211,4 +205,4 @@ const PostLayout: React.FC<PostLayoutProps> = props => {
   )
 }
 
-export default PostLayout
+export default Post

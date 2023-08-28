@@ -1,14 +1,9 @@
-import { ImageResponse } from '@vercel/og'
-import type { NextApiRequest } from 'next'
+import {NextRequest, ImageResponse} from 'next/server'
 import siteConfig from 'config'
 
-export const config = {
-  runtime: 'experimental-edge',
-}
+export const runtime = 'edge'
 
-async function og(req: NextApiRequest) {
-  const { searchParams } = new URL(req.url!)
-
+export async function GET(req: NextRequest) {
   return new ImageResponse(
     (
       <div
@@ -50,5 +45,3 @@ async function og(req: NextApiRequest) {
     },
   )
 }
-
-export default og

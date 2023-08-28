@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import clsx from 'clsx'
 import styles from './styles.module.scss'
@@ -7,7 +9,7 @@ import useTranslation from '@/hooks/useTranslation'
 
 const links = config.blogroll || []
 
-const Blogroll = () => {
+export default function Blogroll() {
   const { t } = useTranslation()
   const transitions = useTransition(links, {
     from: { scale: 0.5, opacity: 0 },
@@ -19,17 +21,9 @@ const Blogroll = () => {
 
   return (
     <div
-      className={clsx(
-        styles.blogroll,
-        'prose-container flex flex-col items-center justify-center',
-      )}
+      className={clsx(styles.blogroll, 'prose-container flex flex-col items-center justify-center')}
     >
-      <h2
-        className={clsx(
-          styles.title,
-          'relative font-medium font-serif text-5xl mt-20 sm:mt-40',
-        )}
-      >
+      <h2 className={clsx(styles.title, 'relative font-medium font-serif text-5xl mt-20 sm:mt-40')}>
         {t('blogroll-page.title')}
       </h2>
       <p className="font-medium text-sm m-10 sm:m-14">共 {links.length} 个友链</p>
@@ -51,5 +45,3 @@ const Blogroll = () => {
     </div>
   )
 }
-
-export default Blogroll

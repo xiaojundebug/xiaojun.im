@@ -63,7 +63,6 @@ const Editor: React.FC<EditorProps> = props => {
                   <div
                     {...getLineProps({
                       line,
-                      key: i,
                       className: clsx({
                         highlighted: highlightedLines.includes(i + 1),
                         added: addedLines.includes(i + 1),
@@ -73,6 +72,7 @@ const Editor: React.FC<EditorProps> = props => {
                         warning: warningLines.includes(i + 1),
                       }),
                     })}
+                    key={i}
                   >
                     <>
                       {lineNumbers && (
@@ -87,9 +87,9 @@ const Editor: React.FC<EditorProps> = props => {
                           {i + 1}
                         </span>
                       )}
-                      {line.map((token, key) => (
+                      {line.map((token, i) => (
                         // eslint-disable-next-line react/jsx-key
-                        <span {...getTokenProps({ token, key })} />
+                        <span {...getTokenProps({ token })} key={i} />
                       ))}
                     </>
                   </div>

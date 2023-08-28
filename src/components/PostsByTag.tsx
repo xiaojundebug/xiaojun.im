@@ -1,5 +1,5 @@
 import React from 'react'
-import Splash from '../components/Splash'
+import Splash from './Splash'
 import PostList, { PostListProps } from '@/components/PostList'
 
 export interface PostsByTagProps {

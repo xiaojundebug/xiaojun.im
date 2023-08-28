@@ -10,11 +10,15 @@ const Tag: React.FC<PropsWithChildren> = props => {
     </span>
   )
 }
-const Index: NextPageWithCustomProps = () => {
+
+export default function About() {
   return (
     <div className={clsx('prose-container py-12', style.about)}>
       <h2>🎨 关于本站</h2>
-      <p>搭建它的初衷主要是为了练习新技术，其次是记录笔记 + 分享一些平时遇到的问题解决经验，本站技术栈为 Next.js、MDX、Tailwind CSS、TypeScript</p>
+      <p>
+        搭建它的初衷主要是为了练习新技术，其次是记录笔记 +
+        分享一些平时遇到的问题解决经验，本站技术栈为 Next.js、MDX、Tailwind CSS、TypeScript
+      </p>
 
       <h2>📜 本站历史</h2>
       <ul>
@@ -41,11 +45,14 @@ const Index: NextPageWithCustomProps = () => {
 
       <h2>📮 找到我</h2>
       <ul>
-        <li>Email - <Link href="mailto:362896731@qq.com">362896731@qq.com</Link></li>
-        <li>Github - <Link href="https://github.com/xiaojundebug">https://github.com/xiaojundebug</Link></li>
+        <li>
+          Email - <Link href="mailto:362896731@qq.com">362896731@qq.com</Link>
+        </li>
+        <li>
+          Github -{' '}
+          <Link href="https://github.com/xiaojundebug">https://github.com/xiaojundebug</Link>
+        </li>
       </ul>
     </div>
   )
 }
-
-export default Index

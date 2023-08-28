@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { animated, useSpring, useTransition, config as builtinConfig } from '@react-spring/web'
 import { useTheme } from 'next-themes'
 import { withNoSSR } from '@/utils'

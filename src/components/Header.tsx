@@ -1,6 +1,8 @@
+'use client'
+
 import React, { useEffect, useMemo, useRef } from 'react'
 import config from 'config'
-import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 import { useSize } from 'ahooks'
 import useBoolean from '@/hooks/useBoolean'
 import useHasMounted from '@/hooks/useHasMounted'
@@ -57,10 +59,11 @@ const MobileHeader: React.FC<{
         <ul ref={navRef} className="flex flex-col pb-4">
           {navTransitions((navStyles, menu) => (
             <animated.li key={menu.href} style={navStyles}>
-              <Link href={menu.href}>
-                <a className="inline-block w-full font-medium text-lg px-6 py-1 leading-loose active:bg-zinc-400/10">
-                  <span>{menu.label}</span>
-                </a>
+              <Link
+                className="inline-block w-full font-medium text-lg px-6 py-1 leading-loose active:bg-zinc-400/10"
+                href={menu.href}
+              >
+                <span>{menu.label}</span>
               </Link>
             </animated.li>
           ))}
@@ -72,13 +75,11 @@ const MobileHeader: React.FC<{
 
 const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = props => {
   const { menus } = props
-  const router = useRouter()
+  const pathname = usePathname()
   const [{ x: spotX, y: spotY, r: spotR }, onMouseMove] = useSpotlight()
 
   return (
-    <div
-      className="prose-container flex items-center justify-between h-[80px]"
-    >
+    <div className="prose-container flex items-center justify-between h-[80px]">
       <Link href="/">
         <img
           className="inline-block w-8 mr-4 cursor-pointer dark:invert"
@@ -105,24 +106,23 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
           ></animated.div>
           {menus.map(menu => (
             <li key={menu.href}>
-              <Link href={menu.href}>
-                <a
+              <Link
+                className={clsx(
+                  'relative block py-2 px-3 font-medium text-sm hover:text-primary transition-colors',
+                  {
+                    'text-primary': pathname === menu.href,
+                  },
+                )}
+                href={menu.href}
+              >
+                {menu.label}
+                <span
                   className={clsx(
-                    'relative block py-2 px-3 font-medium text-sm hover:text-primary transition-colors',
-                    {
-                      'text-primary': router.route === menu.href,
-                    },
+                    'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-primary/0 via-primary/40 dark:via-primary/60 to-primary/0 transition-opacity',
+                    { 'opacity-0': pathname !== menu.href },
+                    { 'opacity-100': pathname === menu.href },
                   )}
-                >
-                  {menu.label}
-                  <span
-                    className={clsx(
-                      'absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-primary/0 via-primary/40 dark:via-primary/60 to-primary/0 transition-opacity',
-                      { 'opacity-0': router.route !== menu.href },
-                      { 'opacity-100': router.route === menu.href },
-                    )}
-                  ></span>
-                </a>
+                ></span>
               </Link>
             </li>
           ))}
@@ -137,7 +137,7 @@ const Header: React.FC<HeaderProps> = () => {
   const [visible, { set: setVisible }] = useBoolean(true)
   const [isExpanded, { toggle: toggleIsExpanded, set: setIsExpanded }] = useBoolean(false)
   const { t } = useTranslation()
-  const router = useRouter()
+  const pathname = usePathname()
   const hasMounted = useHasMounted()
   const menus = useMemo(
     () => [
@@ -154,11 +154,6 @@ const Header: React.FC<HeaderProps> = () => {
     leave: { y: '-100%' },
     config: { tension: 256, friction: 28, clamp: true },
   })
-
-  useEffect(() => {
-    // 进来执行初次判断
-    setVisible(window.scrollY <= 500)
-  }, [router])
 
   useEffect(() => {
     const scroll$ = fromEvent(window, 'scroll').pipe(
@@ -188,9 +183,9 @@ const Header: React.FC<HeaderProps> = () => {
   }, [])
 
   useEffect(() => {
-    setIsExpanded(false)
+    setVisible(true)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router])
+  }, [pathname])
 
   useEffect(() => {
     if (!visible) {

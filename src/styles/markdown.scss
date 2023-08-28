@@ -61,7 +61,7 @@
   }
 
   // Image
-  .mdx-img { @apply relative max-w-full h-auto mx-auto align-middle; }
+  .mdx-img { @apply relative max-w-full h-auto mx-auto my-12 align-middle; }
 
   // Link
   .mdx-a:not([class~=anchor]) {

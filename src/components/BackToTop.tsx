@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useRef, useState } from 'react'
 import { animated, useTransition } from '@react-spring/web'
 import {
@@ -45,8 +47,8 @@ const BackToTop = () => {
         <animated.div
           ref={ref}
           className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 z-50 p-3 rounded-full cursor-pointer
-            border border-zinc-400/20
-            dark:bg-zinc-900 dark:border-none"
+            border border-zinc-400/20 dark:border-none
+            bg-white dark:bg-zinc-900"
           onClick={backToTop}
           style={styles}
         >
