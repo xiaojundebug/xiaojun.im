@@ -2,7 +2,7 @@
 
 import React, { useEffect, useMemo, useRef } from 'react'
 import config from 'config'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useSize } from 'ahooks'
 import useBoolean from '@/hooks/useBoolean'
 import useHasMounted from '@/hooks/useHasMounted'
@@ -184,15 +184,9 @@ const Header: React.FC<HeaderProps> = () => {
 
   useEffect(() => {
     setVisible(true)
+    setIsExpanded(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
-
-  useEffect(() => {
-    if (!visible) {
-      setIsExpanded(false)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible])
 
   return (
     <header className="relative h-[50px] sm:h-[80px]">

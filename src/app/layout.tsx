@@ -5,6 +5,7 @@ import '@/styles/unreset.scss'
 import '@/styles/markdown.scss'
 import '@/styles/highlighting.scss'
 import type { Metadata } from 'next'
+import NextTopLoader from 'nextjs-toploader'
 import ThemeProvider from '@/components/ThemeProvider'
 import Header from '@/components/Header'
 import PageContainer from '@/components/PageContainer'
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <NextTopLoader color="#14b8a6" showSpinner={false} />
         <ThemeProvider>
           <Header />
           <PageContainer>{children}</PageContainer>
