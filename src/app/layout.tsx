@@ -12,6 +12,12 @@ import Footer from '@/components/Footer'
 import BackToTop from '@/components/BackToTop'
 import config from 'config'
 import { getSiteUrl } from '@/utils/url'
+import { Inter } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: config.title,
@@ -26,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={inter.className} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"

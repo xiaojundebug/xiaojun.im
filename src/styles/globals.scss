@@ -36,13 +36,14 @@ body {
   margin: 0;
 }
 
-/*html {*/
-/*  scroll-behavior: smooth;*/
-/*}*/
+// html {
+//   scroll-behavior: smooth;
+// }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,
-    helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  // https://systemfontstack.com/
+  // font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue,
+  //   helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
