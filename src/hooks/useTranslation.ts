@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 import config from 'config'
-import en from '../locales/en.json'
-import zhCN from '../locales/zh-CN.json'
+import en from '@/locales/en.json'
+import zhCN from '@/locales/zh-CN.json'
 
 const { language } = config
 const json = {

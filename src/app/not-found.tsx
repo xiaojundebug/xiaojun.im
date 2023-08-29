@@ -19,7 +19,7 @@ export default function NotFound() {
           Go Back
         </button>
       </div>
-      <div className="relative mt-12 lg:mt-0 ml-0 lg:ml-24 animate-floating">
+      <div className="relative mt-12 lg:mt-0 ml-0 lg:ml-24 motion-safe:animate-floating">
         <DarkModeOnly>
           <div
             className="absolute inset-0 pointer-events-none"
@@ -28,6 +28,7 @@ export default function NotFound() {
             }}
           ></div>
         </DarkModeOnly>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="relative w-60 lg:w-[500px]" src="/404.svg" alt="404 not found" />
       </div>
     </div>

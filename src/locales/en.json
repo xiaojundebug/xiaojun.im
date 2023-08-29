@@ -1,6 +1,7 @@
 {
   "nav.home": "Home",
   "nav.tags": "Tags",
+  "nav.friends": "Friends",
   "nav.about": "About",
 
   "post-page.last-updated": "Last Updated: {{ date }}",
@@ -9,7 +10,7 @@
   "tags-page.title": "Tags",
   "tags-page.desc": "{{ count }} tags in total",
 
-  "blogroll-page.title": "Blogroll",
+  "friends-page.title": "Friends",
 
   "code.copy": "Copy",
   "code.copied": "Copied!"

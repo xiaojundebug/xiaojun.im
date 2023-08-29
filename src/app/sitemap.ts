@@ -19,7 +19,7 @@ export default async function sitemap() {
       lastModified: new Date(),
     },
     {
-      url: getSiteUrl('/blogroll').href,
+      url: getSiteUrl('/friends').href,
       lastModified: new Date(),
     },
   ] satisfies MetadataRoute.Sitemap

@@ -111,7 +111,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
                 <div className="w-[20px]">
                   <div
                     className={clsx(
-                      'h-[4px] rounded-full bg-black/10 dark:bg-white/10 group-hover:bg-black/50 dark:group-hover:bg-white/50 transition-all duration-500',
+                      'h-[4px] rounded-full bg-black/10 dark:bg-white/10 group-hover:bg-black/50 dark:group-hover:bg-white/50 transition duration-500',
                       {
                         '!bg-black/50 dark:!bg-white/50': activated,
                       },
@@ -121,7 +121,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
                 </div>
                 <span
                   className={clsx(
-                    'opacity-0 group-hover/toc:opacity-100 transition-all duration-500 truncate',
+                    'opacity-0 group-hover/toc:opacity-100 transition duration-500 truncate',
                     {
                       'ml-2': heading.level !== 2,
                       'font-medium': heading.level === 2,

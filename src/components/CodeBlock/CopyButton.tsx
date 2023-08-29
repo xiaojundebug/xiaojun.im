@@ -41,7 +41,7 @@ const CopyButton: React.FC<CopyButtonProps> = props => {
             style={style}
           >
             <Copy
-              className="text-base opacity-70 group-hover/clipboard:opacity-100 transition-all"
+              className="text-base opacity-70 group-hover/clipboard:opacity-100 transition"
               aria-hidden
             />
             <span className="text-xs transition-colors">{t('code.copy')}</span>

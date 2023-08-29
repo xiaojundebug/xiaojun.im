@@ -143,6 +143,7 @@ const Header: React.FC<HeaderProps> = () => {
     () => [
       { label: t('nav.home'), href: '/' },
       { label: t('nav.tags'), href: '/tags' },
+      { label: t('nav.friends'), href: '/friends' },
       { label: t('nav.about'), href: '/about' },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,11 +1,11 @@
 import React from 'react'
 import config from 'config'
 import Link from 'next/link'
-import { GitHub, Link as Friends } from '@/components/icons'
+import Image from 'next/image'
+import { GitHub } from '@/components/icons'
 
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
   GitHub: <GitHub className="text-lg" aria-hidden />,
-  友链: <Friends className="text-lg" aria-hidden />,
 }
 
 const Splash = () => {
@@ -14,9 +14,11 @@ const Splash = () => {
       <div className="flex items-center">
         {config.avatar && (
           <div className="relative flex-shrink-0">
-            <img
-              className="w-16 h-16 object-cover rounded-full shadow-zinc-600/10 shadow-xl dark:shadow-none"
+            <Image
+              className="object-cover rounded-full shadow-zinc-600/10 shadow-xl dark:shadow-none"
               src={config.avatar}
+              width={64}
+              height={64}
               alt="avatar"
             />
             <div className="absolute inset-0 ring-1 ring-inset rounded-full ring-black/10 dark:ring-white/10"></div>

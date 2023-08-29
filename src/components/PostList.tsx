@@ -18,7 +18,7 @@ const PostList: React.FC<PostListProps> = props => {
       {posts.map(({ frontmatter, slug }, idx) => (
         <article key={idx} className="my-8">
           <h3 className="text-lg font-medium">
-            <Link className="hover:text-primary" href={`/posts/${slug}`}>
+            <Link className="hover:text-primary transition-colors" href={`/posts/${slug}`}>
               {frontmatter.title}
             </Link>
           </h3>

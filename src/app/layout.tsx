@@ -7,6 +7,7 @@ import '@/styles/highlighting.scss'
 import type { Metadata } from 'next'
 import NextTopLoader from 'nextjs-toploader'
 import ThemeProvider from '@/components/ThemeProvider'
+import ReducedMotionDetector from '@/components/ReducedMotionDetector'
 import Header from '@/components/Header'
 import PageContainer from '@/components/PageContainer'
 import Footer from '@/components/Footer'
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <ReducedMotionDetector />
         <NextTopLoader color="#14b8a6" showSpinner={false} />
         <ThemeProvider>
           <Header />

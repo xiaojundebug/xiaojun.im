@@ -1,6 +1,7 @@
 {
   "nav.home": "首页",
   "nav.tags": "标签",
+  "nav.friends": "友链",
   "nav.about": "关于",
 
   "post-page.last-updated": "最后更新于 {{ date }}",
@@ -9,7 +10,7 @@
   "tags-page.title": "标签",
   "tags-page.desc": "共 {{ count }} 个标签",
 
-  "blogroll-page.title": "友链",
+  "friends-page.title": "朋友们",
 
   "code.copy": "复制",
   "code.copied": "✓ 已复制"
