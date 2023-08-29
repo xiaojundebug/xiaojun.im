@@ -56,6 +56,7 @@ const LinkCard: React.FC<LinkCardProps> = props => {
             {description}
           </span>
         </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         {image && <img className="relative z-[1] h-[65px] rounded" src={image} alt="og" />}
       </div>
     </a>

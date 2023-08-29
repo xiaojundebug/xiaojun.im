@@ -140,7 +140,7 @@ const Post: React.FC<PostProps> = props => {
             {/* hero image */}
             {heroImage && heroImageInfo && (
               <NextImage
-                className="mt-6"
+                className="mt-6 rounded-xl"
                 src={heroImageInfo.src}
                 alt="Hero Image"
                 width={heroImageInfo.width}

@@ -2,7 +2,6 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import glob from 'fast-glob'
 import matter from 'gray-matter'
-import { orderBy, take } from 'lodash'
 import dayjs from 'dayjs'
 
 // Cache posts and frontmatters
@@ -42,14 +41,10 @@ export async function getLatestPosts({
     }),
   )
 
-  return take(
-    orderBy(
-      allPosts.filter(({ frontmatter }) => !frontmatter.draft),
-      ({ frontmatter }) => dayjs(frontmatter.date).valueOf(),
-      [order],
-    ),
-    limit,
-  )
+  return allPosts
+    .filter(({ frontmatter }) => !frontmatter.draft)
+    .sort((a, b) => dayjs(b.frontmatter.date).valueOf() - dayjs(a.frontmatter.date).valueOf())
+    .slice(0, limit)
 }
 
 export async function getPostFrontmatter(post: string): Promise<PostFrontmatter> {

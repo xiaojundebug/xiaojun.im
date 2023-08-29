@@ -1,5 +1,5 @@
 'use client'
-console.log(null ?? false)
+
 import { useEffect } from 'react'
 import { Globals, useReducedMotion } from '@react-spring/web'
 

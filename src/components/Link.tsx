@@ -28,7 +28,7 @@ const Link: React.FC<JSX.IntrinsicElements['a']> = props => {
       {children}
       {isPlainAnchor && (
         <ExternalLink
-          className="inline-block mx-0.5 text-[0.9em] translate-y-0.5 text-zinc-400 group-hover/a:text-current transition-colors"
+          className="flex-shrink-0 inline-block mx-0.5 text-[0.9em] translate-y-0.5 text-zinc-400 group-hover/a:text-current transition-colors"
           aria-hidden
         />
       )}
