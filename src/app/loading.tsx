@@ -18,7 +18,7 @@ export default function Loading() {
           fillOpacity="0.7"
         />
         <path
-          className="animate-[spin_500ms_linear_infinite]"
+          className="animate-[spin_30000ms_linear_infinite]"
           style={{ transformBox: 'fill-box', transformOrigin: '2px center' }}
           fillRule="evenodd"
           clipRule="evenodd"
@@ -27,7 +27,7 @@ export default function Loading() {
           fillOpacity="0.7"
         />
         <path
-          className="animate-[spin_30000ms_linear_infinite]"
+          className="animate-[spin_500ms_linear_infinite]"
           style={{ transformBox: 'fill-box', transformOrigin: 'center 7px' }}
           fillRule="evenodd"
           clipRule="evenodd"

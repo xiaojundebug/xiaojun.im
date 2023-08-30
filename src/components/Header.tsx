@@ -81,6 +81,7 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
   return (
     <div className="prose-container flex items-center justify-between h-[80px]">
       <Link href="/">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className="inline-block w-8 mr-4 cursor-pointer dark:invert"
           src={config.logo}
