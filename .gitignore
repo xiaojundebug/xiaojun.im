@@ -38,6 +38,7 @@ yarn-error.log*
 *.tsbuildinfo
 
 # 个人隐私文件
+.env
 posts/*
 !posts/2023-04-27-mdx-syntax-guide.mdx
 !posts/2023-04-27-mdx-syntax-basic.mdx

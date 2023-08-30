@@ -17,7 +17,7 @@ import Image from '@/components/Image'
 import HorizontalRule from '@/components/HorizontalRule'
 import LinkCard from '@/components/LinkCard'
 import DesktopOnly from '@/components/DesktopOnly'
-import { ArrowLeft, ArrowRight, Calender, Clock } from '@/components/icons'
+import { ArrowLeft, ArrowRight, Calender, Clock, Click } from '@/components/icons'
 import Link from '@/components/Link'
 import * as embeds from '@/components/embeds'
 import NextImage from 'next/image'
@@ -75,6 +75,7 @@ function useHeadings(deps: DependencyList = []) {
 }
 
 export interface PostProps {
+  slug: string
   code: string
   frontmatter: PostFrontmatter
   prevPost?: { link: string; title: string }
@@ -85,18 +86,29 @@ export interface PostProps {
 const Post: React.FC<PostProps> = props => {
   const { t } = useTranslation()
   const {
+    slug,
     code,
     frontmatter: { title, date, updatedOn, tags, toc = true, heroImage },
     prevPost,
     nextPost,
     heroImageInfo,
   } = props
+  const [views, setViews] = useState(0)
   const headings = useHeadings([code])
   const Component = useMemo(() => getMDXComponent(code), [code])
   const { readingTime } = useMemo(
     () => getMDXExport<{ readingTime: PostReadingTime }, unknown>(code),
     [code],
   )
+
+  useEffect(() => {
+    fetch('/api/views', { method: 'POST', body: JSON.stringify({ slug }) })
+      .then(res => res.json())
+      .then(res => {
+        setViews(res.pv)
+      })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -107,16 +119,22 @@ const Post: React.FC<PostProps> = props => {
         <div className="mt-4 text-zinc-400 dark:text-zinc-500">
           <div className="flex items-center text-sm">
             <span className="flex items-center">
-              {/* 创建时间 */}
+              {/* Create time */}
               <>
                 <Calender className="mr-1 text-base" aria-hidden />
                 {dayjs(date).format('MMMM D, YYYY')}
               </>
               <span className="mx-2">•</span>
-              {/* 阅读时长估算 */}
+              {/* Reading time */}
               <>
                 <Clock className="mr-1 text-base" aria-hidden />
                 {readingTime.text}
+              </>
+              {/* Views */}
+              <span className="mx-2">•</span>
+              <>
+                <Click className="mr-1 text-base" />
+                {!views ? '-' : views.toLocaleString()}
               </>
             </span>
           </div>

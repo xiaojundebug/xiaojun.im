@@ -4,22 +4,24 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import remarkDirective from 'remark-directive'
-import remarkAdmonitions from '@/lib/remark-admonitions'
+import remarkAdmonitions from '@/lib/unified/remark-admonitions'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import remarkReadingTime from 'remark-reading-time'
 import remarkReadingMdxTime from 'remark-reading-time/mdx'
-import remarkMdxCodeProps from '@/lib/remark-mdx-code-props'
-import remarkLinkCard from '@/lib/remark-link-card'
-import remarkImageInfo from '@/lib/remark-image-info'
+import remarkMdxCodeProps from '@/lib/unified/remark-mdx-code-props'
+import remarkLinkCard from '@/lib/unified/remark-link-card'
+import remarkImageInfo from '@/lib/unified/remark-image-info'
 import path from 'path'
 import { getAdjacentPosts, getAllPosts, getPostFrontmatter, getPostSlug } from '@/utils/post'
 import PostPage from '@/components/Post'
 import { Metadata } from 'next'
 import config from 'config'
 import { getImageInfo } from '@/utils/image'
+import { redis } from '@/lib/redis'
+import { isDev } from '@/utils'
 
-export const revalidate = 86400
+// export const revalidate = 60
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
@@ -63,7 +65,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
         remarkReadingTime,
         remarkReadingMdxTime,
         remarkMdxCodeProps,
-        remarkLinkCard,
+        // remarkLinkCard,
         remarkImageInfo,
       ]
       options.rehypePlugins = [
@@ -89,6 +91,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
   return (
     <PostPage
+      slug={slug}
       code={code}
       frontmatter={frontmatter}
       heroImageInfo={heroImageInfo}
