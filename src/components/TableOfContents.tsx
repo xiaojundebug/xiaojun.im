@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { animationFrameScheduler, fromEvent, startWith, throttleTime } from 'rxjs'
 import { animated, useSpring } from '@react-spring/web'
+import Like from '@/components/Like'
 
 function findCurrentHeading(list: HTMLElement[]) {
   let start = 0
@@ -88,55 +89,53 @@ const TableOfContents: React.FC<TableOfContentsProps> = props => {
   }
 
   return (
-    <aside className="absolute left-full h-full ml-24">
-      <animated.ul
-        ref={listRef}
-        className="group/toc sticky top-[10vh] list-none max-w-[250px] max-h-[50vh] overflow-auto better-scrollbar"
-        scrollTop={scrollTop}
-      >
-        {headings.map(heading => {
-          const activated = isActivated(heading)
+    <animated.ul
+      ref={listRef}
+      className="group/toc list-none max-h-[50vh] overflow-y-auto better-scrollbar"
+      scrollTop={scrollTop}
+    >
+      {headings.map(heading => {
+        const activated = isActivated(heading)
 
-          return (
-            <animated.li key={heading.id} ref={activeId === heading.id ? activeItemRef : null}>
-              <a
-                href={`#${heading.id}`}
+        return (
+          <animated.li key={heading.id} ref={activeId === heading.id ? activeItemRef : null}>
+            <a
+              href={`#${heading.id}`}
+              className={clsx(
+                'group relative flex items-center gap-2 max-w-full my-1 text-xs text-zinc-500/80 leading-loose truncate hover:text-zinc-800 dark:hover:text-zinc-50',
+                {
+                  '!text-zinc-800 dark:!text-zinc-50': activated,
+                },
+              )}
+            >
+              <div className="w-[20px]">
+                <div
+                  className={clsx(
+                    'h-[4px] rounded-full bg-black/10 dark:bg-white/10 group-hover:bg-black/50 dark:group-hover:bg-white/50 transition duration-500',
+                    {
+                      '!bg-black/50 dark:!bg-white/50': activated,
+                    },
+                  )}
+                  style={{ width: heading.level > 2 ? 10 : 16 }}
+                ></div>
+              </div>
+              <span
                 className={clsx(
-                  'group relative flex items-center gap-2 max-w-full my-1 text-xs text-zinc-500/80 leading-loose hover:text-zinc-800 dark:hover:text-zinc-50',
+                  'opacity-0 group-hover/toc:opacity-100 transition duration-500 truncate',
                   {
-                    '!text-zinc-800 dark:!text-zinc-50': activated,
+                    'ml-2': heading.level !== 2,
+                    'font-medium': heading.level === 2,
+                    'opacity-100': activated,
                   },
                 )}
               >
-                <div className="w-[20px]">
-                  <div
-                    className={clsx(
-                      'h-[4px] rounded-full bg-black/10 dark:bg-white/10 group-hover:bg-black/50 dark:group-hover:bg-white/50 transition duration-500',
-                      {
-                        '!bg-black/50 dark:!bg-white/50': activated,
-                      },
-                    )}
-                    style={{ width: heading.level > 2 ? 10 : 16 }}
-                  ></div>
-                </div>
-                <span
-                  className={clsx(
-                    'opacity-0 group-hover/toc:opacity-100 transition duration-500 truncate',
-                    {
-                      'ml-2': heading.level !== 2,
-                      'font-medium': heading.level === 2,
-                      'opacity-100': activated,
-                    },
-                  )}
-                >
-                  {heading.text}
-                </span>
-              </a>
-            </animated.li>
-          )
-        })}
-      </animated.ul>
-    </aside>
+                {heading.text}
+              </span>
+            </a>
+          </animated.li>
+        )
+      })}
+    </animated.ul>
   )
 }
 

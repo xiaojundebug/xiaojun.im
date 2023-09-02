@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs'
+import fs from 'fs/promises'
 import path from 'path'
 import glob from 'fast-glob'
 import matter from 'gray-matter'
@@ -8,8 +8,9 @@ import dayjs from 'dayjs'
 const cache = new Map<string, any>()
 
 export async function getAllPosts() {
-  const posts: string[] = cache.get('posts') || (await glob('posts/**/*.mdx'))
-  cache.set('posts', posts)
+  const cacheKey = 'posts'
+  const posts: string[] = cache.get(cacheKey) || (await glob('posts/**/*.mdx'))
+  cache.set(cacheKey, posts)
   return posts
 }
 
@@ -17,13 +18,9 @@ export function getPostSlug(post: string) {
   return post.replace(/^posts\/|\.mdx$/g, '')
 }
 
-export async function readRawMdx(post: string) {
-  return fs.readFile(path.resolve(process.cwd(), post), 'utf8')
-}
-
 export async function getLatestPosts({
   limit = Infinity,
-  orderBy: order = 'desc',
+  orderBy = 'desc',
 }: {
   limit?: number
   orderBy?: 'asc' | 'desc'
@@ -32,7 +29,7 @@ export async function getLatestPosts({
   const allPosts = await Promise.all(
     posts.map(async post => {
       const slug = getPostSlug(post)
-      const frontmatter = await getPostFrontmatter(post)
+      const frontmatter = await getPostFrontmatter(slug)
 
       return {
         slug,
@@ -43,17 +40,23 @@ export async function getLatestPosts({
 
   return allPosts
     .filter(({ frontmatter }) => !frontmatter.draft)
-    .sort((a, b) => dayjs(b.frontmatter.date).valueOf() - dayjs(a.frontmatter.date).valueOf())
+    .sort((a, b) => {
+      const v1 = dayjs(a.frontmatter.date).valueOf()
+      const v2 = dayjs(b.frontmatter.date).valueOf()
+
+      return orderBy === 'desc' ? v2 - v1 : v1 - v2
+    })
     .slice(0, limit)
 }
 
-export async function getPostFrontmatter(post: string): Promise<PostFrontmatter> {
-  if (cache.has(post)) {
-    return cache.get(post)
+export async function getPostFrontmatter(slug: string): Promise<PostFrontmatter> {
+  const cacheKey = `post:frontmatter:${slug}`
+  if (cache.has(cacheKey)) {
+    return cache.get(cacheKey)
   }
-  const rawMdx = await readRawMdx(post)
+  const rawMdx = await fs.readFile(path.join(process.cwd(), `posts/${slug}.mdx`), 'utf8')
   const frontmatter = matter(rawMdx).data
-  cache.set(post, frontmatter)
+  cache.set(cacheKey, frontmatter)
   return frontmatter as PostFrontmatter
 }
 
@@ -64,4 +67,13 @@ export async function getAdjacentPosts(slug: string) {
   const next = idx !== -1 && idx < posts.length - 1 ? posts[idx + 1] : null
 
   return { prev, next }
+}
+
+export async function isPostExists(slug: string) {
+  try {
+    await fs.access(path.join(process.cwd(), `posts/${slug}.mdx`), fs.constants.F_OK)
+    return true
+  } catch (error) {
+    return false
+  }
 }

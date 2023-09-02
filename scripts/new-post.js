@@ -7,7 +7,7 @@ const createPost = async () => {
   const [, , filename, title, ...tags] = process.argv;
 
   await fs.writeFile(
-    path.resolve(process.cwd(), `./posts/${dayjs().format('YYYY-MM-DD')}-${filename}.mdx`),
+    path.join(process.cwd(), `./posts/${dayjs().format('YYYY-MM-DD')}-${filename}.mdx`),
     `---
 title: '${title}'
 date: '${dayjs().format('YYYY-MM-DD HH:mm:ss')}'

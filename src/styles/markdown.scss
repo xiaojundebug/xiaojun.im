@@ -41,7 +41,7 @@
 
   // Admonition
   .admonition {
-    @apply relative px-8 py-px -mx-0 sm:-mx-[1.5ch] my-12 sm:rounded-[3px] border-l-[3px];
+    @apply relative px-8 py-px -mx-0 sm:-mx-4 my-12 sm:rounded-[3px] border-l-[3px];
     &::before {
       @apply absolute hidden sm:block bg-white rounded-full -left-[26.5px] -top-[25px] w-[50px] h-[50px];
     }

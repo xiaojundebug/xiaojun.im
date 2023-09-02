@@ -4,7 +4,7 @@
 
 @layer components {
   .prose-container {
-    @apply max-w-[73ch] mx-auto px-[1.5ch];
+    @apply max-w-[73ch] mx-auto px-4;
   }
 
   .better-scrollbar {

@@ -7,5 +7,3 @@ export function withNoSSR<P = {}>(
 ) {
   return dynamic<P>(async () => Promise.resolve(Component), { ...options, ssr: false })
 }
-
-export const isDev = process.env.NODE_ENV === 'development'

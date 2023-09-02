@@ -15,7 +15,7 @@ function useBoop({
 }) {
   const [isBooped, setIsBooped] = useState(false)
 
-  const style = useSpring({
+  const styles = useSpring({
     backfaceVisibility: 'hidden',
     transform: isBooped
       ? `translate(${x}px, ${y}px)
@@ -42,7 +42,7 @@ function useBoop({
     setIsBooped(true)
   }, [])
 
-  return [style, trigger] as const
+  return [styles, trigger] as const
 }
 
 export default useBoop

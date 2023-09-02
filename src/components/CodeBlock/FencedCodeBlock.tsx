@@ -98,7 +98,7 @@ const FencedCodeBlock: React.FC<{
 
   return (
     <Provider language={language} defaultCode={parsedCode}>
-      <div className="fenced-code-block relative mt-12 mb-8 -mx-0 sm:-mx-[1.5ch]">
+      <div className="fenced-code-block relative mt-12 mb-8 -mx-0 sm:-mx-4">
         {/* language */}
         {!title && (
           <div className="absolute right-8 px-3 pt-0.5 -translate-y-full rounded-t-md bg-slate-100 dark:bg-[#282a36] text-slate-500 dark:text-zinc-400 font-mono font-medium">

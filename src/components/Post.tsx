@@ -21,6 +21,7 @@ import { ArrowLeft, ArrowRight, Calender, Clock, Click } from '@/components/icon
 import Link from '@/components/Link'
 import * as embeds from '@/components/embeds'
 import NextImage from 'next/image'
+import Like from '@/components/Like'
 
 const components = {
   h1: tagRenderer('h1'),
@@ -102,18 +103,37 @@ const Post: React.FC<PostProps> = props => {
   )
 
   useEffect(() => {
-    fetch('/api/views', { method: 'POST', body: JSON.stringify({ slug }) })
-      .then(res => res.json())
-      .then(res => {
-        setViews(res.pv)
+    if (process.env.NODE_ENV === 'production') {
+      fetch('/api/views', { method: 'PATCH', body: JSON.stringify({ slug }) }).then(async res => {
+        if (res.ok) {
+          const data = await res.json()
+          setViews(data.pv)
+        }
       })
+    } else {
+      setViews(1024)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
     <>
       <div className="prose-container break-all">
-        <h1 className="mt-14 sm:mt-16 text-2xl sm:text-3xl text-black dark:text-white !leading-snug tracking-tight font-medium">
+        {/* hero image */}
+        {heroImage && heroImageInfo && (
+          <div className="mt-4 sm:mt-28 sm:-mx-4">
+            <NextImage
+              className="sm:rounded-2xl"
+              src={heroImageInfo.src}
+              alt="Hero Image"
+              width={heroImageInfo.width}
+              height={heroImageInfo.height}
+              placeholder="blur"
+              blurDataURL={heroImageInfo.lqip}
+            />
+          </div>
+        )}
+        <h1 className="mt-14 sm:mt-16 text-3xl sm:text-5xl text-black dark:text-white !leading-snug font-medium">
           {title}
         </h1>
         <div className="mt-4 text-zinc-400 dark:text-zinc-500">
@@ -122,7 +142,7 @@ const Post: React.FC<PostProps> = props => {
               {/* Create time */}
               <>
                 <Calender className="mr-1 text-base" aria-hidden />
-                {dayjs(date).format('MMMM D, YYYY')}
+                {dayjs(date).format('MMM D, YYYY')}
               </>
               <span className="mx-2">•</span>
               {/* Reading time */}
@@ -145,7 +165,7 @@ const Post: React.FC<PostProps> = props => {
             {tags.map((tag: string) => (
               <NextLink
                 key={tag}
-                className="bg-primary/10 text-primary px-2.5 rounded-full"
+                className="bg-primary/[0.12] text-primary px-2.5 py-0.5 rounded-full font-medium"
                 href={`/tags/${tag}`}
               >
                 #{tag}
@@ -155,33 +175,26 @@ const Post: React.FC<PostProps> = props => {
         )}
         <div className="relative flex w-full">
           <div className="flex-1 w-0">
-            {/* hero image */}
-            {heroImage && heroImageInfo && (
-              <NextImage
-                className="mt-6 rounded-xl"
-                src={heroImageInfo.src}
-                alt="Hero Image"
-                width={heroImageInfo.width}
-                height={heroImageInfo.height}
-                placeholder="blur"
-                blurDataURL={heroImageInfo.lqip}
-              />
-            )}
             {/* markdown 内容 */}
             <article className="markdown-body w-full mt-10">
               {/* @ts-ignore */}
               <Component components={components} />
             </article>
           </div>
-          {/* 侧边目录导航 */}
-          {config.toc && toc && headings.length > 1 && (
-            <DesktopOnly>
-              <TableOfContents headings={headings} />
-            </DesktopOnly>
-          )}
+          <DesktopOnly>
+            <aside className="absolute left-full h-full ml-24">
+              <div className="sticky top-[10vh] max-w-[250px]">
+                {/* 侧边目录导航 */}
+                {config.toc && toc && headings.length > 1 && (
+                  <TableOfContents headings={headings} />
+                )}
+                <Like slug={slug} />
+              </div>
+            </aside>
+          </DesktopOnly>
         </div>
         <p className="mt-24 mb-0 text-right text-zinc-500 text-sm italic">
-          {t('post-page.last-updated', { date: dayjs(updatedOn || date).format('MMMM D, YYYY') })}
+          {t('post-page.last-updated', { date: dayjs(updatedOn || date).format('MMM D, YYYY') })}
         </p>
         <HorizontalRule />
         {config.adjacentPosts && (

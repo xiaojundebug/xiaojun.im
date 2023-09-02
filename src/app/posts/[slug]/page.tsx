@@ -18,8 +18,6 @@ import PostPage from '@/components/Post'
 import { Metadata } from 'next'
 import config from 'config'
 import { getImageInfo } from '@/utils/image'
-import { redis } from '@/lib/redis'
-import { isDev } from '@/utils'
 
 // export const revalidate = 60
 
@@ -33,7 +31,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug)
-  const frontmatter = await getPostFrontmatter(`posts/${slug}.mdx`)
+  const frontmatter = await getPostFrontmatter(slug)
 
   return {
     title: frontmatter.title,
@@ -49,8 +47,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default async function Post({ params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug)
   const { code, frontmatter } = await bundleMDX<PostFrontmatter>({
-    file: path.resolve(process.cwd(), `./posts/${slug}.mdx`),
-    cwd: path.resolve(process.cwd(), './posts'),
+    file: path.join(process.cwd(), `./posts/${slug}.mdx`),
+    cwd: path.join(process.cwd(), './posts'),
     mdxOptions(options, frontmatter) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove

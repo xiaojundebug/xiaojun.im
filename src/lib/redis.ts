@@ -6,9 +6,9 @@ export const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_TOKEN as string,
 })
 
-// Create a new ratelimiter, that allows 30 requests per 10 seconds
+// Create a new ratelimiter, that allows 5 requests per 5 seconds
 export const ratelimit = new Ratelimit({
   redis,
-  limiter: Ratelimit.slidingWindow(30, '10 s'),
+  limiter: Ratelimit.slidingWindow(5, '5 s'),
   analytics: true,
 })
