@@ -6,6 +6,7 @@ export type ImageProps = {
   alt?: string
   width?: number
   height?: number
+  color?: { r: number; g: number; b: number; hex: string }
   lqip?: string
 }
 

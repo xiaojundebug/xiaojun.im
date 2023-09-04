@@ -41,22 +41,24 @@ const Like: React.FC<LikeProps> = props => {
   if (loading) return null
 
   return (
-    <div className="flex flex-col justify-center items-center w-fit mt-8 -ml-1">
+    <div className="flex flex-col justify-center items-center w-fit mt-8 -ml-[5px]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <animated.img
-        className="w-[40px] h-[40px] max-w-[40px] cursor-pointer"
+        className="w-[40px] h-[40px] max-w-[40px] dark:brightness-[0.9] cursor-pointer"
         style={styles}
         src="/like.svg"
         alt=""
         onMouseEnter={() => setScale(1.1)}
         onMouseLeave={() => setScale(1)}
-        onMouseDown={() => setScale(0.9)}
+        onMouseDown={() => setScale(1)}
         onMouseUp={() => {
           setScale(1.1)
           incrLike()
         }}
       />
-      <span className="mt-1 text-sm text-zinc-400">{likes}</span>
+      <span className="mt-1 text-sm text-zinc-400" style={{ fontFeatureSettings: '"tnum"' }}>
+        {likes}
+      </span>
     </div>
   )
 }

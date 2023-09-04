@@ -20,8 +20,8 @@ import DesktopOnly from '@/components/DesktopOnly'
 import { ArrowLeft, ArrowRight, Calender, Clock, Click } from '@/components/icons'
 import Link from '@/components/Link'
 import * as embeds from '@/components/embeds'
-import NextImage from 'next/image'
 import Like from '@/components/Like'
+import HeroImage, { HeroImageProps } from '@/components/HeroImage'
 
 const components = {
   h1: tagRenderer('h1'),
@@ -81,7 +81,7 @@ export interface PostProps {
   frontmatter: PostFrontmatter
   prevPost?: { link: string; title: string }
   nextPost?: { link: string; title: string }
-  heroImageInfo?: { src: string; width: number; height: number; lqip: string }
+  heroImageInfo?: HeroImageProps
 }
 
 const Post: React.FC<PostProps> = props => {
@@ -118,119 +118,115 @@ const Post: React.FC<PostProps> = props => {
 
   return (
     <>
-      <div className="prose-container break-all">
-        {/* hero image */}
-        {heroImage && heroImageInfo && (
-          <div className="mt-4 sm:mt-28 sm:-mx-4">
-            <NextImage
-              className="sm:rounded-2xl"
-              src={heroImageInfo.src}
-              alt="Hero Image"
-              width={heroImageInfo.width}
-              height={heroImageInfo.height}
-              placeholder="blur"
-              blurDataURL={heroImageInfo.lqip}
-            />
+      <div className="prose-container relative flex break-all">
+        <div className="flex-1 w-0">
+          {/* hero image */}
+          {heroImage && heroImageInfo && (
+            <div className="mt-4 sm:mt-28 sm:-mx-4">
+              <HeroImage {...heroImageInfo} />
+            </div>
+          )}
+
+          <h1 className="mt-14 sm:mt-16 text-3xl sm:text-5xl text-black dark:text-white !leading-snug font-medium">
+            {title}
+          </h1>
+
+          <div className="mt-4 text-zinc-400 dark:text-zinc-500">
+            <div className="flex items-center text-sm">
+              <span className="flex items-center">
+                {/* Create time */}
+                <>
+                  <Calender className="mr-1 text-base" aria-hidden />
+                  {dayjs(date).format('MMM D, YYYY')}
+                </>
+                <span className="mx-2">•</span>
+                {/* Reading time */}
+                <>
+                  <Clock className="mr-1 text-base" aria-hidden />
+                  {readingTime.text}
+                </>
+                {/* Views */}
+                <span className="mx-2">•</span>
+                <>
+                  <Click className="mr-1 text-base" />
+                  {!views ? '-' : views.toLocaleString()}
+                </>
+              </span>
+            </div>
           </div>
-        )}
-        <h1 className="mt-14 sm:mt-16 text-3xl sm:text-5xl text-black dark:text-white !leading-snug font-medium">
-          {title}
-        </h1>
-        <div className="mt-4 text-zinc-400 dark:text-zinc-500">
-          <div className="flex items-center text-sm">
-            <span className="flex items-center">
-              {/* Create time */}
-              <>
-                <Calender className="mr-1 text-base" aria-hidden />
-                {dayjs(date).format('MMM D, YYYY')}
-              </>
-              <span className="mx-2">•</span>
-              {/* Reading time */}
-              <>
-                <Clock className="mr-1 text-base" aria-hidden />
-                {readingTime.text}
-              </>
-              {/* Views */}
-              <span className="mx-2">•</span>
-              <>
-                <Click className="mr-1 text-base" />
-                {!views ? '-' : views.toLocaleString()}
-              </>
-            </span>
-          </div>
-        </div>
-        {/* 标签 */}
-        {tags && tags.length > 0 && (
-          <div className="flex items-center flex-wrap m-auto mt-6 text-sm gap-2 sm:gap-3">
-            {tags.map((tag: string) => (
-              <NextLink
-                key={tag}
-                className="bg-primary/[0.12] text-primary px-2.5 py-0.5 rounded-full font-medium"
-                href={`/tags/${tag}`}
-              >
-                #{tag}
-              </NextLink>
-            ))}
-          </div>
-        )}
-        <div className="relative flex w-full">
-          <div className="flex-1 w-0">
-            {/* markdown 内容 */}
-            <article className="markdown-body w-full mt-10">
-              {/* @ts-ignore */}
-              <Component components={components} />
-            </article>
-          </div>
-          <DesktopOnly>
-            <aside className="absolute left-full h-full ml-24">
-              <div className="sticky top-[10vh] max-w-[250px]">
-                {/* 侧边目录导航 */}
-                {config.toc && toc && headings.length > 1 && (
-                  <TableOfContents headings={headings} />
-                )}
-                <Like slug={slug} />
-              </div>
-            </aside>
-          </DesktopOnly>
-        </div>
-        <p className="mt-24 mb-0 text-right text-zinc-500 text-sm italic">
-          {t('post-page.last-updated', { date: dayjs(updatedOn || date).format('MMM D, YYYY') })}
-        </p>
-        <HorizontalRule />
-        {config.adjacentPosts && (
-          <div className="mb-20 flex justify-between space-x-6 sm:space-x-12 sm:text-lg font-medium">
-            {/* 上一篇 */}
-            <span className="w-1/2">
-              {prevPost ? (
+
+          {/* 标签 */}
+          {tags && tags.length > 0 && (
+            <div className="flex items-center flex-wrap m-auto mt-6 text-sm gap-2 sm:gap-3">
+              {tags.map((tag: string) => (
                 <NextLink
-                  className="group flex h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2"
-                  href={prevPost.link}
+                  key={tag}
+                  className="bg-primary/[0.12] text-primary px-2.5 py-0.5 rounded-full font-medium"
+                  href={`/tags/${tag}`}
                 >
-                  <ArrowLeft
-                    className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2"
-                    aria-hidden
-                  />
-                  {prevPost.title}
+                  #{tag}
                 </NextLink>
-              ) : null}
-            </span>
-            {/* 下一篇 */}
-            <span className="w-1/2 text-right">
-              {nextPost ? (
-                <NextLink
-                  className="group flex justify-end h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2"
-                  href={nextPost.link}
-                >
-                  {nextPost.title}
-                  <ArrowRight
-                    className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2"
-                    aria-hidden
-                  />
-                </NextLink>
-              ) : null}
-            </span>
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+
+          {/* markdown 内容 */}
+          <article className="markdown-body w-full mt-10">
+            {/* @ts-ignore */}
+            <Component components={components} />
+          </article>
+
+          <p className="mt-24 mb-0 text-right text-zinc-500 text-sm italic">
+            {t('post-page.last-updated', { date: dayjs(updatedOn || date).format('MMM D, YYYY') })}
+          </p>
+
+          <HorizontalRule />
+
+          {config.adjacentPosts && (
+            <div className="mb-20 flex justify-between space-x-6 sm:space-x-12 sm:text-lg font-medium">
+              {/* 上一篇 */}
+              <span className="w-1/2">
+                {prevPost ? (
+                  <NextLink
+                    className="group flex h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2"
+                    href={prevPost.link}
+                  >
+                    <ArrowLeft
+                      className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2"
+                      aria-hidden
+                    />
+                    {prevPost.title}
+                  </NextLink>
+                ) : null}
+              </span>
+              {/* 下一篇 */}
+              <span className="w-1/2 text-right">
+                {nextPost ? (
+                  <NextLink
+                    className="group flex justify-end h-full border border-zinc-400/20 rounded-xl p-3 sm:p-6 transition gap-2"
+                    href={nextPost.link}
+                  >
+                    {nextPost.title}
+                    <ArrowRight
+                      className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2"
+                      aria-hidden
+                    />
+                  </NextLink>
+                ) : null}
+              </span>
+            </div>
+          )}
+        </div>
+
+        <DesktopOnly>
+          <aside className="absolute left-full h-full mt-56 ml-24">
+            <div className="sticky top-[10vh] max-w-[250px] mr-4">
+              {/* 侧边目录导航 */}
+              {config.toc && toc && headings.length > 1 && <TableOfContents headings={headings} />}
+              <Like slug={slug} />
+            </div>
+          </aside>
+        </DesktopOnly>
       </div>
     </>
   )
