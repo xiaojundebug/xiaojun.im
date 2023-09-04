@@ -49,4 +49,4 @@ posts/*
 !posts/2023-04-27-mdx-syntax-math-equations.mdx
 post-helpers
 public/images/*
-!public/images/mdx-test.webp
+!public/images/test-hero-image.webp

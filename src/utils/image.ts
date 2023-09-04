@@ -10,7 +10,7 @@ export async function getImageInfo(src: string) {
   const {
     metadata: { height, width },
     base64,
-  } = await getPlaiceholder(buffer)
+  } = await getPlaiceholder(buffer, { size: 16 })
 
   return {
     src,
