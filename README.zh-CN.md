@@ -28,11 +28,18 @@
 
 ## 使用方法
 
-1. fork 该仓库
-2. 运行 `npm i`
-3. 使用 `npm run new:post filename title [tag1] [tag2] ...` 命令在 `posts` 中创建一篇文章，更多语法可参考[示例文章](https://www.xiaojun.im/posts/2023-04-27-mdx-syntax-guide)
-4. 将它部署在 [Vercel](https://vercel.com)，具体很简单，可以跟着 vercel 官方一步步来
-5. 如果你喜欢的话，麻烦给这个项目一个 start ✨，这对我是很大鼓励 🙏
+1. fork 该仓库，将配置 [site.config.js](./site.config.js) 改为自己的个人信息
+2. 注册申请 upstash 服务（可以白嫖），创建 .env 文件并填入以下信息
+
+   ```env
+   UPSTASH_REDIS_REST_URL = 填入自己的信息
+   UPSTASH_REDIS_REST_TOKEN = 填入自己的信息
+   ```
+
+3. 运行 `npm i`
+4. 使用 `npm run new:post filename title [tag1] [tag2] ...` 命令在 `posts` 中创建一篇文章，更多语法可参考[示例文章](https://www.xiaojun.im/posts/2023-04-27-mdx-syntax-guide)
+5. 将它部署在 [Vercel](https://vercel.com)，具体很简单，可以跟着 vercel 官方一步步来
+6. 如果你喜欢的话，麻烦给这个项目一个 start ✨，这对我是很大鼓励 🙏
 
 _配置文件在 `site.config.js` 文件中，你可以在这里修改你的个人信息，例如名字与头像_
 
@@ -45,6 +52,7 @@ _配置文件在 `site.config.js` 文件中，你可以在这里修改你的个�
 该项目参考但不限于以下网站，特别是第一个，给了我很多启发。
 
 - https://www.joshwcomeau.com
+- https://cali.so
 - https://leerob.io
 - https://blog.maximeheckel.com
 - https://vuepress.vuejs.org

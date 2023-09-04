@@ -28,13 +28,18 @@ TODO:
 
 ## Getting Started
 
-1. Fork the repo
-2. `npm i`
-3. `npm run new:post filename title [tag1] [tag2] ...`, the *.mdx file will be created in the `posts` folder
-4. Deploy it to [Vercel](https://vercel.com)
-5. If you like, please star the repo 🙏
+1. Please fork this repository and modify the configuration in [site.config.js](./site.config.js) with your own information
+2. Register for Upstash service, create a .env file, and fill in the following information
 
-_config file in `site.config.js`_
+   ```env
+   UPSTASH_REDIS_REST_URL = xxx
+   UPSTASH_REDIS_REST_TOKEN = xxx
+   ```
+
+3. run `npm i`
+4. run `npm run new:post filename title [tag1] [tag2] ...`, the \*.mdx file will be created in the `posts` folder
+5. Deploy it to [Vercel](https://vercel.com)
+6. If you like, please star the repo 🙏
 
 ## Sounds
 
@@ -43,6 +48,7 @@ Sounds from https://zapsplat.com
 ## Thanks
 
 - https://www.joshwcomeau.com
+- https://cali.so
 - https://leerob.io
 - https://blog.maximeheckel.com
 - https://vuepress.vuejs.org
