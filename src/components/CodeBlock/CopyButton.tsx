@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { animated, useTransition } from '@react-spring/web'
 import { Copy } from '@/components/icons'
 import useTranslation from '@/hooks/useTranslation'
+import useHasMounted from "@/hooks/useHasMounted";
 
 export interface CopyButtonProps {
   copied: boolean
@@ -12,12 +13,14 @@ export interface CopyButtonProps {
 const CopyButton: React.FC<CopyButtonProps> = props => {
   const { copied, onCopy } = props
   const { t } = useTranslation()
+  const hasMounted = useHasMounted()
 
   const transitions = useTransition(copied, {
     from: { opacity: 0, y: -6 },
     enter: { opacity: 1, y: 0 },
     leave: { opacity: 0, y: -6 },
     config: { tension: 300, friction: 30 },
+    immediate: !hasMounted
   })
 
   return (

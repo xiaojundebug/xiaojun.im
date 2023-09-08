@@ -7,3 +7,5 @@ export function withNoSSR<P = {}>(
 ) {
   return dynamic<P>(async () => Promise.resolve(Component), { ...options, ssr: false })
 }
+
+export const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))

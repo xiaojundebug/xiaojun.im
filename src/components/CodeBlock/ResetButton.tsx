@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { animated, config, useSpring } from '@react-spring/web'
 import { Restore } from '@/components/icons'
 
-const ResetButton: React.FC<{ onClick: () => void }> = props => {
-  const { onClick } = props
+export interface ResetButtonProps {
+  onClick: () => void
+}
+
+const ResetButton: React.FC<ResetButtonProps> = ({ onClick }) => {
   const [rotation, setRotation] = useState(0)
 
   const { rotate } = useSpring({

@@ -23,6 +23,11 @@ module.exports = {
           '0%': { transform: 'translate(0, 0)' },
           '100%': { transform: 'translate(0, 10%)' },
         },
+        loading: {
+          '0%': { opacity: 0.2 },
+          '20%': { opacity: 1, transform: 'translateX(1px)' },
+          '100%': { opacity: 0.2 },
+        },
       },
       animation: {
         floating: 'floating 4s ease-in-out infinite alternate',

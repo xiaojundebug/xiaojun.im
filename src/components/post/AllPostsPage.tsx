@@ -1,13 +1,13 @@
 import React, { Fragment, useMemo } from 'react'
-import Splash from './Splash'
-import PostList, { PostListProps } from '@/components/PostList'
+import Splash from '../Splash'
+import PostList, { PostListProps } from '@/components/post/PostList'
 import dayjs from 'dayjs'
 
-export interface AllPostsProps {
+export interface AllPostsPageProps {
   posts: PostListProps['posts']
 }
 
-const AllPosts: React.FC<AllPostsProps> = props => {
+const AllPostsPage: React.FC<AllPostsPageProps> = props => {
   const { posts } = props
   const formattedPosts = useMemo(() => {
     const m = new Map<number, PostListProps['posts']>()
@@ -39,4 +39,4 @@ const AllPosts: React.FC<AllPostsProps> = props => {
   )
 }
 
-export default AllPosts
+export default AllPostsPage

@@ -15,13 +15,14 @@ const Splash = () => {
         {config.avatar && (
           <div className="relative flex-shrink-0">
             <Image
-              className="object-cover rounded-full shadow-zinc-600/10 shadow-xl dark:shadow-none"
+              className="object-cover rounded-full p-0.5 bg-white dark:bg-zinc-900 ring-1 ring-zinc-400/20 shadow-lg dark:shadow-none shadow-zinc-600/10"
               src={config.avatar}
+              alt="avatar"
               width={64}
               height={64}
-              alt="avatar"
+              unoptimized
+              priority
             />
-            <div className="absolute inset-0 ring-1 ring-inset rounded-full ring-black/10 dark:ring-white/10"></div>
           </div>
         )}
         <div className="flex flex-col justify-between ml-6 space-y-3">
@@ -31,7 +32,7 @@ const Splash = () => {
           <span className="text-zinc-500">{config.description}</span>
           <div className="flex items-center gap-4">
             {config.socials.map(social => (
-              <Link
+              <a
                 key={social.link}
                 className="inline text-2xl transition-opacity opacity-50 hover:opacity-100"
                 href={social.link}
@@ -39,7 +40,7 @@ const Splash = () => {
                 aria-label={social.label}
               >
                 {SOCIAL_ICONS[social.label]}
-              </Link>
+              </a>
             ))}
           </div>
         </div>

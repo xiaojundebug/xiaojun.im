@@ -1,13 +1,13 @@
 import React from 'react'
-import Splash from './Splash'
-import PostList, { PostListProps } from '@/components/PostList'
+import Splash from '../Splash'
+import PostList, { PostListProps } from '@/components/post/PostList'
 
-export interface PostsByTagProps {
+export interface PostsByTagPageProps {
   tag: string
   posts: PostListProps['posts']
 }
 
-const PostsByTag: React.FC<PostsByTagProps> = props => {
+const PostsByTagPage: React.FC<PostsByTagPageProps> = props => {
   const { tag, posts } = props
 
   return (
@@ -21,4 +21,4 @@ const PostsByTag: React.FC<PostsByTagProps> = props => {
   )
 }
 
-export default PostsByTag
+export default PostsByTagPage

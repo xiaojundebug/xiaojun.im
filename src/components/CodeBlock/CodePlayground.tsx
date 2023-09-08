@@ -1,16 +1,16 @@
 import React, { useMemo, useState } from 'react'
-import Provider, { ProviderProps } from '@/components/playground/Provider'
+import Provider, { ProviderProps } from '@/components/CodeBlock/playground/Provider'
 import { scope as builtInScope } from './react-live-scope'
-import Preview from '@/components/playground/Preview'
+import Preview from '@/components/CodeBlock/playground/Preview'
 import Editor from './Editor'
 import useForceUpdate from '@/hooks/useForceUpdate'
 import ResetButton from '@/components/CodeBlock/ResetButton'
 import RefreshButton from '@/components/CodeBlock/RefreshButton'
 import LazyLoad from '@/components/LazyLoad'
 import clsx from 'clsx'
-import Console from '@/components/playground/Console'
+import Console from '@/components/CodeBlock/playground/Console'
 import ClearButton from '@/components/CodeBlock/ClearButton'
-import usePlaygroundContext from '@/components/playground/usePlaygroundContext'
+import usePlaygroundContext from '@/components/CodeBlock/playground/usePlaygroundContext'
 
 type TabType = 1 | 2
 
@@ -21,19 +21,21 @@ const tabs: { label: string; type: TabType }[] = [
 ]
 
 // CodePlayground 还未被 Provider 包裹，所以不能直接在里边使用 PlaygroundContext
-const LogCleaner: React.FC = () => {
+const LogCleaner = () => {
   const { setLogs } = usePlaygroundContext()
   return <ClearButton onClick={() => setLogs([])} />
 }
 
-const CodePlayground: React.FC<{
+export interface CodePlaygroundProps {
   code: string
   language: ProviderProps['language']
   scope?: ProviderProps['scope']
   editor?: boolean
   lineNumbers?: boolean
   title?: string
-}> = props => {
+}
+
+const CodePlayground: React.FC<CodePlaygroundProps> = props => {
   const { code: initialCode, language, scope = {}, editor = true, lineNumbers, title } = props
   const [code, setCode] = useState(initialCode)
   const [forceUpdate, previewRefreshTrigger] = useForceUpdate()

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { animated, useSpring } from '@react-spring/web'
+import fetcher from '@/lib/fetcher'
+import { getSiteUrl } from '@/utils/url'
+import Spinner from '@/components/Spinner'
 
 export interface LikeProps {
   slug: string
 }
 
-const Like: React.FC<LikeProps> = props => {
-  const { slug } = props
+const Like: React.FC<LikeProps> = ({ slug }) => {
   const [scale, setScale] = useState(1)
   const [likes, setLikes] = useState(0)
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   const styles = useSpring({
     to: { scale },
@@ -17,28 +19,29 @@ const Like: React.FC<LikeProps> = props => {
   })
 
   useEffect(() => {
-    setLoading(true)
-    fetch(`/api/likes?slug=${slug}`).then(async res => {
-      if (res.ok) {
-        const data = await res.json()
-        setLikes(data.likes)
-      }
-      setLoading(false)
-    })
+    setIsLoading(true)
+    fetcher<{ likes: number }>(getSiteUrl(`/api/likes/${slug}`))
+      .then(res => {
+        setLikes(res.likes)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }, [slug])
 
-  function incrLike() {
+  async function incrLikes() {
+    // Optimistic updates
     setLikes(likes => likes + 1)
-    fetch(`/api/likes`, { method: 'PATCH', body: JSON.stringify({ slug }) }).then(res => {
-      if (res.ok) {
-        // ...
-      } else {
-        setLikes(likes => likes - 1)
-      }
-    })
+    try {
+      await fetcher(`/api/likes/${slug}`, { method: 'PATCH' })
+    } catch (e) {
+      // Rollback
+      setLikes(likes => likes - 1)
+      throw e
+    }
   }
 
-  if (loading) return null
+  if (isLoading) return null
 
   return (
     <div className="flex flex-col justify-center items-center w-fit mt-8 -ml-[5px]">
@@ -53,7 +56,13 @@ const Like: React.FC<LikeProps> = props => {
         onMouseDown={() => setScale(1)}
         onMouseUp={() => {
           setScale(1.1)
-          incrLike()
+          incrLikes()
+            .then(() => {
+              console.log('Like added')
+            })
+            .catch(e => {
+              console.error(e)
+            })
         }}
       />
       <span className="mt-1 text-sm text-zinc-400" style={{ fontFeatureSettings: '"tnum"' }}>

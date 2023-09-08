@@ -1,8 +1,9 @@
+'use client'
+
 import React, { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { animationFrameScheduler, fromEvent, startWith, throttleTime } from 'rxjs'
 import { animated, useSpring } from '@react-spring/web'
-import Like from '@/components/Like'
 
 function findCurrentHeading(list: HTMLElement[]) {
   let start = 0
@@ -47,8 +48,7 @@ export interface TableOfContentsProps {
   headings: { id: string; text: string; level: number }[]
 }
 
-const TableOfContents: React.FC<TableOfContentsProps> = props => {
-  const { headings } = props
+const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
   const listRef = useRef<HTMLUListElement>(null)
   const activeItemRef = useRef<HTMLLIElement>(null)
   const activeId = useScrollSpy(headings.map(({ id }) => id))

@@ -2,12 +2,8 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { ratelimit, redis } from '@/lib/redis'
 import { isPostExists } from '@/utils/post'
 
-export async function PATCH(req: NextRequest) {
-  const { slug } = await req.json()
-
-  if (!slug) {
-    return new NextResponse('Slug not found', { status: 400 })
-  }
+export async function PATCH(req: NextRequest, { params }: { params: { slug: string } }) {
+  const slug = decodeURIComponent(params.slug)
 
   const exists = await isPostExists(slug)
   if (!exists) {

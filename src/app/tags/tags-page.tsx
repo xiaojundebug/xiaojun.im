@@ -12,17 +12,14 @@ const FONT_MAX = 48
 const OPACITY_MIN = 0
 const OPACITY_MAX = 1
 
-interface TagsInfo {
-  tagName: string
-  postsNum: number
-}
-
 export interface TagsPageProps {
-  tags: TagsInfo[]
+  tags: {
+    tagName: string
+    postsNum: number
+  }[]
 }
 
-const TagsPage: React.FC<TagsPageProps> = props => {
-  const { tags } = props
+const TagsPage: React.FC<TagsPageProps> = ({ tags }) => {
   const { t } = useTranslation()
   const transitions = useTransition(tags, {
     from: { scale: 0.5, opacity: 0 },
@@ -71,6 +68,7 @@ const TagsPage: React.FC<TagsPageProps> = props => {
                 ),
               }}
               href={`/tags/${tagName}`}
+              prefetch={false}
             >
               {tagName}
             </Link>

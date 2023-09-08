@@ -2,7 +2,7 @@ import { useDebounceEffect } from 'ahooks'
 import React, { useEffect, useState } from 'react'
 import { generateElement } from '../utils/transpile'
 import { NativeProps, withNativeProps } from '@/utils/native-props'
-import usePlaygroundContext from '@/components/playground/usePlaygroundContext'
+import usePlaygroundContext from '@/components/CodeBlock/playground/usePlaygroundContext'
 
 function resolveElement(node: React.ReactNode) {
   const Element =

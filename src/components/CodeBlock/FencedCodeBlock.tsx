@@ -1,20 +1,22 @@
 import React, { useEffect, useMemo } from 'react'
-import Provider, { ProviderProps } from '@/components/playground/Provider'
+import Provider, { ProviderProps } from '@/components/CodeBlock/playground/Provider'
 import Editor from './Editor'
 import clsx from 'clsx'
 import useBoolean from '@/hooks/useBoolean'
 import { copyToClipboard } from '@/utils/clipboard'
 import CopyButton from './CopyButton'
 
-// 静态围栏代码块高亮
-const FencedCodeBlock: React.FC<{
+export interface FencedCodeBlockProps {
   language: ProviderProps['language']
   code: string
   highlights?: string
   raw?: boolean
   lineNumbers?: boolean
   title?: string
-}> = props => {
+}
+
+// 静态围栏代码块高亮
+const FencedCodeBlock: React.FC<FencedCodeBlockProps> = props => {
   const { language, code, highlights = '', raw, lineNumbers, title } = props
   const [copied, { set: setCopied }] = useBoolean(false)
 

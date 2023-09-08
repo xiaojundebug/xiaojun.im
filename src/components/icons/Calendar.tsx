@@ -1,7 +1,7 @@
 import React from 'react'
 import { IconProps } from './types'
 
-const Calender: React.FC<IconProps> = props => {
+const Calendar: React.FC<IconProps> = props => {
   return (
     <svg
       width="1em"
@@ -22,4 +22,4 @@ const Calender: React.FC<IconProps> = props => {
   )
 }
 
-export default Calender
+export default Calendar

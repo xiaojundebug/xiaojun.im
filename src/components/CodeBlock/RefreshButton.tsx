@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import { animated, config, useSpring } from '@react-spring/web'
 import { Refresh } from '@/components/icons'
 
-const RefreshButton: React.FC<{ onClick: () => void }> = props => {
-  const { onClick } = props
+export interface RefreshButtonProps {
+  onClick: () => void
+}
+
+const RefreshButton: React.FC<RefreshButtonProps> = ({ onClick }) => {
   const [rotation, setRotation] = useState(0)
 
   const { rotate } = useSpring({

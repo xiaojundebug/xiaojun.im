@@ -1,5 +1,5 @@
 import { getLatestPosts } from '@/utils/post'
-import PostsByTagPage from '@/components/PostsByTag'
+import PostsByTagPage from '@/components/post/PostsByTagPage'
 
 export async function generateStaticParams() {
   const posts = await getLatestPosts()

@@ -1,133 +1,53 @@
-'use client'
-
-import React, { DependencyList, useEffect, useMemo, useState } from 'react'
-import TableOfContents, { TableOfContentsProps } from '@/components/TableOfContents'
-import { getMDXComponent, getMDXExport } from 'mdx-bundler/client'
+import React, { useMemo } from 'react'
+import { getMDXExport } from 'mdx-bundler/client'
 import NextLink from 'next/link'
 import dayjs from 'dayjs'
-import CodeBlock from '@/components/CodeBlock'
-import DarkModeToggle from '@/components/DarkModeToggle'
-import UnorderedList from '@/components/lists/UnorderedList'
-import OrderedList from '@/components/lists/OrderedList'
-import ListItem from '@/components/lists/ListItem'
 import config from 'config'
 import useTranslation from '@/hooks/useTranslation'
-import tagRenderer from '@/utils/tag-renderer'
-import Image from '@/components/Image'
 import HorizontalRule from '@/components/HorizontalRule'
-import LinkCard from '@/components/LinkCard'
 import DesktopOnly from '@/components/DesktopOnly'
 import { ArrowLeft, ArrowRight, Calender, Clock, Click } from '@/components/icons'
-import Link from '@/components/Link'
-import * as embeds from '@/components/embeds'
-import Like from '@/components/Like'
-import HeroImage, { HeroImageProps } from '@/components/HeroImage'
+import BleedThroughImage, { BleedThroughImageProps } from '@/components/BleedThroughImage'
+import PostViews from '@/components/post/PostViews'
+import PostContent from '@/components/post/PostContent'
+import PostAside from '@/components/post/PostAside'
 
-const components = {
-  h1: tagRenderer('h1'),
-  h2: tagRenderer('h2'),
-  h3: tagRenderer('h3'),
-  h4: tagRenderer('h4'),
-  h5: tagRenderer('h5'),
-  h6: tagRenderer('h6'),
-  p: tagRenderer('p'),
-  blockquote: tagRenderer('blockquote'),
-  table: tagRenderer('table'),
-  thead: tagRenderer('thead'),
-  tbody: tagRenderer('tbody'),
-  tr: tagRenderer('tr'),
-  th: tagRenderer('th'),
-  td: tagRenderer('td'),
-  em: tagRenderer('em'),
-  strong: tagRenderer('strong'),
-  del: tagRenderer('del'),
-  img: Image,
-  ul: UnorderedList,
-  ol: OrderedList,
-  li: ListItem,
-  hr: HorizontalRule,
-  code: CodeBlock,
-  a: Link,
-  linkcard: LinkCard,
-  DarkModeToggle,
-  ...embeds,
-}
-
-function useHeadings(deps: DependencyList = []) {
-  const [headings, setHeadings] = useState<TableOfContentsProps['headings']>([])
-
-  useEffect(() => {
-    const elements = Array.from(
-      document.querySelectorAll(
-        '.markdown-body > h2, .markdown-body > h3, .markdown-body > h4, .markdown-body > h5, .markdown-body > h6',
-      ),
-    )
-      .filter(element => element.id)
-      .map(element => ({
-        id: element.id,
-        text: element.textContent ?? '',
-        level: Number(element.tagName.substring(1)),
-      }))
-    setHeadings(elements)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, deps)
-
-  return headings
-}
-
-export interface PostProps {
+export interface PostPageProps {
   slug: string
   code: string
   frontmatter: PostFrontmatter
   prevPost?: { link: string; title: string }
   nextPost?: { link: string; title: string }
-  heroImageInfo?: HeroImageProps
+  heroImageInfo?: BleedThroughImageProps
 }
 
-const Post: React.FC<PostProps> = props => {
+const PostPage: React.FC<PostPageProps> = props => {
   const { t } = useTranslation()
   const {
     slug,
     code,
-    frontmatter: { title, date, updatedOn, tags, toc = true, heroImage },
+    frontmatter: { title, date, updatedOn, tags, toc = config.toc, heroImage },
     prevPost,
     nextPost,
     heroImageInfo,
   } = props
-  const [views, setViews] = useState(0)
-  const headings = useHeadings([code])
-  const Component = useMemo(() => getMDXComponent(code), [code])
   const { readingTime } = useMemo(
     () => getMDXExport<{ readingTime: PostReadingTime }, unknown>(code),
     [code],
   )
 
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
-      fetch('/api/views', { method: 'PATCH', body: JSON.stringify({ slug }) }).then(async res => {
-        if (res.ok) {
-          const data = await res.json()
-          setViews(data.pv)
-        }
-      })
-    } else {
-      setViews(1024)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   return (
     <>
-      <div className="prose-container relative flex break-all">
-        <div className="flex-1 w-0">
-          {/* hero image */}
+      <div className="prose-container relative flex mt-4 sm:mt-28 break-all">
+        <main className="flex-1 w-0">
+          {/* Hero Image */}
           {heroImage && heroImageInfo && (
-            <div className="mt-4 sm:mt-28 sm:-mx-4">
-              <HeroImage {...heroImageInfo} />
+            <div className="sm:-mx-8 mb-14">
+              <BleedThroughImage {...heroImageInfo} />
             </div>
           )}
 
-          <h1 className="mt-14 sm:mt-16 text-3xl sm:text-5xl text-black dark:text-white !leading-snug font-medium">
+          <h1 className="mt-6 text-3xl sm:text-5xl text-black dark:text-white !leading-snug font-medium">
             {title}
           </h1>
 
@@ -149,7 +69,7 @@ const Post: React.FC<PostProps> = props => {
                 <span className="mx-2">•</span>
                 <>
                   <Click className="mr-1 text-base" />
-                  {!views ? '-' : views.toLocaleString()}
+                  <PostViews slug={slug} />
                 </>
               </span>
             </div>
@@ -163,6 +83,7 @@ const Post: React.FC<PostProps> = props => {
                   key={tag}
                   className="bg-primary/[0.12] text-primary px-2.5 py-0.5 rounded-full font-medium"
                   href={`/tags/${tag}`}
+                  prefetch={false}
                 >
                   #{tag}
                 </NextLink>
@@ -170,10 +91,9 @@ const Post: React.FC<PostProps> = props => {
             </div>
           )}
 
-          {/* markdown 内容 */}
+          {/* Markdown 内容 */}
           <article className="markdown-body w-full mt-10">
-            {/* @ts-ignore */}
-            <Component components={components} />
+            <PostContent code={code} />
           </article>
 
           <p className="mt-24 mb-0 text-right text-zinc-500 text-sm italic">
@@ -216,20 +136,14 @@ const Post: React.FC<PostProps> = props => {
               </span>
             </div>
           )}
-        </div>
+        </main>
 
         <DesktopOnly>
-          <aside className="absolute left-full h-full mt-56 ml-24">
-            <div className="sticky top-[10vh] max-w-[250px] mr-4">
-              {/* 侧边目录导航 */}
-              {config.toc && toc && headings.length > 1 && <TableOfContents headings={headings} />}
-              <Like slug={slug} />
-            </div>
-          </aside>
+          <PostAside slug={slug} toc={toc} />
         </DesktopOnly>
       </div>
     </>
   )
 }
 
-export default Post
+export default PostPage

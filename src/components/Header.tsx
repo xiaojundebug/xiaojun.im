@@ -27,8 +27,6 @@ import {
 } from 'rxjs'
 import useSpotlight from '@/hooks/useSpotlight'
 
-export interface HeaderProps {}
-
 const MobileHeader: React.FC<{
   menus: { label: string; href: string }[]
   expanded: boolean
@@ -73,8 +71,7 @@ const MobileHeader: React.FC<{
   )
 }
 
-const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = props => {
-  const { menus } = props
+const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = ({ menus }) => {
   const pathname = usePathname()
   const [{ x: spotX, y: spotY, r: spotR }, onMouseMove] = useSpotlight()
 
@@ -134,7 +131,7 @@ const DesktopHeader: React.FC<{ menus: { label: string; href: string }[] }> = pr
   )
 }
 
-const Header: React.FC<HeaderProps> = () => {
+const Header = () => {
   const [visible, { set: setVisible }] = useBoolean(true)
   const [isExpanded, { toggle: toggleIsExpanded, set: setIsExpanded }] = useBoolean(false)
   const { t } = useTranslation()

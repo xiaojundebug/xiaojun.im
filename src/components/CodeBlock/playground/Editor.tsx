@@ -4,7 +4,7 @@ import { NativeProps, withNativeProps } from '@/utils/native-props'
 import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer'
 import CodeEditor from 'react-simple-code-editor'
 import clsx from 'clsx'
-import usePlaygroundContext from '@/components/playground/usePlaygroundContext'
+import usePlaygroundContext from '@/components/CodeBlock/playground/usePlaygroundContext'
 
 export interface EditorProps extends NativeProps {
   fontSize?: number

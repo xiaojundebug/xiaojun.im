@@ -14,13 +14,8 @@ export interface YouTubeProps {
   noCookie?: boolean
 }
 
-const YouTube: React.FC<YouTubeProps> = ({
-  vid,
-  lid,
-  autoplay = false,
-  start = 0,
-  noCookie = false,
-}) => {
+const YouTube: React.FC<YouTubeProps> = props => {
+  const { vid, lid, autoplay = false, start = 0, noCookie = false } = props
   const provider = noCookie ? 'https://www.youtube-nocookie.com' : 'https://www.youtube.com'
   const baseUrl = `${provider}/embed/`
   const src = `${baseUrl}${

@@ -1,12 +1,12 @@
 import React from 'react'
 import { NativeProps, withNativeProps } from '@/utils/native-props'
-import usePlaygroundContext from '@/components/playground/usePlaygroundContext'
+import usePlaygroundContext from '@/components/CodeBlock/playground/usePlaygroundContext'
 
-export interface HtmlPreviewProps extends NativeProps {
+export interface HTMLPreviewProps extends NativeProps {
   onConsoleReady?: (console: Console) => void
 }
 
-const HtmlPreview: React.FC<HtmlPreviewProps> = props => {
+const HTMLPreview: React.FC<HTMLPreviewProps> = props => {
   const { onConsoleReady } = props
   const { code } = usePlaygroundContext()
 
@@ -31,4 +31,4 @@ const HtmlPreview: React.FC<HtmlPreviewProps> = props => {
     : null
 }
 
-export default HtmlPreview
+export default HTMLPreview

@@ -50,7 +50,7 @@ export default function About() {
         </li>
         <li>
           Github -{' '}
-          <Link href="https://github.com/xiaojundebug">https://github.com/xiaojundebug</Link>
+          <a href="https://github.com/xiaojundebug">https://github.com/xiaojundebug</a>
         </li>
       </ul>
     </div>

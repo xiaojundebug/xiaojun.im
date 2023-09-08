@@ -1,7 +1,7 @@
 import { getLatestPosts } from '@/utils/post'
-import AllPosts from '@/components/AllPosts'
+import AllPostsPage from '@/components/post/AllPostsPage'
 
 export default async function Home() {
   const posts = await getLatestPosts()
-  return <AllPosts posts={posts} />
+  return <AllPostsPage posts={posts} />
 }
