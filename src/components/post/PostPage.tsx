@@ -10,7 +10,7 @@ import { ArrowLeft, ArrowRight, Calender, Clock, Click } from '@/components/icon
 import BleedThroughImage, { BleedThroughImageProps } from '@/components/BleedThroughImage'
 import PostViews from '@/components/post/PostViews'
 import PostContent from '@/components/post/PostContent'
-import PostAside from '@/components/post/PostAside'
+import PostRightAside from '@/components/post/PostRightAside'
 
 export interface PostPageProps {
   slug: string
@@ -38,7 +38,7 @@ const PostPage: React.FC<PostPageProps> = props => {
 
   return (
     <>
-      <div className="prose-container relative flex mt-4 sm:mt-28 break-all">
+      <div className="prose-container relative flex mt-4 sm:mt-28">
         <main className="flex-1 w-0">
           {/* Hero Image */}
           {heroImage && heroImageInfo && (
@@ -139,7 +139,7 @@ const PostPage: React.FC<PostPageProps> = props => {
         </main>
 
         <DesktopOnly>
-          <PostAside slug={slug} toc={toc} />
+          <PostRightAside slug={slug} toc={toc} />
         </DesktopOnly>
       </div>
     </>

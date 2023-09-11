@@ -59,7 +59,7 @@ const CodePlayground: React.FC<CodePlaygroundProps> = props => {
       onCodeChange={setCode}
       scope={{ ...builtInScope, ...scope }}
     >
-      <div className="code-playground relative -mx-4 border-2 border-zinc-600/50 bg-zinc-900 rounded-none sm:rounded-xl overflow-hidden">
+      <div className="code-playground relative prose-bleed border-2 border-zinc-600/50 bg-zinc-900 rounded-xl overflow-hidden">
         <div className="flex items-center justify-between h-8 px-4 bg-zinc-600/50">
           <span className="text-sm text-white">{title || 'Code Playground'}</span>
           <div className="flex items-center gap-4">

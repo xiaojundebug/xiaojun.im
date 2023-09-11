@@ -31,7 +31,7 @@ export interface PostAsideProps {
   toc?: boolean
 }
 
-const PostAside: React.FC<PostAsideProps> = props => {
+const PostRightAside: React.FC<PostAsideProps> = props => {
   const { slug, toc = true } = props
   const headings = useHeadings()
 
@@ -47,4 +47,4 @@ const PostAside: React.FC<PostAsideProps> = props => {
   )
 }
 
-export default PostAside
+export default PostRightAside

@@ -14,9 +14,9 @@ const Image: React.FC<ImageProps> = props => {
   const { src, alt = '', width = 1280, height = 720, lqip } = props
 
   return (
-    <div className="relative mdx-img" style={{ aspectRatio: `${width} / ${height}` }}>
+    <div className="relative prose-bleed my-12" style={{ aspectRatio: `${width} / ${height}` }}>
       <NextImage
-        className="object-contain"
+        className="max-w-full h-auto mx-auto rounded-xl"
         src={src}
         alt={alt}
         fill

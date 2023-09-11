@@ -65,7 +65,7 @@ const Like: React.FC<LikeProps> = ({ slug }) => {
             })
         }}
       />
-      <span className="mt-1 text-sm text-zinc-400" style={{ fontFeatureSettings: '"tnum"' }}>
+      <span className="mt-1 text-sm font-medium text-zinc-500" style={{ fontFeatureSettings: '"tnum"' }}>
         {likes}
       </span>
     </div>
