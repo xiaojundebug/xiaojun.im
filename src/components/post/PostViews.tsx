@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import fetcher from '@/lib/fetcher'
 import { getSiteUrl } from '@/utils/url'
 import Spinner from '@/components/Spinner'
-import { sleep } from '@/utils'
+import { prettifyNumber, sleep } from '@/utils'
 
 export interface PostViewsProps {
   slug: string
@@ -35,7 +35,7 @@ const PostViews: React.FC<PostViewsProps> = ({ slug }) => {
 
   if (isLoading) return <Spinner />
 
-  return views.toLocaleString()
+  return prettifyNumber(views)
 }
 
 export default PostViews

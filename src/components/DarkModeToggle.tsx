@@ -13,7 +13,7 @@ const starPaths = [
 ]
 
 const DarkModeToggle = () => {
-  const { resolvedTheme = 'light', setTheme, forcedTheme } = useTheme()
+  const { resolvedTheme, setTheme, forcedTheme } = useTheme()
   const [playOn] = useSound('/sounds/switch.mp3')
   const [playOff] = useSound('/sounds/switch.mp3', { playbackRate: 0.6 })
   const isDarkMode = resolvedTheme === 'dark' || forcedTheme === 'dark'

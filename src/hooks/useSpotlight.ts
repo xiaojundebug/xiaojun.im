@@ -13,7 +13,7 @@ function useSpotlight() {
     r.set(Math.sqrt(bounds.width ** 2 + bounds.height ** 2) / 2.5)
   }
 
-  // eslint-disable-next-line
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   return useMemo(() => [{ x, y, r }, movement] as const, [])
 }
 

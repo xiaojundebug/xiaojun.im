@@ -16,3 +16,6 @@ interface PostReadingTime {
   words: number
 }
 
+declare namespace Intl {
+  function getCanonicalLocales(locales: string | string[]): string[]
+}
