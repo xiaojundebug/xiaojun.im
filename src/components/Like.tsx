@@ -61,7 +61,7 @@ const Like: React.FC<LikeProps> = ({ slug }) => {
       ],
     })
     try {
-      // await fetcher(`/api/likes/${slug}`, { method: 'PATCH' })
+      await fetcher(`/api/likes/${slug}`, { method: 'PATCH' })
     } catch (e) {
       // Rollback
       setLikes(likes => likes - 1)
