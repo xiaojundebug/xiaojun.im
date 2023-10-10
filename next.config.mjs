@@ -13,6 +13,22 @@ const config = {
   experimental: {
     serverComponentsExternalPackages: ['fetch-site-metadata'],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/rss',
+        destination: '/feed.xml',
+      },
+      {
+        source: '/rss.xml',
+        destination: '/feed.xml',
+      },
+      {
+        source: '/feed',
+        destination: '/feed.xml',
+      },
+    ]
+  },
 }
 
 export default withPlaiceholder(config)

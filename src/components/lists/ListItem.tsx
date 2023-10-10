@@ -18,12 +18,12 @@ const ListItem: React.FC<JSX.IntrinsicElements['li']> = props => {
     // ol 的 marker 样式在 markdown.scss 中设置
     ol: () => null,
     tl: () => (
-      <span className="flex pt-[5px] pr-2 mr-[2px]">
+      <span className="flex pt-[3.5px] pr-2">
         {/* @ts-ignore */}
         {childArr[0].props.checked ? (
-          <Checked className="text-lg text-primary" />
+          <Checked className="text-xl -ml-1 mr-1 text-primary" />
         ) : (
-          <Unchecked className="text-lg text-primary" aria-hidden />
+          <Unchecked className="text-xl -ml-1 mr-1 text-primary" aria-hidden />
         )}
       </span>
     ),

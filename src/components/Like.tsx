@@ -5,7 +5,7 @@ import { getSiteUrl } from '@/utils/url'
 import { useTheme } from 'next-themes'
 import { VT323 } from 'next/font/google'
 import clsx from 'clsx'
-import {prettifyNumber} from "@/utils";
+import { prettifyNumber } from '@/utils'
 
 const vt323 = VT323({
   subsets: ['latin'],
@@ -34,7 +34,6 @@ const Like: React.FC<LikeProps> = ({ slug }) => {
   const [numStyles, numApi] = useSpring(
     () => ({
       to: { scale: 0, opacity: 0, y: 0 },
-      config: config.default,
     }),
     [],
   )
@@ -56,7 +55,7 @@ const Like: React.FC<LikeProps> = ({ slug }) => {
     numApi.start({
       from: { scale: 0, opacity: 0, y: 0 },
       to: [
-        { scale: 1, opacity: 1 },
+        { scale: 1, opacity: 1, config: config.default },
         { opacity: 0, y: -5, config: config.slow },
       ],
     })
@@ -75,7 +74,7 @@ const Like: React.FC<LikeProps> = ({ slug }) => {
     <div className="relative flex flex-col justify-center items-center w-fit mt-8 -ml-[5px]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <animated.img
-        className="w-[38px] h-[38px] cursor-pointer"
+        className="w-[38px] h-[38px] min-w-[38px] cursor-pointer"
         style={iconStyles}
         src={isDarkMode ? '/like-dark.png' : '/like-light.png'}
         alt="like"

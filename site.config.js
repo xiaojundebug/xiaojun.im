@@ -8,7 +8,7 @@ module.exports = {
   // icon 请在 src/components/Splash/index.tsx 中修改
   socials: [
     { label: 'GitHub', link: 'https://github.com/xiaojundebug' },
-    { label: '友链', link: '/friends' },
+    { label: 'RSS', link: '/feed.xml' },
   ],
   friends: [
     { name: '赖同学', link: 'https://www.laibh.com' },

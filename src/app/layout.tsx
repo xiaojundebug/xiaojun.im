@@ -30,6 +30,11 @@ export const metadata: Metadata = {
     description: config.description,
     images: '/api/og',
   },
+  alternates: {
+    types: {
+      'application/rss+xml': [{ url: 'feed.xml', title: 'RSS Feed' }],
+    },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

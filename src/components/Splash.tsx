@@ -1,11 +1,11 @@
 import React from 'react'
 import config from 'config'
-import Link from 'next/link'
 import Image from 'next/image'
-import { GitHub } from '@/components/icons'
+import { GitHub, RSS } from '@/components/icons'
 
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
-  GitHub: <GitHub className="text-lg" aria-hidden />,
+  GitHub: <GitHub className="text-xl" aria-hidden />,
+  RSS: <RSS className="text-xl" aria-hidden />,
 }
 
 const Splash = () => {
