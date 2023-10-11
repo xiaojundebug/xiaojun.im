@@ -5,15 +5,15 @@ import { ContainerDirective } from 'mdast-util-directive'
 import { Root } from 'mdast'
 
 // 自定义提示块
-//
+
 // :::tip
 // 这是一个提示
 // :::
-//
+
 // :::warning
 // 这是一个警告
 // :::
-//
+
 // :::danger
 // 这是一个危险警告
 // :::

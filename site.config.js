@@ -6,7 +6,7 @@ module.exports = {
   logo: '/logo.svg',
   siteUrl: 'https://www.xiaojun.im',
   // icon 请在 src/components/Splash/index.tsx 中修改
-  socials: [
+  links: [
     { label: 'GitHub', link: 'https://github.com/xiaojundebug' },
     { label: 'RSS', link: '/feed.xml' },
   ],
@@ -15,8 +15,8 @@ module.exports = {
     { name: '鯊手', link: 'https://www.cnblogs.com/Scooby' },
   ],
   language: 'zh-CN', // en | zh-CN
-  toc: true, // table of content
-  adjacentPosts: true, // prev next links
+  toc: true, // Table of contents
+  adjacentPosts: true, // Prev and next posts
   markdown: {
     lineNumbers: false,
   },

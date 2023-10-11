@@ -61,7 +61,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
         remarkReadingTime,
         remarkReadingMdxTime,
         remarkMdxCodeProps,
-        // remarkLinkCard,
+        remarkLinkCard,
         remarkImageInfo,
       ]
       options.rehypePlugins = [

@@ -23,8 +23,8 @@ const AllPostsPage: React.FC<AllPostsPageProps> = props => {
     <>
       <div className="prose-container">
         <Splash />
-        {formattedPosts.map(([year, postsByYear], index) => (
-          <Fragment key={index}>
+        {formattedPosts.map(([year, postsByYear], idx) => (
+          <Fragment key={idx}>
             <h2
               className="font-medium text-2xl
                 before:content-['#_'] before:text-primary"

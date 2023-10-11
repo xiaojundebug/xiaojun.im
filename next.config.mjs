@@ -11,7 +11,7 @@ const config = {
     domains: [],
   },
   experimental: {
-    serverComponentsExternalPackages: ['fetch-site-metadata'],
+    serverComponentsExternalPackages: ['plaiceholder', 'fetch-site-metadata'],
   },
   async rewrites() {
     return [

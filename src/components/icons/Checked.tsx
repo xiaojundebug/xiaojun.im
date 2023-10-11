@@ -12,8 +12,8 @@ const Checked: React.FC<IconProps> = props => {
       {...props}
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M12.0327 12.2324L9.20425 9.40396L7.79004 10.8182L12.0327 15.0608L22.6393 4.45421L21.2251 3.04L12.0327 12.2324Z"
         fill="currentColor"
       />

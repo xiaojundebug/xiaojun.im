@@ -31,7 +31,7 @@ const Splash = () => {
           </h1>
           <span className="text-zinc-500">{config.description}</span>
           <div className="flex items-center gap-4">
-            {config.socials.map(social => (
+            {config.links.map(social => (
               <a
                 key={social.link}
                 className="inline text-2xl transition-opacity opacity-50 hover:opacity-100"
