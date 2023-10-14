@@ -21,14 +21,12 @@ const Link: React.FC<JSX.IntrinsicElements['a']> = props => {
       target="_blank"
       rel="noopener noreferrer"
       {...rest}
-      className={clsx('group/a mdx-a', {
-        ' inline-flex place-items-baseline': isPlainAnchor,
-      })}
+      className={clsx('group/a mdx-a')}
     >
       {children}
       {isPlainAnchor && (
         <ExternalLink
-          className="flex-shrink-0 inline-block mx-0.5 text-[0.9em] translate-y-0.5 text-zinc-400 group-hover/a:text-current transition-colors"
+          className="inline-block mx-0.5 text-[0.9em] -translate-y-px text-zinc-400 group-hover/a:text-current transition-colors"
           aria-hidden
         />
       )}

@@ -1,16 +1,23 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import fetcher from '@/lib/fetcher'
 import { getSiteUrl } from '@/utils/url'
-import Spinner from '@/components/Spinner'
-import { prettifyNumber, sleep } from '@/utils'
+import { sleep } from '@/utils'
 
-export interface PostViewsProps {
+export interface PostViewsContext {
+  views: number
+  isLoading: boolean
+}
+
+export interface PostViewsProviderProps {
   slug: string
 }
 
-const PostViews: React.FC<PostViewsProps> = ({ slug }) => {
+export const PostViewsContext = createContext({} as PostViewsContext)
+
+const PostViewsProvider: React.FC<PropsWithChildren<PostViewsProviderProps>> = props => {
+  const { children, slug } = props
   const [views, setViews] = useState(0)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -33,9 +40,9 @@ const PostViews: React.FC<PostViewsProps> = ({ slug }) => {
     }
   }, [slug])
 
-  if (isLoading) return <Spinner />
-
-  return prettifyNumber(views)
+  return (
+    <PostViewsContext.Provider value={{ views, isLoading }}>{children}</PostViewsContext.Provider>
+  )
 }
 
-export default PostViews
+export default PostViewsProvider

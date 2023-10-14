@@ -4,7 +4,8 @@
   "nav.friends": "Friends",
   "nav.about": "About",
 
-  "post-page.last-updated": "Last Updated: {{ date }}",
+  "post-page.hits": "HITS",
+  "post-page.last-updated": "LAST UPDATED",
   "post-page.reading-time": "{{ minutes }} min read",
 
   "tags-page.title": "Tags",

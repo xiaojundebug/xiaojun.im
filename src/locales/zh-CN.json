@@ -4,7 +4,8 @@
   "nav.friends": "友链",
   "nav.about": "关于",
 
-  "post-page.last-updated": "最后更新于 {{ date }}",
+  "post-page.hits": "阅读次数",
+  "post-page.last-updated": "最后更新于",
   "post-page.reading-time": "阅读时长 {{ minutes }} 分钟",
 
   "tags-page.title": "标签",

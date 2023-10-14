@@ -13,6 +13,7 @@ module.exports = {
   friends: [
     { name: '赖同学', link: 'https://www.laibh.com' },
     { name: '鯊手', link: 'https://www.cnblogs.com/Scooby' },
+    { name: '戴兜', link: 'https://im.daidr.me' },
   ],
   language: 'zh-CN', // en | zh-CN
   toc: true, // Table of contents

@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes'
 import { VT323 } from 'next/font/google'
 import clsx from 'clsx'
 import { prettifyNumber } from '@/utils'
+import useSound from '@/hooks/useSound'
 
 const vt323 = VT323({
   subsets: ['latin'],
@@ -23,6 +24,7 @@ const Like: React.FC<LikeProps> = ({ slug }) => {
   const [isLoading, setIsLoading] = useState(true)
   const { resolvedTheme, forcedTheme } = useTheme()
   const isDarkMode = resolvedTheme === 'dark' || forcedTheme === 'dark'
+  const [playSound] = useSound('/sounds/02.mp3')
 
   // 按钮动画
   const iconStyles = useSpring({
@@ -83,6 +85,7 @@ const Like: React.FC<LikeProps> = ({ slug }) => {
         onMouseDown={() => setScale(1)}
         onMouseUp={() => {
           setScale(1.1)
+          playSound()
           incrLikes()
             .then(() => {
               console.log('Like added')

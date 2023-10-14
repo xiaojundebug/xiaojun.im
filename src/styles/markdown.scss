@@ -36,7 +36,7 @@
 
   // InlineCode
   .mdx-code {
-    @apply inline-block rounded px-2 bg-zinc-400/10 text-zinc-800 text-sm font-semibold leading-7 whitespace-nowrap;
+    @apply inline-block rounded px-2 bg-zinc-400/10 text-zinc-800 text-sm font-semibold leading-7;
   }
 
   // Admonition
