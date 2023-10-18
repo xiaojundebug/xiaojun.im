@@ -1,8 +1,6 @@
-import { useDebounceEffect } from 'ahooks'
-import React, { useEffect, useState } from 'react'
+import React, { useDeferredValue, useEffect, useState } from 'react'
 import { generateElement } from '../utils/transpile'
-import { NativeProps, withNativeProps } from '@/utils/native-props'
-import usePlaygroundContext from '@/components/CodeBlock/playground/usePlaygroundContext'
+import usePlaygroundContext from '../usePlaygroundContext'
 
 function resolveElement(node: React.ReactNode) {
   const Element =
@@ -10,27 +8,25 @@ function resolveElement(node: React.ReactNode) {
   return <Element />
 }
 
-export interface ReactPreviewProps extends NativeProps {
+export interface ReactPreviewProps {
   onConsoleReady?: (console: Console) => void
 }
 
 const ReactPreview: React.FC<ReactPreviewProps> = props => {
   const { onConsoleReady } = props
   const { code, scope } = usePlaygroundContext()
+  const deferredCode = useDeferredValue(code)
   const [node, setNode] = useState<React.ReactNode>()
-
-  useDebounceEffect(
-    () => {
-      transpileAsync(code).catch(console.error)
-    },
-    [code, scope],
-    { wait: 200 },
-  )
 
   useEffect(() => {
     onConsoleReady?.(console)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    transpileAsync(code).catch(console.error)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deferredCode])
 
   function transpileAsync(newCode: string) {
     // - transformCode may be synchronous or asynchronous.
@@ -39,9 +35,7 @@ const ReactPreview: React.FC<ReactPreviewProps> = props => {
     // - Not using async-await to since it requires targeting ES 2017 or
     //   importing regenerator-runtime...
     try {
-      const transformResult = newCode
-
-      return Promise.resolve(transformResult).then(transformedCode => {
+      return Promise.resolve(newCode).then(transformedCode => {
         const renderElement = (node: React.ReactNode) => {
           // 一定要通过这种方式更新组件，因为 setState 支持传入一个function，但是组件本身又是一个方法，直接通过 setState(FunctionalElement)
           // 会让 react 以为你传入的组件是一个更新 state 的函数
@@ -61,7 +55,7 @@ const ReactPreview: React.FC<ReactPreviewProps> = props => {
     }
   }
 
-  return withNativeProps(props, <div style={{ margin: 8 }}>{resolveElement(node)}</div>)
+  return <div style={{ margin: 8 }}>{resolveElement(node)}</div>
 }
 
 export default ReactPreview

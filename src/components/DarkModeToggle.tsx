@@ -1,5 +1,5 @@
 import React from 'react'
-import { animated, useSpring, useTransition, config as builtinConfig } from '@react-spring/web'
+import { animated, config as builtinConfig, useSpring, useTransition } from '@react-spring/web'
 import { useTheme } from 'next-themes'
 import { withNoSSR } from '@/utils'
 import useSound from '@/hooks/useSound'
@@ -30,6 +30,7 @@ const DarkModeToggle = () => {
     opacity: isDarkMode ? 0 : 1,
     x: isDarkMode ? -5 : 0,
     delay: isDarkMode ? 0 : 150,
+
     config: isDarkMode ? builtinConfig.stiff : builtinConfig.default,
   })
 
@@ -37,16 +38,19 @@ const DarkModeToggle = () => {
     x: isDarkMode ? 28 : 0,
     rotate: isDarkMode ? 0 : 180,
     backgroundColor: isDarkMode ? '#c6d0d1' : '#fde047',
+
     config,
   })
 
   const containerStyles = useSpring({
     backgroundColor: isDarkMode ? '#475569' : '#7dd3fc',
+
     config,
   })
 
   const craterStyles = useSpring({
     opacity: isDarkMode ? 1 : 0,
+
     config,
   })
 

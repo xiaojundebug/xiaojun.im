@@ -1,8 +1,7 @@
 import React from 'react'
-import { NativeProps, withNativeProps } from '@/utils/native-props'
 import usePlaygroundContext from '@/components/CodeBlock/playground/usePlaygroundContext'
 
-export interface HTMLPreviewProps extends NativeProps {
+export interface HTMLPreviewProps {
   onConsoleReady?: (console: Console) => void
 }
 
@@ -17,18 +16,15 @@ const HTMLPreview: React.FC<HTMLPreviewProps> = props => {
     onConsoleReady?.(iframeConsole)
   }
 
-  return code
-    ? withNativeProps(
-        props,
-        <iframe
-          srcDoc={code}
-          style={{ width: '100%', height: '100%', verticalAlign: 'top', border: 'none' }}
-          allowFullScreen
-          allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-          onLoad={onLoad}
-        />,
-      )
-    : null
+  return code ? (
+    <iframe
+      srcDoc={code}
+      style={{ width: '100%', height: '100%', verticalAlign: 'top', border: 'none' }}
+      allowFullScreen
+      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+      onLoad={onLoad}
+    />
+  ) : null
 }
 
 export default HTMLPreview

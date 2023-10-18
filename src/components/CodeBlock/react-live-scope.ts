@@ -1,4 +1,12 @@
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+} from 'react'
 
 const reactScope = {
   React,
@@ -8,7 +16,7 @@ const reactScope = {
   useRef,
   useCallback,
   useMemo,
-  useReducer
+  useReducer,
 }
 
 export const scope = {

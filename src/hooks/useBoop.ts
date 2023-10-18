@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useSpring } from '@react-spring/web'
+import useBoolean from './useBoolean'
 
 // https://www.joshwcomeau.com/react/boop
 function useBoop({
@@ -13,7 +14,7 @@ function useBoop({
     friction: 10,
   },
 }) {
-  const [isBooped, setIsBooped] = useState(false)
+  const [isBooped, { setTrue, setFalse }] = useBoolean(false)
 
   const styles = useSpring({
     backfaceVisibility: 'hidden',
@@ -31,7 +32,7 @@ function useBoop({
     if (!isBooped) return
 
     const timeoutId = setTimeout(() => {
-      setIsBooped(false)
+      setFalse()
     }, timing)
 
     return () => clearTimeout(timeoutId)
@@ -39,7 +40,8 @@ function useBoop({
   }, [isBooped])
 
   const trigger = useCallback(() => {
-    setIsBooped(true)
+    setTrue()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return [styles, trigger] as const

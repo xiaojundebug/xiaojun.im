@@ -19,7 +19,6 @@ My personal blog, built with Next.js, TypeScript, MDX, and TailwindCSS.
 
 TODO:
 
-- RSS
 - SEO
 - Pagination
 - Comment system

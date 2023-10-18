@@ -1,4 +1,5 @@
-import React, { createContext, PropsWithChildren, useState } from 'react'
+import React, { createContext, PropsWithChildren } from 'react'
+import useBoolean from '@/hooks/useBoolean'
 
 export interface ConfigContext {
   soundEnabled?: boolean
@@ -8,7 +9,7 @@ export interface ConfigContext {
 export const ConfigContext = createContext({} as ConfigContext)
 
 const ConfigProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [soundEnabled, setSoundEnabled] = useState(true)
+  const [soundEnabled, { set: setSoundEnabled }] = useBoolean(true)
 
   return (
     <ConfigContext.Provider value={{ soundEnabled, setSoundEnabled }}>

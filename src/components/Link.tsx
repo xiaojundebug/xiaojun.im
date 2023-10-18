@@ -1,27 +1,26 @@
 import React, { JSX } from 'react'
 import { ExternalLink } from '@/components/icons'
-import NextLink from 'next/link'
-import { withNativeProps } from '@/utils/native-props'
 import clsx from 'clsx'
 
 const Link: React.FC<JSX.IntrinsicElements['a']> = props => {
   const { className, href = '', children, ...rest } = props
   const isPlainAnchor = typeof children === 'string'
 
-  // if it's a relative link, use a fallback Link
   if (!href.startsWith('http')) {
-    // @ts-ignore
-    return withNativeProps(props, <NextLink {...props} className="mdx-a" href={href}></NextLink>)
+    return (
+      <a className={clsx(className, 'mdx-a')} href={href} {...rest}>
+        {children}
+      </a>
+    )
   }
 
-  return withNativeProps(
-    props,
+  return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      {...rest}
       className={clsx('group/a mdx-a')}
+      {...rest}
     >
       {children}
       {isPlainAnchor && (
@@ -30,7 +29,7 @@ const Link: React.FC<JSX.IntrinsicElements['a']> = props => {
           aria-hidden
         />
       )}
-    </a>,
+    </a>
   )
 }
 

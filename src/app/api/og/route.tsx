@@ -1,4 +1,4 @@
-import {NextRequest, ImageResponse} from 'next/server'
+import { ImageResponse, NextRequest } from 'next/server'
 import siteConfig from 'config'
 
 export const runtime = 'edge'

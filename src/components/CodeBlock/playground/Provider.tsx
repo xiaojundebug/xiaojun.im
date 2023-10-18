@@ -1,5 +1,5 @@
-import { useControllableValue } from 'ahooks'
-import React, {createContext, PropsWithChildren, useEffect, useState} from 'react'
+import useControllableValue from '@/hooks/useControllableValue'
+import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import Highlight from 'prism-react-renderer'
 
 export type Language = React.ComponentProps<typeof Highlight>['language']
@@ -62,7 +62,7 @@ const Provider: React.FC<PropsWithChildren<ProviderProps>> = props => {
         setLogs,
         scope,
         console: c,
-        setConsole: setC
+        setConsole: setC,
       }}
     >
       {children}

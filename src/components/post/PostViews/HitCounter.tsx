@@ -1,15 +1,16 @@
 'use client'
 
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useContext, useMemo } from 'react'
 import Spinner from '@/components/Spinner'
 import SevenSegmentDisplay from '@/components/SevenSegmentDisplay'
 import { useTheme } from 'next-themes'
 import { PostViewsContext } from './Provider'
 import useSound from '@/hooks/useSound'
+import useBoolean from '@/hooks/useBoolean'
 
 const HitCounter = () => {
   const { views, isLoading } = useContext(PostViewsContext)
-  const [isToggled, setIsToggled] = useState(false)
+  const [isToggled, { toggle }] = useBoolean(false)
   const { resolvedTheme, forcedTheme } = useTheme()
   const isDarkMode = resolvedTheme === 'dark' || forcedTheme === 'dark'
   const [playSound] = useSound('/sounds/02.mp3')
@@ -17,9 +18,9 @@ const HitCounter = () => {
   const colorPattern = useMemo(() => {
     if (isDarkMode) {
       return {
-        background: '#18181b',
-        activeColor: '#f97316',
-        inactiveColor: '#111',
+        background: '#151008',
+        activeColor: '#ff9428',
+        inactiveColor: '#251c0e',
       }
     }
     if (isToggled) {
@@ -45,7 +46,7 @@ const HitCounter = () => {
       aria-label={`Retro-style hit counter, showing that ${views} people have visited this page.`}
       onClick={() => {
         if (!isDarkMode) {
-          setIsToggled(!isToggled)
+          toggle()
         }
       }}
       onMouseDown={() => playSound({ playbackRate: 0.6 })}

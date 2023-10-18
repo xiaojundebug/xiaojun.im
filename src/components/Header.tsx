@@ -1,16 +1,16 @@
 'use client'
 
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import config from 'config'
 import { usePathname } from 'next/navigation'
-import { useSize } from 'ahooks'
 import useBoolean from '@/hooks/useBoolean'
 import useHasMounted from '@/hooks/useHasMounted'
+import useSize from '@/hooks/useSize'
 import useTranslation from '@/hooks/useTranslation'
 import { animated, to, useSpring, useTransition } from '@react-spring/web'
 import Link from 'next/link'
 import DarkModeToggle from './DarkModeToggle'
-import BurgerMenu from '@/components/BurgerMenu'
+import BurgerMenuIcon from '@/components/BurgerMenuIcon'
 import MobileOnly from '@/components/MobileOnly'
 import DesktopOnly from '@/components/DesktopOnly'
 import clsx from 'clsx'
@@ -33,30 +33,29 @@ const MobileHeader: React.FC<{
   onBurgerMenuClick: () => void
 }> = props => {
   const { menus, expanded, onBurgerMenuClick } = props
-  const navRef = useRef<HTMLUListElement>(null)
-  const size = useSize(navRef.current) || { width: 0, height: 0 }
-  const styles = useSpring({
+  const [ref, size = { width: 0, height: 0 }] = useSize()
+  const { height } = useSpring({
     height: expanded ? size.height : 0,
-    config: { tension: 256, friction: 28, precision: 0.005 },
   })
   const navTransitions = useTransition(expanded ? menus : [], {
-    from: { x: 50, opacity: 0 },
+    from: { x: -100, opacity: 0 },
     enter: { x: 0, opacity: 1 },
     leave: { x: 0, opacity: 1 },
     trail: 100,
+    reset: expanded,
   })
 
   return (
     <div className="px-6 flex items-center justify-between h-[50px] bg-white dark:bg-zinc-950">
-      <BurgerMenu isOpen={expanded} onChange={onBurgerMenuClick} />
+      <BurgerMenuIcon isOpen={expanded} onChange={onBurgerMenuClick} />
       <DarkModeToggle />
       <animated.nav
         className="absolute left-0 right-0 top-[50px] bg-white dark:bg-zinc-950 z-30 border-b border-zinc-400/10 overflow-hidden"
-        style={styles}
+        style={{ height }}
       >
-        <ul ref={navRef} className="flex flex-col pb-4">
-          {navTransitions((navStyles, menu) => (
-            <animated.li key={menu.href} style={navStyles}>
+        <ul ref={ref} className="flex flex-col pb-4">
+          {navTransitions((styles, menu) => (
+            <animated.li key={menu.href} style={styles}>
               <Link
                 className="inline-block w-full font-medium text-lg px-6 py-1 leading-loose active:bg-zinc-400/10"
                 href={menu.href}
@@ -182,10 +181,15 @@ const Header = () => {
   }, [])
 
   useEffect(() => {
-    setVisible(true)
+    setVisible(window.scrollY <= 500)
     setIsExpanded(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
+
+  useEffect(() => {
+    setIsExpanded(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible])
 
   return (
     <header className="relative h-[50px] sm:h-[80px]">

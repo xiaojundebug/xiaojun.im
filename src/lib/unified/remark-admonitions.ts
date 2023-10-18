@@ -1,8 +1,8 @@
-import { visit } from 'unist-util-visit'
-import type { Plugin } from 'unified'
-import { h } from 'hastscript'
-import { ContainerDirective } from 'mdast-util-directive'
-import { Root } from 'mdast'
+import {visit} from 'unist-util-visit'
+import type {Plugin} from 'unified'
+import {h} from 'hastscript'
+import {ContainerDirective} from 'mdast-util-directive'
+import {Root} from 'mdast'
 
 // 自定义提示块
 

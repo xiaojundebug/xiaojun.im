@@ -7,6 +7,7 @@ import { VT323 } from 'next/font/google'
 import clsx from 'clsx'
 import { prettifyNumber } from '@/utils'
 import useSound from '@/hooks/useSound'
+import useBoolean from '@/hooks/useBoolean'
 
 const vt323 = VT323({
   subsets: ['latin'],
@@ -21,21 +22,24 @@ export interface LikeProps {
 const Like: React.FC<LikeProps> = ({ slug }) => {
   const [scale, setScale] = useState(1)
   const [likes, setLikes] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, { set: setIsLoading }] = useBoolean(true)
   const { resolvedTheme, forcedTheme } = useTheme()
   const isDarkMode = resolvedTheme === 'dark' || forcedTheme === 'dark'
   const [playSound] = useSound('/sounds/02.mp3')
 
   // 按钮动画
   const iconStyles = useSpring({
-    to: { scale },
+    scale,
+
     config: { tension: 300, friction: 10 },
   })
 
   // 漂浮的数字动画
   const [numStyles, numApi] = useSpring(
     () => ({
-      to: { scale: 0, opacity: 0, y: 0 },
+      scale: 0,
+      opacity: 0,
+      y: 0,
     }),
     [],
   )
@@ -49,6 +53,7 @@ const Like: React.FC<LikeProps> = ({ slug }) => {
       .finally(() => {
         setIsLoading(false)
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug])
 
   async function incrLikes() {

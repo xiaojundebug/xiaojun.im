@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { Inspector } from 'react-inspector'
-import theme from '@/components/CodeBlock/playground/console-theme'
-import { NativeProps } from '@/utils/native-props'
-import usePlaygroundContext from '@/components/CodeBlock/playground/usePlaygroundContext'
-import { LogType } from '@/components/CodeBlock/playground/Provider'
+import theme from './console-theme'
+import usePlaygroundContext from './usePlaygroundContext'
+import { LogType } from './Provider'
 
 // TODO: 支持外界传入 theme
-export interface ConsoleProps extends NativeProps {}
+export interface ConsoleProps {}
 
 const Console: React.FC<ConsoleProps> = props => {
   const { logs, setLogs, console } = usePlaygroundContext()

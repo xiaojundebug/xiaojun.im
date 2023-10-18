@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { animated, useTransition } from '@react-spring/web'
 import {
   animationFrameScheduler,
@@ -11,12 +11,13 @@ import {
   throttleTime,
 } from 'rxjs'
 import { ArrowUp } from '@/components/icons'
+import useBoolean from '@/hooks/useBoolean'
 
 const BackToTop = () => {
-  const [visible, setVisible] = useState(false)
+  const [isVisible, { set: setIsVisible }] = useBoolean(false)
   const ref = useRef<HTMLDivElement>(null)
 
-  const transitions = useTransition(visible, {
+  const transitions = useTransition(isVisible, {
     from: { opacity: 0, y: 100 },
     enter: { opacity: 1, y: 0 },
     leave: { opacity: 0, y: 100 },
@@ -27,14 +28,12 @@ const BackToTop = () => {
     const sub = fromEvent(window, 'scroll')
       .pipe(
         throttleTime(0, animationFrameScheduler),
-        startWith(null),
         map(() => window.scrollY > 500),
         distinctUntilChanged(),
       )
-      .subscribe(bool => {
-        setVisible(bool)
-      })
+      .subscribe(setIsVisible)
     return () => sub.unsubscribe()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function backToTop() {
@@ -46,13 +45,14 @@ const BackToTop = () => {
       item && (
         <animated.div
           ref={ref}
-          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 z-50 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl cursor-pointer
-            ring-1 ring-zinc-400/20 shadow-lg shadow-black/5 active:shadow-none
-            bg-white dark:bg-zinc-900"
+          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 z-50 flex items-center justify-center w-10 h-10 cursor-pointer
+            rounded-xl ring-1 ring-zinc-400/20
+            shadow-lg shadow-black/5 dark:shadow-none active:shadow-none
+            bg-white/70 dark:bg-white/10 backdrop-blur"
           onClick={backToTop}
           style={styles}
         >
-          <ArrowUp className="text-base sm:text-lg text-black dark:text-white" aria-hidden />
+          <ArrowUp className="text-xl text-black dark:text-white" aria-hidden />
         </animated.div>
       ),
   )

@@ -4,6 +4,7 @@ import React, { createContext, PropsWithChildren, useEffect, useState } from 're
 import fetcher from '@/lib/fetcher'
 import { getSiteUrl } from '@/utils/url'
 import { sleep } from '@/utils'
+import useBoolean from '@/hooks/useBoolean'
 
 export interface PostViewsContext {
   views: number
@@ -19,7 +20,7 @@ export const PostViewsContext = createContext({} as PostViewsContext)
 const PostViewsProvider: React.FC<PropsWithChildren<PostViewsProviderProps>> = props => {
   const { children, slug } = props
   const [views, setViews] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, { set: setIsLoading }] = useBoolean(true)
 
   useEffect(() => {
     setIsLoading(true)
@@ -38,6 +39,7 @@ const PostViewsProvider: React.FC<PropsWithChildren<PostViewsProviderProps>> = p
           setIsLoading(false)
         })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug])
 
   return (

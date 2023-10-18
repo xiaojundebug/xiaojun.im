@@ -1,8 +1,7 @@
 import React from 'react'
-import HTMLPreview, { HTMLPreviewProps } from '@/components/CodeBlock/playground/previewers/HTMLPreview'
-import ReactPreview, { ReactPreviewProps } from '@/components/CodeBlock/playground/previewers/ReactPreview'
-import usePlaygroundContext from '@/components/CodeBlock/playground/usePlaygroundContext'
-import { LogType } from '@/components/CodeBlock/playground/Provider'
+import HTMLPreview, { HTMLPreviewProps } from './previewers/HTMLPreview'
+import ReactPreview, { ReactPreviewProps } from './previewers/ReactPreview'
+import usePlaygroundContext from './usePlaygroundContext'
 
 export type PreviewProps = HTMLPreviewProps & ReactPreviewProps
 

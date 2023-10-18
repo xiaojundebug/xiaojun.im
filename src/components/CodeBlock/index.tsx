@@ -1,12 +1,12 @@
 import React from 'react'
 import { scope as builtInScope } from './react-live-scope'
-import { NativeProps } from '@/utils/native-props'
 import { Language } from 'prism-react-renderer'
 import FencedCodeBlock from '@/components/CodeBlock/FencedCodeBlock'
 import CodePlayground from '@/components/CodeBlock/CodePlayground'
 import config from 'config'
 
-export interface CodeBlockProps extends NativeProps {
+export interface CodeBlockProps {
+  className?: string
   children?: string
   live?: boolean
   editor?: boolean

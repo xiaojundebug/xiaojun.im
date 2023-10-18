@@ -1,4 +1,4 @@
-import { Digit, SegmentID } from './types'
+import {Digit, SegmentID} from './types'
 
 //
 //     A

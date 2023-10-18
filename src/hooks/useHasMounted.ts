@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import useBoolean from './useBoolean'
 
 // https://www.joshwcomeau.com/react/the-perils-of-rehydration/
 function useHasMounted() {
-  const [hasMounted, setHasMounted] = useState(false)
+  const [hasMounted, { setTrue }] = useBoolean(false)
 
   useEffect(() => {
-    setHasMounted(true)
+    setTrue()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return hasMounted

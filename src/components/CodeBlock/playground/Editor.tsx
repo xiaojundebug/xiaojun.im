@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './Editor.module.scss'
-import { NativeProps, withNativeProps } from '@/utils/native-props'
 import Highlight, { defaultProps, PrismTheme } from 'prism-react-renderer'
 import CodeEditor from 'react-simple-code-editor'
 import clsx from 'clsx'
-import usePlaygroundContext from '@/components/CodeBlock/playground/usePlaygroundContext'
+import usePlaygroundContext from './usePlaygroundContext'
 
-export interface EditorProps extends NativeProps {
+export interface EditorProps {
+  className?: string
   fontSize?: number
   disabled?: boolean
   theme?: PrismTheme
@@ -22,6 +22,7 @@ export interface EditorProps extends NativeProps {
 const Editor: React.FC<EditorProps> = props => {
   const { code, setCode, language } = usePlaygroundContext()
   const {
+    className,
     fontSize = 16,
     disabled,
     theme,
@@ -34,9 +35,8 @@ const Editor: React.FC<EditorProps> = props => {
     lineNumbers,
   } = props
 
-  return withNativeProps(
-    props,
-    <div className={styles.editor}>
+  return (
+    <div className={clsx(className, styles.editor)}>
       <CodeEditor
         className={clsx({
           'has-focused-lines': focusedLines.length > 0,
@@ -99,7 +99,7 @@ const Editor: React.FC<EditorProps> = props => {
           </Highlight>
         )}
       />
-    </div>,
+    </div>
   )
 }
 

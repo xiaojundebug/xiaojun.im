@@ -6,8 +6,8 @@ import config from 'config'
 import useTranslation from '@/hooks/useTranslation'
 import HorizontalRule from '@/components/HorizontalRule'
 import DesktopOnly from '@/components/DesktopOnly'
-import { ArrowLeft, ArrowRight, Calender, Clock, Click } from '@/components/icons'
-import { PostViewsProvider, PostViews, PostHitCounter } from './PostViews'
+import { ArrowLeft, ArrowRight, Calender, Click, Clock } from '@/components/icons'
+import { PostHitCounter, PostViews, PostViewsProvider } from './PostViews'
 import BleedThroughImage, { BleedThroughImageProps } from '@/components/BleedThroughImage'
 import PostContent from './PostContent'
 import PostRightAside from './PostRightAside'
@@ -97,8 +97,6 @@ const PostPage: React.FC<PostPageProps> = props => {
               <PostContent code={code} />
             </article>
 
-            <HorizontalRule />
-
             <div className="flex justify-between mt-24">
               <div className="flex flex-col items-start gap-1">
                 <h3 className="text-[13px] font-bold text-zinc-400 dark:text-zinc-500">
@@ -115,6 +113,8 @@ const PostPage: React.FC<PostPageProps> = props => {
                 </span>
               </div>
             </div>
+
+            <HorizontalRule />
 
             {config.adjacentPosts && (
               <div className="my-16 flex justify-between space-x-6 sm:space-x-12 sm:text-lg font-medium">

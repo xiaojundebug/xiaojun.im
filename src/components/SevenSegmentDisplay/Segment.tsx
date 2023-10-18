@@ -66,11 +66,11 @@ const Segment: React.FC<SegmentProps> = props => {
       className="absolute"
       style={{
         ...segments[segmentId],
+        // prettier-ignore
         filter:
           isActive && glow
             ? `
-                drop-shadow(0 0 0.5px ${color(segmentActiveColor).hexa()})
-                drop-shadow(0 0 5px ${color(segmentActiveColor).fade(0.5).hexa()})
+                drop-shadow(0 0 ${segmentThickness * 1.5}px ${color(segmentActiveColor).fade(0.25).hexa()})
               `
             : 'none',
         zIndex: isActive ? 1 : 0,

@@ -10,7 +10,8 @@ const ResetButton: React.FC<ResetButtonProps> = ({ onClick }) => {
   const [rotation, setRotation] = useState(0)
 
   const { rotate } = useSpring({
-    to: { rotate: rotation },
+    rotate: rotation,
+
     config: config.slow,
   })
 

@@ -54,7 +54,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
   const activeId = useScrollSpy(headings.map(({ id }) => id))
 
   const [{ scrollTop }, scrollApi] = useSpring(() => ({
-    to: { scrollTop: 0 },
+    scrollTop: 0,
+
     config: { tension: 260, friction: 30 },
   }))
 
@@ -65,7 +66,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
     const anchorRect = anchor.getBoundingClientRect()
 
     scrollApi.start({
-      to: { scrollTop: anchor.offsetTop - (listRect.height - anchorRect.height) / 2 },
+      scrollTop: anchor.offsetTop - (listRect.height - anchorRect.height) / 2,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId])
