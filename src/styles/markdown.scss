@@ -96,8 +96,7 @@
 // KeyBoard
 kbd {
   @apply inline-flex items-center px-1.5 py-0.5 space-x-0.5 rounded-lg bg-zinc-400/10 font-sans text-center text-sm
-  shadow-[0_0_5px_rgba(0,0,0,0.02),0_2px_10px_0_rgba(0,0,0,0.06),0_0_1px_0_rgba(0,0,0,0.3)]
-  dark:shadow-[0_0_5px_0px_rgba(0,0,0,0.05),0_2px_10px_0_rgba(0,0,0,0.2),inset_0_0_1px_0_hsla(0,0%,100%,0.15)];
+    shadow-[0_0_5px_rgba(0,0,0,0.02),0_2px_10px_0_rgba(0,0,0,0.06),0_0_1px_0_rgba(0,0,0,0.3)]
 }
 
 // DarkMode
@@ -115,5 +114,9 @@ kbd {
   .admonition {
     @apply bg-zinc-900;
     &::before { @apply bg-zinc-950; }
+  }
+
+  kbd {
+    @apply shadow-[0_0_5px_0px_rgba(0,0,0,0.05),0_2px_10px_0_rgba(0,0,0,0.2),inset_0_0_1px_0_hsla(0,0%,100%,0.15)];
   }
 }

@@ -42,7 +42,6 @@ const MobileHeader: React.FC<{
     enter: { x: 0, opacity: 1 },
     leave: { x: 0, opacity: 1 },
     trail: 100,
-    reset: expanded,
   })
 
   return (

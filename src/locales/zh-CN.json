@@ -5,8 +5,9 @@
   "nav.about": "关于",
 
   "post-page.hits": "阅读次数",
-  "post-page.last-updated": "最后更新于",
+  "post-page.last-updated": "最后修改于",
   "post-page.reading-time": "阅读时长 {{ minutes }} 分钟",
+  "post-page.outdated-notice": "此文最后修改于 {{ day }} 天前，某些内容可能已过时",
 
   "tags-page.title": "标签",
   "tags-page.desc": "共 {{ count }} 个标签",

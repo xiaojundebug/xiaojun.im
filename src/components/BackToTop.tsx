@@ -2,14 +2,7 @@
 
 import React, { useEffect, useRef } from 'react'
 import { animated, useTransition } from '@react-spring/web'
-import {
-  animationFrameScheduler,
-  distinctUntilChanged,
-  fromEvent,
-  map,
-  startWith,
-  throttleTime,
-} from 'rxjs'
+import { animationFrameScheduler, distinctUntilChanged, fromEvent, map, throttleTime } from 'rxjs'
 import { ArrowUp } from '@/components/icons'
 import useBoolean from '@/hooks/useBoolean'
 

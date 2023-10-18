@@ -15,10 +15,16 @@ module.exports = {
     { name: '鯊手', link: 'https://www.cnblogs.com/Scooby' },
     { name: '戴兜', link: 'https://im.daidr.me' },
   ],
-  language: 'zh-CN', // en | zh-CN
-  toc: true, // Table of contents
-  adjacentPosts: true, // Prev and next posts
+  // en | zh-CN
+  language: 'zh-CN',
+  // 侧边目录
+  toc: true,
+  // 显示上一篇下一篇按钮
+  adjacentPosts: true,
+  // 配置文章过时提醒阈值
+  outdatedPostThresholdDays: 90,
   markdown: {
+    // 统一配置 CodeBlock 是否显示行号，也可以在 frontmatter 中通过 lineNumbers 字段单独设置
     lineNumbers: false,
   },
 }

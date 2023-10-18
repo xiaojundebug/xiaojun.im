@@ -35,6 +35,7 @@ const PostPage: React.FC<PostPageProps> = props => {
     () => getMDXExport<{ readingTime: PostReadingTime }, unknown>(code),
     [code],
   )
+  const diffDays = useMemo(() => dayjs().diff(updatedOn || date, 'day'), [updatedOn, date])
 
   return (
     <>
@@ -92,11 +93,26 @@ const PostPage: React.FC<PostPageProps> = props => {
               </div>
             )}
 
+            {/* 旧文章提醒 */}
+            {diffDays >= config.outdatedPostThresholdDays && (
+              <div className="relative flex justify-center items-center my-12 py-6 px-7 rounded-xl bg-amber-100 dark:bg-zinc-900 overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-around text-7xl sm:text-9xl opacity-5 pointer-events-none">
+                  <span className="relative -rotate-45">👻</span>
+                  <span className="relative top-6 rotate-45">🤖</span>
+                  <span className="relative -top-6 -rotate-12">🎃</span>
+                </div>
+                <p className="relative text-center bg-gradient-to-r from-indigo-500 to-amber-500 bg-clip-text text-transparent">
+                  {t('post-page.outdated-notice', { day: diffDays })}
+                </p>
+              </div>
+            )}
+
             {/* Markdown 内容 */}
             <article className="markdown-body w-full mt-10">
               <PostContent code={code} />
             </article>
 
+            {/* 阅读计数器 & 最后修改时间 */}
             <div className="flex justify-between mt-24">
               <div className="flex flex-col items-start gap-1">
                 <h3 className="text-[13px] font-bold text-zinc-400 dark:text-zinc-500">
