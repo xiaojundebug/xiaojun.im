@@ -28,9 +28,11 @@ module.exports = {
           '20%': { opacity: 1, transform: 'translateX(1px)' },
           '100%': { opacity: 0.2 },
         },
-      },
-      animation: {
-        floating: 'floating 4s ease-in-out infinite alternate',
+        flicker: {
+          '0%': { opacity: 1 },
+          '50%': { opacity: 0.2, filter: 'blur(1px)' },
+          '100%': { opacity: 1 },
+        },
       },
     },
   },

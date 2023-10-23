@@ -12,14 +12,10 @@ export interface DigitProps {
 
 const Digit: React.FC<DigitProps> = props => {
   const { value } = props
-  const { digitSize, segmentThickness } = useContext(SevenSegmentDisplayContext)
-
-  const aspectRatio = 0.5 * (1 + segmentThickness / digitSize)
-  const height = digitSize
-  const width = height * aspectRatio
+  const { digitSize } = useContext(SevenSegmentDisplayContext)
 
   return (
-    <div className="relative w-6 h-8" style={{ width, height }}>
+    <div className="relative w-6 h-8" style={{ width: digitSize * 0.5, height: digitSize }}>
       {segments.map(segment => (
         <Segment key={segment} segmentId={segment} isActive={isSegmentActive(segment, value)} />
       ))}

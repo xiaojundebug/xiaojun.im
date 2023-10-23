@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ReducedMotionDetector />
         <NextTopLoader color="#14b8a6" showSpinner={false} />
-        <ThemeProvider disableTransitionOnChange>
+        <ThemeProvider>
           <Header />
           <PageContainer>{children}</PageContainer>
           <Footer />

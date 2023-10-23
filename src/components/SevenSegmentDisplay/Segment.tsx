@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { SevenSegmentDisplayContext } from './Provider'
 import { SegmentID } from './types'
 import color from 'color'
@@ -19,47 +19,80 @@ const Segment: React.FC<SegmentProps> = props => {
     glow,
   } = useContext(SevenSegmentDisplayContext)
   const halfThickness = segmentThickness / 2
-  const aspectRatio = 0.5 * (1 + segmentThickness / digitSize)
-  const width = digitSize * aspectRatio - segmentThickness
+  const width = digitSize * 0.5
 
   const segments = {
     a: {
       top: 0,
-      left: halfThickness,
+      left: 0,
     },
     b: {
-      top: halfThickness,
-      left: width + segmentThickness,
+      top: 0,
+      left: width,
       transform: 'rotate(90deg)',
       transformOrigin: 'top left',
     },
     c: {
-      top: halfThickness + width,
-      left: width + segmentThickness,
-      transform: 'rotate(90deg)',
+      top: width * 2,
+      left: width,
+      transform: 'rotate(270deg) scaleY(-1)',
       transformOrigin: 'top left',
     },
     d: {
-      bottom: 0,
-      left: halfThickness,
+      top: width * 2,
+      left: width,
+      transform: 'rotate(180deg)',
+      transformOrigin: 'top left',
     },
     e: {
-      top: halfThickness + width,
-      left: segmentThickness,
-      transform: 'rotate(90deg)',
+      top: width * 2,
+      left: 0,
+      transform: 'rotate(270deg)',
       transformOrigin: 'top left',
     },
     f: {
-      top: halfThickness,
-      left: segmentThickness,
-      transform: 'rotate(90deg)',
+      top: 0,
+      left: 0,
+      transform: 'rotate(90deg) scaleY(-1)',
       transformOrigin: 'top left',
     },
     g: {
-      top: width,
-      left: halfThickness,
+      top: width - halfThickness,
+      left: 0,
     },
   }
+
+  // a, d
+  const path1 = `
+    M ${segmentSpacing} ${0}
+    L ${width - segmentSpacing} 0
+    L ${width - segmentThickness - segmentSpacing} ${segmentThickness}
+    L ${segmentThickness + segmentSpacing} ${segmentThickness} Z
+  `
+
+  // b, c, e, f
+  const path2 = `
+    M ${segmentSpacing} ${0}
+    L ${width - halfThickness - segmentSpacing} 0
+    L ${width - segmentSpacing} ${halfThickness}
+    L ${width - halfThickness - segmentSpacing} ${segmentThickness}
+    L ${segmentThickness + segmentSpacing} ${segmentThickness} Z
+  `
+
+  // g
+  const path3 = `
+    M ${halfThickness + segmentSpacing} ${halfThickness}
+    L ${segmentThickness + segmentSpacing} 0
+    L ${width - segmentThickness - segmentSpacing} 0
+    L ${width - halfThickness - segmentSpacing} ${halfThickness}
+    L ${width - segmentThickness - segmentSpacing} ${segmentThickness}
+    L ${segmentThickness + segmentSpacing} ${segmentThickness} Z
+  `
+
+  const d = useMemo(
+    () => ({ a: path1, b: path2, c: path2, d: path1, e: path2, f: path2, g: path3 }[segmentId]),
+    [path1, path2, path3, segmentId],
+  )
 
   return (
     <svg
@@ -82,17 +115,7 @@ const Segment: React.FC<SegmentProps> = props => {
     >
       <path
         fill={isActive ? segmentActiveColor : segmentInactiveColor}
-        // prettier-ignore
-        d={
-          `
-            M ${segmentSpacing} ${halfThickness}
-            L ${halfThickness + segmentSpacing} 0
-            L ${width - halfThickness - segmentSpacing} 0
-            L ${width - segmentSpacing} ${halfThickness}
-            L ${width - halfThickness - segmentSpacing} ${segmentThickness}
-            L ${halfThickness + segmentSpacing} ${segmentThickness}
-          `
-        }
+        d={d}
       />
     </svg>
   )

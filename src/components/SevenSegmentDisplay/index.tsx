@@ -3,6 +3,7 @@
 import React, { useMemo } from 'react'
 import SevenSegmentDisplayProvider from './Provider'
 import Digit from './Digit'
+import clsx from 'clsx'
 
 export interface RetroHitCounterProps {
   value: number
@@ -13,7 +14,11 @@ export interface RetroHitCounterProps {
   segmentSpacing?: number
   segmentActiveColor?: string
   segmentInactiveColor?: string
-  glow?: boolean
+  backgroundColor?: string
+  padding?: number | string
+  glow?: boolean // 微光效果
+  overexposureSimulation?: boolean // 模拟灯光过曝效果
+  flicker?: boolean // 呼吸灯效果
 }
 
 const RetroHitCounter: React.FC<RetroHitCounterProps> = props => {
@@ -21,12 +26,16 @@ const RetroHitCounter: React.FC<RetroHitCounterProps> = props => {
     value,
     minLength = 4,
     digitSize = 40,
-    digitSpacing = 6,
-    segmentThickness = 4,
-    segmentSpacing = 0.5,
-    segmentActiveColor = '#76FF03',
-    segmentInactiveColor = '#315324',
-    glow = true,
+    digitSpacing = digitSize / 4,
+    segmentThickness = digitSize / 8,
+    segmentSpacing = segmentThickness / 4,
+    segmentActiveColor = '#adb0b8',
+    segmentInactiveColor = '#eff1f5',
+    backgroundColor = '#eff1f5',
+    padding = digitSize / 4,
+    glow = false,
+    overexposureSimulation = false,
+    flicker = false,
   } = props
 
   const paddedValue = useMemo(() => value.toString().padStart(minLength, '0'), [value, minLength])
@@ -41,11 +50,19 @@ const RetroHitCounter: React.FC<RetroHitCounterProps> = props => {
       segmentInactiveColor={segmentInactiveColor}
       glow={glow}
     >
-      <div className="flex w-fit" style={{ gap: digitSpacing }}>
+      <div
+        className={clsx('flex items-center justify-between w-fit', {
+          'motion-safe:animate-[flicker_0.1s_linear_4_alternate]': flicker,
+        })}
+        style={{ padding, backgroundColor, gap: digitSpacing }}
+      >
         {individualDigits.map((digit, idx) => (
-          <Digit key={idx} value={Number(digit) as any} />
+          <Digit key={idx} value={Number(digit) as Digit} />
         ))}
       </div>
+      {overexposureSimulation && (
+        <div className="absolute inset-0 z-10 backdrop-blur-[0.25px] backdrop-brightness-150 pointer-events-none"></div>
+      )}
     </SevenSegmentDisplayProvider>
   )
 }
