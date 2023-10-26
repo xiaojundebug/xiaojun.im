@@ -7,13 +7,17 @@ import { useTheme } from 'next-themes'
 import { PostViewsContext } from './Provider'
 import useSound from '@/hooks/useSound'
 import useBoolean from '@/hooks/useBoolean'
+import clsx from 'clsx'
+import color from 'color'
 
 const neonColors = [
   { background: '#0c0c0c', activeColor: '#ff5e00', inactiveColor: '#161616' },
-  { background: '#0c0c0c', activeColor: '#fff', inactiveColor: '#161616' },
-  { background: '#0c0c0c', activeColor: '#ccff00', inactiveColor: '#161616' },
-  { background: '#0c0c0c', activeColor: '#0ff0fc', inactiveColor: '#161616' },
-  { background: '#0c0c0c', activeColor: '#ff1493', inactiveColor: '#161616' },
+  { background: '#0c0c0c', activeColor: '#ffffff', inactiveColor: '#161616' },
+  { background: '#0c0c0c', activeColor: '#859927', inactiveColor: '#161616' },
+  { background: '#0c0c0c', activeColor: '#d556ff', inactiveColor: '#161616' },
+  { background: '#0c0c0c', activeColor: '#7556ff', inactiveColor: '#161616' },
+  { background: '#0c0c0c', activeColor: '#568cff', inactiveColor: '#161616' },
+  { background: '#0c0c0c', activeColor: '#ff5656', inactiveColor: '#161616' },
 ]
 
 const HitCounter = () => {
@@ -43,7 +47,7 @@ const HitCounter = () => {
   }, [isDarkMode, isToggled, neonColorIdx])
 
   if (isLoading) return <Spinner />
-
+  console.log(color(colorPattern.activeColor).luminosity())
   return (
     <button
       className="relative"
@@ -58,56 +62,80 @@ const HitCounter = () => {
       onMouseDown={() => playSound({ playbackRate: 0.6 })}
       onMouseUp={() => playSound({ playbackRate: 0.8 })}
     >
-      <SevenSegmentDisplay
-        value={views}
-        minLength={4}
-        digitSize={18}
-        digitSpacing={4}
-        segmentThickness={2}
-        segmentSpacing={0.5}
-        segmentActiveColor={colorPattern.activeColor}
-        segmentInactiveColor={colorPattern.inactiveColor}
-        backgroundColor={colorPattern.background}
-        glow={isDarkMode}
-        overexposureSimulation={isDarkMode}
-        flicker={isDarkMode}
-        padding={'10px 14px'}
-      />
+      <div
+        className={clsx({
+          'motion-safe:animate-[flicker_0.1s_linear_4_alternate]': isDarkMode,
+          'active:blur-[1px] active:brightness-0 transition': isDarkMode,
+        })}
+      >
+        <SevenSegmentDisplay
+          value={views}
+          minLength={6}
+          digitSize={18}
+          digitSpacing={4}
+          segmentThickness={2}
+          segmentSpacing={0.5}
+          segmentActiveColor={colorPattern.activeColor}
+          segmentInactiveColor={colorPattern.inactiveColor}
+          backgroundColor={colorPattern.background}
+          padding={'10px 14px'}
+          glow
+        />
+      </div>
+      {/* 使中心看起来更亮 */}
       {isDarkMode && (
         <div
-          className="absolute inset-0 z-10 active:backdrop-brightness-50 transition"
+          className="absolute inset-0 z-10 mix-blend-overlay pointer-events-none"
           style={{
-            backgroundImage: 'url(/hit-counter-glass-bg.svg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            boxShadow: `
+            background: `radial-gradient(rgba(255, 255, 255, ${
+              1 - color(colorPattern.activeColor).luminosity()
+            }), transparent 50%)`,
+          }}
+        ></div>
+      )}
+      {/* Glass cover */}
+      <div
+        className={clsx('absolute inset-0 z-10 pointer-events-none', {
+          // backdrop-blur + backdrop-brightness 可以使它看起来更接近真实灯光（每个片段的中心更亮，外侧更深），
+          // 同时配合上边的中心高亮效果，看起来更更更真实
+          'backdrop-blur-[0.25px] backdrop-brightness-150': isDarkMode,
+        })}
+        style={{
+          backgroundImage: 'url(/hit-counter-glass-cover.svg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          boxShadow: `
               0 0 1px rgba(255, 255, 255, 0.1) inset,
               0 1px 1px rgba(255, 255, 255, 0.1) inset
             `,
-          }}
-        >
-          <img
-            className="absolute left-0.5 top-0.5 rotate-45"
-            src="/hit-counter-glass-screw.svg"
-            alt="screw"
-          />
-          <img
-            className="absolute left-0.5 bottom-0.5 -rotate-45"
-            src="/hit-counter-glass-screw.svg"
-            alt="screw"
-          />
-          <img
-            className="absolute right-0.5 top-0.5 -rotate-45"
-            src="/hit-counter-glass-screw.svg"
-            alt="screw"
-          />
-          <img
-            className="absolute right-0.5 bottom-0.5 rotate-45"
-            src="/hit-counter-glass-screw.svg"
-            alt="screw"
-          />
-        </div>
-      )}
+        }}
+      >
+        {/* 4 颗小螺丝儿 */}
+        {isDarkMode && (
+          <>
+            <img
+              className="absolute left-0.5 top-0.5 rotate-45"
+              src="/hit-counter-glass-screw.svg"
+              alt="screw"
+            />
+            <img
+              className="absolute left-0.5 bottom-0.5 -rotate-45"
+              src="/hit-counter-glass-screw.svg"
+              alt="screw"
+            />
+            <img
+              className="absolute right-0.5 top-0.5 -rotate-45"
+              src="/hit-counter-glass-screw.svg"
+              alt="screw"
+            />
+            <img
+              className="absolute right-0.5 bottom-0.5 rotate-45"
+              src="/hit-counter-glass-screw.svg"
+              alt="screw"
+            />
+          </>
+        )}
+      </div>
     </button>
   )
 }

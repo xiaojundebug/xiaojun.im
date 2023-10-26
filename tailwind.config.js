@@ -29,9 +29,7 @@ module.exports = {
           '100%': { opacity: 0.2 },
         },
         flicker: {
-          '0%': { opacity: 1 },
-          '50%': { opacity: 0.2, filter: 'blur(1px)' },
-          '100%': { opacity: 1 },
+          '50%': { filter: 'blur(1px) brightness(20%)' },
         },
       },
     },
