@@ -47,6 +47,6 @@ posts/*
 !posts/2023-04-27-mdx-syntax-third-party-embeds.mdx
 !posts/2023-04-27-mdx-syntax-code-playground.mdx
 !posts/2023-04-27-mdx-syntax-math-equations.mdx
-post-helpers
+src/post-helpers
 public/images/*
 !public/images/test-hero-image.webp

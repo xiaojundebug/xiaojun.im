@@ -3,7 +3,6 @@
 import React, { useMemo } from 'react'
 import SevenSegmentDisplayProvider from './Provider'
 import Digit from './Digit'
-import clsx from 'clsx'
 
 export interface RetroHitCounterProps {
   value: number

@@ -32,7 +32,7 @@ const PostPage: React.FC<PostPageProps> = props => {
     heroImageInfo,
   } = props
   const { readingTime } = useMemo(
-    () => getMDXExport<{ readingTime: PostReadingTime }, unknown>(code),
+    () => getMDXExport(code) as { readingTime: PostReadingTime },
     [code],
   )
   const diffDays = useMemo(() => dayjs().diff(updatedOn || date, 'day'), [updatedOn, date])
@@ -102,7 +102,7 @@ const PostPage: React.FC<PostPageProps> = props => {
                   <span className="relative -top-6 -rotate-12">🎃</span>
                 </div>
                 <p className="relative text-center bg-gradient-to-r from-indigo-500 to-amber-500 bg-clip-text text-transparent">
-                  {t('post-page.outdated-notice', { day: diffDays })}
+                  {t('post-page.outdated-notice', { days: diffDays })}
                 </p>
               </div>
             )}

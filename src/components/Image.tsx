@@ -14,16 +14,16 @@ const Image: React.FC<ImageProps> = props => {
   const { src, alt = '', width = 1280, height = 720, lqip } = props
 
   return (
-    <div className="relative prose-bleed my-12" style={{ aspectRatio: `${width} / ${height}` }}>
-      <NextImage
-        className="max-w-full h-auto mx-auto rounded-xl"
-        src={src}
-        alt={alt}
-        fill
-        placeholder="blur"
-        blurDataURL={lqip}
-      />
-    </div>
+    <NextImage
+      className="max-w-full mx-auto"
+      style={{ aspectRatio: `${width} / ${height}` }}
+      width={width}
+      height={height}
+      src={src}
+      alt={alt}
+      placeholder="blur"
+      blurDataURL={lqip}
+    />
   )
 }
 

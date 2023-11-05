@@ -11,8 +11,8 @@ import HorizontalRule from '@/components/HorizontalRule'
 import CodeBlock from '@/components/CodeBlock'
 import Link from '@/components/Link'
 import LinkCard from '@/components/LinkCard'
-import DarkModeToggle from '@/components/DarkModeToggle'
 import * as embeds from '@/components/embeds'
+import DarkModeToggle from '@/components/DarkModeToggle'
 import { MDXComponents } from 'mdx/types'
 
 const components = {
@@ -41,8 +41,8 @@ const components = {
   code: CodeBlock,
   a: Link,
   linkcard: LinkCard,
-  DarkModeToggle,
   ...embeds,
+  DarkModeToggle,
 } as unknown as MDXComponents
 
 export interface PostContentProps {

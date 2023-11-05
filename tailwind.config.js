@@ -28,8 +28,9 @@ module.exports = {
           '20%': { opacity: 1, transform: 'translateX(1px)' },
           '100%': { opacity: 0.2 },
         },
+        // For hit counter
         flicker: {
-          '50%': { filter: 'blur(1px) brightness(20%)' },
+          '50%': { 'backdrop-filter': 'blur(1px) brightness(20%)' },
         },
       },
     },

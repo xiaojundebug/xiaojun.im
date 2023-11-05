@@ -4,6 +4,7 @@ import { useTheme } from 'next-themes'
 import { withNoSSR } from '@/utils'
 import useSound from '@/hooks/useSound'
 import clsx from 'clsx'
+import Spinner from '@/components/Spinner'
 
 const config = { mass: 3, tension: 200, friction: 30 }
 const starPaths = [
@@ -97,4 +98,10 @@ const DarkModeToggle = () => {
   )
 }
 
-export default withNoSSR(DarkModeToggle, { loading: () => <div className="w-[56px] h-[28px]" /> })
+export default withNoSSR(DarkModeToggle, {
+  loading: () => (
+    <div className="flex items-center justify-center w-[56px] h-[28px]">
+      <Spinner />
+    </div>
+  ),
+})
