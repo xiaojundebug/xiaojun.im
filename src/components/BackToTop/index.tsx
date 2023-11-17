@@ -1,14 +1,16 @@
 'use client'
 
 import React, { useEffect, useRef } from 'react'
+import styles from './styles.module.scss'
 import { animated, useTransition } from '@react-spring/web'
 import { animationFrameScheduler, distinctUntilChanged, fromEvent, map, throttleTime } from 'rxjs'
 import { ArrowUp } from '@/components/icons'
 import useBoolean from '@/hooks/useBoolean'
+import clsx from 'clsx'
 
-const BackToTop = () => {
+const Index = () => {
   const [isVisible, { set: setIsVisible }] = useBoolean(false)
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLButtonElement>(null)
 
   const transitions = useTransition(isVisible, {
     from: { opacity: 0, y: 100 },
@@ -34,21 +36,24 @@ const BackToTop = () => {
   }
 
   return transitions(
-    (styles, item) =>
+    (btnStyles, item) =>
       item && (
-        <animated.div
+        <animated.button
           ref={ref}
-          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 z-50 flex items-center justify-center w-10 h-10 cursor-pointer
-            rounded-xl ring-1 ring-zinc-400/20
-            shadow-lg shadow-black/5 dark:shadow-none active:shadow-none
-            bg-white/70 dark:bg-white/10 backdrop-blur"
+          className={clsx(
+            styles.backToTop,
+            'fixed right-8 bottom-8 sm:right-16 sm:bottom-16 z-50 w-10 h-10 cursor-pointer',
+          )}
           onClick={backToTop}
-          style={styles}
+          style={btnStyles}
         >
-          <ArrowUp className="text-xl text-black dark:text-white" aria-hidden />
-        </animated.div>
+          <div className="absolute inset-0 flex items-center justify-center rounded-xl shadow-lg shadow-black/5 dark:shadow-none active:shadow-none">
+            <div className="absolute inset-0.5 rounded-[10px] bg-white dark:bg-zinc-950"></div>
+            <ArrowUp className="relative text-xl text-black dark:text-white" aria-hidden />
+          </div>
+        </animated.button>
       ),
   )
 }
 
-export default BackToTop
+export default Index

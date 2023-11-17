@@ -1,11 +1,14 @@
 import React from 'react'
 import config from 'config'
 import Image from 'next/image'
-import { GitHub, RSS } from '@/components/icons'
+import { GitHub, Juejin, RSS, X } from '@/components/icons'
 
+// prettier-ignore
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
-  GitHub: <GitHub className="text-xl" aria-hidden />,
-  RSS: <RSS className="text-xl" aria-hidden />,
+  'GitHub': <GitHub className="text-xl" aria-hidden />,
+  'X': <X className="text-xl" aria-hidden />,
+  '稀土掘金': <Juejin className="text-xl" aria-hidden />,
+  'RSS': <RSS className="text-xl" aria-hidden />,
 }
 
 const Splash = () => {
@@ -36,6 +39,7 @@ const Splash = () => {
                 key={social.link}
                 className="inline text-2xl transition-opacity opacity-50 hover:opacity-100"
                 href={social.link}
+                target="_blank"
                 title={social.label}
                 aria-label={social.label}
               >

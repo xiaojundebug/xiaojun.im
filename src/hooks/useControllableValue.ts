@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react'
 import type { SetStateAction } from 'react'
 import useMemoizedFn from './useMemoizedFn'
-import useUpdate from './useUpdate'
+import useForceUpdate from './useForceUpdate'
 import { isFunction } from '@/utils'
 
 export interface Options<T> {
@@ -51,7 +51,7 @@ function useControllableValue<T = any>(props: Props = {}, options: Options<T> = 
     stateRef.current = value
   }
 
-  const update = useUpdate()
+  const [update] = useForceUpdate()
 
   function setState(v: SetStateAction<T>, ...args: any[]) {
     const r = isFunction(v) ? v(stateRef.current) : v

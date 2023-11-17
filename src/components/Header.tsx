@@ -180,7 +180,7 @@ const Header = () => {
   }, [])
 
   useEffect(() => {
-    setVisible(window.scrollY <= 500)
+    setVisible(true)
     setIsExpanded(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])

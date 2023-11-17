@@ -14,7 +14,6 @@ const neonColors = [
   { background: '#0c0c0c', activeColor: '#ff5e00', inactiveColor: '#161616' },
   { background: '#0c0c0c', activeColor: '#ffffff', inactiveColor: '#161616' },
   { background: '#0c0c0c', activeColor: '#6cb71b', inactiveColor: '#161616' },
-  { background: '#0c0c0c', activeColor: '#d556ff', inactiveColor: '#161616' },
   { background: '#0c0c0c', activeColor: '#7556ff', inactiveColor: '#161616' },
   { background: '#0c0c0c', activeColor: '#568cff', inactiveColor: '#161616' },
   { background: '#0c0c0c', activeColor: '#ff5656', inactiveColor: '#161616' },
@@ -59,7 +58,12 @@ const HitCounter = () => {
     }
   }, [isDarkMode, isToggled, neonColorIdx])
 
-  if (isLoading) return <Spinner />
+  if (isLoading)
+    return (
+      <div className="h-[38px]">
+        <Spinner />
+      </div>
+    )
 
   return (
     <button
@@ -90,7 +94,7 @@ const HitCounter = () => {
       />
       <div
         className={clsx('absolute inset-0 z-10', {
-          'motion-safe:animate-[flicker_0.1s_linear_4_alternate]': isDarkMode,
+          'motion-safe:animate-[backdrop-flicker_0.1s_linear_4_alternate]': isDarkMode,
           'active:backdrop-blur-[1px] active:backdrop-brightness-0 transition': isDarkMode,
         })}
       ></div>

@@ -103,13 +103,13 @@ const FencedCodeBlock: React.FC<FencedCodeBlockProps> = props => {
       <div className="fenced-code-block relative mt-12 mb-8 prose-bleed">
         {/* language */}
         {!title && (
-          <div className="absolute right-8 px-3 pt-0.5 -translate-y-full rounded-t-md bg-slate-100 dark:bg-[#282a36] text-slate-500 dark:text-zinc-400 font-mono font-medium">
+          <div className="absolute right-8 px-3 pt-0.5 -translate-y-full rounded-t-md bg-slate-100 dark:bg-zinc-900 text-slate-500 dark:text-zinc-400 font-mono font-medium">
             {language.toUpperCase()}
           </div>
         )}
         {/* title */}
         {title && (
-          <div className="px-4 py-1.5 border-b border-slate-400/10 rounded-t-xl bg-slate-200 dark:bg-zinc-700 text-slate-500 dark:text-zinc-400 font-mono font-medium">
+          <div className="px-4 py-1.5 border-b border-slate-400/10 rounded-t-xl bg-slate-200 dark:bg-zinc-800 text-slate-500 dark:text-zinc-400 font-mono font-medium">
             {title}
           </div>
         )}
@@ -120,7 +120,7 @@ const FencedCodeBlock: React.FC<FencedCodeBlockProps> = props => {
           </div>
           <div
             className={clsx(
-              'max-h-[500px] sm:max-h-[700px] rounded-b-xl bg-slate-100 dark:bg-[#282a36] overflow-auto better-scrollbar',
+              'max-h-[500px] sm:max-h-[700px] rounded-b-xl bg-slate-100 dark:bg-zinc-900 overflow-auto better-scrollbar',
               {
                 'rounded-t-xl': !title,
               },

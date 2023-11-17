@@ -19,18 +19,24 @@ module.exports = {
         'center-bottom': '50% 100%',
       },
       keyframes: {
-        floating: {
-          '0%': { transform: 'translate(0, 0)' },
-          '100%': { transform: 'translate(0, 10%)' },
-        },
-        loading: {
+        // spinner
+        'intense-pulse': {
           '0%': { opacity: 0.2 },
           '20%': { opacity: 1, transform: 'translateX(1px)' },
           '100%': { opacity: 0.2 },
         },
-        // For hit counter
-        flicker: {
+        // 404 page
+        floating: {
+          '50%': { transform: 'translate(0, -10%)' },
+        },
+        // hit counter
+        'backdrop-flicker': {
           '50%': { 'backdrop-filter': 'blur(1px) brightness(20%)' },
+        },
+        // post outdated alert
+        'move-bg-y': {
+          '0%': { 'background-position': '0 0' },
+          '100%': { 'background-position': '0 100%' },
         },
       },
     },

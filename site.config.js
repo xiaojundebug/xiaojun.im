@@ -8,6 +8,8 @@ module.exports = {
   // icon 请在 src/components/Splash/index.tsx 中修改
   links: [
     { label: 'GitHub', link: 'https://github.com/xiaojundebug' },
+    { label: 'X', link: 'https://twitter.com/xiaojundebug' },
+    { label: '稀土掘金', link: 'https://juejin.cn/user/3386151543772328/posts' },
     { label: 'RSS', link: '/feed.xml' },
   ],
   friends: [

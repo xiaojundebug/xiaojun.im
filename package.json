@@ -3,15 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000",
+    "dev": "next dev -p 3456",
     "build": "next build",
-    "start": "next start -p 3002",
+    "start": "next start",
     "new:post": "node ./scripts/new-post",
     "lint": "next lint",
     "lint:staged": "lint-staged",
     "prettier": "prettier --write './src/**/*.{js,jsx,ts,tsx,json}'"
   },
   "dependencies": {
+    "@floating-ui/react-dom": "^2.0.4",
     "@react-spring/web": "^9.7.3",
     "@types/color": "^3.0.4",
     "@upstash/ratelimit": "^0.4.3",

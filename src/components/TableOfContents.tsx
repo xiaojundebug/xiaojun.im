@@ -99,7 +99,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
         const activated = isActivated(heading)
 
         return (
-          <animated.li key={heading.id} ref={activeId === heading.id ? activeItemRef : null}>
+          <li key={heading.id} ref={activeId === heading.id ? activeItemRef : null}>
             <a
               href={`#${heading.id}`}
               className={clsx(
@@ -133,7 +133,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
                 {heading.text}
               </span>
             </a>
-          </animated.li>
+          </li>
         )
       })}
     </animated.ul>

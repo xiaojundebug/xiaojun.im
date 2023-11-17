@@ -7,7 +7,7 @@
   "post-page.hits": "浏览量",
   "post-page.last-updated": "最后修改于",
   "post-page.reading-time": "阅读时长 {{ minutes }} 分钟",
-  "post-page.outdated-notice": "此文最后修改于 {{ days }} 天前，某些内容可能已过时",
+  "post-page.outdated-notice": "此文最后修改于 {{ days }} 天前，可能包含很多不再适用的废话，阅读需谨慎～",
 
   "tags-page.title": "标签",
   "tags-page.desc": "共 {{ count }} 个标签",

@@ -19,7 +19,7 @@ export default function NotFound() {
           Go Back
         </button>
       </div>
-      <div className="relative mt-12 lg:mt-0 ml-0 lg:ml-24 motion-safe:animate-[floating_4s_ease-in-out_infinite_alternate]">
+      <div className="relative mt-12 lg:mt-0 ml-0 lg:ml-24 motion-safe:animate-[floating_8s_ease-in-out_infinite_alternate]">
         <DarkModeOnly>
           <div
             className="absolute inset-0 pointer-events-none"

@@ -63,7 +63,7 @@ const Segment: React.FC<SegmentProps> = props => {
   }
 
   // a, d
-  const path1 = `
+  const path_ad = `
     M ${segmentSpacing} ${0}
     L ${width - segmentSpacing} 0
     L ${width - segmentThickness - segmentSpacing} ${segmentThickness}
@@ -71,7 +71,7 @@ const Segment: React.FC<SegmentProps> = props => {
   `
 
   // b, c, e, f
-  const path2 = `
+  const path_bcef = `
     M ${segmentSpacing} ${0}
     L ${width - halfThickness - segmentSpacing} 0
     L ${width - segmentSpacing} ${halfThickness}
@@ -80,7 +80,7 @@ const Segment: React.FC<SegmentProps> = props => {
   `
 
   // g
-  const path3 = `
+  const path_g = `
     M ${halfThickness + segmentSpacing} ${halfThickness}
     L ${segmentThickness + segmentSpacing} 0
     L ${width - segmentThickness - segmentSpacing} 0
@@ -90,8 +90,8 @@ const Segment: React.FC<SegmentProps> = props => {
   `
 
   const d = useMemo(
-    () => ({ a: path1, b: path2, c: path2, d: path1, e: path2, f: path2, g: path3 }[segmentId]),
-    [path1, path2, path3, segmentId],
+    () => ({ a: path_ad, b: path_bcef, c: path_bcef, d: path_ad, e: path_bcef, f: path_bcef, g: path_g }[segmentId]),
+    [path_ad, path_bcef, path_g, segmentId],
   )
 
   return (

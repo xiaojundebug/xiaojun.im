@@ -1,0 +1,28 @@
+@property --scroll-progress {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 0%;
+}
+
+.backToTop {
+  > div {
+    background: conic-gradient(
+      rgba(200, 200, 200, 0.65) var(--scroll-progress),
+      rgba(200, 200, 200, 0.25) var(--scroll-progress)
+    );
+
+    @supports (animation-timeline: scroll()) {
+      animation: increase linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+
+  @keyframes increase {
+    0% {
+      --scroll-progress: 0%;
+    }
+    100% {
+      --scroll-progress: 100%;
+    }
+  }
+}

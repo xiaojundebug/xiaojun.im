@@ -11,6 +11,7 @@ import { PostHitCounter, PostViews, PostViewsProvider } from './PostViews'
 import BleedThroughImage, { BleedThroughImageProps } from '@/components/BleedThroughImage'
 import PostContent from './PostContent'
 import PostRightAside from './PostRightAside'
+import PostOutdatedAlert from './PostOutdatedAlert'
 
 export interface PostPageProps {
   slug: string
@@ -94,18 +95,7 @@ const PostPage: React.FC<PostPageProps> = props => {
             )}
 
             {/* 旧文章提醒 */}
-            {diffDays >= config.outdatedPostThresholdDays && (
-              <div className="relative flex justify-center items-center my-12 py-6 px-7 rounded-xl bg-amber-100 dark:bg-zinc-900 overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-around text-7xl sm:text-9xl opacity-5 pointer-events-none">
-                  <span className="relative -rotate-45">👻</span>
-                  <span className="relative top-6 rotate-45">🤖</span>
-                  <span className="relative -top-6 -rotate-12">🎃</span>
-                </div>
-                <p className="relative text-center bg-gradient-to-r from-indigo-500 to-amber-500 bg-clip-text text-transparent">
-                  {t('post-page.outdated-notice', { days: diffDays })}
-                </p>
-              </div>
-            )}
+            {diffDays >= config.outdatedPostThresholdDays && <PostOutdatedAlert days={diffDays} />}
 
             {/* Markdown 内容 */}
             <article className="markdown-body w-full mt-10">
