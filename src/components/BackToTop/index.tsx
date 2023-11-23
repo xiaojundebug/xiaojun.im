@@ -47,8 +47,8 @@ const Index = () => {
           onClick={backToTop}
           style={btnStyles}
         >
-          <div className="absolute inset-0 flex items-center justify-center rounded-xl shadow-lg shadow-black/5 dark:shadow-none active:shadow-none">
-            <div className="absolute inset-0.5 rounded-[10px] bg-white dark:bg-zinc-950"></div>
+          <div className="absolute inset-0 flex items-center justify-center rounded-full shadow-lg shadow-black/5 dark:shadow-none active:shadow-none">
+            <div className="absolute inset-0.5 rounded-full bg-white dark:bg-zinc-950"></div>
             <ArrowUp className="relative text-xl text-black dark:text-white" aria-hidden />
           </div>
         </animated.button>

@@ -10,12 +10,10 @@ const PostOutdatedAlert: React.FC<PostOutdatedAlertProps> = ({ days }) => {
 
   return (
     <div
-      className="relative flex justify-center items-center my-12 py-6 px-7 rounded-xl animate-[move-bg-y_linear_both] overflow-hidden pointer-events-none"
+      className="relative flex justify-center items-center my-12 py-6 px-7 rounded-xl animate-[move-bg-y_linear_reverse_both] overflow-hidden"
       style={{
         background: `url('/outdated-bg.webp') center / cover`,
-        animationTimeline: 'scroll(root)',
-        // @ts-ignore
-        animationRange: '0 100vh',
+        animationTimeline: 'view()',
       }}
     >
       <div className="absolute inset-0 bg-black opacity-10 dark:opacity-50"></div>
