@@ -13,6 +13,7 @@
   "tags-page.desc": "{{ count }} tags in total",
 
   "friends-page.title": "Friends",
+  "friends-page.desc": "{{ count }} friends in total",
 
   "code.copy": "Copy",
   "code.copied": "Copied!"

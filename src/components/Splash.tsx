@@ -3,6 +3,8 @@ import config from 'config'
 import Image from 'next/image'
 import { GitHub, Juejin, RSS, X } from '@/components/icons'
 
+const links: { name: string; link: string }[] = config.links
+
 // prettier-ignore
 const SOCIAL_ICONS: Record<string, React.ReactNode> = {
   'GitHub': <GitHub className="text-xl" aria-hidden />,
@@ -34,16 +36,16 @@ const Splash = () => {
           </h1>
           <span className="text-zinc-500">{config.description}</span>
           <div className="flex items-center gap-4">
-            {config.links.map(social => (
+            {links.map(({ name, link }) => (
               <a
-                key={social.link}
+                key={link}
                 className="inline text-2xl transition-opacity opacity-50 hover:opacity-100"
-                href={social.link}
+                href={link}
                 target="_blank"
-                title={social.label}
-                aria-label={social.label}
+                title={name}
+                aria-label={name}
               >
-                {SOCIAL_ICONS[social.label]}
+                {SOCIAL_ICONS[name]}
               </a>
             ))}
           </div>

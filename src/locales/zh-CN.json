@@ -13,6 +13,7 @@
   "tags-page.desc": "共 {{ count }} 个标签",
 
   "friends-page.title": "朋友们",
+  "friends-page.desc": "共 {{ count }} 个友链",
 
   "code.copy": "复制",
   "code.copied": "✓ 已复制"

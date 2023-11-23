@@ -18,6 +18,7 @@ import PostPage from '@/components/post/PostPage'
 import { Metadata } from 'next'
 import config from 'config'
 import { getImageInfo } from '@/utils/image'
+import AutoRefresh from '@/components/AutoRefresh'
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
@@ -86,13 +87,16 @@ export default async function Post({ params }: { params: { slug: string } }) {
     : undefined
 
   return (
-    <PostPage
-      slug={slug}
-      code={code}
-      frontmatter={frontmatter}
-      heroImageInfo={heroImageInfo}
-      prevPost={prev ? { link: `/posts/${prev.slug}`, title: prev.frontmatter.title } : undefined}
-      nextPost={next ? { link: `/posts/${next.slug}`, title: next.frontmatter.title } : undefined}
-    />
+    <>
+      <PostPage
+        slug={slug}
+        code={code}
+        frontmatter={frontmatter}
+        heroImageInfo={heroImageInfo}
+        prevPost={prev ? { link: `/posts/${prev.slug}`, title: prev.frontmatter.title } : undefined}
+        nextPost={next ? { link: `/posts/${next.slug}`, title: next.frontmatter.title } : undefined}
+      />
+      <AutoRefresh />
+    </>
   )
 }

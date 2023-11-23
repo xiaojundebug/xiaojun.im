@@ -7,7 +7,7 @@ import config from 'config'
 import { animated, useTransition } from '@react-spring/web'
 import useTranslation from '@/hooks/useTranslation'
 
-const links = config.friends || []
+const links: { name: string; link: string }[] = config.friends || []
 
 export default function Friends() {
   const { t } = useTranslation()
@@ -23,10 +23,12 @@ export default function Friends() {
     <div
       className={clsx(styles.friends, 'prose-container flex flex-col items-center justify-center')}
     >
-      <h2 className={clsx(styles.title, 'relative font-medium font-serif text-5xl mt-20 sm:mt-40')}>
+      <h2 className={clsx(styles.title, 'relative font-bold text-5xl mt-20 sm:mt-40 italic')}>
         {t('friends-page.title')}
       </h2>
-      <p className="font-medium text-sm m-10 sm:m-14">共 {links.length} 个友链</p>
+      <p className="font-medium text-sm m-10 sm:m-14">
+        {t('friends-page.desc', { count: links.length })}
+      </p>
       <div className="flex items-center justify-center flex-wrap gap-7 text-2xl">
         {transitions((linkStyles, { name, link }) => (
           <animated.div key={link} style={linkStyles}>

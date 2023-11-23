@@ -137,7 +137,7 @@ const Header = () => {
   const hasMounted = useHasMounted()
   const menus = useMemo(
     () => [
-      { label: t('nav.home'), href: '/' },
+      { label: t('nav.home'), href: '/posts' },
       { label: t('nav.tags'), href: '/tags' },
       { label: t('nav.friends'), href: '/friends' },
       { label: t('nav.about'), href: '/about' },
