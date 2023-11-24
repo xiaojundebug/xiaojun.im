@@ -11,7 +11,7 @@
     "lint": "next lint",
     "lint:staged": "lint-staged",
     "prettier": "prettier --write './src/**/*.{js,jsx,ts,tsx,json}'",
-    "watch-content": "node ./watcher.js"
+    "watch-content": "node ./scripts/watcher.js"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.0.4",
