@@ -2,7 +2,7 @@
 
 import React, { DependencyList, useEffect, useState } from 'react'
 import TableOfContents, { TableOfContentsProps } from '@/components/TableOfContents'
-import Like from '@/components/Like'
+import PostLikeButton from './PostLikeButton'
 
 function useHeadings(deps: DependencyList = []) {
   const [headings, setHeadings] = useState<TableOfContentsProps['headings']>([])
@@ -10,7 +10,7 @@ function useHeadings(deps: DependencyList = []) {
   useEffect(() => {
     const elements = Array.from(
       document.querySelectorAll(
-        '.markdown-body > h2, .markdown-body > h3, .markdown-body > h4, .markdown-body > h5, .markdown-body > h6',
+        '.markdown > h2, .markdown > h3, .markdown > h4, .markdown > h5, .markdown > h6',
       ),
     )
       .filter(element => element.id)
@@ -41,7 +41,7 @@ const PostRightAside: React.FC<PostAsideProps> = props => {
         {/* 侧边目录导航 */}
         {toc && headings.length > 0 && <TableOfContents headings={headings} />}
         {/* 点赞 */}
-        <Like slug={slug} />
+        <PostLikeButton slug={slug} />
       </div>
     </aside>
   )

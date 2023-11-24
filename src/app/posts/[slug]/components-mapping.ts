@@ -1,7 +1,3 @@
-'use client'
-
-import React, { useMemo } from 'react'
-import { getMDXComponent } from 'mdx-bundler/client'
 import tagRenderer from '@/utils/tag-renderer'
 import Image from '@/components/Image'
 import UnorderedList from '@/components/lists/UnorderedList'
@@ -45,14 +41,4 @@ const components = {
   DarkModeToggle,
 } as unknown as MDXComponents
 
-export interface PostContentProps {
-  code: string
-}
-
-const PostContent: React.FC<PostContentProps> = ({ code }) => {
-  const Component = useMemo(() => getMDXComponent(code), [code])
-
-  return <Component components={components} />
-}
-
-export default PostContent
+export default components

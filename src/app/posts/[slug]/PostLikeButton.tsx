@@ -15,11 +15,11 @@ const vt323 = VT323({
   weight: '400',
 })
 
-export interface LikeProps {
+export interface PostLikeButtonProps {
   slug: string
 }
 
-const Like: React.FC<LikeProps> = ({ slug }) => {
+const PostLikeButton: React.FC<PostLikeButtonProps> = ({ slug }) => {
   const [scale, setScale] = useState(1)
   const [likes, setLikes] = useState(0)
   const [isLoading, { set: setIsLoading }] = useBoolean(true)
@@ -116,4 +116,4 @@ const Like: React.FC<LikeProps> = ({ slug }) => {
   )
 }
 
-export default Like
+export default PostLikeButton

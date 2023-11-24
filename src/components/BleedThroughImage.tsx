@@ -1,23 +1,30 @@
 import React from 'react'
 import Image from 'next/image'
-import DesktopOnly from '@/components/DesktopOnly'
+import DesktopOnly from './DesktopOnly'
 
 export type BleedThroughImageProps = {
   src: string
   width: number
   height: number
   lqip: string
+  alt?: string
+  fit?: boolean
 }
 
 const BleedThroughImage: React.FC<BleedThroughImageProps> = props => {
-  const { src, width, height, lqip } = props
+  const { src, width, height, lqip, alt = '', fit = true } = props
 
   return (
-    <div className="relative" style={{ aspectRatio: `${width} / ${height}` }}>
+    <div
+      className="relative"
+      style={{
+        ...(fit ? { aspectRatio: `${width} / ${height}` } : { width, height }),
+      }}
+    >
       <DesktopOnly>
         <div
           className="absolute inset-0 blur-xl saturate-150 transform-gpu
-          after:absolute after:inset-0 after:block after:bg-white/50 dark:after:bg-black/50"
+            after:absolute after:inset-0 after:block after:bg-white/50 dark:after:bg-black/50"
         >
           <Image
             className="w-full h-full rounded-3xl"
@@ -32,7 +39,7 @@ const BleedThroughImage: React.FC<BleedThroughImageProps> = props => {
       <Image
         className="relative rounded-xl sm:rounded-3xl"
         src={src}
-        alt="Hero Image"
+        alt={alt}
         fill
         unoptimized
         placeholder="blur"

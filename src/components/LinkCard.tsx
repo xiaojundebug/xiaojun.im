@@ -1,7 +1,7 @@
 import React from 'react'
 import { animated, to } from '@react-spring/web'
 import useSpotlight from '@/hooks/useSpotlight'
-import DarkModeOnly from '@/components/DarkModeOnly'
+import DarkModeOnly from './DarkModeOnly'
 
 export interface LinkCardProps {
   url: string

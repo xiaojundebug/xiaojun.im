@@ -7,8 +7,8 @@ import useTranslation from '@/hooks/useTranslation'
 import HorizontalRule from '@/components/HorizontalRule'
 import DesktopOnly from '@/components/DesktopOnly'
 import { ArrowLeft, ArrowRight, Calender, Click, Clock } from '@/components/icons'
-import { PostHitCounter, PostViews, PostViewsProvider } from './PostViews'
 import BleedThroughImage, { BleedThroughImageProps } from '@/components/BleedThroughImage'
+import { PostHitCounter, PostViews, PostViewsProvider } from './PostViews'
 import PostContent from './PostContent'
 import PostRightAside from './PostRightAside'
 import PostOutdatedAlert from './PostOutdatedAlert'
@@ -98,7 +98,7 @@ const PostPage: React.FC<PostPageProps> = props => {
             {diffDays >= config.outdatedPostThresholdDays && <PostOutdatedAlert days={diffDays} />}
 
             {/* Markdown 内容 */}
-            <article className="markdown-body w-full mt-10">
+            <article className="markdown w-full mt-10">
               <PostContent code={code} />
             </article>
 

@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes'
 import { withNoSSR } from '@/utils'
 import useSound from '@/hooks/useSound'
 import clsx from 'clsx'
-import Spinner from '@/components/Spinner'
+import Spinner from './Spinner'
 
 const config = { mass: 3, tension: 200, friction: 30 }
 const starPaths = [

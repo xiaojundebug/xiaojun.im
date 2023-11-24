@@ -1,19 +1,18 @@
 'use client'
 
 import React, { useEffect, useMemo } from 'react'
-import config from 'config'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { animated, to, useSpring, useTransition } from '@react-spring/web'
+import DarkModeToggle from './DarkModeToggle'
+import BurgerMenuIcon from './BurgerMenuIcon'
+import MobileOnly from './MobileOnly'
+import DesktopOnly from './DesktopOnly'
 import useBoolean from '@/hooks/useBoolean'
 import useHasMounted from '@/hooks/useHasMounted'
 import useSize from '@/hooks/useSize'
 import useTranslation from '@/hooks/useTranslation'
-import { animated, to, useSpring, useTransition } from '@react-spring/web'
-import Link from 'next/link'
-import DarkModeToggle from './DarkModeToggle'
-import BurgerMenuIcon from '@/components/BurgerMenuIcon'
-import MobileOnly from '@/components/MobileOnly'
-import DesktopOnly from '@/components/DesktopOnly'
-import clsx from 'clsx'
+import useSpotlight from '@/hooks/useSpotlight'
 import {
   animationFrameScheduler,
   distinctUntilChanged,
@@ -25,7 +24,8 @@ import {
   throttleTime,
   withLatestFrom,
 } from 'rxjs'
-import useSpotlight from '@/hooks/useSpotlight'
+import clsx from 'clsx'
+import config from 'config'
 
 const MobileHeader: React.FC<{
   menus: { label: string; href: string }[]

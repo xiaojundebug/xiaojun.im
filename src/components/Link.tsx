@@ -1,5 +1,5 @@
 import React, { JSX } from 'react'
-import { ExternalLink } from '@/components/icons'
+import { ExternalLink } from './icons'
 import clsx from 'clsx'
 
 const Link: React.FC<JSX.IntrinsicElements['a']> = props => {
@@ -19,7 +19,7 @@ const Link: React.FC<JSX.IntrinsicElements['a']> = props => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={clsx('group/a mdx-a')}
+      className={clsx(className, 'group/a mdx-a')}
       {...rest}
     >
       {children}

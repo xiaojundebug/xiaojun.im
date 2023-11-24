@@ -1,5 +1,5 @@
 import React, { JSX, useContext, useMemo } from 'react'
-import { ListContext } from '@/components/lists/ListProvider'
+import { ListContext } from './ListProvider'
 import { ArrowRight, Checked, Unchecked } from '@/components/icons'
 import clsx from 'clsx'
 

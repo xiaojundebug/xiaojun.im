@@ -1,6 +1,6 @@
 import React from 'react'
 import { getLatestPosts } from '@/utils/post'
-import TagsPage from '@/app/tags/tags-page'
+import TagsPage from './TagsPage'
 
 async function getTags() {
   const posts = await getLatestPosts({ orderBy: 'asc' })

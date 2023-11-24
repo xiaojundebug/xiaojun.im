@@ -1,5 +1,5 @@
 import React, { JSX } from 'react'
-import ListProvider from '@/components/lists/ListProvider'
+import ListProvider from './ListProvider'
 import clsx from 'clsx'
 
 const UnorderedList: React.FC<JSX.IntrinsicElements['ul']> = props => {

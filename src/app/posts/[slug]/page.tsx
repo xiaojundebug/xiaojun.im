@@ -14,11 +14,11 @@ import remarkLinkCard from '@/lib/unified/remark-link-card'
 import remarkImageInfo from '@/lib/unified/remark-image-info'
 import path from 'path'
 import { getAdjacentPosts, getAllPosts, getPostFrontmatter, getPostSlug } from '@/utils/post'
-import PostPage from '@/components/post/PostPage'
 import { Metadata } from 'next'
 import config from 'config'
 import { getImageInfo } from '@/utils/image'
-import AutoRefresh from '@/components/AutoRefresh'
+import PostPage from './PostPage'
+import AutoRefresh from './AutoRefresh'
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()

@@ -1,7 +1,7 @@
 import React from 'react'
 import config from 'config'
 import Image from 'next/image'
-import { GitHub, Juejin, RSS, X } from '@/components/icons'
+import { GitHub, Juejin, RSS, X } from './icons'
 
 const links: { name: string; link: string }[] = config.links
 

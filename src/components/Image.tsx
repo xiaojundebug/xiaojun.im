@@ -3,11 +3,10 @@ import NextImage from 'next/image'
 
 export type ImageProps = {
   src: string
-  alt?: string
   width?: number
   height?: number
-  color?: { r: number; g: number; b: number; hex: string }
   lqip?: string
+  alt?: string
 }
 
 const Image: React.FC<ImageProps> = props => {
@@ -15,8 +14,7 @@ const Image: React.FC<ImageProps> = props => {
 
   return (
     <NextImage
-      className="max-w-full mx-auto"
-      style={{ aspectRatio: `${width} / ${height}` }}
+      className="mdx-img max-w-full mx-auto"
       width={width}
       height={height}
       src={src}
