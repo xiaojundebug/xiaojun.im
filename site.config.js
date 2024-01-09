@@ -5,7 +5,7 @@ module.exports = {
   avatar: '/avatar.jpg',
   logo: '/logo.svg',
   siteUrl: 'https://www.xiaojun.im',
-  // icon 请在 src/components/Splash/index.tsx 中修改
+  // icon 请在 src/components/Splash.tsx 中修改
   links: [
     { name: 'GitHub', link: 'https://github.com/xiaojundebug' },
     { name: 'X', link: 'https://twitter.com/xiaojundebug' },
