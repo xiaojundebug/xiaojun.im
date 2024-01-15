@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react'
-import style from './styles.module.scss'
+import styles from './styles.module.scss'
 import clsx from 'clsx'
 import Link from 'next/link'
 
@@ -13,7 +13,7 @@ const Tag: React.FC<PropsWithChildren> = props => {
 
 export default function About() {
   return (
-    <div className={clsx('prose-container py-12', style.about)}>
+    <div className={clsx('prose-container py-12', styles.about)}>
       <h2>🎨 关于本站</h2>
       <p>
         搭建它的初衷主要是为了练习新技术，其次是记录笔记 +

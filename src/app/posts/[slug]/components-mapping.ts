@@ -9,6 +9,7 @@ import Link from '@/components/Link'
 import LinkCard from '@/components/LinkCard'
 import * as embeds from '@/components/embeds'
 import DarkModeToggle from '@/components/DarkModeToggle'
+import CodePlayground from "@/components/CodePlayground";
 import { MDXComponents } from 'mdx/types'
 
 const components = {
@@ -39,6 +40,7 @@ const components = {
   linkcard: LinkCard,
   ...embeds,
   DarkModeToggle,
+  CodePlayground
 } as unknown as MDXComponents
 
 export default components
