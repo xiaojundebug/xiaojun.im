@@ -15,6 +15,7 @@ import BackToTop from '@/components/BackToTop'
 import config from 'config'
 import { getSiteUrl } from '@/utils/url'
 import { Inter } from 'next/font/google'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
           <BackToTop />
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   )

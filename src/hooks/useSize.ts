@@ -1,4 +1,5 @@
-import { RefCallback, useCallback, useDeferredValue, useEffect, useState } from 'react'
+import { RefCallback, useCallback, useDeferredValue, useMemo, useState } from 'react'
+import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
 
 type Size = { width: number; height: number }
 
@@ -11,7 +12,7 @@ function useSize() {
     setTarget(node)
   }, [])
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!target) return
 
     const obs = new ResizeObserver(entries => {
@@ -28,7 +29,7 @@ function useSize() {
     }
   }, [target])
 
-  return [measuredRef, deferredSize] as const
+  return useMemo(() => [measuredRef, deferredSize] as const, [measuredRef, deferredSize])
 }
 
 export default useSize

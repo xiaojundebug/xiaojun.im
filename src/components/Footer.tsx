@@ -1,15 +1,14 @@
 import React from 'react'
 import config from 'config'
+import { Heart } from '@/components/icons'
 
 const Footer = () => {
   return (
-    <div className="flex flex-col items-center mt-16 mb-10 text-sm">
-      <span className="font-medium">
-        Built with <a href="https://nextjs.org" className="text-primary no-underline">Next.js</a> • Deployed on <a href="https://vercel.com" className="text-primary">Vercel</a>
-      </span>
-      <div className="mt-2 text-zinc-500">
-        &copy;{new Date().getFullYear()}&nbsp;{config.name}
-      </div>
+    <div className="flex items-center justify-center gap-1 my-16 text-sm font-medium text-zinc-500">
+      Made with
+      <Heart className="text-xl text-rose-600" />
+      by
+      <em className="font-bold not-italic">{config.name}</em>
     </div>
   )
 }

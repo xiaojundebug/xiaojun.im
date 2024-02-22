@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { animationFrameScheduler, fromEvent, startWith, throttleTime } from 'rxjs'
 import { animated, useSpring } from '@react-spring/web'
+import useBoolean from '@/hooks/useBoolean'
 
 function findCurrentHeading(list: HTMLElement[]) {
   let start = 0
@@ -49,7 +50,11 @@ export interface TableOfContentsProps {
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
+  const scrollerRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
+  const [isOverflowing, { set: setIsOverflowing }] = useBoolean(false)
+  const [isScrolledTop, { set: setIsScrolledTop }] = useBoolean(false)
+  const [isScrolledBottom, { set: setIsScrolledBottom }] = useBoolean(false)
   const activeItemRef = useRef<HTMLLIElement>(null)
   const activeId = useScrollSpy(headings.map(({ id }) => id))
 
@@ -60,9 +65,42 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
   }))
 
   useEffect(() => {
+    const scroller = scrollerRef.current
+    const list = listRef.current
+
+    if (!scroller || !list) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // intersectionRatio 不为 1 代表可以滚动
+        setIsOverflowing(entry.intersectionRatio !== 1)
+      },
+      {
+        root: scroller,
+      },
+    )
+
+    observer.observe(list)
+
+    const scrollSub = fromEvent(scroller, 'scroll')
+      .pipe(throttleTime(0, animationFrameScheduler))
+      .subscribe(() => {
+        console.log(scroller.scrollTop + scroller.offsetHeight, list.offsetHeight)
+        setIsScrolledTop(scroller.scrollTop === 0)
+        setIsScrolledBottom(scroller.scrollTop + scroller.offsetHeight === list.offsetHeight)
+      })
+
+    return () => {
+      observer.disconnect()
+      scrollSub.unsubscribe()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
     const anchor = activeItemRef.current
-    if (!listRef.current || !activeId || !anchor) return
-    const listRect = listRef.current.getBoundingClientRect()
+    if (!scrollerRef.current || !activeId || !anchor) return
+    const listRect = scrollerRef.current.getBoundingClientRect()
     const anchorRect = anchor.getBoundingClientRect()
 
     scrollApi.start({
@@ -90,53 +128,65 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
   }
 
   return (
-    <animated.ul
-      ref={listRef}
-      className="group/toc list-none max-h-[50vh] overflow-y-auto better-scrollbar"
-      scrollTop={scrollTop}
-    >
-      {headings.map(heading => {
-        const activated = isActivated(heading)
+    <div className="group/toc relative">
+      {/* Top Shadow */}
+      <div
+        className={clsx(
+          'absolute inset-x-0 top-0 z-10 h-7 pointer-events-none',
+          'bg-gradient-to-b from-white dark:from-zinc-950 to-transparent',
+          `opacity-${isOverflowing && !isScrolledTop ? 100 : 0}`,
+        )}
+      ></div>
+      {/* Bottom Shadow */}
+      <div
+        className={clsx(
+          'absolute inset-x-0 bottom-0 z-10 h-7 pointer-events-none',
+          'bg-gradient-to-t from-white dark:from-zinc-950 to-transparent',
+          `opacity-${isOverflowing && !isScrolledBottom ? 100 : 0}`,
+        )}
+      ></div>
 
-        return (
-          <li key={heading.id} ref={activeId === heading.id ? activeItemRef : null}>
-            <a
-              href={`#${heading.id}`}
-              className={clsx(
-                'group relative flex items-center gap-2 max-w-full my-1 text-xs text-zinc-500/80 leading-loose truncate hover:text-zinc-800 dark:hover:text-zinc-50',
-                {
-                  '!text-zinc-800 dark:!text-zinc-50': activated,
-                },
-              )}
-            >
-              <div className="w-[20px]">
-                <div
+      <animated.div
+        ref={scrollerRef}
+        className="relative max-h-[308px] overflow-y-scroll no-scrollbar"
+        scrollTop={scrollTop}
+      >
+        <ul ref={listRef} className="list-none overflow-hidden">
+          {headings.map(heading => {
+            const activated = isActivated(heading)
+
+            return (
+              <li key={heading.id} ref={activeId === heading.id ? activeItemRef : null}>
+                <a
+                  href={`#${heading.id}`}
                   className={clsx(
-                    'h-[4px] rounded-full bg-black/10 dark:bg-white/10 group-hover:bg-black/50 dark:group-hover:bg-white/50 transition duration-500',
+                    'group relative flex items-center gap-2 max-w-full h-7 text-[13px] font-medium text-zinc-400 dark:text-zinc-500 truncate hover:text-zinc-800 dark:hover:text-zinc-50',
                     {
-                      '!bg-black/50 dark:!bg-white/50': activated,
+                      '!text-zinc-800 dark:!text-zinc-50': activated,
                     },
                   )}
-                  style={{ width: heading.level > 2 ? 10 : 16 }}
-                ></div>
-              </div>
-              <span
-                className={clsx(
-                  'opacity-0 group-hover/toc:opacity-100 transition duration-500 truncate',
-                  {
-                    'ml-2': heading.level !== 2,
-                    'font-medium': heading.level === 2,
-                    'opacity-100': activated,
-                  },
-                )}
-              >
-                {heading.text}
-              </span>
-            </a>
-          </li>
-        )
-      })}
-    </animated.ul>
+                >
+                  <div className="w-[20px]">
+                    <div
+                      className={clsx(
+                        'h-[4px] rounded-full bg-black/10 dark:bg-white/10 group-hover:bg-black/50 dark:group-hover:bg-white/50',
+                        {
+                          '!bg-black/50 dark:!bg-white/50': activated,
+                        },
+                      )}
+                      style={{ width: heading.level > 2 ? 10 : 16 }}
+                    ></div>
+                  </div>
+                  <span className={clsx('truncate', { 'ml-2': heading.level !== 2 })}>
+                    {heading.text}
+                  </span>
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </animated.div>
+    </div>
   )
 }
 

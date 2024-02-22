@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'Xiaojun Zhou',
+  name: 'Xiaojun',
   title: 'Xiaojun Zhou',
   description: '这儿没啥干货，搭建此站只是觉得好玩～ 🐶',
   avatar: '/avatar.jpg',
@@ -9,13 +9,14 @@ module.exports = {
   links: [
     { name: 'GitHub', link: 'https://github.com/xiaojundebug' },
     { name: 'X', link: 'https://twitter.com/xiaojundebug' },
-    { name: '稀土掘金', link: 'https://juejin.cn/user/3386151543772328/posts' },
+    { name: '稀土掘金', link: 'https://juejin.cn/user/3386151543772328' },
     { name: 'RSS', link: '/feed.xml' },
   ],
   friends: [
     { name: '赖同学', link: 'https://www.laibh.com' },
     { name: '鯊手', link: 'https://www.cnblogs.com/Scooby' },
     { name: '戴兜', link: 'https://im.daidr.me' },
+    { name: 'lufangzhou', link: 'https://zhoufanglu.github.io/vuepressBlog' },
   ],
   // en | zh-CN
   language: 'zh-CN',
