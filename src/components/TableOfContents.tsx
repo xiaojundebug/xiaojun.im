@@ -30,7 +30,10 @@ function useScrollSpy(ids: string[]) {
   useEffect(() => {
     const elements = ids.map(id => document.getElementById(id)).filter(Boolean)
     const sub = fromEvent(document, 'scroll')
-      .pipe(throttleTime(0, animationFrameScheduler), startWith(null))
+      .pipe(
+        throttleTime(0, animationFrameScheduler, { leading: true, trailing: true }),
+        startWith(null),
+      )
       .subscribe(evt => {
         const isAtBottom =
           window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 10
@@ -53,8 +56,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
   const scrollerRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
   const [isOverflowing, { set: setIsOverflowing }] = useBoolean(false)
-  const [isScrolledTop, { set: setIsScrolledTop }] = useBoolean(false)
-  const [isScrolledBottom, { set: setIsScrolledBottom }] = useBoolean(false)
+  const [isScrolledTop, { set: setIsScrolledTop }] = useBoolean(true)
+  const [isScrolledBottom, { set: setIsScrolledBottom }] = useBoolean(true)
   const activeItemRef = useRef<HTMLLIElement>(null)
   const activeId = useScrollSpy(headings.map(({ id }) => id))
 
@@ -85,7 +88,6 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
     const scrollSub = fromEvent(scroller, 'scroll')
       .pipe(throttleTime(0, animationFrameScheduler))
       .subscribe(() => {
-        console.log(scroller.scrollTop + scroller.offsetHeight, list.offsetHeight)
         setIsScrolledTop(scroller.scrollTop === 0)
         setIsScrolledBottom(scroller.scrollTop + scroller.offsetHeight === list.offsetHeight)
       })

@@ -20,7 +20,7 @@ const BackToTop = () => {
   useEffect(() => {
     const sub = fromEvent(window, 'scroll')
       .pipe(
-        throttleTime(0, animationFrameScheduler),
+        throttleTime(0, animationFrameScheduler, { leading: true, trailing: true }),
         map(() => window.scrollY > 500),
         distinctUntilChanged(),
       )
