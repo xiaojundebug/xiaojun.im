@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import { animationFrameScheduler, fromEvent, startWith, throttleTime } from 'rxjs'
 import { animated, useSpring } from '@react-spring/web'
 import useBoolean from '@/hooks/useBoolean'
+import { windowScroll$ } from '@/common/observables'
 
 function findCurrentHeading(list: HTMLElement[]) {
   let start = 0
@@ -29,19 +30,13 @@ function useScrollSpy(ids: string[]) {
 
   useEffect(() => {
     const elements = ids.map(id => document.getElementById(id)).filter(Boolean)
-    const sub = fromEvent(document, 'scroll')
-      .pipe(
-        throttleTime(0, animationFrameScheduler, { leading: true, trailing: true }),
-        startWith(null),
-      )
-      .subscribe(evt => {
-        const isAtBottom =
-          window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 10
-        const el = isAtBottom
-          ? elements[elements.length - 1]
-          : findCurrentHeading(elements as HTMLElement[])
-        setActiveId(el?.id)
-      })
+    const sub = windowScroll$.pipe(startWith(null)).subscribe(evt => {
+      const isAtBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 10
+      const el = isAtBottom
+        ? elements[elements.length - 1]
+        : findCurrentHeading(elements as HTMLElement[])
+      setActiveId(el?.id)
+    })
     return () => sub.unsubscribe()
   }, [ids])
 
@@ -86,7 +81,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
     observer.observe(list)
 
     const scrollSub = fromEvent(scroller, 'scroll')
-      .pipe(throttleTime(0, animationFrameScheduler))
+      .pipe(throttleTime(0, animationFrameScheduler, { leading: true, trailing: true }))
       .subscribe(() => {
         setIsScrolledTop(scroller.scrollTop === 0)
         setIsScrolledBottom(scroller.scrollTop + scroller.offsetHeight === list.offsetHeight)

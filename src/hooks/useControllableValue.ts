@@ -2,7 +2,7 @@ import { useMemo, useRef } from 'react'
 import type { SetStateAction } from 'react'
 import useMemoizedFn from './useMemoizedFn'
 import useForceUpdate from './useForceUpdate'
-import { isFunction } from '@/utils'
+import { isFunction } from '@/common/utils'
 
 export interface Options<T> {
   defaultValue?: T

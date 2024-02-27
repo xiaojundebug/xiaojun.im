@@ -2,9 +2,10 @@
 
 import React, { useEffect, useRef } from 'react'
 import { animated, useTransition } from '@react-spring/web'
-import { animationFrameScheduler, distinctUntilChanged, fromEvent, map, throttleTime } from 'rxjs'
+import { distinctUntilChanged, map } from 'rxjs'
 import { ArrowUp } from '@/components/icons'
 import useBoolean from '@/hooks/useBoolean'
+import { windowScroll$ } from '@/common/observables'
 
 const BackToTop = () => {
   const [isVisible, { set: setIsVisible }] = useBoolean(false)
@@ -18,9 +19,8 @@ const BackToTop = () => {
   })
 
   useEffect(() => {
-    const sub = fromEvent(window, 'scroll')
+    const sub = windowScroll$
       .pipe(
-        throttleTime(0, animationFrameScheduler, { leading: true, trailing: true }),
         map(() => window.scrollY > 500),
         distinctUntilChanged(),
       )

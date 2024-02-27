@@ -2,7 +2,7 @@
 
 import React, { useContext } from 'react'
 import Spinner from '@/components/Spinner'
-import { prettifyNumber } from '@/utils'
+import { prettifyNumber } from '@/common/utils'
 import { PostViewsContext } from './Provider'
 
 const PostViews = () => {

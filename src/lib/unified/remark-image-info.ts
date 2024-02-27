@@ -1,7 +1,7 @@
 import { visit } from 'unist-util-visit'
 import type { Plugin } from 'unified'
 import type { Image, Root } from 'mdast'
-import { getImageInfo } from '@/utils/image'
+import { getImageInfo } from '@/common/image'
 
 const remarkImageInfo: Plugin<[], Root> = () => {
   return async tree => {

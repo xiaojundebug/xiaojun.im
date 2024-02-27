@@ -1,4 +1,4 @@
-import tagRenderer from '@/utils/tag-renderer'
+import tagRenderer from '@/common/tag-renderer'
 import Image from '@/components/Image'
 import UnorderedList from '@/components/lists/UnorderedList'
 import OrderedList from '@/components/lists/OrderedList'

@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next'
-import { getSiteUrl } from '@/utils/url'
-import { getLatestPosts } from '@/utils/post'
+import { getSiteUrl } from '@/common/url'
+import { getLatestPosts } from '@/common/post'
 
 export const revalidate = 60
 

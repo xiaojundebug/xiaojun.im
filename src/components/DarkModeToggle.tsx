@@ -1,7 +1,7 @@
 import React from 'react'
 import { animated, config as builtinConfig, useSpring, useTransition } from '@react-spring/web'
 import { useTheme } from 'next-themes'
-import { withNoSSR } from '@/utils'
+import { withNoSSR } from '@/common/utils'
 import useSound from '@/hooks/useSound'
 import clsx from 'clsx'
 import Spinner from './Spinner'

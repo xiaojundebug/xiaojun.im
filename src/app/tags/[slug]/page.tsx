@@ -1,4 +1,4 @@
-import { getLatestPosts } from '@/utils/post'
+import { getLatestPosts } from '@/common/post'
 import Splash from '@/components/Splash'
 import PostList from '@/components/PostList'
 import React from 'react'

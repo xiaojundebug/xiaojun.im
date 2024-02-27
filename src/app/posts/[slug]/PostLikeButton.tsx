@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { animated, config, useSpring } from '@react-spring/web'
 import fetcher from '@/lib/fetcher'
-import { getSiteUrl } from '@/utils/url'
+import { getSiteUrl } from '@/common/url'
 import { useTheme } from 'next-themes'
 import { VT323 } from 'next/font/google'
 import clsx from 'clsx'
-import { prettifyNumber } from '@/utils'
+import { prettifyNumber } from '@/common/utils'
 import useSound from '@/hooks/useSound'
 import useBoolean from '@/hooks/useBoolean'
 

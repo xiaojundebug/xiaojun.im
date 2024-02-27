@@ -1,7 +1,7 @@
 import RSS from 'rss'
 import config from 'config'
-import { getSiteUrl } from '@/utils/url'
-import { getLatestPosts } from '@/utils/post'
+import { getSiteUrl } from '@/common/url'
+import { getLatestPosts } from '@/common/post'
 
 export async function GET() {
   const feed = new RSS({

@@ -1,5 +1,5 @@
 import React from 'react'
-import { getLatestPosts } from '@/utils/post'
+import { getLatestPosts } from '@/common/post'
 import TagsPage from './TagsPage'
 
 async function getTags() {

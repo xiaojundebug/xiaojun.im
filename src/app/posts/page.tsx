@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
-import { getLatestPosts } from '@/utils/post'
+import { getLatestPosts } from '@/common/post'
 import dayjs from 'dayjs'
-import PostList, { PostListProps } from '@/components/PostList'
 import Splash from '@/components/Splash'
+import PostList, { PostListProps } from '@/components/PostList'
 
 const formatPosts = (posts: PostListProps['posts']) => {
   const m = new Map<number, PostListProps['posts']>()

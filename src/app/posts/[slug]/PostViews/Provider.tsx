@@ -2,8 +2,8 @@
 
 import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import fetcher from '@/lib/fetcher'
-import { getSiteUrl } from '@/utils/url'
-import { sleep } from '@/utils'
+import { getSiteUrl } from '@/common/url'
+import { sleep } from '@/common/utils'
 import useBoolean from '@/hooks/useBoolean'
 
 export interface PostViewsContext {

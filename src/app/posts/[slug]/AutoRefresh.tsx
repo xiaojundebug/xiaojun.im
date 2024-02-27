@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { first, fromEvent, map, of, Subject, switchMap } from 'rxjs'
+import { first, map, of, Subject, switchMap } from 'rxjs'
+import { visibilityChange$ } from '@/common/observables'
 
 let AutoRefresh = function AutoRefresh() {
   return null
@@ -15,7 +16,7 @@ if (process.env.NODE_ENV === 'development') {
     const subject = useMemo(() => new Subject<void>(), [])
 
     useEffect(() => {
-      const visible$ = fromEvent(document, 'visibilitychange').pipe(map(() => !document.hidden))
+      const visible$ = visibilityChange$.pipe(map(() => !document.hidden))
       const sub = subject
         .pipe(
           switchMap(() => {

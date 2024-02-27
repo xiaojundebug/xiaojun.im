@@ -3,7 +3,7 @@ import Provider, { ProviderProps } from '@/components/CodeBlock/playground/Provi
 import Editor from './Editor'
 import clsx from 'clsx'
 import useBoolean from '@/hooks/useBoolean'
-import { copyToClipboard } from '@/utils/clipboard'
+import { copyToClipboard } from '@/common/clipboard'
 import CopyButton from './CopyButton'
 
 export interface FencedCodeBlockProps {

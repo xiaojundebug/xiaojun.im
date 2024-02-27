@@ -13,19 +13,10 @@ import useHasMounted from '@/hooks/useHasMounted'
 import useSize from '@/hooks/useSize'
 import useTranslation from '@/hooks/useTranslation'
 import useSpotlight from '@/hooks/useSpotlight'
-import {
-  animationFrameScheduler,
-  distinctUntilChanged,
-  filter,
-  fromEvent,
-  map,
-  pairwise,
-  share,
-  throttleTime,
-  withLatestFrom,
-} from 'rxjs'
+import { distinctUntilChanged, filter, map, pairwise, share, withLatestFrom } from 'rxjs'
 import clsx from 'clsx'
 import config from 'config'
+import { windowScroll$ } from '@/common/observables'
 
 const MobileHeader: React.FC<{
   menus: { label: string; href: string }[]
@@ -153,11 +144,7 @@ const Header = () => {
   })
 
   useEffect(() => {
-    const scroll$ = fromEvent(window, 'scroll').pipe(
-      throttleTime(0, animationFrameScheduler, { leading: true, trailing: true }),
-      map(() => window.scrollY),
-      share(),
-    )
+    const scroll$ = windowScroll$.pipe(map(() => window.scrollY))
     const dirChange$ = scroll$.pipe(
       pairwise(),
       map(([prev, curr]) => prev > curr),

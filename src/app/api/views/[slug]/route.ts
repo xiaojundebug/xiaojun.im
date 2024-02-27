@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { ratelimit, redis } from '@/lib/redis'
-import { isPostExists } from '@/utils/post'
+import { isPostExists } from '@/common/post'
 
 export async function PATCH(req: NextRequest, { params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug)

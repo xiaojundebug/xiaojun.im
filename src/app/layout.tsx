@@ -13,7 +13,7 @@ import PageContainer from '@/components/PageContainer'
 import Footer from '@/components/Footer'
 import BackToTop from '@/components/BackToTop'
 import config from 'config'
-import { getSiteUrl } from '@/utils/url'
+import { getSiteUrl } from '@/common/url'
 import { Inter } from 'next/font/google'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
