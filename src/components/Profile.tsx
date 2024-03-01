@@ -13,7 +13,7 @@ const SOCIAL_ICONS: Record<string, React.ReactNode> = {
   'RSS': <RSS className="text-xl" aria-hidden />,
 }
 
-const Splash = () => {
+const Profile = () => {
   return (
     <div className="'relative my-12 sm:my-16'">
       <div className="flex items-center">
@@ -23,8 +23,8 @@ const Splash = () => {
               className="object-cover rounded-full p-0.5 bg-white dark:bg-zinc-900 ring-1 ring-zinc-400/20 shadow-lg dark:shadow-none shadow-zinc-600/10"
               src={config.avatar}
               alt="avatar"
-              width={64}
-              height={64}
+              width={80}
+              height={80}
               unoptimized
               priority
             />
@@ -55,4 +55,4 @@ const Splash = () => {
   )
 }
 
-export default Splash
+export default Profile

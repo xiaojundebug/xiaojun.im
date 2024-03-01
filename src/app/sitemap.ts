@@ -11,11 +11,11 @@ export default async function sitemap() {
       lastModified: new Date(),
     },
     {
-      url: getSiteUrl('/tags').href,
+      url: getSiteUrl('/posts').href,
       lastModified: new Date(),
     },
     {
-      url: getSiteUrl('/about').href,
+      url: getSiteUrl('/tags').href,
       lastModified: new Date(),
     },
     {

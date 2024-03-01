@@ -1,8 +1,10 @@
 {
   "nav.home": "Home",
+  "nav.posts": "Blog",
   "nav.tags": "Tags",
   "nav.friends": "Friends",
-  "nav.about": "About",
+
+  "home-page.about": "About me",
 
   "post-page.hits": "HITS",
   "post-page.last-updated": "LAST UPDATED",

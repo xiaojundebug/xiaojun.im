@@ -1,7 +1,7 @@
 module.exports = {
   name: 'Xiaojun',
   title: 'Xiaojun Zhou',
-  description: '这儿没啥干货，搭建此站只是觉得好玩～ 🐶',
+  description: 'Front-End Developer',
   avatar: '/avatar.jpg',
   logo: '/logo.svg',
   siteUrl: 'https://www.xiaojun.im',
@@ -19,7 +19,7 @@ module.exports = {
     { name: 'lufangzhou', link: 'https://zhoufanglu.github.io/vuepressBlog' },
   ],
   // en | zh-CN
-  language: 'zh-CN',
+  language: 'en',
   // 侧边目录
   toc: true,
   // 显示上一篇下一篇按钮

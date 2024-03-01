@@ -1,5 +1,5 @@
 import { getLatestPosts } from '@/common/post'
-import Splash from '@/components/Splash'
+import Profile from '@/components/Profile'
 import PostList from '@/components/PostList'
 import React from 'react'
 
@@ -25,7 +25,7 @@ export default async function PostsByTag({ params }: { params: { slug: string } 
 
   return (
     <div className="prose-container">
-      <Splash />
+      <Profile />
       <h2 className="font-medium text-2xl before:content-['#_'] before:text-primary">{tag}</h2>
       <PostList
         posts={posts.filter(post => post.frontmatter.tags?.includes(tag))}

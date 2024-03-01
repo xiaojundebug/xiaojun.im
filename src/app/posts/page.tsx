@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { getLatestPosts } from '@/common/post'
 import dayjs from 'dayjs'
-import Splash from '@/components/Splash'
+import Profile from '@/components/Profile'
 import PostList, { PostListProps } from '@/components/PostList'
 
 const formatPosts = (posts: PostListProps['posts']) => {
@@ -21,7 +21,7 @@ export default async function Posts() {
   return (
     <>
       <div className="prose-container">
-        <Splash />
+        <Profile />
         {formattedPosts.map(([year, postsByYear], idx) => (
           <Fragment key={idx}>
             <h2
