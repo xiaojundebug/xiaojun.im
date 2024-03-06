@@ -20,10 +20,11 @@
 待办:
 
 - SEO 优化
+- 可访问性优化
 - 文章分页
 - 集成第三方评论
 - 更多社交分享按钮支持
-- 迁移到 [Contentlayer](https://github.com/contentlayerdev/contentlayer)
+- 迁移到 [Contentlayer](https://github.com/contentlayerdev/contentlayer)？
 
 ## 使用方法
 

@@ -20,10 +20,11 @@ My personal blog, built with Next.js, TypeScript, MDX, and TailwindCSS.
 TODO:
 
 - SEO
+- Accessibility
 - Pagination
 - Comment system
 - More social links support
-- Migration to [Contentlayer](https://github.com/contentlayerdev/contentlayer)
+- Migration to [Contentlayer](https://github.com/contentlayerdev/contentlayer)?
 
 ## Getting Started
 

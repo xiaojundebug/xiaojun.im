@@ -148,7 +148,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
         className="relative max-h-[308px] overflow-y-scroll no-scrollbar"
         scrollTop={scrollTop}
       >
-        <ul ref={listRef} className="list-none overflow-hidden">
+        <ul ref={listRef} className="list-none overflow-y-hidden">
           {headings.map(heading => {
             const activated = isActivated(heading)
 
@@ -157,18 +157,20 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
                 <a
                   href={`#${heading.id}`}
                   className={clsx(
-                    'group relative flex items-center gap-2 max-w-full h-7 text-[13px] font-medium text-zinc-400 dark:text-zinc-500 truncate hover:text-zinc-800 dark:hover:text-zinc-50',
+                    'group relative flex items-center gap-2 max-w-full h-7 text-[13px] font-medium truncate hover:text-zinc-800 dark:hover:text-zinc-50',
                     {
-                      '!text-zinc-800 dark:!text-zinc-50': activated,
+                      'text-zinc-400 dark:text-zinc-500': !activated,
+                      'text-zinc-800 dark:text-zinc-50': activated,
                     },
                   )}
                 >
                   <div className="w-[20px]">
                     <div
                       className={clsx(
-                        'h-[4px] rounded-full bg-black/10 dark:bg-white/10 group-hover:bg-black/50 dark:group-hover:bg-white/50',
+                        'h-[4px] rounded-full group-hover:bg-black/50 dark:group-hover:bg-white/50',
                         {
-                          '!bg-black/50 dark:!bg-white/50': activated,
+                          'bg-zinc-400/20': !activated,
+                          'bg-zinc-400': activated,
                         },
                       )}
                       style={{ width: heading.level > 2 ? 10 : 16 }}

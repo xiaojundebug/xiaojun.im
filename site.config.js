@@ -5,7 +5,7 @@ module.exports = {
   avatar: '/avatar.jpg',
   logo: '/logo.svg',
   siteUrl: 'https://www.xiaojun.im',
-  // icon 请在 src/components/Splash.tsx 中修改
+  // icon 请在 src/components/Profile.tsx 中修改
   links: [
     { name: 'GitHub', link: 'https://github.com/xiaojundebug' },
     { name: 'X', link: 'https://twitter.com/xiaojundebug' },
@@ -30,4 +30,5 @@ module.exports = {
     // 统一配置 CodeBlock 是否显示行号，也可以在 frontmatter 中通过 lineNumbers 字段单独设置
     lineNumbers: false,
   },
+  backToTopButton: false
 }

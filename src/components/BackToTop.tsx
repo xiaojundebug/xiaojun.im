@@ -21,7 +21,7 @@ const BackToTop = () => {
   useEffect(() => {
     const sub = windowScroll$
       .pipe(
-        map(() => window.scrollY > 500),
+        map(() => window.scrollY > 1000),
         distinctUntilChanged(),
       )
       .subscribe(setIsVisible)
@@ -38,14 +38,12 @@ const BackToTop = () => {
       item && (
         <animated.button
           ref={ref}
-          className="fixed right-8 bottom-8 sm:right-16 sm:bottom-16 z-50 flex items-center justify-center w-10 h-10 cursor-pointer
-            rounded-xl ring-1 ring-zinc-400/20
-            shadow-lg shadow-black/5 dark:shadow-none active:shadow-none
-            bg-white/70 dark:bg-white/10 backdrop-blur"
-          onClick={backToTop}
+          className="fixed right-12 bottom-12 z-50 flex items-center justify-center w-10 h-10 rounded-xl bg-primary cursor-pointer"
           style={styles}
+          onClick={backToTop}
+          aria-label="Back to Top"
         >
-          <ArrowUp className="text-xl text-black dark:text-white" aria-hidden />
+          <ArrowUp className="text-xl text-white" aria-hidden />
         </animated.button>
       ),
   )

@@ -11,6 +11,7 @@ import ReducedMotionDetector from '@/components/ReducedMotionDetector'
 import Header from '@/components/Header'
 import PageContainer from '@/components/PageContainer'
 import Footer from '@/components/Footer'
+import DesktopOnly from '@/components/DesktopOnly'
 import BackToTop from '@/components/BackToTop'
 import config from 'config'
 import { getSiteUrl } from '@/common/url'
@@ -56,7 +57,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <PageContainer>{children}</PageContainer>
           <Footer />
-          <BackToTop />
+          {config.backToTopButton && (
+            <DesktopOnly>
+              <BackToTop />
+            </DesktopOnly>
+          )}
         </ThemeProvider>
         <SpeedInsights />
       </body>
