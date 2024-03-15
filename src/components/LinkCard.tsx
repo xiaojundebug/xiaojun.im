@@ -38,7 +38,7 @@ const LinkCard: React.FC<LinkCardProps> = props => {
       </DarkModeOnly>
       {/* Spotlight layer */}
       <animated.div
-        className="absolute inset-0 z-[1] opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-black/5 dark:text-white/10 pointer-events-none"
+        className="absolute inset-0 z-[1] opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white/50 dark:text-white/10 pointer-events-none"
         style={{
           background: to(
             [spotX, spotY, spotR],
@@ -49,7 +49,7 @@ const LinkCard: React.FC<LinkCardProps> = props => {
         aria-hidden
       ></animated.div>
       {/* Content layer */}
-      <div className="absolute inset-px flex items-center p-2 rounded-[11px] bg-zinc-50 dark:bg-zinc-900">
+      <div className="absolute inset-px flex items-center p-2 rounded-[11px] bg-zinc-100 dark:bg-zinc-900">
         <div className="relative z-[1] w-0 flex-1 px-3">
           <span className="block text-lg leading-tight truncate">{title}</span>
           <span className="block mt-1 text-zinc-500 text-sm leading-tight	truncate">

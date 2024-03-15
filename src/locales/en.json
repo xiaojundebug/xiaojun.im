@@ -4,7 +4,9 @@
   "nav.tags": "Tags",
   "nav.friends": "Friends",
 
-  "home-page.about": "About me",
+  "home-page.skills": "Skills",
+  "home-page.projects": "Toys",
+  "home-page.projects.view-all": "View all",
 
   "post-page.hits": "HITS",
   "post-page.last-updated": "LAST UPDATED",

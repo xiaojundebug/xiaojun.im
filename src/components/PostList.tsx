@@ -16,7 +16,7 @@ const PostList: React.FC<PostListProps> = props => {
   return (
     <>
       {posts.map(({ frontmatter, slug }, idx) => (
-        <article key={idx} className="my-8">
+        <article key={idx} className="my-9">
           <h3 className="text-lg font-medium">
             <Link
               className="hover:text-primary transition-colors"
@@ -26,7 +26,7 @@ const PostList: React.FC<PostListProps> = props => {
               {frontmatter.title}
             </Link>
           </h3>
-          <span className="font-medium inline-block text-sm mt-2 text-zinc-400 dark:text-zinc-500">
+          <span className="inline-block mt-1.5 text-sm font-medium text-zinc-400 dark:text-zinc-500">
             {dayjs(frontmatter.date).format(dateFormat)}
           </span>
         </article>

@@ -15,7 +15,7 @@ const SOCIAL_ICONS: Record<string, React.ReactNode> = {
 
 const Profile = () => {
   return (
-    <div className="'relative my-12 sm:my-16'">
+    <div className="relative my-12 sm:my-16">
       <div className="flex items-center">
         {config.avatar && (
           <div className="relative flex-shrink-0">
@@ -23,8 +23,8 @@ const Profile = () => {
               className="object-cover rounded-full p-0.5 bg-white dark:bg-zinc-900 ring-1 ring-zinc-400/20 shadow-lg dark:shadow-none shadow-zinc-600/10"
               src={config.avatar}
               alt="avatar"
-              width={80}
-              height={80}
+              width={100}
+              height={100}
               unoptimized
               priority
             />
@@ -35,11 +35,11 @@ const Profile = () => {
             {config.title}
           </h1>
           <span className="text-zinc-500">{config.description}</span>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center -mx-2">
             {links.map(({ name, link }) => (
               <a
                 key={link}
-                className="inline text-2xl transition-opacity opacity-50 hover:opacity-100"
+                className="inline p-2 rounded-full text-2xl transition-opacity opacity-50 hover:opacity-100"
                 href={link}
                 target="_blank"
                 title={name}
