@@ -1,10 +1,10 @@
 import React, { PropsWithChildren } from 'react'
+import Profile from '@/components/Profile'
 import useTranslation from '@/hooks/useTranslation'
 import Link from '@/components/Link'
-import { ArrowRight, GitHub, Juejin, RSS, X } from '@/components/icons'
-import config from 'config'
-import Image from 'next/image'
+import { ArrowRight } from '@/components/icons'
 import DesktopOnly from '@/components/DesktopOnly'
+import FeaturedPosts from './FeaturedPosts'
 
 const skills = [
   'HTML',
@@ -66,14 +66,10 @@ const projects = [
   },
 ]
 
-const links: { name: string; link: string }[] = config.links
+const Title: React.FC<{ text: string }> = props => {
+  const { text } = props
 
-// prettier-ignore
-const SOCIAL_ICONS: Record<string, React.ReactNode> = {
-  'GitHub': <GitHub aria-hidden />,
-  'X': <X aria-hidden />,
-  '稀土掘金': <Juejin aria-hidden />,
-  'RSS': <RSS aria-hidden />,
+  return <h2 className="flex items-center justify-between mt-16 text-2xl font-bold">{text}</h2>
 }
 
 const Tag: React.FC<PropsWithChildren> = props => {
@@ -84,71 +80,33 @@ const Tag: React.FC<PropsWithChildren> = props => {
   )
 }
 
+export const revalidate = 86400
+
 export default async function Home() {
   const { t } = useTranslation()
 
   return (
     <>
       <div className="prose-container">
-        <Image
-          className="object-cover rounded-full mt-16 p-1 mb-8 bg-white dark:bg-zinc-900 ring-1 ring-zinc-400/20 shadow-lg dark:shadow-none shadow-zinc-600/10"
-          src={config.avatar}
-          alt="avatar"
-          width={64}
-          height={64}
-          unoptimized
-          priority
-        />
-        <div>
-          <h1 className="text-4xl sm:text-6xl !leading-snug tracking-tight font-semibold">
-            {config.title} <br />
-          </h1>
-          <span className="inline-block mt-1 text-xl sm:text-2xl font-medium font-mono text-primary bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
-            &lt;Front End Developer /&gt;
-          </span>
-        </div>
-        <p className="my-6 break-words leading-loose">
+        <Profile />
+
+        <p className="mt-6 break-words leading-loose">
           I'm a front-end developer who is a bit of a perfectionist (2017 ~ present), currently
           working in Hangzhou, China 🇨🇳.
         </p>
-        <p className="my-6 break-words leading-loose">
+        <p className="mt-6 break-words leading-loose">
           I love working in the realm between design and code. Some things that makes me excited are
           CSS, Design Systems, Animation, crafting excellent component APIs and making interfaces
           feel fun and human.
         </p>
-        <div className="flex items-center -mx-2">
-          {links.map(({ name, link }) => (
-            <a
-              key={link}
-              className="inline p-2 rounded-full text-2xl transition-opacity opacity-50 hover:opacity-100"
-              href={link}
-              target="_blank"
-              title={name}
-              aria-label={name}
-            >
-              {SOCIAL_ICONS[name]}
-            </a>
-          ))}
-        </div>
-        <h2 className="flex items-center justify-between mt-16 mb-6 text-2xl font-medium">
-          {t('home-page.skills')}
-        </h2>
-        <div className="flex items-start flex-wrap gap-2 my-6">
+        <p className="mt-6 break-words leading-loose">The following are some of my skills 👇</p>
+        <div className="flex items-start flex-wrap gap-2 mt-6">
           {skills.map(skill => (
             <Tag key={skill}>{skill}</Tag>
           ))}
         </div>
-        <h2 className="flex items-center justify-between mt-16 mb-6">
-          <span className="text-2xl font-medium">{t('home-page.projects')}</span>
-          <Link
-            href="https://github.com/xiaojundebug?tab=repositories&sort=stargazers"
-            className="flex items-center gap-1 my-4 hover:underline"
-          >
-            {t('home-page.projects.view-all')}
-            <ArrowRight className="text-xl" />
-          </Link>
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 -mx-4">
+        <Title text={t('home-page.projects')} />
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 -mx-4 mt-6">
           {projects.map(project => (
             <Link
               className="group relative flex flex-col px-4 py-3 gap-1.5 rounded-xl sm:hover:bg-zinc-400/5 transition-colors"
@@ -162,6 +120,25 @@ export default async function Home() {
               </DesktopOnly>
             </Link>
           ))}
+        </div>
+        <div className="text-center mt-6">
+          <Link
+            className="inline-flex items-center justify-center gap-1 font-medium text-zinc-400 border-b border-zinc-400/10 hover:border-zinc-400/50 transition-colors"
+            href="https://github.com/xiaojundebug?tab=repositories&sort=stargazers"
+            arrow={false}
+          >
+            {t('home-page.projects.view-all')}
+          </Link>
+        </div>
+        <Title text={t('home-page.posts')} />
+        <FeaturedPosts />
+        <div className="text-center mt-6">
+          <Link
+            className="inline-flex items-center justify-center gap-1 font-medium text-zinc-400 border-b border-zinc-400/10 hover:border-zinc-400/50 transition-colors"
+            href="/posts"
+          >
+            {t('home-page.posts.view-all')}
+          </Link>
         </div>
       </div>
     </>

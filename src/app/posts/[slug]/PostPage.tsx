@@ -50,7 +50,7 @@ const PostPage: React.FC<PostPageProps> = props => {
               </div>
             )}
 
-            <h1 className="mt-6 text-3xl sm:text-5xl text-black dark:text-white !leading-snug font-medium">
+            <h1 className="mt-6 text-3xl sm:text-5xl text-black dark:text-white tracking-tight !leading-snug font-medium">
               {title}
             </h1>
 
@@ -132,7 +132,7 @@ const PostPage: React.FC<PostPageProps> = props => {
                       href={prevPost.link}
                     >
                       <ArrowLeft
-                        className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:-translate-x-2"
+                        className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition-transform ease-out-back duration-500 sm:group-hover:-translate-x-2"
                         aria-hidden
                       />
                       {prevPost.title}
@@ -148,7 +148,7 @@ const PostPage: React.FC<PostPageProps> = props => {
                     >
                       {nextPost.title}
                       <ArrowRight
-                        className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition ease-out-back duration-500 sm:group-hover:translate-x-2"
+                        className="sm:-mt-[1px] shrink-0 text-2xl sm:text-3xl text-primary transition-transform ease-out-back duration-500 sm:group-hover:translate-x-2"
                         aria-hidden
                       />
                     </NextLink>

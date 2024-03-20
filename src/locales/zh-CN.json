@@ -5,8 +5,10 @@
   "nav.friends": "友链",
 
   "home-page.skills": "技能",
-  "home-page.projects": "玩具",
+  "home-page.projects": "开源项目",
   "home-page.projects.view-all": "查看更多",
+  "home-page.posts": "热门文章",
+  "home-page.posts.view-all": "查看更多",
 
   "post-page.hits": "浏览量",
   "post-page.last-updated": "最后修改于",

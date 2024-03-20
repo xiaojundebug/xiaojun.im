@@ -17,6 +17,7 @@ module.exports = {
     { name: '鯊手', link: 'https://www.cnblogs.com/Scooby' },
     { name: '戴兜', link: 'https://im.daidr.me' },
     { name: 'lufangzhou', link: 'https://zhoufanglu.github.io/vuepressBlog' },
+    { name: 'wallleap', link: 'https://myblog.wallleap.cn' },
   ],
   // en | zh-CN
   language: 'en',

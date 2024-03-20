@@ -2,8 +2,8 @@ import React, { JSX } from 'react'
 import { ExternalLink } from './icons'
 import clsx from 'clsx'
 
-const Link: React.FC<JSX.IntrinsicElements['a']> = props => {
-  const { className, href = '', children, ...rest } = props
+const Link: React.FC<JSX.IntrinsicElements['a'] & { arrow?: boolean }> = props => {
+  const { className, href = '', arrow = true, children, ...rest } = props
   const isPlainAnchor = typeof children === 'string'
 
   if (!href.startsWith('http')) {
@@ -23,7 +23,7 @@ const Link: React.FC<JSX.IntrinsicElements['a']> = props => {
       {...rest}
     >
       {children}
-      {isPlainAnchor && (
+      {isPlainAnchor && arrow && (
         <ExternalLink
           className="inline-block mx-0.5 text-[0.9em] -translate-y-px text-zinc-400 group-hover/a:text-current transition-colors"
           aria-hidden

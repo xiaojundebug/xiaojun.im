@@ -20,22 +20,22 @@ const Profile = () => {
         {config.avatar && (
           <div className="relative flex-shrink-0">
             <Image
-              className="object-cover rounded-full p-0.5 bg-white dark:bg-zinc-900 ring-1 ring-zinc-400/20 shadow-lg dark:shadow-none shadow-zinc-600/10"
+              className="object-cover rounded-full p-1 bg-white dark:bg-zinc-900 ring-2 ring-zinc-400/20 shadow-lg dark:shadow-none shadow-zinc-600/10"
               src={config.avatar}
               alt="avatar"
-              width={100}
-              height={100}
+              width={80}
+              height={80}
               unoptimized
               priority
             />
           </div>
         )}
-        <div className="flex flex-col justify-between ml-6 space-y-3">
+        <div className="ml-6">
           <h1 className="w-fit text-3xl font-medium text-primary bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
             {config.title}
           </h1>
-          <span className="text-zinc-500">{config.description}</span>
-          <div className="flex items-center -mx-2">
+          <span className="inline-block mt-3 text-zinc-500">{config.description}</span>
+          <div className="flex items-center -mx-2 mt-1">
             {links.map(({ name, link }) => (
               <a
                 key={link}
