@@ -11,7 +11,7 @@ const remarkLinkCard: Plugin<[], Root> = () => {
     // 2. parent 的 children 长度为 1，且该 child 的 type 为 text
     // 3. 不能在 list item 中
     const promises: (() => Promise<void>)[] = []
-    visit(tree, 'paragraph', (node: Paragraph, index, parent) => {
+    visit(tree, 'paragraph', (node: Paragraph, idx, parent) => {
       const children = node.children || []
       if (
         children.length === 1 &&

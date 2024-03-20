@@ -12,11 +12,13 @@ import { PostHitCounter, PostViews, PostViewsProvider } from './PostViews'
 import PostContent from './PostContent'
 import PostRightAside from './PostRightAside'
 import PostOutdatedAlert from './PostOutdatedAlert'
+import { TableOfContentsProps } from '@/components/TableOfContents'
 
 export interface PostPageProps {
   slug: string
   code: string
   frontmatter: PostFrontmatter
+  headings?: TableOfContentsProps['headings']
   prevPost?: { link: string; title: string }
   nextPost?: { link: string; title: string }
   heroImageInfo?: BleedThroughImageProps
@@ -27,7 +29,8 @@ const PostPage: React.FC<PostPageProps> = props => {
   const {
     slug,
     code,
-    frontmatter: { title, date, updatedOn, tags, toc = config.toc, heroImage },
+    frontmatter: { title, date, updatedOn, tags, heroImage },
+    headings,
     prevPost,
     nextPost,
     heroImageInfo,
@@ -159,7 +162,7 @@ const PostPage: React.FC<PostPageProps> = props => {
           </main>
 
           <DesktopOnly>
-            <PostRightAside slug={slug} toc={toc} />
+            <PostRightAside slug={slug} headings={headings} />
           </DesktopOnly>
         </div>
       </PostViewsProvider>
