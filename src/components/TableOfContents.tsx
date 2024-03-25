@@ -7,7 +7,7 @@ import { animated, useSpring } from '@react-spring/web'
 import useBoolean from '@/hooks/useBoolean'
 import { windowScroll$ } from '@/common/observables'
 
-function findCurrentHeading(list: HTMLElement[]) {
+function findFocusedHeadingElement(list: HTMLHeadingElement[]) {
   let start = 0
   let end = list.length - 1
   let result = 0
@@ -26,7 +26,7 @@ function findCurrentHeading(list: HTMLElement[]) {
 }
 
 function useScrollSpy(ids: string[]) {
-  const [activeId, setActiveId] = useState<string>()
+  const [focusedId, setFocusedId] = useState<string>()
 
   useEffect(() => {
     const elements = ids.map(id => document.getElementById(id)).filter(Boolean)
@@ -34,27 +34,28 @@ function useScrollSpy(ids: string[]) {
       const isAtBottom = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 10
       const el = isAtBottom
         ? elements[elements.length - 1]
-        : findCurrentHeading(elements as HTMLElement[])
-      setActiveId(el?.id)
+        : findFocusedHeadingElement(elements as HTMLHeadingElement[])
+      setFocusedId(el?.id)
     })
     return () => sub.unsubscribe()
   }, [ids])
 
-  return activeId
+  return focusedId
 }
 
+export type Heading = { id: string; text: string; level: number }
 export interface TableOfContentsProps {
-  headings: { id: string; text: string; level: number }[]
+  headings: Heading[]
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
   const scrollerRef = useRef<HTMLDivElement>(null)
   const listRef = useRef<HTMLUListElement>(null)
+  const focusedItemRef = useRef<HTMLLIElement>(null)
+  const focusedId = useScrollSpy(headings.map(({ id }) => id))
   const [isOverflowing, { set: setIsOverflowing }] = useBoolean(false)
   const [isScrolledTop, { set: setIsScrolledTop }] = useBoolean(true)
   const [isScrolledBottom, { set: setIsScrolledBottom }] = useBoolean(true)
-  const activeItemRef = useRef<HTMLLIElement>(null)
-  const activeId = useScrollSpy(headings.map(({ id }) => id))
 
   const [{ scrollTop }, scrollApi] = useSpring(() => ({
     scrollTop: 0,
@@ -95,8 +96,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
   }, [])
 
   useEffect(() => {
-    const anchor = activeItemRef.current
-    if (!scrollerRef.current || !activeId || !anchor) return
+    const anchor = focusedItemRef.current
+    if (!scrollerRef.current || !focusedId || !anchor) return
     const listRect = scrollerRef.current.getBoundingClientRect()
     const anchorRect = anchor.getBoundingClientRect()
 
@@ -104,12 +105,12 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
       scrollTop: anchor.offsetTop - (listRect.height - anchorRect.height) / 2,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeId])
+  }, [focusedId])
 
-  function isActivated(heading: { id: string; text: string; level: number }) {
-    if (heading.id === activeId) return true
+  function shouldActive(heading: Heading) {
+    if (heading.id === focusedId) return true
 
-    let idx = headings.findIndex(h => h.id === activeId)
+    let idx = headings.findIndex(h => h.id === focusedId)
     const currentHeading = headings[idx]
 
     if (!currentHeading || currentHeading.level === 1) return false
@@ -150,17 +151,17 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
       >
         <ul ref={listRef} className="list-none overflow-y-hidden">
           {headings.map(heading => {
-            const activated = isActivated(heading)
+            const active = shouldActive(heading)
 
             return (
-              <li key={heading.id} ref={activeId === heading.id ? activeItemRef : null}>
+              <li key={heading.id} ref={focusedId === heading.id ? focusedItemRef : null}>
                 <a
                   href={`#${heading.id}`}
                   className={clsx(
                     'group relative flex items-center gap-2 max-w-full h-7 text-[13px] font-medium truncate hover:text-zinc-800 dark:hover:text-zinc-50',
                     {
-                      'text-zinc-400 dark:text-zinc-500': !activated,
-                      'text-zinc-800 dark:text-zinc-50': activated,
+                      'text-zinc-400 dark:text-zinc-500': !active,
+                      'text-zinc-800 dark:text-zinc-50': active,
                     },
                   )}
                 >
@@ -169,8 +170,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ headings }) => {
                       className={clsx(
                         'h-[4px] rounded-full group-hover:bg-black/50 dark:group-hover:bg-white/50',
                         {
-                          'bg-zinc-400/20': !activated,
-                          'bg-zinc-400': activated,
+                          'bg-zinc-400/20': !active,
+                          'bg-zinc-400': active,
                         },
                       )}
                       style={{ width: heading.level > 2 ? 10 : 16 }}

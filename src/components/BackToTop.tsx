@@ -38,12 +38,12 @@ const BackToTop = () => {
       item && (
         <animated.button
           ref={ref}
-          className="fixed right-12 bottom-12 z-50 flex items-center justify-center w-10 h-10 rounded-xl bg-primary cursor-pointer"
+          className="fixed right-8 bottom-8 z-50 flex items-center justify-center w-12 h-12 rounded-full text-zinc-400/50 hover:bg-zinc-400/20 hover:text-zinc-400 transition-colors duration-500 cursor-pointer"
           style={styles}
           onClick={backToTop}
           aria-label="Back to Top"
         >
-          <ArrowUp className="text-xl text-white" aria-hidden />
+          <ArrowUp className="text-xl" aria-hidden />
         </animated.button>
       ),
   )

@@ -1,7 +1,7 @@
 import React from 'react'
 import NextImage from 'next/image'
 
-export type ImageProps = {
+export interface ImageProps {
   src: string
   width?: number
   height?: number

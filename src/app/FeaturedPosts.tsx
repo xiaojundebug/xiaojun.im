@@ -1,7 +1,7 @@
 import React from 'react'
 import { redis } from '@/lib/redis'
 import { getLatestPosts } from '@/common/post'
-import Link from '@/components/Link'
+import Link from 'next/link'
 import DesktopOnly from '@/components/DesktopOnly'
 import { ArrowRight } from '@/components/icons'
 import dayjs from 'dayjs'
@@ -21,7 +21,7 @@ export default async function FeaturedPosts() {
     <div className="-mx-4 mt-6">
       {popularPosts.map(([post]) => (
         <Link key={post.slug} href={`/posts/${post.slug}`}>
-          <article className="group relative flex flex-col p-4 mt-2 rounded-xl sm:hover:bg-zinc-400/5 transition-colors">
+          <article className="group relative flex flex-col p-4 mt-2 rounded-xl sm:hover:bg-zinc-400/10 transition-colors">
             <span className="text-sm text-zinc-400">
               {dayjs(post.frontmatter.date).format('MMMM D')}
             </span>

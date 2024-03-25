@@ -12,13 +12,13 @@ import { PostHitCounter, PostViews, PostViewsProvider } from './PostViews'
 import PostContent from './PostContent'
 import PostRightAside from './PostRightAside'
 import PostOutdatedAlert from './PostOutdatedAlert'
-import { TableOfContentsProps } from '@/components/TableOfContents'
+import { Heading } from '@/components/TableOfContents'
 
 export interface PostPageProps {
   slug: string
   code: string
   frontmatter: PostFrontmatter
-  headings?: TableOfContentsProps['headings']
+  headings?: Heading[]
   prevPost?: { link: string; title: string }
   nextPost?: { link: string; title: string }
   heroImageInfo?: BleedThroughImageProps

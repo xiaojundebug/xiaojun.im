@@ -1,12 +1,12 @@
 'use client'
 
 import React from 'react'
-import TableOfContents, { TableOfContentsProps } from '@/components/TableOfContents'
+import TableOfContents, { Heading } from '@/components/TableOfContents'
 import PostLikeButton from './PostLikeButton'
 
 export interface PostAsideProps {
   slug: string
-  headings?: TableOfContentsProps['headings']
+  headings?: Heading[]
 }
 
 const PostRightAside: React.FC<PostAsideProps> = props => {

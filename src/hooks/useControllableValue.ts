@@ -10,9 +10,7 @@ export interface Options<T> {
   valuePropName?: string
   trigger?: string
 }
-
 export type Props = Record<string, any>
-
 export interface StandardProps<T> {
   value: T
   defaultValue?: T

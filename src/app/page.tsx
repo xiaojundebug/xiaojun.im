@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 import Profile from '@/components/Profile'
 import useTranslation from '@/hooks/useTranslation'
-import Link from '@/components/Link'
+import Link from 'next/link'
 import { ArrowRight } from '@/components/icons'
 import DesktopOnly from '@/components/DesktopOnly'
 import FeaturedPosts from './FeaturedPosts'
@@ -109,9 +109,10 @@ export default async function Home() {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 -mx-4 mt-6">
           {projects.map(project => (
             <Link
-              className="group relative flex flex-col px-4 py-3 gap-1.5 rounded-xl sm:hover:bg-zinc-400/5 transition-colors"
+              className="group relative flex flex-col px-4 py-3 gap-1.5 rounded-xl sm:hover:bg-zinc-400/10 transition-colors"
               key={project.name}
               href={project.url}
+              target="_blank"
             >
               <span className="font-medium">{project.name}</span>
               <span className="text-zinc-400 dark:text-zinc-500">{project.desc}</span>
@@ -125,7 +126,6 @@ export default async function Home() {
           <Link
             className="inline-flex items-center justify-center gap-1 font-medium text-zinc-400 border-b border-zinc-400/10 hover:border-zinc-400/50 transition-colors"
             href="https://github.com/xiaojundebug?tab=repositories&sort=stargazers"
-            arrow={false}
           >
             {t('home-page.projects.view-all')}
           </Link>

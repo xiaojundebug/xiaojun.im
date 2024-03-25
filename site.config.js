@@ -31,5 +31,5 @@ module.exports = {
     // 统一配置 CodeBlock 是否显示行号，也可以在 frontmatter 中通过 lineNumbers 字段单独设置
     lineNumbers: false,
   },
-  backToTopButton: false
+  backToTopButton: true
 }

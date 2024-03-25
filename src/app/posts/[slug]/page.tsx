@@ -19,7 +19,7 @@ import path from 'path'
 import { getAdjacentPosts, getAllPosts, getPostFrontmatter, getPostSlug } from '@/common/post'
 import { Metadata } from 'next'
 import config from 'config'
-import { TableOfContentsProps } from '@/components/TableOfContents'
+import { Heading } from '@/components/TableOfContents'
 import { getImageInfo } from '@/common/image'
 import PostPage from './PostPage'
 import AutoRefresh from './AutoRefresh'
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default async function Post({ params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug)
-  const headings: TableOfContentsProps['headings'] = []
+  const headings: Heading[] = []
   const { code, frontmatter } = await bundleMDX<PostFrontmatter>({
     file: path.join(process.cwd(), `./posts/${slug}.mdx`),
     cwd: path.join(process.cwd(), './posts'),
