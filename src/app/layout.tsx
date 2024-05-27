@@ -6,7 +6,6 @@ import '@/styles/markdown.scss'
 import '@/styles/highlighting.scss'
 import type { Metadata } from 'next'
 import NextTopLoader from 'nextjs-toploader'
-import ThemeProvider from '@/components/ThemeProvider'
 import ReducedMotionDetector from '@/components/ReducedMotionDetector'
 import Header from '@/components/Header'
 import PageContainer from '@/components/PageContainer'
@@ -17,6 +16,7 @@ import config from 'config'
 import { getSiteUrl } from '@/common/url'
 import { Inter } from 'next/font/google'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { ThemeProvider } from 'next-themes'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ReducedMotionDetector />
         <NextTopLoader color="#14b8a6" showSpinner={false} />
-        <ThemeProvider>
+        <ThemeProvider disableTransitionOnChange>
           <Header />
           <PageContainer>{children}</PageContainer>
           <Footer />

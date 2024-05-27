@@ -23,7 +23,7 @@ export default async function FeaturedPosts() {
         <Link key={post.slug} href={`/posts/${post.slug}`}>
           <article className="group relative flex flex-col p-4 mt-2 rounded-xl sm:hover:bg-zinc-400/10 transition-colors">
             <span className="text-sm text-zinc-400">
-              {dayjs(post.frontmatter.date).format('MMMM D')}
+              {dayjs(post.frontmatter.date).format('MMM D, YYYY')}
             </span>
             <h3 className="mt-3 text-base font-medium">{post.frontmatter.title}</h3>
             <DesktopOnly>
