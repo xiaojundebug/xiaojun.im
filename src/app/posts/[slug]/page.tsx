@@ -1,3 +1,4 @@
+import fs from 'fs/promises'
 import { bundleMDX } from 'mdx-bundler'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
@@ -16,13 +17,20 @@ import { visit } from 'unist-util-visit'
 import type { Plugin } from 'unified'
 import { Element, Root, Text } from 'hast'
 import path from 'path'
-import { getAdjacentPosts, getAllPosts, getPostFrontmatter, getPostSlug } from '@/common/post'
+import {
+  getAdjacentPosts,
+  getAllPosts,
+  getPostFrontmatter,
+  getPostSlug,
+  isPostExists,
+} from '@/common/post'
 import { Metadata } from 'next'
 import config from 'config'
 import { Heading } from '@/components/TableOfContents'
 import { getImageInfo } from '@/common/image'
 import PostPage from './PostPage'
 import AutoRefresh from './AutoRefresh'
+import { redirect } from 'next/navigation'
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
@@ -34,6 +42,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug)
+
+  const isExists = await isPostExists(slug)
+  if (!isExists) return {}
+
   const frontmatter = await getPostFrontmatter(slug)
 
   return {
@@ -50,9 +62,13 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default async function Post({ params }: { params: { slug: string } }) {
   const slug = decodeURIComponent(params.slug)
   const headings: Heading[] = []
+
+  const isExists = await isPostExists(slug)
+  if (!isExists) redirect('/404')
+
   const { code, frontmatter } = await bundleMDX<PostFrontmatter>({
-    file: path.join(process.cwd(), `./posts/${slug}.mdx`),
-    cwd: path.join(process.cwd(), './posts'),
+    file: path.join(process.cwd(), `posts/${slug}.mdx`),
+    cwd: path.join(process.cwd(), 'posts'),
     mdxOptions(options, frontmatter) {
       // this is the recommended way to add custom remark/rehype plugins:
       // The syntax might look weird, but it protects you in case we add/remove

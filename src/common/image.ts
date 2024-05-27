@@ -4,7 +4,7 @@ import path from 'path'
 
 export async function getImageInfo(src: string) {
   const buffer = !src.startsWith('http')
-    ? await fs.readFile(path.join(process.cwd(), './public', src))
+    ? await fs.readFile(path.join(process.cwd(), 'public', src))
     : await fetch(src).then(async res => Buffer.from(await res.arrayBuffer()))
 
   const {
