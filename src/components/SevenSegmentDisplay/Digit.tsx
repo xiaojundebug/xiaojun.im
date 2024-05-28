@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Digit, SegmentID } from './types'
+import { DigitType, SegmentID } from './types'
 import Segment from './Segment'
 import { isSegmentActive } from './utils'
 import { SevenSegmentDisplayContext } from './Provider'
@@ -7,7 +7,7 @@ import { SevenSegmentDisplayContext } from './Provider'
 const segments: SegmentID[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
 
 export interface DigitProps {
-  value: Digit
+  value: DigitType
 }
 
 const Digit: React.FC<DigitProps> = props => {
