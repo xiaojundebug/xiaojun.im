@@ -62,9 +62,7 @@ export default async function Home() {
           ))}
         </div>
         <Title text={t('home-page.projects')} />
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 -mx-4 mt-6">
-          <Projects />
-        </div>
+        <Projects />
         <div className="text-center mt-6">
           <Link
             className="inline-flex items-center justify-center gap-1 font-medium text-zinc-400 border-b border-zinc-400/10 hover:border-zinc-400/50 transition-colors"

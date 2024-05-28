@@ -18,10 +18,10 @@ export default async function FeaturedPosts() {
   if (popularPosts.length === 0) return null
 
   return (
-    <div className="-mx-4 mt-6">
+    <div className="-mx-3 sm:-mx-4 mt-6">
       {popularPosts.map(([post]) => (
         <Link key={post.slug} href={`/posts/${post.slug}`}>
-          <article className="group relative flex flex-col p-4 mt-2 rounded-xl sm:hover:bg-zinc-400/10 transition-colors">
+          <article className="group relative flex flex-col p-3 sm:p-4 mt-2 rounded-xl sm:hover:bg-zinc-400/10 transition-colors">
             <span className="text-sm text-zinc-400">
               {dayjs(post.frontmatter.date).format('MMM D, YYYY')}
             </span>

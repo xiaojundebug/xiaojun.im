@@ -25,7 +25,7 @@ export default async function Posts() {
         {formattedPosts.map(([year, postsByYear], idx) => (
           <Fragment key={idx}>
             <h2
-              className="font-medium text-2xl
+              className="mt-12 mb-6 font-medium text-2xl
                 before:content-['#_'] before:text-primary"
             >
               {year}
