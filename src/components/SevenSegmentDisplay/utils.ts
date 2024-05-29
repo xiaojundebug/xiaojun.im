@@ -1,4 +1,4 @@
-import {Digit, SegmentID} from './types'
+import { DigitType, SegmentID } from './types'
 
 //
 //     A
@@ -22,6 +22,6 @@ const segmentsByValue = {
   [9]: ['a', 'b', 'c', 'd', 'f', 'g'],
 }
 
-export function isSegmentActive(segmentId: SegmentID, value: Digit) {
+export function isSegmentActive(segmentId: SegmentID, value: DigitType) {
   return segmentsByValue[value].includes(segmentId)
 }

@@ -3,6 +3,7 @@
 import React, { useMemo } from 'react'
 import SevenSegmentDisplayProvider from './Provider'
 import Digit from './Digit'
+import { DigitType } from './types'
 
 export interface RetroHitCounterProps {
   value: number
@@ -50,7 +51,7 @@ const RetroHitCounter: React.FC<RetroHitCounterProps> = props => {
         style={{ padding, backgroundColor, gap: digitSpacing }}
       >
         {individualDigits.map((digit, idx) => (
-          <Digit key={idx} value={Number(digit) as Digit} />
+          <Digit key={idx} value={Number(digit) as DigitType} />
         ))}
       </div>
     </SevenSegmentDisplayProvider>
