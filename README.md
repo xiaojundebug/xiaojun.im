@@ -28,7 +28,7 @@ My personal blog, built with Next.js, TypeScript, MDX, and TailwindCSS.
    UPSTASH_REDIS_REST_TOKEN = xxx
    ```
 
-5. Run `npm run new:post filename title [tag1] [tag2] ...` to create a post in `posts` folder, for more syntax reference, see [example article](https://www.xiaojun.im/posts/2023-04-27-mdx-syntax-guide)
+5. Run `npm run new:post filename title [tag1] [tag2] ...` to create a post in `posts` folder, for more syntax reference, see [example posts](https://www.xiaojun.im/posts/2023-04-27-mdx-syntax-guide)
 6. Run `npm run dev` to preview
 7. Deploy it on [Vercel](https://vercel.com)
 8. If you like it, please give this project a star ✨, it’s a great encouragement for me 🙏
