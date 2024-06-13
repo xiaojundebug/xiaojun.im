@@ -4,61 +4,50 @@
 
 [English](./README.md) • [中文](./README.zh-CN.md)
 
-我的个人博客，它使用 Next.js、TypeScript、MDX 和 TailwindCSS 构建。
+我的个人博客，由 Next.js、TypeScript、MDX 和 TailwindCSS 构建。
 
 👀 [在线预览](https://xiaojun.im/)
 
-## 功能
+## 特色
 
 - 🎨 简洁、丝滑、快速
-- ✨ 支持黑暗模式，支持响应式设计
-- 🎮 内置轻量级的在线代码运行组件（目前仅支持 html 与 单个 jsx 组件），可直接在文章中运行代码块，还可以在文章中随意嵌入 react 组件，对前端开发者友好，请尽情释放自己的想象力
-- ⚡️ 由 Next.js、TypeScript、MDX、TailwindCSS 驱动，方便二次开发，可一键部署在 [Vercel](https://vercel.com)，不需要自己的服务器
-- 🧩 支持阅读时间估算、标签分类，目录导航，多语言，数学公式...
-- 更多功能还在开发中...
+- ✨ 支持黑暗模式、响应式设计、主题色配置
+- 🧩 内置一些 Markdown 扩展语法，得益于 MDX，还支持在文章中嵌入 JSX 组件
+- 🎮 内置 CodePlayground，可以直接在文章中运行代码块（beta）
+- 🔫 充满趣味的点赞按钮、访问量计数器、音效反馈
 
-待办:
+## 开始使用
 
-- SEO 优化
-- 可访问性优化
-- 文章分页
-- 集成第三方评论
-- 更多社交分享按钮支持
-- 迁移到 [Contentlayer](https://github.com/contentlayerdev/contentlayer)？
-
-## 使用方法
-
-1. fork 该仓库，将配置 [site.config.js](./site.config.js) 改为自己的个人信息
-2. 注册申请 upstash 服务（可以白嫖），创建 .env 文件并填入以下信息
+1. fork 该仓库
+2. 进行本地开发，执行 `npm i` 安装依赖
+3. 通过 `site.config.js` 自定义配置
+4. 为了能使用点赞功能以及访问量统计功能，需注册申请 [Upstash Redis](https://console.upstash.com/redis) 服务（可以白嫖），根目录下创建 `.env` 文件并填入以下信息
 
    ```env
    UPSTASH_REDIS_REST_URL = 填入自己的信息
    UPSTASH_REDIS_REST_TOKEN = 填入自己的信息
    ```
 
-3. 运行 `npm i`
-4. 使用 `npm run new:post filename title [tag1] [tag2] ...` 命令在 `posts` 中创建一篇文章，更多语法可参考[示例文章](https://www.xiaojun.im/posts/2023-04-27-mdx-syntax-guide)
-5. 将它部署在 [Vercel](https://vercel.com)，具体很简单，可以跟着 vercel 官方一步步来
-6. 如果你喜欢的话，麻烦给这个项目一个 start ✨，这对我是很大鼓励 🙏
-
-_配置文件在 `site.config.js` 文件中，你可以在这里修改你的个人信息，例如名字与头像_
-
-## 站点音效
-
-声音文件来自 https://zapsplat.com
+5. 使用 `npm run new:post filename title [tag1] [tag2] ...` 命令在 `posts` 中创建一篇文章，更多语法可参考[示例文章](https://www.xiaojun.im/posts/2023-04-27-mdx-syntax-guide)
+6. 执行 `npm run dev` 预览效果
+7. 将它部署在 [Vercel](https://vercel.com)，具体很简单，可以跟着官方教程一步步来
+8. 如果你喜欢的话，麻烦给这个项目一个 start ✨，这对我是很大鼓励 🙏
 
 ## 感谢
 
-该项目参考但不限于以下网站，特别是第一个，给了我很多启发。
+### 站点音效
+
+https://zapsplat.com
+
+### 参考网站
+
+该项目参考但不限于以下网站
 
 - https://www.joshwcomeau.com
 - https://cali.so
 - https://leerob.io
-- https://blog.maximeheckel.com
 - https://vuepress.vuejs.org
 - https://vitepress.dev
 - https://docusaurus.io
-- https://react-spring.dev
 - https://github.com/iissnan/hexo-theme-next
-- https://github.com/sanjinhub/hexo-theme-geek
 - https://github.com/nanxiaobei/hugo-paper

@@ -1,4 +1,3 @@
-import fs from 'fs/promises'
 import { bundleMDX } from 'mdx-bundler'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
@@ -117,8 +116,8 @@ export default async function Post({ params }: { params: { slug: string } }) {
   })
 
   const { prev, next } = await getAdjacentPosts(slug)
-  const heroImageInfo = frontmatter.heroImage
-    ? await getImageInfo(frontmatter.heroImage)
+  const heroImageInfo = frontmatter.image
+    ? await getImageInfo(frontmatter.image)
     : undefined
 
   return (

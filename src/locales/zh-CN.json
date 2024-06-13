@@ -1,10 +1,9 @@
 {
   "nav.home": "首页",
-  "nav.posts": "博客",
+  "nav.posts": "文章",
   "nav.tags": "标签",
   "nav.friends": "友链",
 
-  "home-page.skills": "技能",
   "home-page.projects": "开源项目",
   "home-page.projects.view-all": "查看更多",
   "home-page.posts": "热门文章",

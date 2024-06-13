@@ -1,10 +1,9 @@
 {
   "nav.home": "Home",
-  "nav.posts": "Blog",
+  "nav.posts": "Posts",
   "nav.tags": "Tags",
   "nav.friends": "Friends",
 
-  "home-page.skills": "Skills",
   "home-page.projects": "Toys",
   "home-page.projects.view-all": "See all project",
   "home-page.posts": "Featured",

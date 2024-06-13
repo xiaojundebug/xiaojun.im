@@ -29,7 +29,7 @@ const PostPage: React.FC<PostPageProps> = props => {
   const {
     slug,
     code,
-    frontmatter: { title, date, updatedOn, tags, heroImage },
+    frontmatter: { title, date, updatedOn, tags, image },
     headings,
     prevPost,
     nextPost,
@@ -47,7 +47,7 @@ const PostPage: React.FC<PostPageProps> = props => {
         <div className="prose-container relative flex mt-4 sm:mt-28">
           <main className="flex-1 w-0">
             {/* Hero Image */}
-            {heroImage && heroImageInfo && (
+            {image && heroImageInfo && (
               <div className="sm:-mx-8 mb-14">
                 <BleedThroughImage {...heroImageInfo} />
               </div>

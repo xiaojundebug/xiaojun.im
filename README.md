@@ -10,51 +10,42 @@ My personal blog, built with Next.js, TypeScript, MDX, and TailwindCSS.
 
 ## Features
 
-- 🎨 Simple, smooth and fast
-- ✨ Support dark mode, responsive design
-- 🎮 Built-in lightweight code playground (native html and single react component), front-end friendly
-- ⚡️ Powered by Next.js, TypeScript, MDX, TailwindCSS, convenient for secondary development, deployed on [Vercel](https://vercel.com)
-- 🧩 Support reading time, tags, table of contents, i18n, KaTeX...
-- More features are in the works...
-
-TODO:
-
-- SEO
-- Accessibility
-- Pagination
-- Comment system
-- More social links support
-- Migration to [Contentlayer](https://github.com/contentlayerdev/contentlayer)?
+- 🎨 Simple, smooth, and fast
+- ✨ Supports dark mode, responsive design, and theme color customization
+- 🧩 Built-in some markdown extensions, powered by MDX, supports embedding JSX components in posts
+- 🎮 Built-in CodePlayground (beta) to run code blocks directly within posts
+- 🔫 Fun like button, hit counter, and sound feedback
 
 ## Getting Started
 
-1. Please fork this repository and modify the configuration in [site.config.js](./site.config.js) with your own information
-2. Register for Upstash service, create a .env file, and fill in the following information
+1. Fork this repository
+2. Run `npm i` to install dependencies
+3. Customize the configuration in `site.config.js`
+4. To use the like button and hit counter, register for [Upstash Redis](https://console.upstash.com/redis) service, create a `.env` file in the root directory and fill in the following information:
 
    ```env
    UPSTASH_REDIS_REST_URL = xxx
    UPSTASH_REDIS_REST_TOKEN = xxx
    ```
 
-3. run `npm i`
-4. run `npm run new:post filename title [tag1] [tag2] ...`, the \*.mdx file will be created in the `posts` folder
-5. Deploy it to [Vercel](https://vercel.com)
-6. If you like, please star the repo 🙏
-
-## Sounds
-
-Sounds from https://zapsplat.com
+5. Run `npm run new:post filename title [tag1] [tag2] ...` to create a post in `posts` folder, for more syntax reference, see [example article](https://www.xiaojun.im/posts/2023-04-27-mdx-syntax-guide)
+6. Run `npm run dev` to preview
+7. Deploy it on [Vercel](https://vercel.com)
+8. If you like it, please give this project a star ✨, it’s a great encouragement for me 🙏
 
 ## Thanks
+
+### Sound Effects
+
+https://zapsplat.com
+
+### Reference Sites
 
 - https://www.joshwcomeau.com
 - https://cali.so
 - https://leerob.io
-- https://blog.maximeheckel.com
 - https://vuepress.vuejs.org
 - https://vitepress.dev
 - https://docusaurus.io
-- https://react-spring.dev
 - https://github.com/iissnan/hexo-theme-next
-- https://github.com/sanjinhub/hexo-theme-geek
 - https://github.com/nanxiaobei/hugo-paper
