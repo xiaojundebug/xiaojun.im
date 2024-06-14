@@ -1,7 +1,7 @@
 module.exports = {
   name: 'Xiaojun',
-  title: 'Xiaojun Zhou',
-  description: '这个人很懒，什么都没有留下',
+  title: 'XiaojunZ',
+  description: '总结分享一些开发经验，以前端为主',
   avatar: '/avatar.jpg',
   logo: '/logo.svg',
   siteUrl: 'https://www.xiaojun.im',
@@ -18,6 +18,7 @@ module.exports = {
     { name: '戴兜', link: 'https://im.daidr.me' },
     { name: 'lufangzhou', link: 'https://zhoufanglu.github.io/vuepressBlog' },
     { name: 'wallleap', link: 'https://myblog.wallleap.cn' },
+    { name: 'Song\'s Blog', link: 'https://songxwn.com' },
   ],
   // en | zh-CN
   language: 'en',
