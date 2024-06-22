@@ -4,10 +4,10 @@
   "nav.tags": "Tags",
   "nav.friends": "Friends",
 
-  "home-page.projects": "Toys",
-  "home-page.projects.view-all": "See all project",
-  "home-page.posts": "Featured",
+  "home-page.posts.title": "Latest Posts",
   "home-page.posts.view-all": "See all post",
+  "home-page.projects.title": "Side Projects",
+  "home-page.projects.view-all": "See all project",
 
   "post-page.hits": "HITS",
   "post-page.last-updated": "LAST UPDATED",

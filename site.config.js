@@ -1,8 +1,8 @@
 module.exports = {
-  name: 'Xiaojun',
-  title: 'XiaojunZ',
-  description: '总结分享一些开发经验，以前端为主',
-  avatar: '/avatar.jpg',
+  name: 'Xiaojun Zhou',
+  title: 'Xiaojun Zhou',
+  description: '欲买桂花同载酒，终不似，少年游。',
+  avatar: '/avatar.png',
   logo: '/logo.svg',
   siteUrl: 'https://www.xiaojun.im',
   // icon 请在 src/components/Profile.tsx 中修改
@@ -21,7 +21,7 @@ module.exports = {
     { name: 'Song\'s Blog', link: 'https://songxwn.com' },
   ],
   // en | zh-CN
-  language: 'en',
+  language: 'zh-CN',
   // 侧边目录
   toc: true,
   // 显示上一篇下一篇按钮

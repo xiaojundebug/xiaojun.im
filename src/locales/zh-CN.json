@@ -1,13 +1,13 @@
 {
   "nav.home": "首页",
-  "nav.posts": "文章",
+  "nav.posts": "博客",
   "nav.tags": "标签",
   "nav.friends": "友链",
 
-  "home-page.projects": "开源项目",
-  "home-page.projects.view-all": "查看更多",
-  "home-page.posts": "热门文章",
+  "home-page.posts.title": "最近发布",
   "home-page.posts.view-all": "查看更多",
+  "home-page.projects.title": "业余项目",
+  "home-page.projects.view-all": "查看更多",
 
   "post-page.hits": "浏览量",
   "post-page.last-updated": "最后修改于",
