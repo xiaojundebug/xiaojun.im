@@ -1,7 +1,7 @@
 module.exports = {
   name: 'Xiaojun Zhou',
   title: 'Xiaojun Zhou',
-  description: '欲买桂花同载酒，终不似，少年游。',
+  description: '新生代农民工 / 金融消费者 / 共产主义接班人 ',
   avatar: '/avatar.png',
   logo: '/logo.svg',
   siteUrl: 'https://www.xiaojun.im',

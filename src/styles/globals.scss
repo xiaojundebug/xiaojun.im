@@ -4,11 +4,11 @@
 
 @layer components {
   .prose-container {
-    @apply max-w-[68ch] mx-auto px-[1.5ch];
+    @apply max-w-[69ch] mx-auto px-[2ch];
   }
 
   .prose-bleed {
-    @apply mx-0 sm:-mx-[1.5ch];
+    @apply mx-0 sm:-mx-[2ch];
   }
 
   .better-scrollbar {

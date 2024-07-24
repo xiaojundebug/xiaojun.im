@@ -24,7 +24,7 @@ export default async function Home() {
           你好 👋，我是一个前端开发人员（2017 ～ 至今），从事于直播行业，工作地在杭州。
         </p>
         <p className="mt-4 break-words leading-loose">
-          我一直对前端开发怀着浓厚的兴趣和热忱，同时也持续关注着设计领域的动态与发展，让我感到兴奋的一些事情包括
+          我一直对前端开发怀着浓厚的兴趣，同时也持续关注着设计领域的动态与发展，让我感到兴奋的一些事情包括
           CSS、设计风格、动效、打造出色的组件 API、以及让界面更加生动有趣。
         </p>
         <p className="mt-4 break-words leading-loose">
@@ -37,7 +37,7 @@ export default async function Home() {
             className="inline-flex items-center justify-center gap-1 font-medium text-zinc-400 border-b border-zinc-400/10 hover:border-zinc-400/50 transition-colors"
             href="/posts"
           >
-            {'查看所有'}
+            {t('home-page.posts.view-all')}
           </Link>
         </div>
         <Title text={t('home-page.projects.title')} />

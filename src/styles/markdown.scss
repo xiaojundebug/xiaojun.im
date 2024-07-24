@@ -46,7 +46,7 @@
 
   // Admonition
   .admonition {
-    @apply relative px-8 py-4 sm:-mx-[1.5ch] my-12 sm:rounded-[3px] border-l-[3px];
+    @apply relative px-8 py-4 sm:-mx-[2ch] my-12 sm:rounded-[3px] border-l-[3px];
     &-title { @apply font-semibold; }
     .mdx-p { @apply my-2; }
     &::before {

@@ -1,7 +1,6 @@
 import React, { useContext, useMemo } from 'react'
 import { SevenSegmentDisplayContext } from './Provider'
 import { SegmentID } from './types'
-import color from 'color'
 
 export interface SegmentProps {
   segmentId: SegmentID
@@ -10,115 +9,70 @@ export interface SegmentProps {
 
 const Segment: React.FC<SegmentProps> = props => {
   const { segmentId, isActive } = props
-  const {
-    digitSize,
-    segmentThickness,
-    segmentSpacing,
-    segmentActiveColor,
-    segmentInactiveColor,
-    glow,
-  } = useContext(SevenSegmentDisplayContext)
+  const { digitSize, segmentThickness, segmentSpacing, segmentActiveColor, segmentInactiveColor } =
+    useContext(SevenSegmentDisplayContext)
   const halfThickness = segmentThickness / 2
   const width = digitSize * 0.5
+  const height = digitSize
 
-  const segments = {
-    a: {
-      top: 0,
-      left: 0,
-    },
-    b: {
-      top: 0,
-      left: width,
-      transform: 'rotate(90deg)',
-      transformOrigin: 'top left',
-    },
-    c: {
-      top: width * 2,
-      left: width,
-      transform: 'rotate(270deg) scaleY(-1)',
-      transformOrigin: 'top left',
-    },
-    d: {
-      top: width * 2,
-      left: width,
-      transform: 'rotate(180deg)',
-      transformOrigin: 'top left',
-    },
-    e: {
-      top: width * 2,
-      left: 0,
-      transform: 'rotate(270deg)',
-      transformOrigin: 'top left',
-    },
-    f: {
-      top: 0,
-      left: 0,
-      transform: 'rotate(90deg) scaleY(-1)',
-      transformOrigin: 'top left',
-    },
-    g: {
-      top: width - halfThickness,
-      left: 0,
-    },
-  }
-
-  // a, d
-  const path_ad = `
-    M ${segmentSpacing} ${0}
+  const pathA = `
+    M ${segmentSpacing} 0
     L ${width - segmentSpacing} 0
     L ${width - segmentThickness - segmentSpacing} ${segmentThickness}
     L ${segmentThickness + segmentSpacing} ${segmentThickness} Z
   `
 
-  // b, c, e, f
-  const path_bcef = `
-    M ${segmentSpacing} ${0}
-    L ${width - halfThickness - segmentSpacing} 0
-    L ${width - segmentSpacing} ${halfThickness}
-    L ${width - halfThickness - segmentSpacing} ${segmentThickness}
-    L ${segmentThickness + segmentSpacing} ${segmentThickness} Z
+  const pathB = `
+    M ${width} ${segmentSpacing}
+    L ${width} ${width - halfThickness - segmentSpacing}
+    L ${width - halfThickness} ${width - segmentSpacing}
+    L ${width - segmentThickness} ${width - halfThickness - segmentSpacing}
+    L ${width - segmentThickness} ${segmentThickness + segmentSpacing} Z
   `
 
-  // g
-  const path_g = `
-    M ${halfThickness + segmentSpacing} ${halfThickness}
-    L ${segmentThickness + segmentSpacing} 0
-    L ${width - segmentThickness - segmentSpacing} 0
-    L ${width - halfThickness - segmentSpacing} ${halfThickness}
-    L ${width - segmentThickness - segmentSpacing} ${segmentThickness}
-    L ${segmentThickness + segmentSpacing} ${segmentThickness} Z
+  const pathC = `
+    M ${width - halfThickness} ${width + segmentSpacing}
+    L ${width} ${width + halfThickness + segmentSpacing}
+    L ${width} ${height - segmentSpacing}
+    L ${width - segmentThickness} ${height - segmentThickness - segmentSpacing}
+    L ${width - segmentThickness} ${width + halfThickness + segmentSpacing} Z
   `
 
-  const d = useMemo(
-    () => ({ a: path_ad, b: path_bcef, c: path_bcef, d: path_ad, e: path_bcef, f: path_bcef, g: path_g }[segmentId]),
-    [path_ad, path_bcef, path_g, segmentId],
-  )
+  const pathD = `
+    M ${segmentThickness + segmentSpacing} ${height - segmentThickness}
+    L ${width - segmentThickness - segmentSpacing} ${height - segmentThickness}
+    L ${width - segmentSpacing} ${height}
+    L ${segmentSpacing} ${height} Z
+  `
 
-  return (
-    <svg
-      className="absolute"
-      style={{
-        ...segments[segmentId],
-        // prettier-ignore
-        filter:
-          isActive && glow
-            ? `
-                drop-shadow(0 0 ${segmentThickness * 1.5}px ${color(segmentActiveColor).fade(0.25).hexa()})
-              `
-            : 'none',
-        zIndex: isActive ? 1 : 0,
-      }}
-      width={width}
-      height={segmentThickness}
-      viewBox={`0 0 ${width} ${segmentThickness}`}
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fill={isActive ? segmentActiveColor : segmentInactiveColor}
-        d={d}
-      />
-    </svg>
-  )
+  const pathE = `
+    M ${halfThickness} ${width + segmentSpacing}
+    L ${segmentThickness} ${width + halfThickness + segmentSpacing}
+    L ${segmentThickness} ${height - segmentThickness - segmentSpacing}
+    L 0 ${height - segmentSpacing}
+    L 0 ${width + halfThickness + segmentSpacing} Z
+  `
+
+  const pathF = `
+    M 0 ${segmentSpacing}
+    L ${segmentThickness} ${segmentThickness + segmentSpacing}
+    L ${segmentThickness} ${width - halfThickness - segmentSpacing}
+    L ${halfThickness} ${width - segmentSpacing}
+    L 0 ${width - halfThickness - segmentSpacing} Z
+  `
+
+  const pathG = `
+    M ${halfThickness + segmentSpacing} ${width}
+    L ${segmentThickness + segmentSpacing} ${width - halfThickness}
+    L ${width - segmentThickness - segmentSpacing} ${width - halfThickness}
+    L ${width - halfThickness - segmentSpacing} ${width}
+    L ${width - segmentThickness - segmentSpacing} ${width + halfThickness}
+    L ${segmentThickness + segmentSpacing} ${width + halfThickness} Z
+  `
+
+  const d = { a: pathA, b: pathB, c: pathC, d: pathD, e: pathE, f: pathF, g: pathG }[segmentId]
+
+  return <path fill={isActive ? segmentActiveColor : segmentInactiveColor} d={d} />
 }
 
 export default Segment

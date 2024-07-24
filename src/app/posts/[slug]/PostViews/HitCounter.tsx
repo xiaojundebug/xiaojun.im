@@ -67,7 +67,7 @@ const HitCounter = () => {
 
   return (
     <button
-      className="relative"
+      className="relative flex"
       aria-label={`Retro-style hit counter, showing that ${views} people have visited this page.`}
       onClick={() => {
         if (!isDarkMode) {
@@ -83,7 +83,7 @@ const HitCounter = () => {
         value={views}
         minLength={6}
         digitSize={18}
-        digitSpacing={4}
+        digitSpacing={6}
         segmentThickness={2}
         segmentSpacing={0.5}
         segmentActiveColor={colorPattern.activeColor}
